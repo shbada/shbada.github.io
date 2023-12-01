@@ -1,6 +1,6 @@
 {
-  "name": "Seohae's TIL",
-  "short_name": "Seohae's TIL",
+  "name": "TIL",
+  "short_name": "TIL",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
