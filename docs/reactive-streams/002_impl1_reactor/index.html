@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Reactive Streams 구현 라이브러리 (1) Reactor # Project reactor # Pivotal 사에서 개발 Spring reactor에서 사용 Mono와 Flux publisher 제공 Project reactor - Flux # 0..n개의 item을 전달 에러가 발생하면 error signal 전달하고 종료 모든 item을 전달했다면 complete signal 전달 하고 종료 backPressure 지원 Flux 예제 # SimpleSubscriber
+FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConstructor public class p181_SimpleSubscriber&lt;T&gt; implements Subscriber&lt;T&gt; { private final Integer count; /** * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음 * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)} */ @Override public void onSubscribe(Subscription s) { log.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Reactive Streams 구현 라이브러리 (1) Reactor # Project reactor # Pivotal 사에서 개발 Spring reactor에서 사용 Mono와 Flux publisher 제공 Project reactor - Flux # 0..n개의 item을 전달 에러가 발생하면 error signal 전달하고 종료 모든 item을 전달했다면 complete signal 전달 하고 종료 backPressure 지원 Flux 예제 # SimpleSubscriber
+FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConstructor public class p181_SimpleSubscriber&lt;T&gt; implements Subscriber&lt;T&gt; { private final Integer count; /** * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음 * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)} */ @Override public void onSubscribe(Subscription s) { log." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/reactive-streams/002_impl1_reactor/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-02T00:00:00+00:00" />
+
+<title>002 Impl1 Reactor | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.a4d309e5528aed6ef67408672f10a13ea5aafca9a22589441af2d0ee6e31b055.js" integrity="sha256-pNMJ5VKK7W72dAhnLxChPqWq/KmiJYlEGvLQ7m4xsFU=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle" checked />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="active">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>002 Impl1 Reactor</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reactive-streams-구현-라이브러리-1-reactor">Reactive Streams 구현 라이브러리 (1) Reactor</a>
+      <ul>
+        <li><a href="#project-reactor">Project reactor</a></li>
+        <li><a href="#project-reactor---flux">Project reactor - Flux</a></li>
+        <li><a href="#flux-예제">Flux 예제</a></li>
+        <li><a href="#flux---subscribeon-예제">Flux - subscribeOn 예제</a></li>
+        <li><a href="#flux---subscribe">Flux - subscribe</a></li>
+        <li><a href="#flux---backpressure">Flux - backPressure</a></li>
+        <li><a href="#flux---error">Flux - error</a></li>
+        <li><a href="#flux---complete">Flux - complete</a></li>
+        <li><a href="#project-reactor---mono">Project reactor - Mono</a></li>
+        <li><a href="#mono-예제">Mono 예제</a></li>
+        <li><a href="#mono와-flux">Mono와 Flux</a></li>
+        <li><a href="#flux를-mono로-변환">Flux를 Mono로 변환</a></li>
+        <li><a href="#flux를-mono로-변환-monolistt">Flux를 Mono로 변환 (Mono&lt;List<T>&gt;)</a></li>
+        <li><a href="#mono를-flux로-변환">Mono를 Flux로 변환</a></li>
+        <li><a href="#mono를-flux로-변환-monolistt---fluxt">Mono를 Flux로 변환 (Mono&lt;List<T>&gt; -&gt; Flux<T>)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="reactive-streams-구현-라이브러리-1-reactor">
+  Reactive Streams 구현 라이브러리 (1) Reactor
+  <a class="anchor" href="#reactive-streams-%ea%b5%ac%ed%98%84-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-1-reactor">#</a>
+</h1>
+<h2 id="project-reactor">
+  Project reactor
+  <a class="anchor" href="#project-reactor">#</a>
+</h2>
+<ul>
+<li>Pivotal 사에서 개발</li>
+<li>Spring reactor에서 사용</li>
+<li>Mono와 Flux publisher 제공</li>
+</ul>
+<p>
+  <img src="/image/reactive_streams/002/img.png" alt="img.png" /></p>
+<h2 id="project-reactor---flux">
+  Project reactor - Flux
+  <a class="anchor" href="#project-reactor---flux">#</a>
+</h2>
+<ul>
+<li>0..n개의 item을 전달</li>
+<li>에러가 발생하면 error signal 전달하고 종료</li>
+<li>모든 item을 전달했다면 complete signal 전달 하고 종료</li>
+<li>backPressure 지원</li>
+</ul>
+<p>
+  <img src="/image/reactive_streams/002/img_1.png" alt="img_1.png" /></p>
+<h2 id="flux-예제">
+  Flux 예제
+  <a class="anchor" href="#flux-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<p>SimpleSubscriber</p>
+<ul>
+<li>FluxIterable publisher</li>
+<li>Subscription : StrictSubscriber</li>
+</ul>
+<pre tabindex="0"><code>@Slf4j
+@RequiredArgsConstructor
+public class p181_SimpleSubscriber&lt;T&gt; implements Subscriber&lt;T&gt; {
+    private final Integer count;
+
+    /**
+     * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음
+     * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)}
+     */
+    @Override
+    public void onSubscribe(Subscription s) {
+        log.info(&#34;subscribe&#34;);
+        s.request(count); // count만큼 request
+        log.info(&#34;request: {}&#34;, count);
+    }
+
+    @SneakyThrows
+    @Override
+    public void onNext(T t) {
+        log.info(&#34;item: {}&#34;, t);
+        Thread.sleep(100);
+    }
+
+    @Override
+    public void onError(Throwable t) {
+        log.error(&#34;error: {}&#34;, t.getMessage());
+    }
+
+    @Override
+    public void onComplete() {
+        log.info(&#34;complete&#34;);
+    }
+}
+</code></pre><p>FluxSimpleExample</p>
+<pre tabindex="0"><code>@Slf4j
+public class p181_FluxSimpleExample {
+    @SneakyThrows
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        // main 쓰레드에서 수행
+        getItems() // 고정된 개수를 subscribe
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+
+        Thread.sleep(1000);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.fromIterable(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>13:18:58.672 [main] INFO com.example06.reactor.p181_FluxSimpleExample - start main
+13:18:58.733 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+13:18:58.736 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+13:18:58.736 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+13:18:58.737 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+13:18:58.904 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 2
+13:18:59.049 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 3
+13:18:59.233 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 4
+13:18:59.399 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 5
+13:18:59.578 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+13:18:59.578 [main] INFO com.example06.reactor.p181_FluxSimpleExample - end main
+</code></pre><h2 id="flux---subscribeon-예제">
+  Flux - subscribeOn 예제
+  <a class="anchor" href="#flux---subscribeon-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<p>FluxSimpleSubscribeOnExample</p>
+<pre tabindex="0"><code>@Slf4j
+public class p182_FluxSimpleSubscribeOnExample {
+    @SneakyThrows
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems()
+                .map(i -&gt; {
+                    log.info(&#34;map {}&#34;, i);
+                    return i;
+                })
+                // main 쓰레드가 아닌 다른 쓰레드에서 수행
+                .subscribeOn(Schedulers.single())
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;); // 바로 호출
+
+        Thread.sleep(1000);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.fromIterable(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>실행결과</p>
+<ul>
+<li>single-1 쓰레드에서 수행</li>
+</ul>
+<pre tabindex="0"><code>13:22:13.042 [main] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - start main
+13:22:13.094 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+13:22:13.120 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+13:22:13.120 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+13:22:13.122 [main] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - end main
+13:22:13.124 [single-1] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - map 1
+13:22:13.124 [single-1] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+13:22:13.264 [single-1] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - map 2
+13:22:13.264 [single-1] INFO com.example06.reactor.p181_SimpleSubscriber - item: 2
+13:22:13.440 [single-1] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - map 3
+13:22:13.441 [single-1] INFO com.example06.reactor.p181_SimpleSubscriber - item: 3
+13:22:13.613 [single-1] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - map 4
+13:22:13.614 [single-1] INFO com.example06.reactor.p181_SimpleSubscriber - item: 4
+13:22:13.789 [single-1] INFO com.example06.reactor.p182_FluxSimpleSubscribeOnExample - map 5
+13:22:13.789 [single-1] INFO com.example06.reactor.p181_SimpleSubscriber - item: 5
+13:22:13.969 [single-1] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+</code></pre><h2 id="flux---subscribe">
+  Flux - subscribe
+  <a class="anchor" href="#flux---subscribe">#</a>
+</h2>
+<p>FluxNoSubscribeExample</p>
+<ul>
+<li>subscribe하지 않으면, 아무 일도 일어나지 않는다.</li>
+</ul>
+<pre tabindex="0"><code>@Slf4j
+public class p183_FluxNoSubscribeExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems(); // subscribe 하지않으면 아무일도 일어나지 않는다.
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.create(fluxSink -&gt; {
+            log.info(&#34;start getItems&#34;);
+            for (int i = 0; i &lt; 5; i++) {
+                fluxSink.next(i);
+            }
+            fluxSink.complete();
+            log.info(&#34;end getItems&#34;);
+        });
+    }
+}
+</code></pre><h2 id="flux---backpressure">
+  Flux - backPressure
+  <a class="anchor" href="#flux---backpressure">#</a>
+</h2>
+<ol>
+<li>1번째 예제</li>
+</ol>
+<pre tabindex="0"><code>@Slf4j
+public class p184_FluxSimpleRequestThreeExample {
+    public static void main(String[] args) {
+        // 3개 요청 (1, 2, 3 이후 종료) , 추가적인 요청 없음 
+        getItems().subscribe(new p181_SimpleSubscriber&lt;&gt;(3));
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.fromIterable(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>SimpleSubscriber</p>
+<pre tabindex="0"><code>@Slf4j
+@RequiredArgsConstructor
+public class p181_SimpleSubscriber&lt;T&gt; implements Subscriber&lt;T&gt; {
+    private final Integer count;
+
+    /**
+     * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음
+     * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)}
+     */
+    @Override
+    public void onSubscribe(Subscription s) {
+        log.info(&#34;subscribe&#34;);
+        s.request(count); // count만큼 request
+        log.info(&#34;request: {}&#34;, count);
+    }
+    
+    ...
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:24:32.953 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:24:32.957 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:24:32.957 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 3
+09:24:32.958 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+09:24:33.091 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 2
+09:24:33.232 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 3
+</code></pre><ol start="2">
+<li>2번째 예제</li>
+</ol>
+<pre tabindex="0"><code>@Slf4j
+public class p185_FluxContinuousRequestSubscriberExample {
+    public static void main(String[] args) {
+        getItems().subscribe(new p185_ContinuousRequestSubscriber&lt;&gt;());
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.fromIterable(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>ContinuousRequestSubscriber</p>
+<pre tabindex="0"><code>@Slf4j
+public class p185_ContinuousRequestSubscriber&lt;T&gt;
+        implements Subscriber&lt;T&gt; {
+    private final Integer count = 1;
+    private Subscription subscription;
+
+    @Override
+    public void onSubscribe(Subscription s) {
+        this.subscription = s;
+        log.info(&#34;subscribe&#34;);
+        s.request(count); // 개수만큼 요청
+        log.info(&#34;request: {}&#34;, count);
+    }
+
+    @SneakyThrows
+    @Override
+    public void onNext(T t) {
+        log.info(&#34;item: {}&#34;, t);
+
+        Thread.sleep(1000);
+        // 1개를 또 호출
+        subscription.request(1);
+        log.info(&#34;request: {}&#34;, count);
+    }
+
+    @Override
+    public void onError(Throwable t) {
+        log.error(&#34;error: {}&#34;, t.getMessage());
+    }
+
+    @Override
+    public void onComplete() {
+        log.info(&#34;complete&#34;);
+    }
+}
+</code></pre><ol>
+<li>아래 로직으로 계속 반복 수행한다.</li>
+</ol>
+<pre tabindex="0"><code>// 1개를 또 호출
+subscription.request(1);
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:33:34.419 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:33:34.424 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - subscribe
+09:33:34.424 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - request: 1
+09:33:34.425 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - item: 1
+09:33:35.445 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - request: 1
+09:33:35.445 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - item: 2
+09:33:36.518 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - request: 1
+09:33:36.518 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - item: 3
+09:33:37.589 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - request: 1
+09:33:37.589 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - item: 4
+09:33:38.655 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - request: 1
+09:33:38.655 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - item: 5
+09:33:39.718 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - request: 1
+09:33:39.727 [main] INFO com.example06.reactor.p185_ContinuousRequestSubscriber - complete
+</code></pre><h2 id="flux---error">
+  Flux - error
+  <a class="anchor" href="#flux---error">#</a>
+</h2>
+<pre tabindex="0"><code>@Slf4j
+public class p186_FluxErrorExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems().subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.create(fluxSink -&gt; {
+            fluxSink.next(0);
+            fluxSink.next(1);
+            var error = new RuntimeException(&#34;error in flux&#34;);
+            fluxSink.error(error); // 에러 전달
+        });
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:36:46.692 [main] INFO com.example06.reactor.p186_FluxErrorExample - start main
+09:36:46.756 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:36:46.762 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:36:46.762 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:36:46.764 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 0
+09:36:46.885 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+09:36:47.028 [main] ERROR com.example06.reactor.p181_SimpleSubscriber - error: error in flux
+09:36:47.028 [main] INFO com.example06.reactor.p186_FluxErrorExample - end main
+</code></pre><h2 id="flux---complete">
+  Flux - complete
+  <a class="anchor" href="#flux---complete">#</a>
+</h2>
+<pre tabindex="0"><code>@Slf4j
+public class p187_FluxCompleteExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems().subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.create(fluxSink -&gt; {
+            fluxSink.complete(); // complete 전달
+        });
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:37:31.038 [main] INFO com.example06.reactor.p187_FluxCompleteExample - start main
+09:37:31.100 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:37:31.106 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:37:31.106 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:37:31.109 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+09:37:31.109 [main] INFO com.example06.reactor.p187_FluxCompleteExample - end main
+</code></pre><h2 id="project-reactor---mono">
+  Project reactor - Mono
+  <a class="anchor" href="#project-reactor---mono">#</a>
+</h2>
+<ul>
+<li>0..1개의 item을 전달</li>
+<li>에러가 발생하면 error signal 전달하고 종료</li>
+<li>모든 item을 전달했다면 complete signal 전달 하고 종료</li>
+</ul>
+<p>
+  <img src="/image/reactive_streams/002/img_2.png" alt="img_2.png" /></p>
+<h2 id="mono-예제">
+  Mono 예제
+  <a class="anchor" href="#mono-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<ul>
+<li>1개의 item만 전달하기 때문에 next 하나만 실행하면 complete가 보장</li>
+<li>혹은 전달하지 않고 complete를 하면 값이 없다는 것을 의미 - 하나의 값이 있거나 없다</li>
+</ul>
+<pre tabindex="0"><code>@Slf4j
+public class p190_MonoSimpleExample {
+    @SneakyThrows
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems()
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+
+        Thread.sleep(1000);
+    }
+
+    private static Mono&lt;Integer&gt; getItems() {
+        return Mono.create(monoSink -&gt; {
+            monoSink.success(1);
+        });
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:39:02.445 [main] INFO com.example06.reactor.p190_MonoSimpleExample - start main
+09:39:02.481 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:39:02.484 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:39:02.484 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:39:02.484 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+09:39:02.658 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+09:39:02.658 [main] INFO com.example06.reactor.p190_MonoSimpleExample - end main
+</code></pre><h2 id="mono와-flux">
+  Mono와 Flux
+  <a class="anchor" href="#mono%ec%99%80-flux">#</a>
+</h2>
+<p>Mono<T> : Optional<T></p>
+<ul>
+<li>없거나 혹은 하나의 값</li>
+<li>Mono로 특정 사건이 완료되는 시점을 가리킬 수도 있다</li>
+</ul>
+<p>Flux<T>: List<T></p>
+<ul>
+<li>무한하거나 유한한 여러 개의 값</li>
+</ul>
+<h2 id="flux를-mono로-변환">
+  Flux를 Mono로 변환
+  <a class="anchor" href="#flux%eb%a5%bc-mono%eb%a1%9c-%eb%b3%80%ed%99%98">#</a>
+</h2>
+<ul>
+<li>Mono.from으로 Flux를 Mono로 변환</li>
+<li>첫 번째 값만 전달</li>
+</ul>
+<pre tabindex="0"><code>@Slf4j
+public class p192_FluxToMonoExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        // 1,2,3,4,5 중 첫번째값 1이 onNext로 전달되고 complete
+        // 뒤에 있는 값들은 모두 무시
+        Mono.from(getItems())
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.fromIterable(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:40:37.275 [main] INFO com.example06.reactor.p192_FluxToMonoExample - start main
+09:40:37.340 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:40:37.363 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:40:37.363 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:40:37.365 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+09:40:37.473 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+09:40:37.473 [main] INFO com.example06.reactor.p192_FluxToMonoExample - end main
+</code></pre><h2 id="flux를-mono로-변환-monolistt">
+  Flux를 Mono로 변환 (Mono&lt;List<T>&gt;)
+  <a class="anchor" href="#flux%eb%a5%bc-mono%eb%a1%9c-%eb%b3%80%ed%99%98-monolistt">#</a>
+</h2>
+<pre tabindex="0"><code>@Slf4j
+public class p193_FluxToListMonoExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems()
+                // collect 하고 complete 이벤트 발생 시점에 모은 값들을 모두 전달
+                // 1, 2, 3, 4, 5를 내부 배열에 저장하고, 가지고있던 값들을 모두 onNext() 한다.
+                // 하나로 합쳐져서 Mono로 한번 요청됨 ([1,2,3,4,5])
+                .collectList()
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Flux&lt;Integer&gt; getItems() {
+        return Flux.fromIterable(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:41:24.680 [main] INFO com.example06.reactor.p193_FluxToListMonoExample - start main
+09:41:24.743 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:41:24.766 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:41:24.766 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:41:24.767 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: [1, 2, 3, 4, 5]
+09:41:24.940 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+09:41:24.940 [main] INFO com.example06.reactor.p193_FluxToListMonoExample - end main
+</code></pre><h2 id="mono를-flux로-변환">
+  Mono를 Flux로 변환
+  <a class="anchor" href="#mono%eb%a5%bc-flux%eb%a1%9c-%eb%b3%80%ed%99%98">#</a>
+</h2>
+<ul>
+<li>flux()</li>
+<li>Mono를 next 한 번 호출하고 onComplete를 호출하는 Flux로 변환</li>
+</ul>
+<pre tabindex="0"><code>@Slf4j
+public class p194_MonoToFluxExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+
+        // flux() - Mono를 next 한번 호출하고 onComplete를 호출하는 Flux로 변환
+        // [1,2,3,4,5]
+        getItems().flux()
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Mono&lt;List&lt;Integer&gt;&gt; getItems() {
+        return Mono.just(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:42:16.606 [main] INFO com.example06.reactor.p194_MonoToFluxExample - start main
+09:42:16.650 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:42:16.694 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:42:16.695 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:42:16.695 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: [1, 2, 3, 4, 5]
+09:42:16.802 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+09:42:16.802 [main] INFO com.example06.reactor.p194_MonoToFluxExample - end main
+</code></pre><h2 id="mono를-flux로-변환-monolistt---fluxt">
+  Mono를 Flux로 변환 (Mono&lt;List<T>&gt; -&gt; Flux<T>)
+  <a class="anchor" href="#mono%eb%a5%bc-flux%eb%a1%9c-%eb%b3%80%ed%99%98-monolistt---fluxt">#</a>
+</h2>
+<pre tabindex="0"><code>@Slf4j
+public class p195_ListMonoToFluxExample {
+    public static void main(String[] args) {
+        log.info(&#34;start main&#34;);
+        getItems()
+                // Mono의 결과를 Flux 형태로 바꾸고, flux를 받아서 처리
+                // 1, 2, 3, 4, 5 하나씩 처리 
+                .flatMapMany(value -&gt; Flux.fromIterable(value))
+                .subscribe(new p181_SimpleSubscriber&lt;&gt;(Integer.MAX_VALUE));
+        log.info(&#34;end main&#34;);
+    }
+
+    private static Mono&lt;List&lt;Integer&gt;&gt; getItems() {
+        return Mono.just(List.of(1, 2, 3, 4, 5));
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>09:43:07.895 [main] INFO com.example06.reactor.p195_ListMonoToFluxExample - start main
+09:43:07.931 [main] DEBUG reactor.util.Loggers - Using Slf4j logging framework
+09:43:07.972 [main] INFO com.example06.reactor.p181_SimpleSubscriber - subscribe
+09:43:07.972 [main] INFO com.example06.reactor.p181_SimpleSubscriber - request: 2147483647
+09:43:07.972 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 1
+09:43:08.082 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 2
+09:43:08.239 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 3
+09:43:08.414 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 4
+09:43:08.588 [main] INFO com.example06.reactor.p181_SimpleSubscriber - item: 5
+09:43:08.724 [main] INFO com.example06.reactor.p181_SimpleSubscriber - complete
+09:43:08.724 [main] INFO com.example06.reactor.p195_ListMonoToFluxExample - end main
+</code></pre><hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-Referneces" id="tabs-Referneces-0" checked="checked" />
+  <label for="tabs-Referneces-0">Referneces</label>
+  <div class="book-tabs-content markdown-inner"><em>1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지</em><br>
+<em>2) github 예제코드 : 
+  <a href="https://github.com/seohaebada/webflux">https://github.com/seohaebada/webflux</a></em></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/reactive%20streams/002_impl1_reactor.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reactive-streams-구현-라이브러리-1-reactor">Reactive Streams 구현 라이브러리 (1) Reactor</a>
+      <ul>
+        <li><a href="#project-reactor">Project reactor</a></li>
+        <li><a href="#project-reactor---flux">Project reactor - Flux</a></li>
+        <li><a href="#flux-예제">Flux 예제</a></li>
+        <li><a href="#flux---subscribeon-예제">Flux - subscribeOn 예제</a></li>
+        <li><a href="#flux---subscribe">Flux - subscribe</a></li>
+        <li><a href="#flux---backpressure">Flux - backPressure</a></li>
+        <li><a href="#flux---error">Flux - error</a></li>
+        <li><a href="#flux---complete">Flux - complete</a></li>
+        <li><a href="#project-reactor---mono">Project reactor - Mono</a></li>
+        <li><a href="#mono-예제">Mono 예제</a></li>
+        <li><a href="#mono와-flux">Mono와 Flux</a></li>
+        <li><a href="#flux를-mono로-변환">Flux를 Mono로 변환</a></li>
+        <li><a href="#flux를-mono로-변환-monolistt">Flux를 Mono로 변환 (Mono&lt;List<T>&gt;)</a></li>
+        <li><a href="#mono를-flux로-변환">Mono를 Flux로 변환</a></li>
+        <li><a href="#mono를-flux로-변환-monolistt---fluxt">Mono를 Flux로 변환 (Mono&lt;List<T>&gt; -&gt; Flux<T>)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

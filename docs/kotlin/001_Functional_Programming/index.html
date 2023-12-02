@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="함수형 프로그래밍이란? # 명령어 스타일 (imperative style) # 컴퓨터에게 정해진 명령 또는 지시를 하나하나 내림으로써 각 명령 단계마다 시스템의 상태를 바꾼다. 처음에는 단순화하려는 의도나, 시스템이 커질수록 복잡해지며, 그 결과 코드를 더이상 유지보수할 수 없게 되고, 테스트 하기 어려워지며 코드를 추론하는데에 어려워진다. 함수형 프로그래밍 (FP, Functional Programming) # 위 명령어 스타일의 대안으로, &lsquo;부수 효과&rsquo;를 완전히 없애는 개념이다. 함수형 프로그래밍의 전제는, 순수 함수를 통해 프로그램을 구성한다는 것이다. 순수 함수 : 아무 부수 효과가 없는 함수 부수 효과란?">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="함수형 프로그래밍이란? # 명령어 스타일 (imperative style) # 컴퓨터에게 정해진 명령 또는 지시를 하나하나 내림으로써 각 명령 단계마다 시스템의 상태를 바꾼다. 처음에는 단순화하려는 의도나, 시스템이 커질수록 복잡해지며, 그 결과 코드를 더이상 유지보수할 수 없게 되고, 테스트 하기 어려워지며 코드를 추론하는데에 어려워진다. 함수형 프로그래밍 (FP, Functional Programming) # 위 명령어 스타일의 대안으로, &lsquo;부수 효과&rsquo;를 완전히 없애는 개념이다. 함수형 프로그래밍의 전제는, 순수 함수를 통해 프로그램을 구성한다는 것이다. 순수 함수 : 아무 부수 효과가 없는 함수 부수 효과란?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/kotlin/001_Functional_Programming/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-11-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-11-22T00:00:00+00:00" />
+
+<title>001 Functional Programming | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.a4d309e5528aed6ef67408672f10a13ea5aafca9a22589441af2d0ee6e31b055.js" integrity="sha256-pNMJ5VKK7W72dAhnLxChPqWq/KmiJYlEGvLQ7m4xsFU=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle" checked />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="active">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>001 Functional Programming</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#함수형-프로그래밍이란">함수형 프로그래밍이란?</a>
+      <ul>
+        <li><a href="#명령어-스타일-imperative-style">명령어 스타일 (imperative style)</a></li>
+        <li><a href="#함수형-프로그래밍-fp-functional-programming">함수형 프로그래밍 (FP, Functional Programming)</a></li>
+        <li><a href="#함수형-프로그래밍fp의-장점--예제로-알아보기">함수형 프로그래밍(FP)의 장점 : 예제로 알아보기</a></li>
+        <li><a href="#함수형-해법">함수형 해법</a></li>
+        <li><a href="#buycoffees-생성">buyCoffees 생성</a></li>
+        <li><a href="#같은-카드에-청구하는-금액을-모두-합치기">같은 카드에 청구하는 금액을 모두 합치기</a></li>
+        <li><a href="#순수-함수란">순수 함수란?</a></li>
+        <li><a href="#참조-투명성-예제">참조 투명성 예제</a></li>
+        <li><a href="#참조-투명성-예제2">참조 투명성 예제(2)</a></li>
+        <li><a href="#참조-투명성을-위배하는-예제">참조 투명성을 위배하는 예제</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="함수형-프로그래밍이란">
+  함수형 프로그래밍이란?
+  <a class="anchor" href="#%ed%95%a8%ec%88%98%ed%98%95-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d%ec%9d%b4%eb%9e%80">#</a>
+</h1>
+<h2 id="명령어-스타일-imperative-style">
+  명령어 스타일 (imperative style)
+  <a class="anchor" href="#%eb%aa%85%eb%a0%b9%ec%96%b4-%ec%8a%a4%ed%83%80%ec%9d%bc-imperative-style">#</a>
+</h2>
+<ul>
+<li>컴퓨터에게 정해진 명령 또는 지시를 하나하나 내림으로써 각 명령 단계마다 시스템의 상태를 바꾼다.</li>
+<li>처음에는 단순화하려는 의도나, 시스템이 커질수록 복잡해지며, 그 결과 코드를 더이상 유지보수할 수 없게 되고, 테스트 하기 어려워지며 코드를 추론하는데에 어려워진다.</li>
+</ul>
+<h2 id="함수형-프로그래밍-fp-functional-programming">
+  함수형 프로그래밍 (FP, Functional Programming)
+  <a class="anchor" href="#%ed%95%a8%ec%88%98%ed%98%95-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d-fp-functional-programming">#</a>
+</h2>
+<ul>
+<li>위 명령어 스타일의 대안으로, &lsquo;부수 효과&rsquo;를 완전히 없애는 개념이다.</li>
+<li>함수형 프로그래밍의 전제는, 순수 함수를 통해 프로그램을 구성한다는 것이다.
+<ul>
+<li>순수 함수 : 아무 부수 효과가 없는 함수</li>
+</ul>
+</li>
+<li>부수 효과란?
+<ul>
+<li>결과를 반환하는 것 외에 무언가 다른 일을 하는 함수는 부수 효과가 있는 함수다.
+<ul>
+<li>변경이 일어나는 블록 외부 영역에 있는 변수를 변경한다.</li>
+<li>데이터 구조를 인플레이스로 변경한다. (즉, 메모리의 내용을 직접 변경한다.)</li>
+<li>객체의 필드를 설정한다.</li>
+<li>예외를 던지거나 예외를 발생시키면서 프로그램을 중단시킨다.</li>
+<li>콘솔에 출력을 하거나 사용자 입력을 읽는다.</li>
+<li>파일을 읽거나 쓴다.</li>
+<li>화면에 무언가를 그린다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="함수형-프로그래밍fp의-장점--예제로-알아보기">
+  함수형 프로그래밍(FP)의 장점 : 예제로 알아보기
+  <a class="anchor" href="#%ed%95%a8%ec%88%98%ed%98%95-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8dfp%ec%9d%98-%ec%9e%a5%ec%a0%90--%ec%98%88%ec%a0%9c%eb%a1%9c-%ec%95%8c%ec%95%84%eb%b3%b4%ea%b8%b0">#</a>
+</h2>
+<ul>
+<li>부수 효과가 있는 프로그램
+<ul>
+<li>순수하지 않은 프로그램</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>val listing1 = {
+    class CreditCard {
+        fun charge(price: Float): Unit = TODO()
+    }
+
+    data class Coffee(val price: Float = 2.50F)
+
+    //tag::init1[]
+    class Cafe {
+
+        fun buyCoffee(cc: CreditCard): Coffee {
+
+            val cup = Coffee() // &lt;1&gt;
+
+            cc.charge(cup.price) // &lt;2&gt;
+
+            return cup // &lt;3&gt;
+        }
+    }
+</code></pre><ul>
+<li>CreditCard 객체의 charge() 메서드를 호출한다. 이로써 부수 효과가 생긴다.
+<ul>
+<li>신용카드를 청구하려면, 신용 카드사에 요청해야하므로 외부에서 부수적으로 벌어지는 일이다. 반환하는 객체는 단지 Coffee 객체다.</li>
+<li>이 부수효과로 인해서, 테스트가 어려워진다. 실제 신용 카드사에 접속해서 요청하는 것은 원하지 않는다.</li>
+<li>CreditCard는 신용카드사에 접속해 비용을 청구하는 방법을 알아서는 안된다.</li>
+<li>CreditCard가 이런 관심사를 알지 못하게 하고, buyCoffee에 Payments 객체를 넘김으로써 이 코드를 좀더 모듈화하고 테스트성을 향상시킬 수 있다.</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>val listing2 = {
+    data class Coffee(val price: Float = 2.95F)
+
+    class CreditCard
+
+    class Payments {
+        fun charge(cc: CreditCard, price: Float): Unit = TODO()
+    }
+
+    //tag::init2[]
+    class Cafe {
+        fun buyCoffee(cc: CreditCard, p: Payments): Coffee {
+            val cup = Coffee()
+            p.charge(cc, cup.price)
+            return cup
+        }
+    }
+    //end::init2[]
+}
+</code></pre><ul>
+<li>Payments를 인터페이스로 선언할 수 있고, 이 인터페이스에에 대해 테스트에 적합한  mock 객체를 구현할 수 있다.
+<ul>
+<li>불필요하게 Payments를 인터페이스로 선언해야한다.</li>
+</ul>
+</li>
+<li>buyCoffee()를 재사용하기가 어렵다.
+<ul>
+<li>한 고객이 커피를 12잔 주문할 경우, for문으로 buyCoffee()를 호출할 것이다. 이런 식으로 호출하면 charge() 메서드가 12번 수행되어 신용카드사에 12번 연결해서 청구라는 행위를 수행하게 된다.</li>
+<li>위 문제의 처리 방안으로, buyCoffess()라는 새로운 함수를 작성해서 한꺼번에 청구하는 로직을 넣을 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="함수형-해법">
+  함수형 해법
+  <a class="anchor" href="#%ed%95%a8%ec%88%98%ed%98%95-%ed%95%b4%eb%b2%95">#</a>
+</h2>
+<ul>
+<li>부수 효과를 제거하고 buyCoffee가 Coffee와 함께 청구할 금액을 반환하게하자.</li>
+</ul>
+<pre tabindex="0"><code>val listing3 = {
+
+    class CreditCard
+
+    data class Coffee(val price: Float = 2.50F)
+
+    data class Charge(val cc: CreditCard, val amount: Float)
+
+    //tag::init3[]
+    class Cafe {
+        fun buyCoffee(cc: CreditCard): Pair&lt;Coffee, Charge&gt; {
+            val cup = Coffee()
+            return Pair(cup, Charge(cc, cup.price)) // 어떤 금액 청구를 만드는 관심사(Coffee), 청구를 처리하거나 해석하는 관심사(Charge)
+        }
+    }
+}
+</code></pre><ul>
+<li>두 관심사로 분리했다.
+<ul>
+<li>어떤 금액 청구를 만드는 관심사 = Coffee</li>
+<li>청구를 처리하거나 해석하는 관심사 = Charge</li>
+</ul>
+</li>
+<li>Charge
+<ul>
+<li>CreditCard와 amount를 포함한다.</li>
+<li>같은 CreditCard에 대한 청구를 하나로 묶어줄때 편리하게 쓸 수 있는 combine 함수를 제공한다.</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>val listing4 = {
+    class CreditCard
+
+    //tag::init4[]
+    data class Charge(val cc: CreditCard, val amount: Float) { // &lt;1&gt; 생성자와 불변 필드가 있는 데이터 클래스 선언
+
+        fun combine(other: Charge): Charge = // &lt;2&gt;같은 신용카드에 대한 청구를 하나로 묶음 
+            if (cc == other.cc) // &lt;3&gt; 같은 카드인지 검사. 그 외의 경우 에러 발생 
+                Charge(cc, amount + other.amount) // &lt;4&gt; 이 Charge와 다른 Charge의 금액을 합산한 새로운 Charge를 반환
+            else throw Exception(
+                &#34;Cannot combine charges to different cards&#34;
+            )
+    }
+}
+</code></pre><h2 id="buycoffees-생성">
+  buyCoffees 생성
+  <a class="anchor" href="#buycoffees-%ec%83%9d%ec%84%b1">#</a>
+</h2>
+<ul>
+<li>이제는 우리 바람대로 buyCoffee를 바탕으로 이 함수를 구현할 수 있다.</li>
+</ul>
+<pre tabindex="0"><code>val listing5 = {
+
+    class CreditCard
+
+    data class Coffee(val price: Float = 2.50F)
+
+    data class Charge(val cc: CreditCard, val amount: Float) {
+        fun combine(other: Charge): Charge = TODO()
+    }
+
+    //tag::init5[]
+    class Cafe {
+
+        fun buyCoffee(cc: CreditCard): Pair&lt;Coffee, Charge&gt; = TODO()
+
+        fun buyCoffees(
+            cc: CreditCard,
+            n: Int // 구매할 커피잔 수 
+        ): Pair&lt;List&lt;Coffee&gt;, Charge&gt; {
+
+            val purchases: List&lt;Pair&lt;Coffee, Charge&gt;&gt; =
+                List(n) { buyCoffee(cc) } // &lt;1&gt; 자체적으로 초기화되는 리스트를 생성한다.
+
+            val (coffees, charges) = purchases.unzip() // &lt;2&gt; Pair의 리스트를 두 리스트로 분리한다. List&lt;Coffee&gt;, List&lt;Charge&gt;
+
+            return Pair(
+                coffees,
+                charges.reduce { c1, c2 -&gt; c1.combine(c2) }
+            ) // &lt;3&gt; coffees를 한 Charge로 합친 출력을 생성한다.
+        }
+    }
+}
+</code></pre><ul>
+<li>이제는 buyCoffees 함수를 정의할때 직접 buyCoffee를 재사용할 수 있다.</li>
+<li>Payments 인터페이스에 대한 복잡한 mock 구현을 정의하지 않아도 이 두 함수를 아주 쉽게 테스트할 수 있다.</li>
+<li>Cafe 객체는 이제 Charge 값이 어떻게 처리되는지와는 무관하다.</li>
+</ul>
+<h2 id="같은-카드에-청구하는-금액을-모두-합치기">
+  같은 카드에 청구하는 금액을 모두 합치기
+  <a class="anchor" href="#%ea%b0%99%ec%9d%80-%ec%b9%b4%eb%93%9c%ec%97%90-%ec%b2%ad%ea%b5%ac%ed%95%98%eb%8a%94-%ea%b8%88%ec%95%a1%ec%9d%84-%eb%aa%a8%eb%91%90-%ed%95%a9%ec%b9%98%ea%b8%b0">#</a>
+</h2>
+<pre tabindex="0"><code>val listing6 = {
+
+    class CreditCard
+
+    data class Charge(val cc: CreditCard, val amount: Float) {
+        fun combine(other: Charge): Charge = TODO()
+    }
+
+    //tag::init6[]
+    fun List&lt;Charge&gt;.coalesce(): List&lt;Charge&gt; =
+        this.groupBy { it.cc }.values
+            .map { it.reduce { a, b -&gt; a.combine(b) } }
+}
+</code></pre><ul>
+<li>청구 금액의 리스트를 취해서 사용한 신용카드에 따라 그룹으로 나누고, 각 그룹의 청구 금액을 하나로 합쳐서 카드마다 하나씩 청구로 만들어낸다.</li>
+</ul>
+<h2 id="순수-함수란">
+  순수 함수란?
+  <a class="anchor" href="#%ec%88%9c%ec%88%98-%ed%95%a8%ec%88%98%eb%9e%80">#</a>
+</h2>
+<ul>
+<li>어떤 함수가 주어진 입력으로부터 결과를 계산하는 것 외에 다른 어떤 관찰 가능한 효과가 없다 -&gt; &ldquo;부수효과가 없다&rdquo;</li>
+<li>&ldquo;부수 효과가 없는 함수&rdquo; -&gt; &ldquo;순수 함수&rdquo;
+<ul>
+<li>ex) String의 length 함수 : 주어진 문자열에 대해 항상 같은 길이가 반환되며, 다른 일은 발생하지 않는다.</li>
+</ul>
+</li>
+<li>참조 투명성(RT, Referential Transparency)이라는 개념을 사용해 형식화할 수 있다.
+<ul>
+<li>예시로 이해하자. 2 + 3은 순수함수 plus(2, 3)에 적용하는 식이다. 이 식에는 아무 부수효과가 없다.
+<ul>
+<li>결과는 언제나 5다.</li>
+<li>실제로 프로그램에서 2 + 3을 볼때마다 이 식을 5로 치환할 수 있다. 이렇게 해도 프로그램의 의미가 전혀 바뀌지 않는다.</li>
+<li>이는 어떤 식이 참조 투명하다는 말이 지닌 뜻의 전부다.</li>
+</ul>
+</li>
+<li>어떤 프로그램에서 프로그램의 의미를 변경하지 않으면서 식을 그 결괏값으로 치환할 수 있다면, 이 식은 참조 투명하다.</li>
+<li>어떤 함수를 참조 투명한 인자를 사용해 호출한 결과가 참조 투명하다면 이 함수도 참조 투명하다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="참조-투명성-예제">
+  참조 투명성 예제
+  <a class="anchor" href="#%ec%b0%b8%ec%a1%b0-%ed%88%ac%eb%aa%85%ec%84%b1-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<pre tabindex="0"><code>class CreditCard {
+    fun charge(price: Float): Unit = TODO()
+}
+
+data class Coffee(val price: Float = 2.50F)
+
+//tag::init[]
+fun buyCoffee(cc: CreditCard): Coffee {
+    val cup = Coffee()
+    cc.charge(cup.price)
+    return cup
+}
+</code></pre><ul>
+<li>buyCoffee()는 cc.charge(cup.price)의 반환 타입과 관계없이 이 함수 호출의 반환값을 무시한다.</li>
+<li>따라서 buyCoffee()를 평과한 결과는 그냥 cup이고, 이 값은 Coffee()와 동일하다.
+<ul>
+<li>순수 함수가 되기 위해서는 p에 관계없이 p(buyCoffee(aliceCreditCard)), p(Coffee())가 똑같이 작동해야한다.
+<ul>
+<li>성립되지 않는다.</li>
+<li>p(buyCoffee(aliceCreditCard)) : 카드사를 통해 커피 값을 청구한다.</li>
+<li>p(Coffee()) : 아무일도 하지 않는다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="참조-투명성-예제2">
+  참조 투명성 예제(2)
+  <a class="anchor" href="#%ec%b0%b8%ec%a1%b0-%ed%88%ac%eb%aa%85%ec%84%b1-%ec%98%88%ec%a0%9c2">#</a>
+</h2>
+<pre tabindex="0"><code>&gt;&gt;&gt; val x = &#34;Hello, World&#34;
+&gt;&gt;&gt; val r1 = x.reversed()
+&gt;&gt;&gt; val r2 = x.reversed()
+</code></pre><ul>
+<li>x가 등장하는 부분을 x가 가리키는 식으로 바꿔치기 하면 다음과 같다.</li>
+</ul>
+<pre tabindex="0"><code>&gt;&gt;&gt; val r1 = &#34;Hello, World&#34;.reversed()
+&gt;&gt;&gt; val r2 = &#34;Hello, World&#34;.reversed()
+</code></pre><ul>
+<li>위 r1, r2가 같은 값으로 평가된다.</li>
+<li>x가 참조 투명하기 때문에 r1, r2 값은 예전과 같다. -&gt; r1, r2도 참조 투명하다.</li>
+</ul>
+<h2 id="참조-투명성을-위배하는-예제">
+  참조 투명성을 위배하는 예제
+  <a class="anchor" href="#%ec%b0%b8%ec%a1%b0-%ed%88%ac%eb%aa%85%ec%84%b1%ec%9d%84-%ec%9c%84%eb%b0%b0%ed%95%98%eb%8a%94-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<pre tabindex="0"><code>&gt;&gt;&gt; val x = StringBuilder(&#34;Hello&#34;)
+&gt;&gt;&gt; val y = x.append(&#34;, World&#34;)
+&gt;&gt;&gt; val r1 = y.toString()
+&gt;&gt;&gt; val r2 = y.toString()
+</code></pre><ul>
+<li>append() 함수 : StringBuilder에 작용하며 객체 내부를 변화시킨다. append()가 호출될 때마다 StringBuilder의 이전 상태가 파괴된다.</li>
+<li>StringBuilder에 대해 toString()을 여러번 호출해도 항상 똑같은 결과를 얻는다.</li>
+</ul>
+<pre tabindex="0"><code>&gt;&gt;&gt; val x = StringBuilder(&#34;Hello&#34;)
+&gt;&gt;&gt; val r1 = x.append(&#34;, World&#34;).toString()
+&gt;&gt;&gt; val r2 = x.append(&#34;, World&#34;).toString()
+</code></pre><ul>
+<li>y를 모두 append() 호출로 치환했다. -&gt; 순수 함수가 아니라고 결론을 내릴 수 있다.</li>
+<li>StringBuilder에 대해 toString()을 여러번 호출해도 결코 같은 결과가 생기지 않는다.</li>
+<li>r1, r2는 같은 식처럼 보이지만, 실제로는 같은 StringBuilder 객체의 다른 두 값을 가르킨다.</li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/kotlin/001_Functional_Programming.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#함수형-프로그래밍이란">함수형 프로그래밍이란?</a>
+      <ul>
+        <li><a href="#명령어-스타일-imperative-style">명령어 스타일 (imperative style)</a></li>
+        <li><a href="#함수형-프로그래밍-fp-functional-programming">함수형 프로그래밍 (FP, Functional Programming)</a></li>
+        <li><a href="#함수형-프로그래밍fp의-장점--예제로-알아보기">함수형 프로그래밍(FP)의 장점 : 예제로 알아보기</a></li>
+        <li><a href="#함수형-해법">함수형 해법</a></li>
+        <li><a href="#buycoffees-생성">buyCoffees 생성</a></li>
+        <li><a href="#같은-카드에-청구하는-금액을-모두-합치기">같은 카드에 청구하는 금액을 모두 합치기</a></li>
+        <li><a href="#순수-함수란">순수 함수란?</a></li>
+        <li><a href="#참조-투명성-예제">참조 투명성 예제</a></li>
+        <li><a href="#참조-투명성-예제2">참조 투명성 예제(2)</a></li>
+        <li><a href="#참조-투명성을-위배하는-예제">참조 투명성을 위배하는 예제</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

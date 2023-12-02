@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제
+함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수
+고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램
+루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &lt;1&gt; if (n &lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제
+함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수
+고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램
+루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &lt;1&gt; if (n &lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/kotlin/002_Functional_Programming_Example/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-11-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-11-26T00:00:00+00:00" />
+
+<title>002 Functional Programming Example | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.a4d309e5528aed6ef67408672f10a13ea5aafca9a22589441af2d0ee6e31b055.js" integrity="sha256-pNMJ5VKK7W72dAhnLxChPqWq/KmiJYlEGvLQ7m4xsFU=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle" checked />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="active">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>002 Functional Programming Example</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#코틀린으로-함수형-프로그래밍-시작하기">코틀린으로 함수형 프로그래밍 시작하기</a>
+      <ul>
+        <li><a href="#고차함수--함수를-함수에-넘기기">[고차함수 : 함수를 함수에 넘기기]</a></li>
+        <li><a href="#다형적-함수--타입에-대해-추상화하기">[다형적 함수 : 타입에 대해 추상화하기]</a></li>
+        <li><a href="#익명-함수를-사용해-고차함수-호출하기">[익명 함수를 사용해 고차함수 호출하기]</a></li>
+        <li><a href="#타입에-맞춰-구현하기">[타입에 맞춰 구현하기]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="코틀린으로-함수형-프로그래밍-시작하기">
+  코틀린으로 함수형 프로그래밍 시작하기
+  <a class="anchor" href="#%ec%bd%94%ed%8b%80%eb%a6%b0%ec%9c%bc%eb%a1%9c-%ed%95%a8%ec%88%98%ed%98%95-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d-%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0">#</a>
+</h1>
+<h2 id="고차함수--함수를-함수에-넘기기">
+  [고차함수 : 함수를 함수에 넘기기]
+  <a class="anchor" href="#%ea%b3%a0%ec%b0%a8%ed%95%a8%ec%88%98--%ed%95%a8%ec%88%98%eb%a5%bc-%ed%95%a8%ec%88%98%ec%97%90-%eb%84%98%ea%b8%b0%ea%b8%b0">#</a>
+</h2>
+<p>함수형 프로그램을 작성할때 기본이 되는 몇가지 주제</p>
+<ol>
+<li>함수도 값이다.</li>
+<li>함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다.</li>
+</ol>
+<p>고차함수란?
+다른 함수를 인자로 받는 함수</p>
+<p>고차함수 예제
+어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램</p>
+<ol>
+<li>루프를 함수적으로 작성하는 방법</li>
+</ol>
+<ul>
+<li>n의 계승을 계산하는 함수를 추가한다.</li>
+<li>재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다.</li>
+</ul>
+<pre tabindex="0"><code>fun factorial(i: Int): Int {
+    fun go(n: Int, acc: Int): Int = // &lt;1&gt;
+        if (n &lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.
+        else go(n - 1, n * acc) // 재귀 호출
+    return go(i, 1) // &lt;2&gt;
+}
+</code></pre><p>i=1
+go(0, 1x1)
+i=2
+go(1, 2x1)
+i=3
+go(2, 3x2)
+i=4
+go(3, 4x6)
+i=5
+go(4, 5x24)</p>
+<p>코틀린은 이런 식의(루프로 표현할 수 있는) 재귀를 수동으로 감지하지는 않지만 함수 앞에 tailrec 변경자를 붙이도록 요구한다.
+tailrec이 붙은 경우 컴파일러는 재귀 호출이 꼬리 위치(tail position)인 경우에 한해 while 루프로 작성했을 때와 같은 종류의 바이트 코드를 토해낸다.
+=&gt; &ldquo;꼬리 위치에 있는 재귀 호출을 최적화해 while 루프 형태로 변환한다.&rdquo;</p>
+<ul>
+<li>코틀린의 꼬리 호출</li>
+</ul>
+<pre tabindex="0"><code>fun factorial(i: Int): Int {
+    tailrec fun go(n: Int, acc: Int): Int = // &lt;1&gt;
+        if (n &lt;= 0) acc
+        else go(n - 1, n * acc) // &lt;2&gt;
+    return go(i, 1)
+}
+</code></pre><p>재귀적인 함수 호출을 하는 호출자가 재귀 함수 호출이 반환값을 즉시 호출하기만 하고 다른 아무일도 하지 않을때, 재귀 호출이 꼬리 위치에 있다고 말한다.</p>
+<ul>
+<li>꼬리 위치에 있다 : go(n-1, n*acc)</li>
+<li>꼬리 위치에 있지 않다 : 1 + go(n-1, n*acc)</li>
+</ul>
+<p>어떤 함수의 모든 재귀 호출이 꼬리 위치에 있고 함수 앞에 tailrec 변경자가 붙은 경우 코틀린 컴파일러는 재귀를 이터레이션시 호출 스택을 소비하지 않는 반복적인 루프로 컴파일한다.
+=&gt; 이는 스택 오버플로우를 방지하고 메모리를 효율적으로 사용하는 데 도움이 된다.</p>
+<blockquote>
+<p>첫번째 고차함수 작성하기</p>
+</blockquote>
+<pre tabindex="0"><code>object Example {
+    private fun abs(n: Int): Int =
+        if (n &lt; 0) -n
+        else n
+
+    private fun factorial(i: Int): Int { //&lt;1&gt; 계층함수(formatFactorial())를 추가했으므로 private로 변경
+        fun go(n: Int, acc: Int): Int =
+            if (n &lt;= 0) acc
+            else go(n - 1, n * acc)
+        return go(i, 1)
+    }
+
+    fun formatAbs(x: Int): String {
+        val msg = &#34;The absolute value of %d is %d&#34;
+        return msg.format(x, abs(x))
+    }
+
+    fun formatFactorial(x: Int): String { //&lt;2&gt; 새로 추가한 함수 (결과 출력)
+        val msg = &#34;The factorial of %d is %d&#34;
+        return msg.format(x, factorial(x))
+    }
+}
+
+fun main() {
+    println(Example.formatAbs(-42))
+    println(Example.formatFactorial(7)) //&lt;3&gt;
+}
+</code></pre><p>두 함수 formatAbs, formatFactorial은 거의 같다. 이 두 함수를 일반화해서 formatResult() 함수를 만들자.</p>
+<pre tabindex="0"><code>fun formatResult(name: String, n: Int, f: (Int) -&gt; Int): String {
+    val msg = &#34;The %s of %d is %d.&#34;
+    return msg.format(name, n, f(n))
+}
+
+fun main() {
+    println(formatResult(&#34;factorial&#34;, 7, ::factorial))
+    println(formatResult(&#34;absolute value&#34;, -42, ::abs))
+}
+</code></pre><p>고차함수</p>
+<pre tabindex="0"><code>fun formatResult(name: String, n: Int, f: (Int) -&gt; Int): String { ... }
+</code></pre><p>f에 대해서도 타입을 지정한다.
+f가 정수를 인자로 받고 정수를 반환하는 함수라는 뜻이다.</p>
+<p>abs()나 factorial()을 formatResult의 f 인자로 넘길 수 있다.</p>
+<pre tabindex="0"><code>println(formatResult(&#34;factorial&#34;, 7, ::factorial))
+println(formatResult(&#34;absolute value&#34;, -42, ::abs))
+</code></pre><h2 id="다형적-함수--타입에-대해-추상화하기">
+  [다형적 함수 : 타입에 대해 추상화하기]
+  <a class="anchor" href="#%eb%8b%a4%ed%98%95%ec%a0%81-%ed%95%a8%ec%88%98--%ed%83%80%ec%9e%85%ec%97%90-%eb%8c%80%ed%95%b4-%ec%b6%94%ec%83%81%ed%99%94%ed%95%98%ea%b8%b0">#</a>
+</h2>
+<p>다형적(polymorphic) 함수 : 고차 함수를 작성할때 어떤 타입이 주어지든 관계없이 동작하는 코드</p>
+<p>예제</p>
+<ol>
+<li>배열에서 어떤 문자열을 찾는 단형적 함수</li>
+</ol>
+<pre tabindex="0"><code>fun findFirst(ss: Array&lt;String&gt;, key: String): Int {
+    tailrec fun loop(n: Int): Int =
+        when {
+            n &gt;= ss.size -&gt; -1 // &lt;1&gt;
+            ss[n] == key -&gt; n // &lt;2&gt;
+            else -&gt; loop(n + 1) // &lt;3&gt;
+        }
+    return loop(0) // &lt;4&gt;
+}
+</code></pre><ol start="2">
+<li>위 1)번의 단형적 함수를 다형적 함수로 변환</li>
+</ol>
+<ul>
+<li>술어 함수(predicate function)는 어떤 조건을 평가하여 참(true) 또는 거짓(false) 중 하나를 반환하는 함수</li>
+</ul>
+<pre tabindex="0"><code>fun &lt;A&gt; findFirst(xs: Array&lt;A&gt;, p: (A) -&gt; Boolean): Int { // &lt;1&gt; 원소 타입이 A인 배열에 작용, 배열의 각 원소에 작용하는 술어 함수를 파라미터로 받음
+    tailrec fun loop(n: Int): Int =
+        when {
+            n &gt;= xs.size -&gt; -1
+            p(xs[n]) -&gt; n // &lt;2&gt; 술어 함수를 배열 원소에 적용하기
+            else -&gt; loop(n + 1)
+        }
+    return loop(0)
+}
+</code></pre><p>타입 변수 A를 사용하는 위치</p>
+<ol>
+<li>배열의 원소는 모두 A 타입이어야 한다.</li>
+</ol>
+<pre tabindex="0"><code>xs: Array&lt;A&gt;
+</code></pre><ol start="2">
+<li>p 함수는 A 타입의 값을 인자로 받는다.</li>
+</ol>
+<pre tabindex="0"><code>p: (A) -&gt; Boolean
+</code></pre><p>두 위치에서 같은 타입 변수를 참조한다는 사실은 findFirst()의 두 인자에서 해당 타입이 같은 타입이어야만 한다는 사실을 암시한다.
+컴파일러는 findFirst()를 호출하는 코드가 이 두 부분에서 같은 타입을 사용하도록 강제한다.</p>
+<h2 id="익명-함수를-사용해-고차함수-호출하기">
+  [익명 함수를 사용해 고차함수 호출하기]
+  <a class="anchor" href="#%ec%9d%b5%eb%aa%85-%ed%95%a8%ec%88%98%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%b4-%ea%b3%a0%ec%b0%a8%ed%95%a8%ec%88%98-%ed%98%b8%ec%b6%9c%ed%95%98%ea%b8%b0">#</a>
+</h2>
+<pre tabindex="0"><code>&gt;&gt;&gt; findFirst(arrayOf(7, 9, 13), {i: Int -&gt; i == 9}
+</code></pre><p>{i: Int -&gt; i == 9} 라는 구문을 함수 리터럴이나 익명 함수라고 한다.</p>
+<h2 id="타입에-맞춰-구현하기">
+  [타입에 맞춰 구현하기]
+  <a class="anchor" href="#%ed%83%80%ec%9e%85%ec%97%90-%eb%a7%9e%ec%b6%b0-%ea%b5%ac%ed%98%84%ed%95%98%ea%b8%b0">#</a>
+</h2>
+<p>함수 시그니처에 의해 구현이 하나로 정해지는 예제를 살펴보자.</p>
+<pre tabindex="0"><code>fun &lt;A, B, C&gt; partial1(a: A, f: (A, B) -&gt; C): (B) -&gt; C = TODO()
+</code></pre><ul>
+<li>부분 적용(partial application)을 수행하는 고차함수다.</li>
+<li>partial1() 함수는 어떤 값과 함수(인자를 둘 받아서, 다른 결과를 내놓음)를 인자로 받는다.</li>
+<li>인자를 하나만 받아서 결과를 내놓는 함수를 반환한다.</li>
+</ul>
+<ol>
+<li>고차함수</li>
+</ol>
+<pre tabindex="0"><code>f: (A, B) -&gt; C
+</code></pre><ol start="2">
+<li>반환타입
+우리가 반환해야하는 대상의 타입이다.</li>
+</ol>
+<pre tabindex="0"><code>(B) -&gt; C
+</code></pre><ol start="3">
+<li>인자 타입이 B인 함수 리터럴을 작성한다.
+partial1()의 본문 안에서 a값을 자유롭게 사용할 수 있다.
+마찬가지로 b도 익명함수의 인자이므로 함수 본문에서 자유롭게 사용할 수 있다.</li>
+</ol>
+<pre tabindex="0"><code>fun &lt;A, B, C&gt; partial1(a: A, f: (A, B) -&gt; C): (B) -&gt; C =
+    { b: B -&gt; TODO() }
+</code></pre><ol start="4">
+<li>내부 함수가 C 타입의 값을 반환해야한다.
+C타입의 값을 어떻게 얻을까?
+C 타입 값은 f 고차함수의 결괏값이다.
+따라서 C 타입 값을 얻는 유일한 방법은 f 함수에 A, B 타입 값을 넘기는 것뿐이다.</li>
+</ol>
+<pre tabindex="0"><code>fun &lt;A, B, C&gt; partial1(a: A, f: (A, B) -&gt; C): (B) -&gt; C =
+    { b: B -&gt; f(a, b) }
+</code></pre><ul>
+<li>결과적으로 인자 2개를 받아서 부분적으로 적용해 돌려주는 고차함수가 생긴 것이다.
+=&gt; &ldquo;A 그리고 A, B를 인자로 받아서 C를 생성해주는 함수가 있다면, A는 이미 인자에 있기 때문에 B만 제공한다면 C를 돌려주는 새로운 함수를 만들 수 있다.&rdquo;</li>
+</ul>
+<ol start="5">
+<li>코틀린의 타입 추론 특성으로, 타입 애너테이션 생략이 가능하다.</li>
+</ol>
+<pre tabindex="0"><code>fun &lt;A, B, C&gt; partial1(a: A, f: (A, B) -&gt; C): (B) -&gt; C =
+    { b -&gt; f(a, b) } // 여기서 타입 생략
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/kotlin/002_Functional_Programming_Example.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#코틀린으로-함수형-프로그래밍-시작하기">코틀린으로 함수형 프로그래밍 시작하기</a>
+      <ul>
+        <li><a href="#고차함수--함수를-함수에-넘기기">[고차함수 : 함수를 함수에 넘기기]</a></li>
+        <li><a href="#다형적-함수--타입에-대해-추상화하기">[다형적 함수 : 타입에 대해 추상화하기]</a></li>
+        <li><a href="#익명-함수를-사용해-고차함수-호출하기">[익명 함수를 사용해 고차함수 호출하기]</a></li>
+        <li><a href="#타입에-맞춰-구현하기">[타입에 맞춰 구현하기]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
