@@ -28,8 +28,7 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
       <link>https://example.com/docs/reactive-streams/004_impl3_munity/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/reactive-streams/004_impl3_munity/</guid>
-      <description>Reactive Streams 구현 라이브러리 (1) Munity # Mutiny
-Hibernate reactive에서 비동기 라이브러리로 제공 Multi, Uni publisher 제공 Mutiny - Multi # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 flux와 유사 Multi 예제 # @Slf4j public class p218_MultiExample { public static void main(String[] args) { getItems() .subscribe() // subscribe 동시에 넘길 수 없음, subscribe() 호출 후 아래 호출 필요 .</description>
+      <description>Reactive Streams 구현 라이브러리 (1) Munity # Mutiny # Hibernate reactive에서 비동기 라이브러리로 제공 Multi, Uni publisher 제공 Mutiny - Multi # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 flux와 유사 Multi 예제 # @Slf4j public class p218_MultiExample { public static void main(String[] args) { getItems() .subscribe() // subscribe 동시에 넘길 수 없음, subscribe() 호출 후 아래 호출 필요 .</description>
     </item>
   </channel>
 </rss>
