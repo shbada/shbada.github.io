@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="레디스를 캐시로 사용하기 # [캐시란?] # 데이터의 원본보다 더 빠르고 효율적으로 액세스할 수 있는 임시 데이터 저장소를 의미한다.
+[캐시로서의 레디스] # 레디스는 자체적으로 고가용성 기능을 가지고있다. 일부 캐싱 전략에서는 캐시에 접근할 수 없게 되면 이는 곧바로 서비스 장애로 이어질 수 있따. 캐시 저장소도 일반적인 데이터 저장소와 같이 안정적으로 운영될 수 있는 조건을 갖추는 것이 좋다. 레디스의 센티널, 클러스터 기능을 사용하면 마스터 노드의 장애를 자동으로 감지해 페일오버(Failover; 장애대비)를 발생시키기 때문에, 운영자의 개입 없이 캐시는 정상으로 유지될 수 있어 가용성이 높아진다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="레디스를 캐시로 사용하기 # [캐시란?] # 데이터의 원본보다 더 빠르고 효율적으로 액세스할 수 있는 임시 데이터 저장소를 의미한다.
+[캐시로서의 레디스] # 레디스는 자체적으로 고가용성 기능을 가지고있다. 일부 캐싱 전략에서는 캐시에 접근할 수 없게 되면 이는 곧바로 서비스 장애로 이어질 수 있따. 캐시 저장소도 일반적인 데이터 저장소와 같이 안정적으로 운영될 수 있는 조건을 갖추는 것이 좋다. 레디스의 센티널, 클러스터 기능을 사용하면 마스터 노드의 장애를 자동으로 감지해 페일오버(Failover; 장애대비)를 발생시키기 때문에, 운영자의 개입 없이 캐시는 정상으로 유지될 수 있어 가용성이 높아진다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/redis/redis_cache/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-01T00:00:00+00:00" />
+
+<title>Redis Cache | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.954ea2fbf61cb35088687a13b68ebbe369634ca8b6356701bd7014d63e669be8.js" integrity="sha256-lU6i&#43;/Ycs1CIaHoTto6742ljTKi2NWcBvXAU1j5mm&#43;g=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/algorithm/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/data-structure/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/ddd/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/docker/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/jenkins/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/jpa/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/Functional_Programming_Example/" class="">Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/Functional_Programming/" class="">Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/linux/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mvc/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mysql/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/network/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/operating-system/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/oracle/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle" checked />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/redis_cache/" class="active">Redis Cache</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/redis_datastructure/" class="">Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/security/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/servlet/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/spring/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/test/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/webflux/000_sample/" class="">000 Sample</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Redis Cache</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#레디스를-캐시로-사용하기">레디스를 캐시로 사용하기</a>
+      <ul>
+        <li><a href="#캐시란">[캐시란?]</a></li>
+        <li><a href="#캐시로서의-레디스">[캐시로서의 레디스]</a></li>
+        <li><a href="#캐싱-전략">[캐싱 전략]</a></li>
+        <li><a href="#읽기-전략---look-aside">[읽기 전략 - look aside]</a></li>
+        <li><a href="#쓰기-전략과-데이터의-일관성">[쓰기 전략과 데이터의 일관성]</a></li>
+        <li><a href="#쓰기-전략---writh-throwgh">[쓰기 전략 - writh throwgh]</a></li>
+        <li><a href="#cache-invalidation">[cache invalidation]</a></li>
+        <li><a href="#write-behindwrite-back">[write behind(write back)]</a></li>
+        <li><a href="#캐시에서의-데이터-흐름">[캐시에서의 데이터 흐름]</a></li>
+        <li><a href="#만료시간">[만료시간]</a></li>
+        <li><a href="#메모리-관리와-maxmemory-policy-설정">[메모리 관리와 maxmemory-policy 설정]</a></li>
+        <li><a href="#noeviction">[Noeviction]</a></li>
+        <li><a href="#lru-eviction">[LRU eviction]</a></li>
+        <li><a href="#lfu-eviction">[LFU eviction]</a></li>
+        <li><a href="#landom-eviction">[LANDOM eviction]</a></li>
+        <li><a href="#voldatile-ttl">[voldatile-ttl]</a></li>
+        <li><a href="#캐시-스탬피드-현상">[캐시 스탬피드 현상]</a></li>
+        <li><a href="#적절한-만료시간-설정">[적절한 만료시간 설정]</a></li>
+        <li><a href="#선-계산">[선 계산]</a></li>
+        <li><a href="#per-알고리즘">[PER 알고리즘]</a></li>
+        <li><a href="#세션-스토어로서의-레디스">[세션 스토어로서의 레디스]</a></li>
+        <li><a href="#캐시와-세션의-차이">[캐시와 세션의 차이]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="레디스를-캐시로-사용하기">
+  레디스를 캐시로 사용하기
+  <a class="anchor" href="#%eb%a0%88%eb%94%94%ec%8a%a4%eb%a5%bc-%ec%ba%90%ec%8b%9c%eb%a1%9c-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0">#</a>
+</h1>
+<h2 id="캐시란">
+  [캐시란?]
+  <a class="anchor" href="#%ec%ba%90%ec%8b%9c%eb%9e%80">#</a>
+</h2>
+<p>데이터의 원본보다 더 빠르고 효율적으로 액세스할 수 있는 임시 데이터 저장소를 의미한다.</p>
+<h2 id="캐시로서의-레디스">
+  [캐시로서의 레디스]
+  <a class="anchor" href="#%ec%ba%90%ec%8b%9c%eb%a1%9c%ec%84%9c%ec%9d%98-%eb%a0%88%eb%94%94%ec%8a%a4">#</a>
+</h2>
+<p>레디스는 자체적으로 고가용성 기능을 가지고있다.
+일부 캐싱 전략에서는 캐시에 접근할 수 없게 되면 이는 곧바로 서비스 장애로 이어질 수 있따.
+캐시 저장소도 일반적인 데이터 저장소와 같이 안정적으로 운영될 수 있는 조건을 갖추는 것이 좋다.
+레디스의 센티널, 클러스터 기능을 사용하면 마스터 노드의 장애를 자동으로 감지해 페일오버(Failover; 장애대비)를 발생시키기 때문에,
+운영자의 개입 없이 캐시는 정상으로 유지될 수 있어 가용성이 높아진다.
+레디스의 클러스터를 사용하면 캐시의 스케일 아웃 또한 쉽게 처리 가능하다.
+서비스 규모에 따라 캐시 자체의 규모도 늘어나야할 상황이 발생할 수 있는데, 자체 샤딩 솔루션인 클러스터를 사용하면 수평 확장이 간단해진다.
+레디스는 캐시 저장소 용도로 이상적이다.</p>
+<h2 id="캐싱-전략">
+  [캐싱 전략]
+  <a class="anchor" href="#%ec%ba%90%ec%8b%b1-%ec%a0%84%eb%9e%b5">#</a>
+</h2>
+<p>캐싱 전략은 캐싱되는 데이터의 유형과 데이터에 대한 엑세스 패턴에 따라 다르기 때문에 적절한 캐싱 전략을 선택해야한다.</p>
+<h2 id="읽기-전략---look-aside">
+  [읽기 전략 - look aside]
+  <a class="anchor" href="#%ec%9d%bd%ea%b8%b0-%ec%a0%84%eb%9e%b5---look-aside">#</a>
+</h2>
+<p>애플리케이션에서 데이터를 읽어갈때 주로 사용한다.
+레디스를 사용할때 가장 일반적으로 배치하는 방법이다.</p>
+<ol>
+<li>데이터가 먼저 캐시에 있는지 확인한다.</li>
+<li>캐시에 있으면 캐시에서 데이터를 읽어온다. (=캐시 히트)</li>
+<li>찾고자하는 데이터가 없을때에는 캐시 미스가 발생하며, 직접 데이터베이스에 접근해 찾고자하는 데이터를 가져온다.</li>
+<li>찾고하자는 데이터가 레디스에 없을때에만 레디스에 저장하므로 lazy loading 이라고도 부른다.</li>
+</ol>
+<p>장점</p>
+<ul>
+<li>레디스에 문제가 생겨 접근을 할 수 없는 상황이 발생하더라도 장애 발생이 아닌, 직접 데이터베이스에 다시 데이터를 가지고온다.
+<ul>
+<li>모든 커넥션이 한꺼번에 원본 데이터베이스로 몰려 많으 부하를 발생시킬 수 있다.</li>
+</ul>
+</li>
+</ul>
+<p>미리 데이터베이스에서 캐시로 데이터를 밀어넣어주는 작업을 하기도하는데, 이를 캐시 워밍(cache warming)이라고도 한다.</p>
+<h2 id="쓰기-전략과-데이터의-일관성">
+  [쓰기 전략과 데이터의 일관성]
+  <a class="anchor" href="#%ec%93%b0%ea%b8%b0-%ec%a0%84%eb%9e%b5%ea%b3%bc-%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%9d%98-%ec%9d%bc%ea%b4%80%ec%84%b1">#</a>
+</h2>
+<p>캐시 불일치 : 데이터가 변경될때 원본 데이터베이스에만 업데이트돼 캐시에는 변경된 값이 반영되지 않을때 발생하는 데이터 불일치</p>
+<h2 id="쓰기-전략---writh-throwgh">
+  [쓰기 전략 - writh throwgh]
+  <a class="anchor" href="#%ec%93%b0%ea%b8%b0-%ec%a0%84%eb%9e%b5---writh-throwgh">#</a>
+</h2>
+<p>데이터베이스에 업데이트할때마다 매번 캐시에도 데이터를 함께 업데이트시키는 방식이다.
+캐시는 항상 최신 데이터를 가지고있을 수 있다.
+데이터는 매번 2개의 저장소에 저장돼야 하기 때문에 데이터를 쓸 때마다 시간이 많이 소요될 수 있다.</p>
+<p>다시 사용될만한 데이터가 아닌 경우에는? 무조건 캐시에도 저장되는건 리소스 낭비일 수도 있다.
+따라서 위 방시을 사용할 경우 데이터를 저장할때 만료 시간을 사용할 것을 권장한다.</p>
+<h2 id="cache-invalidation">
+  [cache invalidation]
+  <a class="anchor" href="#cache-invalidation">#</a>
+</h2>
+<p>데이터베이스에 값을 업데이트 할때마다 캐시에는 데이터를 삭제한다.
+신규 데이터 저장보다, 데이터 삭제가 리소스를 훨씬 적게 사용하기 때문이다.</p>
+<h2 id="write-behindwrite-back">
+  [write behind(write back)]
+  <a class="anchor" href="#write-behindwrite-back">#</a>
+</h2>
+<p>쓰기가 빈번하게 발생하는 시스템이라면 이 방식을 고려하자.
+데이터베이스에 대량의 쓰기 작업이 발생하면 이는 많은 디스크I/O를 유말해, 성능 저하가 발생할 수 있다.
+먼저 데이터를 빠르게 접근할 수 있는 캐시에 업데이트 한뒤, 이후에는 건수나 특정 시간 간격 등에 따라 비동기적으로 데이터베이스에 업데이트하는 것이다.
+저장되는 데이터가 실시간으로 정확한 데이터가 아니어도 되는 경우 유용하다.</p>
+<h2 id="캐시에서의-데이터-흐름">
+  [캐시에서의 데이터 흐름]
+  <a class="anchor" href="#%ec%ba%90%ec%8b%9c%ec%97%90%ec%84%9c%ec%9d%98-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ed%9d%90%eb%a6%84">#</a>
+</h2>
+<p>캐시는 메모리이기 때문에 기본적인 스토리지 보다 데이터를 적게 저장할 수 밖에 없다.
+캐시는 가득차지 않게 일정 양의 데이터를 유지해야하며 관리되야한다.
+캐시로 레디스를 사용할때에는 데이터를 저장함과 동시에 적절한 시간의 TTL 값을 저장하는 것이 좋다.</p>
+<h2 id="만료시간">
+  [만료시간]
+  <a class="anchor" href="#%eb%a7%8c%eb%a3%8c%ec%8b%9c%ea%b0%84">#</a>
+</h2>
+<p>TTL (Time To Live)은 데이터가 얼마나 오래 저장될 것인지를 나타내는 시간 설정이다.
+만료시간이 설정되면 해당 키와 관련된 데이터는 지정된 시간이 지난 후에 레디스에서 자동으로 삭제된다.</p>
+<p>커맨드 : TTL, EXPIRE(초 단위), PTTL, PEXPIRE (밀리세컨드 단위)</p>
+<pre tabindex="0"><code>// 키에 만료시간 지정
+SET a 100
+EXPIRE a 60
+TTL a
+</code></pre><p>INCR 커맨드로 데이터를 조작하거나, RENAME을 이용해 키의 이름을 바꾸더라도 만료시간은 그대로 유지된다.
+그러나, 기존 키에 새로운 값을 저장해 키를 덮어쓸 때에는 이전에 설정한 마료시간은 유지되지 않고 사라진다.</p>
+<pre tabindex="0"><code>SET b 100
+EXPIRE b 60
+TTL b // 57
+SET b banana
+TTL b // -1 (만료시간이 지정되지 않음)
+</code></pre><h2 id="메모리-관리와-maxmemory-policy-설정">
+  [메모리 관리와 maxmemory-policy 설정]
+  <a class="anchor" href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b4%80%eb%a6%ac%ec%99%80-maxmemory-policy-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<p>레디스의 메모리는 제한적이기 때문에 모든 키에 만료시간을 설정하더라도 너무 많은 키가 저장되면 메모리가 가득 차는 상황이 발생한다.
+메모리의 용량을 초과하는 양의 데이터가 저장되면 레디스는 내부 정책을 사용해 어떤 키를 삭제할지 결정한다.</p>
+<p>maxmemory 설정: 데이터의 최대 저장 용량 설정
+maxmemory-policy 설정값 : 이 용량을 초과할 때의 처리 방식을 결정하는 설정값</p>
+<h2 id="noeviction">
+  [Noeviction]
+  <a class="anchor" href="#noeviction">#</a>
+</h2>
+<p>기본값이다.
+레디스에 데이터가 가득 차더라도 임의로 데이터를 삭제하지 않고 더이상 레디스에 데이터를 저장할 수 없다는 에러를 반환한다.</p>
+<h2 id="lru-eviction">
+  [LRU eviction]
+  <a class="anchor" href="#lru-eviction">#</a>
+</h2>
+<p>LRU(Least-Recently-Used) evicition이란, 레디스에 데이터가 가득 찼을때 가장 최근에 사용되지 않은 데이터부터 삭제하는 정책이다.</p>
+<ol>
+<li>volatile-lru : 만료 시간이 설정돼있는 키에 한해서 LRU 방식으로 키를 삭제한다. 만약 모든 키에 만료시간이 지정돼있지 않다면, noeviction 상황과 동일하다.</li>
+<li>allkeys-LRU : 모든 키에 대해 LRU 알고리즘을 사용해서 데이터를 삭제한다.</li>
+</ol>
+<h2 id="lfu-eviction">
+  [LFU eviction]
+  <a class="anchor" href="#lfu-eviction">#</a>
+</h2>
+<p>LFU(Least-Frequently-Used) eviction이란, 레디스에 데이터가 가득 찼을때 가장 자주 사용되지 않은 데이터부터 삭제하는 정책이다.
+사용 우선순위는 유동적으로 바뀌므로 특정 케이스에서는 LRU보다 더 효울적일 수 있다.</p>
+<ol>
+<li>volatile-lru : 만료 시간이 설정돼있는 키에 한해서 LFU 방식으로 키를 삭제한다. 만약 모든 키에 만료시간이 지정돼있지 않다면, noeviction 상황과 동일하다.</li>
+<li>allkeys-LRU : 모든 키에 대해 LFU 알고리즘을 이용해 데이터를 삭제한다.</li>
+</ol>
+<h2 id="landom-eviction">
+  [LANDOM eviction]
+  <a class="anchor" href="#landom-eviction">#</a>
+</h2>
+<p>레디스에 저장된 키 중 하나를 임의로 골라내 삭제한다. 랜덤으로 데이터를 삭제하기 때문에 나중에 사용할 수도 있는 데이터를 삭제할 가능성이 높아진다.</p>
+<ol>
+<li>volatile-random : 만료 시간이 설정돼있는 키에 한해 랜덤하게 키를 삭제한다.</li>
+<li>allkeys-random : 모든 키에 대해 랜덤하게 키를 삭제한다.</li>
+</ol>
+<h2 id="voldatile-ttl">
+  [voldatile-ttl]
+  <a class="anchor" href="#voldatile-ttl">#</a>
+</h2>
+<p>만료시간이 가장 작은 키를 삭제한다. 삭제 예정 시간이 얼마 남지 않은 키를 추출해 해당 키를 미리 삭제하는 옵션이다.</p>
+<h2 id="캐시-스탬피드-현상">
+  [캐시 스탬피드 현상]
+  <a class="anchor" href="#%ec%ba%90%ec%8b%9c-%ec%8a%a4%ed%83%ac%ed%94%bc%eb%93%9c-%ed%98%84%ec%83%81">#</a>
+</h2>
+<p>대규모 트래픽 환경에서 만료 시간을 어떻게 설정하느냐에 따라 캐시 스탬피드(cache-stampede)와 같은 예상치 못한 문제 상황이 발생할 수 있다.
+look aside 방식으로 레디스를 사용하고 있을때, 특정 키가 만료되는 시점에 키가 삭제된다면?
+여러개의 어플리케이션에서 바라보던 키가 레디스에서 만료돼 삭제된다면 이 서버들은 한꺼번에 데이터베이스에 가서 데이터를 읽어오는 과정을 거친다.
+이를 중복 읽기(duplicate read)라고 한다.
+이후 각 애플리케이션에서는 읽어온 데이터를 레디스에 쓰게 되는데, 이 또한 여러번 반복되기 때문에 중복 쓰기(duplicate write)가 발생한다.</p>
+<h2 id="적절한-만료시간-설정">
+  [적절한 만료시간 설정]
+  <a class="anchor" href="#%ec%a0%81%ec%a0%88%ed%95%9c-%eb%a7%8c%eb%a3%8c%ec%8b%9c%ea%b0%84-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<p>캐시 스탬피드를 줄이기 위한 가장 간단한 방법은 만료 시간을 너무 짧지않게 설정하는 것이다.
+여러 애플리케이션에서 한꺼번에 접근해야하는 데이터이며, 반복적으로 사용돼야하는 데이터라면 만료시간을 충분히 길게 설정한다.</p>
+<h2 id="선-계산">
+  [선 계산]
+  <a class="anchor" href="#%ec%84%a0-%ea%b3%84%ec%82%b0">#</a>
+</h2>
+<p>look aside 방식으로 캐시를 사용할때 애플리케이션은 다음 코드와 비슷하게 동작할 것이다.
+키가 실제로 만료되기 전에 이 값을 미리 갱신해준다면 여러 애플리케이션에서 한꺼번에 데이터베이스에 접근해 데이터를 읽어오는 과정을 줄여 불필요한 프로세스를 줄일 수 있다.</p>
+<h2 id="per-알고리즘">
+  [PER 알고리즘]
+  <a class="anchor" href="#per-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98">#</a>
+</h2>
+<p>PER(Probabilistic Early Recomputation) 알고리즘
+캐시 값이 만료되기 전에 언제 데이터베이스에 접근해서 값을 읽어오면 되는지 최적으로 계산할 수 있다.</p>
+<pre tabindex="0"><code>currentTime - ( timeToCompute * beta * log(rand()) ) &gt; expiry
+</code></pre><ul>
+<li>currentTime : 현재 남은 만료시간</li>
+<li>timeToCompute : 캐시된 값을 다시 계산하는데 걸리는 시간</li>
+<li>beta : 기본적으로 1.0 보다 큰 값으로 설정 가능</li>
+<li>rand() : 0과 1 사이의 랜덤 값을 반환하는 함수</li>
+<li>expiry : 키를 재설정할때 새로 넣어줄 만료 시간</li>
+</ul>
+<p>위 알고리즘은 만료시간에 가까워질수록 true를 반환할 확률이 증가하므로, 이는 불필요한 재계산을 효과적으로 방지하는 가장 효율적인 방법일 수 있다.</p>
+<h2 id="세션-스토어로서의-레디스">
+  [세션 스토어로서의 레디스]
+  <a class="anchor" href="#%ec%84%b8%ec%85%98-%ec%8a%a4%ed%86%a0%ec%96%b4%eb%a1%9c%ec%84%9c%ec%9d%98-%eb%a0%88%eb%94%94%ec%8a%a4">#</a>
+</h2>
+<p>세션이란?
+서비스를 사용하는 클라이언트의 상태 정보를 의미한다.
+애플리케이션은 현재 서비스에 로그인돼 있는 클라이언트가 누구인지, 그 클라이언트가 어떤 활동을 하고 있는지 저장하고 있으며,
+유저가 서비스를 떠나면 세션스토어에서 유저의 정보를 삭제한다.
+많은 서비스에서 레디스를 세션 스토어로 사용하고 있다.</p>
+<p>웹 서버가 여러대로 늘어나는 상황에서, 각 웹 서버별로 세션 스토어를 따로 관리한다면 유저는 유저의 세션 정보를 갖고있는 웹 서버에 종속되야한다.
+따라서 레디스를 세션 스토어로 사용해 서버, 데이터베이스와 분리 해놓은 뒤 여러 서버에서 세션 스토어 (1개)를 바라보도록 구성해야한다.
+유저는 세션 스토어에 구애받지 않고 어떤 웹 서버에 연결되더라도 동일한 세션 데이터를 조회할 수 있어 트래픽을 효율적으로 분산시킬 수 있으며,
+데이터의 일관성도 고려할 필요가 없다. 또한 관계형 데이터베이스보다 훨씬 빠르고 접근하기도 간편하므로 데이터를 가볍게 저장할 수 있다.</p>
+<p>레디스의 hash 자료구조는 세션 데이터를 저장하기에 알맞은 형태다.</p>
+<pre tabindex="0"><code>HMSET usersession:1 Name Garimoo IP 10:20:104:30 Hits 1
+HINCRBY userssession:2 Hits 1
+</code></pre><h2 id="캐시와-세션의-차이">
+  [캐시와 세션의 차이]
+  <a class="anchor" href="#%ec%ba%90%ec%8b%9c%ec%99%80-%ec%84%b8%ec%85%98%ec%9d%98-%ec%b0%a8%ec%9d%b4">#</a>
+</h2>
+<p>레디스를 캐시로 사용할때에의 가장 일반적인 look aside 전략을 이용할때 데이터는 데이터베이스의 서브셋으로 동작한다.
+세션 스토어에 저장된 데이터는 여러 사용자간 공유되지 않으며, 특정 사용자 ID에 한해 유효하다.
+일반적인 세션 스토어에서는 유저가 로그인하면 세션 데이터는 세션 스토어에 저장된다.
+유저가 로그인해 있는 동안, 즉 세션이 활성화돼 있는 동안에는 애플리케이션은 유저의 데이터를 데이터베이스가 아닌 세션 스토어에만 저장한다.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/redis/redis_cache.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#레디스를-캐시로-사용하기">레디스를 캐시로 사용하기</a>
+      <ul>
+        <li><a href="#캐시란">[캐시란?]</a></li>
+        <li><a href="#캐시로서의-레디스">[캐시로서의 레디스]</a></li>
+        <li><a href="#캐싱-전략">[캐싱 전략]</a></li>
+        <li><a href="#읽기-전략---look-aside">[읽기 전략 - look aside]</a></li>
+        <li><a href="#쓰기-전략과-데이터의-일관성">[쓰기 전략과 데이터의 일관성]</a></li>
+        <li><a href="#쓰기-전략---writh-throwgh">[쓰기 전략 - writh throwgh]</a></li>
+        <li><a href="#cache-invalidation">[cache invalidation]</a></li>
+        <li><a href="#write-behindwrite-back">[write behind(write back)]</a></li>
+        <li><a href="#캐시에서의-데이터-흐름">[캐시에서의 데이터 흐름]</a></li>
+        <li><a href="#만료시간">[만료시간]</a></li>
+        <li><a href="#메모리-관리와-maxmemory-policy-설정">[메모리 관리와 maxmemory-policy 설정]</a></li>
+        <li><a href="#noeviction">[Noeviction]</a></li>
+        <li><a href="#lru-eviction">[LRU eviction]</a></li>
+        <li><a href="#lfu-eviction">[LFU eviction]</a></li>
+        <li><a href="#landom-eviction">[LANDOM eviction]</a></li>
+        <li><a href="#voldatile-ttl">[voldatile-ttl]</a></li>
+        <li><a href="#캐시-스탬피드-현상">[캐시 스탬피드 현상]</a></li>
+        <li><a href="#적절한-만료시간-설정">[적절한 만료시간 설정]</a></li>
+        <li><a href="#선-계산">[선 계산]</a></li>
+        <li><a href="#per-알고리즘">[PER 알고리즘]</a></li>
+        <li><a href="#세션-스토어로서의-레디스">[세션 스토어로서의 레디스]</a></li>
+        <li><a href="#캐시와-세션의-차이">[캐시와 세션의 차이]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
