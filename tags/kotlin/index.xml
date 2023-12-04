@@ -6,8 +6,15 @@
     <description>Recent content in kotlin on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 26 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/kotlin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/kotlin/003_Kotlin_basic/</link>
+      <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kotlin/003_Kotlin_basic/</guid>
+      <description>코틀린 문법 한번에 정리하기 # 주석 정리 Variable # // top-level var x = 5 fun main() { x+= 1 println(x) val a : Int = 1 val b = 1 val c : Int c = 3 val d : Int d = 123 //val(value) : 불변(Immutable) //var(variable) : 가변(Mutable) var e : String = &amp;#34;Hello&amp;#34; e = &amp;#34;World&amp;#34; var f = 123 // f = &amp;#34;hi&amp;#34; // 컴파일 오류 타입은 변경이 불가 } Function # // 기본적인 함수 선언 스타일 fun sum(a: Int, b: Int) : Int { return a + b } // 표현식 스타일 fun sum2(a: Int, b: Int) : Int = a + b // 표현식 &amp;amp; 반환타입 생략 fun sum3(a: Int, b: Int) = a + b // 몸통이 있는 함수는 반환 타입을 제거하면 컴파일 오류 fun sum4(a: Int, b: Int) : Int { return a + b } // 반환타입이 없는 함수는 Unit을 반환한다 fun printSum(a: Int, b: Int) : Unit { println(&amp;#34;$a + $b = ${a + b}&amp;#34;) } // 디폴트 파라미터 fun greeting(message: String = &amp;#34;안녕하세요!</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/kotlin/002_Functional_Programming_Example/</link>
