@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치
+block : T.() -&gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.
+receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치
+block : T.() -&gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.
+receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-04T20:19:47+09:00" />
+
+<title>004 Kotlin Scoping Functions | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.1349791dcfd1ff63cd25bf1e79326beff474c0d356091c1ed3d11024ed1bea1a.js" integrity="sha256-E0l5Hc/R/2PNJb8eeTJr7/R0wNNWCRwe09EQJO0b6ho=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle" checked />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="active">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>004 Kotlin Scoping Functions</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#kotlin-scoping-functions-apply-vs-with-let-also-and-run">Kotlin Scoping Functions apply vs. with, let, also, and run</a>
+      <ul>
+        <li><a href="#apply-with-let-also-run">apply, with, let, also, run</a></li>
+        <li><a href="#kotlin의-receiver">Kotlin의 Receiver</a></li>
+        <li><a href="#범위-지정-함수란">범위 지정 함수란?</a></li>
+        <li><a href="#with">with</a></li>
+        <li><a href="#also">also</a></li>
+        <li><a href="#with-also-apply-let-run-차이점">with, also, apply, let, run 차이점</a></li>
+        <li><a href="#apply-사용-규칙">apply 사용 규칙</a></li>
+        <li><a href="#also-사용-규칙">also 사용 규칙</a></li>
+        <li><a href="#apply-와-also--리시버와-파라미터의-차이">apply 와 also : 리시버와 파라미터의 차이</a></li>
+        <li><a href="#it-vs-this">it vs this</a></li>
+        <li><a href="#let-사용-규칙">let 사용 규칙</a></li>
+        <li><a href="#with-사용-규칙">with 사용 규칙</a></li>
+        <li><a href="#run-사용-규칙">run 사용 규칙</a></li>
+        <li><a href="#여러-범위-지정-함수-결합">여러 범위 지정 함수 결합</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="kotlin-scoping-functions-apply-vs-with-let-also-and-run">
+  Kotlin Scoping Functions apply vs. with, let, also, and run
+  <a class="anchor" href="#kotlin-scoping-functions-apply-vs-with-let-also-and-run">#</a>
+</h1>
+<h2 id="apply-with-let-also-run">
+  apply, with, let, also, run
+  <a class="anchor" href="#apply-with-let-also-run">#</a>
+</h2>
+<p>
+  <img src="/image/kotlin/004/img.png" alt="img.png" /></p>
+<h2 id="kotlin의-receiver">
+  Kotlin의 Receiver
+  <a class="anchor" href="#kotlin%ec%9d%98-receiver">#</a>
+</h2>
+<p>객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치</p>
+<pre tabindex="0"><code>block : T.() -&gt; R
+</code></pre><p>위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.</p>
+<ol>
+<li><code>receiver</code> : 객체 T</li>
+<li><code>receiver</code>를 사용하는 람다 : lambda with receiver</li>
+</ol>
+<pre tabindex="0"><code>block : (T) -&gt; R
+</code></pre><p>위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.</p>
+<h2 id="범위-지정-함수란">
+  범위 지정 함수란?
+  <a class="anchor" href="#%eb%b2%94%ec%9c%84-%ec%a7%80%ec%a0%95-%ed%95%a8%ec%88%98%eb%9e%80">#</a>
+</h2>
+<ol>
+<li>수신객체</li>
+<li>수신객체 지정 람다 (lambda with receiver)</li>
+</ol>
+<ul>
+<li>람다 식 내에서 수신 객체의 멤버에 직접 접근할 수 있게 하는 기능</li>
+</ul>
+<h2 id="with">
+  with
+  <a class="anchor" href="#with">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">with</span>(<span style="color:#66d9ef">receiver</span>: T, block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">receiver</span>.block()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li>수신객체 : receiver T</li>
+<li>수신 객체 지정 람다 : block</li>
+</ol>
+<blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> name: String? = <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> age: Int? = <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>print(person.name)
+</span></span><span style="display:flex;"><span>print(person.age)
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>with(person) {
+</span></span><span style="display:flex;"><span>    print(name)
+</span></span><span style="display:flex;"><span>    print(age)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="also">
+  also
+  <a class="anchor" href="#also">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>&gt; <span style="color:#a6e22e">T</span>.also(block: (T) <span style="color:#f92672">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span>    block(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol>
+<li>T 의 확장함수로 수신 객체가 암시적으로 제공</li>
+<li>수신 객체 지정 람다 : 매개변수 T 로 코드 블록 내에 명시적으로 전달</li>
+</ol>
+<blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> name: String? = <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> age: Int? = <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>print(person.name)
+</span></span><span style="display:flex;"><span>print(person.age)
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson().also {
+</span></span><span style="display:flex;"><span>    print(<span style="color:#66d9ef">it</span>.name)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#66d9ef">it</span>.age)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="with-also-apply-let-run-차이점">
+  with, also, apply, let, run 차이점
+  <a class="anchor" href="#with-also-apply-let-run-%ec%b0%a8%ec%9d%b4%ec%a0%90">#</a>
+</h2>
+<ol>
+<li>호출시에 수신 객체가 매개 변수로 명시적으로 전달되거나 수신 객체의 확장 함수로 암시적 수신 객체 로 전달</li>
+<li>수신 객체 지정 람다 에 전달되는 수신 객체가 명시적 매개 변수 로 전달 되거나 수신 객체의 확장 함수로 암시적 수신 객체로 코드 블록 내부로 전달</li>
+<li>범위 지정 함수의 결과로 수신 객체를 그대로 반환하거나 수신 객체 지정 람다 의 실행 결과를 반환</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">with</span>(<span style="color:#66d9ef">receiver</span>: T, block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">receiver</span>.block()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>&gt; <span style="color:#a6e22e">T</span>.also(block: (T) <span style="color:#f92672">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span>    block(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>&gt; <span style="color:#a6e22e">T</span>.apply(block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span>    block()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">T</span>.let(block: (T) <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> block(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">T</span>.run(block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> block()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>
+  <img src="/image/kotlin/004/img_1.png" alt="img.png" /></p>
+<h2 id="apply-사용-규칙">
+  apply 사용 규칙
+  <a class="anchor" href="#apply-%ec%82%ac%ec%9a%a9-%ea%b7%9c%ec%b9%99">#</a>
+</h2>
+<ul>
+<li>수신 객체 람다 내부에서 수신 객체의 함수를 사용하지 않고 수신 객체 자신을 다시 반환 하려는 경우</li>
+</ul>
+<blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> clark = Person()
+</span></span><span style="display:flex;"><span>clark.name = <span style="color:#e6db74">&#34;Clark&#34;</span>
+</span></span><span style="display:flex;"><span>clark.age = <span style="color:#ae81ff">18</span>
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> peter = Person().apply {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// apply 의 블록 에서는 오직 프로퍼티 만 사용합니다!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    name = <span style="color:#e6db74">&#34;Peter&#34;</span>
+</span></span><span style="display:flex;"><span>    age = <span style="color:#ae81ff">18</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="also-사용-규칙">
+  also 사용 규칙
+  <a class="anchor" href="#also-%ec%82%ac%ec%9a%a9-%ea%b7%9c%ec%b9%99">#</a>
+</h2>
+<ul>
+<li>수신 객체 람다가 전달된 수신 객체를 전혀 사용 하지 않거나 수신 객체의 속성을 변경하지 않고 사용하는 경우</li>
+<li>수신 객체를 반환 하므로 블록 함수가 다른 값을 반환 해야하는 경우 사용 불가능</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>&gt; <span style="color:#a6e22e">T</span>.also(block: (T) <span style="color:#f92672">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span>    block(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Book</span>(<span style="color:#66d9ef">val</span> author: Person) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">init</span> {
+</span></span><span style="display:flex;"><span>      requireNotNull(author.age)
+</span></span><span style="display:flex;"><span>      print(author.name)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Book</span>(author: Person) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> author = author.also {
+</span></span><span style="display:flex;"><span>      requireNotNull(<span style="color:#66d9ef">it</span>.age)
+</span></span><span style="display:flex;"><span>      print(<span style="color:#66d9ef">it</span>.name)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="apply-와-also--리시버와-파라미터의-차이">
+  apply 와 also : 리시버와 파라미터의 차이
+  <a class="anchor" href="#apply-%ec%99%80-also--%eb%a6%ac%ec%8b%9c%eb%b2%84%ec%99%80-%ed%8c%8c%eb%9d%bc%eb%af%b8%ed%84%b0%ec%9d%98-%ec%b0%a8%ec%9d%b4">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>&gt; <span style="color:#a6e22e">T</span>.also(block: (T) <span style="color:#f92672">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span>    block(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>&gt; <span style="color:#a6e22e">T</span>.apply(block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> Unit): T {
+</span></span><span style="display:flex;"><span>    block()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>also : 객체를 람다 파라미터로 받는다.</li>
+<li>apply : 객체를 리시버로 받는다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">person</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> name = <span style="color:#e6db74">&#34;kotlin&#34;</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">val</span> id = <span style="color:#e6db74">&#34;1541&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>person.also {
+</span></span><span style="display:flex;"><span>    println(<span style="color:#e6db74">&#34;my name is </span><span style="color:#e6db74">${it.name}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>person.apply {
+</span></span><span style="display:flex;"><span>    println(<span style="color:#e6db74">&#34;my name is </span><span style="color:#e6db74">$name</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>also : it을 사용한다.</li>
+<li>apply : this를 사용한다.</li>
+</ul>
+<h2 id="it-vs-this">
+  it vs this
+  <a class="anchor" href="#it-vs-this">#</a>
+</h2>
+<p>내가 작성하고자 하는 코드의 <strong>의미(semantics)</strong> 에 따라 also를 쓸지 apply를 쓸지 결정하는 것이다.</p>
+<ol>
+<li>it</li>
+</ol>
+<ul>
+<li>also는 객체를 람다 아규먼트로 받기 때문에 객체에 접근할 때 it(혹은 내가 정의한 다른 이름)을 사용
+<ul>
+<li>이는 코드가 객체 외부에서 해당 객체에 접근한다는 인상을 강하게 준다.</li>
+</ul>
+</li>
+<li>객체를 외부에서 접근하는 느낌을 주기 때문에 해당 객체와 더불어(혹은 이용해서) 어떠한 행위를 수행하고자 할 때 쓰인다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>person.also {
+</span></span><span style="display:flex;"><span>    println(<span style="color:#e6db74">&#34;my name is </span><span style="color:#e6db74">${it.steven}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li>this</li>
+</ol>
+<ul>
+<li>apply 는 객체를 람다 리시버로 받기 때문에 객체에 접근할 때 this(혹은 생략)을 사용
+<ul>
+<li>코드가 해당 객체의 외부가 아니라 객체 내부에 있는듯한 인상을 준다.</li>
+</ul>
+</li>
+<li>apply코드 블록이 객체 내부에 있는 듯한 느낌을 주기 때문에 주로 객체를 초기화 하는 코드 혹은 객체의 상태를 변경하는 코드에 많이 사용된다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>person.apply {
+</span></span><span style="display:flex;"><span>    name = <span style="color:#e6db74">&#34;steven&#34;</span>
+</span></span><span style="display:flex;"><span>    age = <span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="let-사용-규칙">
+  let 사용 규칙
+  <a class="anchor" href="#let-%ec%82%ac%ec%9a%a9-%ea%b7%9c%ec%b9%99">#</a>
+</h2>
+<ul>
+<li>지정된 값이 null 이 아닌 경우에 코드를 실행해야 하는 경우</li>
+<li>Nullable 객체를 다른 Nullable 객체로 변환하는 경우</li>
+<li>단일 지역 변수의 범위를 제한 하는 경우</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">T</span>.let(block: (T) <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> block(<span style="color:#66d9ef">this</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person? = getPromotablePerson()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (person <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>  promote(person)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> driver: Person? = getDriver()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> driversLicence: Licence? = <span style="color:#66d9ef">if</span> (driver <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">null</span> <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    licenceService.getDriversLicence(<span style="color:#66d9ef">it</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> personDao: PersonDao = getPersonDao()
+</span></span><span style="display:flex;"><span>personDao.insert(person)
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span>getNullablePerson()<span style="color:#f92672">?.</span>let {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// null 이 아닐때만 실행됩니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    promote(<span style="color:#66d9ef">it</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> driversLicence: Licence? = getNullablePerson()<span style="color:#f92672">?.</span>let {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// nullable personal객체를 nullable driversLicence 객체로 변경합니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    licenceService.getDriversLicence(<span style="color:#66d9ef">it</span>) 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>getPersonDao().let { dao <span style="color:#f92672">-&gt;</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 변수 dao 의 범위는 이 블록 안 으로 제한 됩니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    dao.insert(person)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="with-사용-규칙">
+  with 사용 규칙
+  <a class="anchor" href="#with-%ec%82%ac%ec%9a%a9-%ea%b7%9c%ec%b9%99">#</a>
+</h2>
+<ul>
+<li>Non-nullable (Null 이 될수 없는) 수신 객체 이고 결과가 필요하지 않은 경우에만 with 를 사용</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">with</span>(<span style="color:#66d9ef">receiver</span>: T, block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">receiver</span>.block()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>print(person.name)
+</span></span><span style="display:flex;"><span>print(person.age)
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>with(person) {
+</span></span><span style="display:flex;"><span>    print(name)
+</span></span><span style="display:flex;"><span>    print(age)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="run-사용-규칙">
+  run 사용 규칙
+  <a class="anchor" href="#run-%ec%82%ac%ec%9a%a9-%ea%b7%9c%ec%b9%99">#</a>
+</h2>
+<ul>
+<li>어떤 값을 계산할 필요가 있거나 여러개의 지역 변수의 범위를 제한하려면 run 을 사용</li>
+<li>매개 변수로 전달된 명시적 수신객체 를 암시적 수신 객체로 변환 할때 run ()을 사용</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">fun</span> &lt;<span style="color:#a6e22e">T</span>, <span style="color:#a6e22e">R</span>&gt; <span style="color:#a6e22e">T</span>.run(block: <span style="color:#a6e22e">T</span>.() <span style="color:#f92672">-&gt;</span> R): R {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> block()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Before</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> personDao: PersonDao = getPersonDao()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">val</span> inserted: Boolean = personDao.insert(person)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">printAge</span>(person: Person) = {
+</span></span><span style="display:flex;"><span>    print(person.age)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>After</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">val</span> inserted: Boolean = run {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// person 과 personDao 의 범위를 제한 합니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">val</span> person: Person = getPerson()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">val</span> personDao: PersonDao = getPersonDao()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 수행 결과를 반환 합니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    personDao.insert(person)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">printAge</span>(person: Person) = person.run {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// person 을 수신객체로 변환하여 age 값을 사용합니다.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    print(age)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="여러-범위-지정-함수-결합">
+  여러 범위 지정 함수 결합
+  <a class="anchor" href="#%ec%97%ac%eb%9f%ac-%eb%b2%94%ec%9c%84-%ec%a7%80%ec%a0%95-%ed%95%a8%ec%88%98-%ea%b2%b0%ed%95%a9">#</a>
+</h2>
+<p>하나의 코드 블록 내에서 여러 범위 지정 함수를 중첩하지 않는 것이 좋다.
+수신객체 지정 람다 에 수신 객체가 암시적으로 전달되는 apply, run, with 는 중첩하지 말라.
+이 함수들은 수신 객체를 this 또는 생략하여 사용하며, 수신객체의 이름을 다르게 지정할수 없기 때문에 중첩될 경우 혼동 하기 쉽다.
+also 와 let 을 중첩 해야만 할때는 암시적 수신 객체 를 가르키는 매개 변수 인 it 을 사용하지 말고, 명시적인 이름을 제공해서 코드상의 이름이 혼동되지 않도록 하자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-kotlin" data-lang="kotlin"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">fun</span> <span style="color:#a6e22e">insert</span>(user: User) = SqlBuilder().apply {
+</span></span><span style="display:flex;"><span>  append(<span style="color:#e6db74">&#34;INSERT INTO user (email, name, age) VALUES &#34;</span>)
+</span></span><span style="display:flex;"><span>  append(<span style="color:#e6db74">&#34;(?&#34;</span>, user.email)
+</span></span><span style="display:flex;"><span>  append(<span style="color:#e6db74">&#34;,?&#34;</span>, user.name)
+</span></span><span style="display:flex;"><span>  append(<span style="color:#e6db74">&#34;,?)&#34;</span>, user.age)
+</span></span><span style="display:flex;"><span>}.also {
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;Executing SQL update: </span><span style="color:#e6db74">$it</span><span style="color:#e6db74">.&#34;</span>)
+</span></span><span style="display:flex;"><span>}.run {
+</span></span><span style="display:flex;"><span>  jdbc.update(<span style="color:#66d9ef">this</span>) &gt; <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner">_1) 
+  <a href="https://medium.com/@limgyumin/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%98-apply-with-let-also-run-%EC%9D%80-%EC%96%B8%EC%A0%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B0%80-4a517292df29">https://medium.com/@limgyumin/%EC%BD%94%ED%8B%80%EB%A6%B0-%EC%9D%98-apply-with-let-also-run-%EC%9D%80-%EC%96%B8%EC%A0%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B0%80-4a517292df29</a><br>
+_2) 
+  <a href="https://jaeyeong951.medium.com/kotlin-lambda-with-receiver-5c2cccd8265a">https://jaeyeong951.medium.com/kotlin-lambda-with-receiver-5c2cccd8265a</a></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/a9fa068e7893b6666247d0a15ed9eedb8eafaa2b" title='Last modified by seohaebada | December 4, 2023' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>December 4, 2023</span>
+    </a>
+  </div>
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/kotlin/004_Kotlin_Scoping_Functions.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#kotlin-scoping-functions-apply-vs-with-let-also-and-run">Kotlin Scoping Functions apply vs. with, let, also, and run</a>
+      <ul>
+        <li><a href="#apply-with-let-also-run">apply, with, let, also, run</a></li>
+        <li><a href="#kotlin의-receiver">Kotlin의 Receiver</a></li>
+        <li><a href="#범위-지정-함수란">범위 지정 함수란?</a></li>
+        <li><a href="#with">with</a></li>
+        <li><a href="#also">also</a></li>
+        <li><a href="#with-also-apply-let-run-차이점">with, also, apply, let, run 차이점</a></li>
+        <li><a href="#apply-사용-규칙">apply 사용 규칙</a></li>
+        <li><a href="#also-사용-규칙">also 사용 규칙</a></li>
+        <li><a href="#apply-와-also--리시버와-파라미터의-차이">apply 와 also : 리시버와 파라미터의 차이</a></li>
+        <li><a href="#it-vs-this">it vs this</a></li>
+        <li><a href="#let-사용-규칙">let 사용 규칙</a></li>
+        <li><a href="#with-사용-규칙">with 사용 규칙</a></li>
+        <li><a href="#run-사용-규칙">run 사용 규칙</a></li>
+        <li><a href="#여러-범위-지정-함수-결합">여러 범위 지정 함수 결합</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

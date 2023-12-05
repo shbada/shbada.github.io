@@ -9,6 +9,15 @@
     <atom:link href="https://example.com/docs/kotlin/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/</link>
+      <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/</guid>
+      <description>Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치
+block : T.() -&amp;gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.
+receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&amp;gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/kotlin/003_Kotlin_basic/</link>
       <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/003_Kotlin_basic/</guid>
