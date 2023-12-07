@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.b0d020020a0e46313616b5339250d8473505d43c16a04930e17902f16603cb90.js" integrity="sha256-sNAgAgoORjE2FrUzklDYRzUF1DwWoEkw4XkC8WYDy5A=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.36204deb2cf0ed3f2f33394d9fd68901b7ccee9162149f5d8648e4957c57f8ce.js" integrity="sha256-NiBN6yzw7T8vMzlNn9aJAbfM7pFiFJ9dhkjklXxX&#43;M4=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/r2dbc/index.xml" title="TIL" />
@@ -742,6 +742,19 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/webflux/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/webflux/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
   
 
@@ -835,6 +848,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-12-07/">2023-12-07</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-12-05/">2023-12-05</a>
           <span>2</span>
         </li>
@@ -879,18 +897,23 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/tags/kotlin/">kotlin</a>
-          <span>4</span>
+          <a href="/tags/mysql/">mysql</a>
+          <span>1</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/r2dbc/">r2dbc</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/webflux/">webflux</a>
-          <span>1</span>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/kotlin/">kotlin</a>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -943,6 +966,40 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/webflux/002_r2dbc_mysql/">002 R2dbc Mysql</a>
+    </h2>
+    
+  <h5>December 7, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-07/">2023-12-07</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/r2dbc/">r2dbc</a>, 
+      <a href="/tags/mysql/">mysql</a>
+  </div>
+  
+
+
+
+
+    <p>02. R2dbc MySQL # R2dbc MysqlConnection # Connection을 구현한 MysqlConnection ConnectionMetadata를 구현한 MysqlConnectionMetadata Statement를 구현한 MysqlStatement MysqlConnectionFactory # Mono 형태로 포함 MysqlConnectionConfiguration을 인자로 받아서 MysqlConnectionFactory를 생성 MysqlConnectionFactory로 MysqlConnection 생성 MysqlConnection으로 MysqlStatement를 생성 MysqlConnection으로 transaction을 start, rollback, commit MysqlConnectionConfiguration # MYSQL 연결의 설정을 포함하는 객체 Builder 패턴 host, port, database, username 등 기본 설정 제공 serverZoneId 설정 MysqlConnection 생성 # Sql 준비 # Sql 실행 # ConnectionFactory의 create()를 통해서 connection 접근 connection의 createStatement를 통해서 sql 준비 result의 map으로 row에 접근하고 Person으로 변환 thenMany() chaining : 순차적으로 실행 selectPeople 결과를 아래로 전달 result의 map으로 row에 접근하고 Person으로 변환 MysqlConnection의 한계 # SQL 쿼리를 명시적으로 전달 반환된 결과를 수동으로 파싱 별도의 mapper를 만들어야하고 확장성이 떨어짐 Transaction 실행 # connection의 beginTransaction과 commitTransaction으로 transaction 시작과 commit 수행 롤백 수행 : conn.
+        <a href="/docs/webflux/002_r2dbc_mysql/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -1021,6 +1078,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-12-07/">2023-12-07</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-12-05/">2023-12-05</a>
           <span>2</span>
         </li>
@@ -1065,18 +1127,23 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/tags/kotlin/">kotlin</a>
-          <span>4</span>
+          <a href="/tags/mysql/">mysql</a>
+          <span>1</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/r2dbc/">r2dbc</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/webflux/">webflux</a>
-          <span>1</span>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/kotlin/">kotlin</a>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">

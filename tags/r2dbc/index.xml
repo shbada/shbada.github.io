@@ -6,8 +6,15 @@
     <description>Recent content in r2dbc on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/r2dbc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/webflux/002_r2dbc_mysql/</link>
+      <pubDate>Thu, 07 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/webflux/002_r2dbc_mysql/</guid>
+      <description>02. R2dbc MySQL # R2dbc MysqlConnection # Connection을 구현한 MysqlConnection ConnectionMetadata를 구현한 MysqlConnectionMetadata Statement를 구현한 MysqlStatement MysqlConnectionFactory # Mono 형태로 포함 MysqlConnectionConfiguration을 인자로 받아서 MysqlConnectionFactory를 생성 MysqlConnectionFactory로 MysqlConnection 생성 MysqlConnection으로 MysqlStatement를 생성 MysqlConnection으로 transaction을 start, rollback, commit MysqlConnectionConfiguration # MYSQL 연결의 설정을 포함하는 객체 Builder 패턴 host, port, database, username 등 기본 설정 제공 serverZoneId 설정 MysqlConnection 생성 # Sql 준비 # Sql 실행 # ConnectionFactory의 create()를 통해서 connection 접근 connection의 createStatement를 통해서 sql 준비 result의 map으로 row에 접근하고 Person으로 변환 thenMany() chaining : 순차적으로 실행 selectPeople 결과를 아래로 전달 result의 map으로 row에 접근하고 Person으로 변환 MysqlConnection의 한계 # SQL 쿼리를 명시적으로 전달 반환된 결과를 수동으로 파싱 별도의 mapper를 만들어야하고 확장성이 떨어짐 Transaction 실행 # connection의 beginTransaction과 commitTransaction으로 transaction 시작과 commit 수행 롤백 수행 : conn.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/webflux/001_r2dbc_intro/</link>
