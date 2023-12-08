@@ -9,6 +9,14 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</guid>
+      <description>Kotlin에서 리스트 추출하기 : subList, slice, take, drop # 리스트의 부분 리스트 구하기 : subList(), slice(), take() # Kotlin에서는 리스트의 부분 리스트를 구하는 메서드로 여러 메서드를 제공한다. 부분 리스트를 추출하는 기능을 하는 메서드에 대해 알아보자. 원본 리스트를 변경하지 않고 추출한 새로운 리스트를 반환하는 특징이 있다. 이 메서드들은 immutable한 리스트와 mutable한 리스트 모두에서 사용할 수 있다.
+subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추출하여, 새로운 리스트를 생성한다. Java의 subList와 유사하게 시작 인덱스부터 끝 인덱스까지 요소를 추출한다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/webflux/002_r2dbc_mysql/</link>
       <pubDate>Thu, 07 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/webflux/002_r2dbc_mysql/</guid>
