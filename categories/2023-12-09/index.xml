@@ -10,6 +10,14 @@
     <atom:link href="https://example.com/categories/2023-12-09/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/batch/001_performance_improved_batch_/</link>
+      <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/batch/001_performance_improved_batch_/</guid>
+      <description> 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
+비운영 시간 데이터 # References _1) https://techblog.woowahan.com/13569/?ref=codenary _2) https://www.codenary.co.kr/search?keyword=Java </description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/r2dbc/005_r2dbc_Metadata_mapping/</link>
       <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/r2dbc/005_r2dbc_Metadata_mapping/</guid>

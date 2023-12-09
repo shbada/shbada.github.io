@@ -9,18 +9,18 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/batch/001_performance_improved_batch_/</link>
+      <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/batch/001_performance_improved_batch_/</guid>
+      <description> 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
+비운영 시간 데이터 # References _1) https://techblog.woowahan.com/13569/?ref=codenary _2) https://www.codenary.co.kr/search?keyword=Java </description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/r2dbc/005_r2dbc_Metadata_mapping/</link>
       <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/r2dbc/005_r2dbc_Metadata_mapping/</guid>
       <description>05. Metadata mapping # Entity 클래스에 어노테이션을 추가 # @Id: primary key에 해당하는 필드에 적용 @Table: entity class에 적용. Table 이름을 변경 가능 @Transient: 기본적으로 모든 필드는 mapping 대상. @Transient가 붙은 필드는 mapping 에서 제외 @Column: entity의 property 필드에 적용. @Column이 붙은 필드에 대해서는 convention 기반 대신 Column에 주어진 name으로 적용 @Version: 낙관적 잠금 (Optimistic Lock)에 이용. entity가 update 될때마다 자동으로 update @PersistenceConstructor: 특정 constructor에 대해서 Object creation할 때 사용하게끔 지정.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://example.com/docs/batch/001_performance_improved_batch_/</link>
-      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/batch/001_performance_improved_batch_/</guid>
-      <description> 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
-비운영 시간 데이터 # References _1) https://techblog.woowahan.com/13569/?ref=codenary _2) https://www.codenary.co.kr/search?keyword=Java </description>
     </item>
     <item>
       <title></title>
