@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="R2dbc 소개 # 왜 JDBC, JPA는 non-blocking을 지원할 수 없을까? # JDBC : 동기 blocking I/O 기반으로 설계 Socket에 대한 연결과 쿼리 실행 모두 동기 blocking으로 동작 JPA 또한 JDBC 기반 -&gt; 비동기 non-blocking 지원 불가 그래서 결국, 비동기 non-blocing 기반의 API, 드라이버를 새로 만든다. R2dbc # Reactive Relational Database Connectivity 비동기 non-blocking 관계형 데이터베이스 드라이버 Reactive streams 스펙을 제공하며 Project reactor 기반으로 구현 R2dbc 지원 데이터베이스 # 공식지원 r2dbc-h2 r2dbc-mssql r2dbc-pool : Reactor pool로 커넥션 풀 제공 벤더 지원 oracle-r2dbc r2dbc-mariadb r2dbc-postgresql 커뮤니티 지원 r2dbc-mysql mirromutth 에서 2020년 5월부터 업데이트 X asyncer-io에서 RELEASE 지원 R2dbc MySQL 구조 # r2dbc-spi와 Reactor Netty 기반 Reactor Netty를 이용하여 r2dbc-spi 스펙을 구현 Reactor Netty client로 성능과 확장성 모두 제공 r2dbc-spi 스펙을 구현하여 여러 데이터베이스 시스템과 호환 R2dbc SPI # r2dbc Service Provider Interface SPI에서 제공하는 인터페이스를 구현해야한다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="R2dbc 소개 # 왜 JDBC, JPA는 non-blocking을 지원할 수 없을까? # JDBC : 동기 blocking I/O 기반으로 설계 Socket에 대한 연결과 쿼리 실행 모두 동기 blocking으로 동작 JPA 또한 JDBC 기반 -&gt; 비동기 non-blocking 지원 불가 그래서 결국, 비동기 non-blocing 기반의 API, 드라이버를 새로 만든다. R2dbc # Reactive Relational Database Connectivity 비동기 non-blocking 관계형 데이터베이스 드라이버 Reactive streams 스펙을 제공하며 Project reactor 기반으로 구현 R2dbc 지원 데이터베이스 # 공식지원 r2dbc-h2 r2dbc-mssql r2dbc-pool : Reactor pool로 커넥션 풀 제공 벤더 지원 oracle-r2dbc r2dbc-mariadb r2dbc-postgresql 커뮤니티 지원 r2dbc-mysql mirromutth 에서 2020년 5월부터 업데이트 X asyncer-io에서 RELEASE 지원 R2dbc MySQL 구조 # r2dbc-spi와 Reactor Netty 기반 Reactor Netty를 이용하여 r2dbc-spi 스펙을 구현 Reactor Netty client로 성능과 확장성 모두 제공 r2dbc-spi 스펙을 구현하여 여러 데이터베이스 시스템과 호환 R2dbc SPI # r2dbc Service Provider Interface SPI에서 제공하는 인터페이스를 구현해야한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/r2dbc/001_r2dbc_intro/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-05T00:00:00+00:00" />
+
+<title>001 R2dbc Intro | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.5efc902f0cb7ec84ead56096a5b8d9632fb722535fa9c9cd5771ad52a844af24.js" integrity="sha256-XvyQLwy37ITq1WCWpbjZYy&#43;3IlNfqcnNV3GtUqhEryQ=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="active">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>001 R2dbc Intro</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#r2dbc-소개">R2dbc 소개</a>
+      <ul>
+        <li><a href="#왜-jdbc-jpa는-non-blocking을-지원할-수-없을까">왜 JDBC, JPA는 non-blocking을 지원할 수 없을까?</a></li>
+        <li><a href="#r2dbc">R2dbc</a></li>
+        <li><a href="#r2dbc-지원-데이터베이스">R2dbc 지원 데이터베이스</a></li>
+        <li><a href="#r2dbc-mysql-구조">R2dbc MySQL 구조</a></li>
+        <li><a href="#r2dbc-spi">R2dbc SPI</a></li>
+        <li><a href="#r2dbc-spi-connection">R2dbc SPI Connection</a></li>
+        <li><a href="#r2dbc-spi-connectionfactory">R2dbc SPI ConnectionFactory</a></li>
+        <li><a href="#r2dbc-spi-statement">R2dbc SPI Statement</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="r2dbc-소개">
+  R2dbc 소개
+  <a class="anchor" href="#r2dbc-%ec%86%8c%ea%b0%9c">#</a>
+</h1>
+<h2 id="왜-jdbc-jpa는-non-blocking을-지원할-수-없을까">
+  왜 JDBC, JPA는 non-blocking을 지원할 수 없을까?
+  <a class="anchor" href="#%ec%99%9c-jdbc-jpa%eb%8a%94-non-blocking%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%a0-%ec%88%98-%ec%97%86%ec%9d%84%ea%b9%8c">#</a>
+</h2>
+<ul>
+<li>JDBC : 동기 blocking I/O 기반으로 설계</li>
+<li>Socket에 대한 연결과 쿼리 실행 모두 동기 blocking으로 동작</li>
+<li>JPA 또한 JDBC 기반 -&gt; 비동기 non-blocking 지원 불가
+그래서 결국, 비동기 non-blocing 기반의 API, 드라이버를 새로 만든다.</li>
+</ul>
+<h2 id="r2dbc">
+  R2dbc
+  <a class="anchor" href="#r2dbc">#</a>
+</h2>
+<ul>
+<li>Reactive Relational Database Connectivity</li>
+<li>비동기 non-blocking 관계형 데이터베이스 드라이버</li>
+<li>Reactive streams 스펙을 제공하며 Project reactor 기반으로 구현</li>
+</ul>
+<h2 id="r2dbc-지원-데이터베이스">
+  R2dbc 지원 데이터베이스
+  <a class="anchor" href="#r2dbc-%ec%a7%80%ec%9b%90-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4">#</a>
+</h2>
+<ul>
+<li>공식지원
+<ul>
+<li>r2dbc-h2</li>
+<li>r2dbc-mssql</li>
+<li>r2dbc-pool : Reactor pool로 커넥션 풀 제공</li>
+</ul>
+</li>
+<li>벤더 지원
+<ul>
+<li>oracle-r2dbc</li>
+<li>r2dbc-mariadb</li>
+<li>r2dbc-postgresql</li>
+</ul>
+</li>
+<li>커뮤니티 지원
+<ul>
+<li>r2dbc-mysql
+<ul>
+<li>mirromutth 에서 2020년 5월부터 업데이트 X</li>
+<li>asyncer-io에서 RELEASE 지원
+
+  <img src="/image/r2dbc/001/img.png" alt="img.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="r2dbc-mysql-구조">
+  R2dbc MySQL 구조
+  <a class="anchor" href="#r2dbc-mysql-%ea%b5%ac%ec%a1%b0">#</a>
+</h2>
+<ul>
+<li>r2dbc-spi와 Reactor Netty 기반</li>
+<li>Reactor Netty를 이용하여 r2dbc-spi 스펙을 구현</li>
+<li>Reactor Netty client로 성능과 확장성 모두 제공</li>
+<li>r2dbc-spi 스펙을 구현하여 여러 데이터베이스 시스템과 호환
+
+  <img src="/image/r2dbc/001/img_1.png" alt="img_1.png" /></li>
+</ul>
+<h2 id="r2dbc-spi">
+  R2dbc SPI
+  <a class="anchor" href="#r2dbc-spi">#</a>
+</h2>
+<ul>
+<li>r2dbc Service Provider Interface</li>
+<li>SPI에서 제공하는 인터페이스를 구현해야한다.</li>
+<li>db connection 스펙, Exception 등의 스펙, Result, Row 등 result 스펙, Statement(요청) 스펙</li>
+</ul>
+<p>
+  <img src="/image/r2dbc/001/img_2.png" alt="img_2.png" /></p>
+<h2 id="r2dbc-spi-connection">
+  R2dbc SPI Connection
+  <a class="anchor" href="#r2dbc-spi-connection">#</a>
+</h2>
+<ul>
+<li>
+<p>데이터베이스에 대한 연결을 가리킨다.</p>
+</li>
+<li>
+<p>Closable을 구현하여 close 메서드로 connection을 닫을 수 있다.</p>
+</li>
+<li>
+<p>ConnectionMetadata를 제공</p>
+<ul>
+<li>database의 version과 productName을 제공</li>
+</ul>
+</li>
+<li>
+<p>createStatement를 통해서 sql을 넘기고 Statement를 생성한다.
+
+  <img src="/image/r2dbc/001/img_3.png" alt="img_3.png" /></p>
+</li>
+<li>
+<p>transaction 관련된 기능을 제공</p>
+</li>
+<li>
+<p>transaction을 시작</p>
+<ul>
+<li>TransactionDefinition로 고립 수준, 읽기 전용 여부, 이름, lockWaitTime 등을 설정</li>
+</ul>
+</li>
+<li>
+<p>transaction savepoint를 생성</p>
+<ul>
+<li>transaction 중간에 savepoint를 만들고 rollback 가능</li>
+</ul>
+</li>
+<li>
+<p>transaction을 commit하거나 rollback
+
+  <img src="/image/r2dbc/001/img_4.png" alt="img_4.png" /></p>
+</li>
+</ul>
+<h2 id="r2dbc-spi-connectionfactory">
+  R2dbc SPI ConnectionFactory
+  <a class="anchor" href="#r2dbc-spi-connectionfactory">#</a>
+</h2>
+<ul>
+<li>connection을 생성하는 factory</li>
+<li>ConnectionFactoryMetadat를 통해서 ConnectionFactory의 정보를 제공</li>
+<li>ConnectionFactoryMetadata는 name을 제공
+
+  <img src="/image/r2dbc/001/img_5.png" alt="img_5.png" /></li>
+</ul>
+<h2 id="r2dbc-spi-statement">
+  R2dbc SPI Statement
+  <a class="anchor" href="#r2dbc-spi-statement">#</a>
+</h2>
+<ul>
+<li>Statement는 Connection으로부터 createStatement을 통해서 생성
+<ul>
+<li>bind : sql에 parameter를 bind</li>
+<li>add : 이전까지 진행한 binding을 저장하고 새로운 binding을 생성</li>
+<li>execute : 생성된 binding 수만큼 쿼리를 실행하고 publisher로 반환
+
+  <img src="/image/r2dbc/001/img_6.png" alt="img_6.png" /></li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><em>1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지</em></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/r2dbc/001_r2dbc_intro.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#r2dbc-소개">R2dbc 소개</a>
+      <ul>
+        <li><a href="#왜-jdbc-jpa는-non-blocking을-지원할-수-없을까">왜 JDBC, JPA는 non-blocking을 지원할 수 없을까?</a></li>
+        <li><a href="#r2dbc">R2dbc</a></li>
+        <li><a href="#r2dbc-지원-데이터베이스">R2dbc 지원 데이터베이스</a></li>
+        <li><a href="#r2dbc-mysql-구조">R2dbc MySQL 구조</a></li>
+        <li><a href="#r2dbc-spi">R2dbc SPI</a></li>
+        <li><a href="#r2dbc-spi-connection">R2dbc SPI Connection</a></li>
+        <li><a href="#r2dbc-spi-connectionfactory">R2dbc SPI ConnectionFactory</a></li>
+        <li><a href="#r2dbc-spi-statement">R2dbc SPI Statement</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

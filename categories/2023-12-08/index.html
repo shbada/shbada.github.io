@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.621597b53787b6a4c82d2c264743b0ddc0842262f369a31b2c9c46d930402b0d.js" integrity="sha256-YhWXtTeHtqTILSwmR0Ow3cCEImLzaaMbLJxG2TBAKw0=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.5efc902f0cb7ec84ead56096a5b8d9632fb722535fa9c9cd5771ad52a844af24.js" integrity="sha256-XvyQLwy37ITq1WCWpbjZYy&#43;3IlNfqcnNV3GtUqhEryQ=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/categories/2023-12-08/index.xml" title="TIL" />
@@ -748,72 +748,72 @@ https://github.com/alex-shpak/hugo-book
           
   <ul>
     
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/webflux/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/webflux/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/webflux/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/webflux/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/webflux/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
-  
-
-        </li>
-      
-    
   </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
 
         </li>
       
@@ -1064,7 +1064,7 @@ subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추
   
   <article class="markdown book-post">
     <h2>
-      <a href="/docs/webflux/003_r2dbcEntityTemplate/">003 R2dbc Entity Template</a>
+      <a href="/docs/r2dbc/003_r2dbcEntityTemplate/">003 R2dbc Entity Template</a>
     </h2>
     
   <h5>December 8, 2023</h5>
@@ -1091,14 +1091,14 @@ subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추
 
 
     <p>03. R2dbcEntityTemplate # Entity # 데이터베이스에서 하나의 Row와 매칭되는 클래스 R2dbcEntityTemplate, R2dbcRepository 등은 데이터베이스에 요청을 보내고 그 결과를 Entity 형태로 반환 Table, Row, Column에 필요한 데이터베이스 metadat를 어노테이션으로 제공 R2dbcEntityTemplate # Spring data r2dbc의 추상화 클래스 메서드 체이닝을 통해서 쿼리를 수행하고 결과를 entity 객체로 받을 수 있다. R2dbcEntityOperations를 구현 public class R2dbcEntityTemplate implements R2dbcEntityOperations, BeanFactoryAware, ApplicationContextAware { private final DatabaseClient databaseClient; ... } R2dbcEntityTemplate 생성 # ConnectionFactory를 제공하거나 R2dbcDialect, R2dbcConverter를 제공하여 constructor로 생성 가능 R2dbcDialect : R2dbc 버전의 Dialect 확장 R2dbcEntityTemplate 빈 등록 # R2dbcDataAutoConfiguration 위 클래스를 통해서 DatabaseClient, R2dbcDialect, MappingR2dbcConverter를 주입 @AutoConfiguration(after = R2dbcAutoConfiguration.
-        <a href="/docs/webflux/003_r2dbcEntityTemplate/">...</a>
+        <a href="/docs/r2dbc/003_r2dbcEntityTemplate/">...</a>
       
     </p>
   </article>
   
   <article class="markdown book-post">
     <h2>
-      <a href="/docs/webflux/004_r2dbc_object_mapping/">004 R2dbc Object Mapping</a>
+      <a href="/docs/r2dbc/004_r2dbc_object_mapping/">004 R2dbc Object Mapping</a>
     </h2>
     
   <h5>December 8, 2023</h5>
@@ -1125,7 +1125,7 @@ subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추
 
 
     <p>04. Object mapping # Spring data의 object mapping # 만약 지원하는 converter이 없다면 MappingR2dbcConverter는 다음 과정을 거쳐서 Row를 Entity로 변환한다. Object cretion : Row의 column들로 Object 생성 Property population : direct set, setter, with..메서드 등을 이용해서 Row의 Column을 Objec에 주입 Object creation # Object creation 테스트 # R2dbcEntityTemplate의 select 호출시, R2dbcConverter를 사용하기 때문에 이를 이용해서 selet에 class를 넘기는 방식으로 테스트 PersistenceCreator constructor # @PersistenceCreator 을 갖는 constructor가 존재한다면 해당 constructor를 사용 여러개가 존재한다면 가장 마지막 @PersistenceCreator가 붙은 constructor를 사용 NoArgsConstructor, AllArgsConstructor 전부 패스 NoArgs constructor # @PersistenceCreator 을 갖는 constructor가 없는 경우 No-args constructor가 존재한다면 해당 constructor를 사용 다른 constructor 전부 패스 하나의 constructor # 오직 하나의 constructor이 존재한다면 해당 constructor 사용 2개 이상의 constructor가 있다면?
-        <a href="/docs/webflux/004_r2dbc_object_mapping/">...</a>
+        <a href="/docs/r2dbc/004_r2dbc_object_mapping/">...</a>
       
     </p>
   </article>
