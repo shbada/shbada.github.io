@@ -89,6 +89,15 @@
     <loc>https://example.com/docs/r2dbc/005_r2dbc_Metadata_mapping/</loc>
     <lastmod>2023-12-09T11:20:24+09:00</lastmod>
   </url><url>
+    <loc>https://example.com/docs/r2dbc/006_r2dbcEntityOperations/</loc>
+    <lastmod>2023-12-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/docs/r2dbc/007_r2dbcRepository/</loc>
+    <lastmod>2023-12-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/docs/r2dbc/008_r2dbc_query_method/</loc>
+    <lastmod>2023-12-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/categories/2023-12-09/</loc>
     <lastmod>2023-12-09T14:04:05+09:00</lastmod>
   </url><url>
@@ -279,6 +288,6 @@
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
     <loc>https://example.com/</loc>
-    <lastmod>2023-12-09T14:04:05+09:00</lastmod>
+    <lastmod>2023-12-09T14:14:50+09:00</lastmod>
   </url>
 </urlset>

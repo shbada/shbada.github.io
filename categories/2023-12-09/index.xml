@@ -24,5 +24,26 @@
       <guid>https://example.com/docs/r2dbc/005_r2dbc_Metadata_mapping/</guid>
       <description>05. Metadata mapping # Entity 클래스에 어노테이션을 추가 # @Id: primary key에 해당하는 필드에 적용 @Table: entity class에 적용. Table 이름을 변경 가능 @Transient: 기본적으로 모든 필드는 mapping 대상. @Transient가 붙은 필드는 mapping 에서 제외 @Column: entity의 property 필드에 적용. @Column이 붙은 필드에 대해서는 convention 기반 대신 Column에 주어진 name으로 적용 @Version: 낙관적 잠금 (Optimistic Lock)에 이용. entity가 update 될때마다 자동으로 update @PersistenceConstructor: 특정 constructor에 대해서 Object creation할 때 사용하게끔 지정.</description>
     </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/r2dbc/006_r2dbcEntityOperations/</link>
+      <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/r2dbc/006_r2dbcEntityOperations/</guid>
+      <description>06. R2dbcEntityOperations # 구조 # R2dbcEntityTemplate가 R2dbcEntityOperations를 상속한다. R2dbcEntityOperations가 FluentR2dbcOperations를 상속한다. FluentR2dbcOperations는 여러 Operations를 상속한다. ReactiveSelectOperation : select query와 관련된 메서드 제공 ReactiveInsertOperation : insert query와 관련된 메서드 제공 ReactiveUpdateOperation : update query와 관련된 메서드 제공 ReactiveDeleteOperation : delete query와 관련된 메서드 제공 ReactiveSelectOperation # ReactiveSelectOperation의 select부터 시작 TerminatingSelect의 count, exists, first, one, all 등으로 종료 구조 select -&amp;gt; from -&amp;gt; as -&amp;gt; matching -&amp;gt; 실행 select -&amp;gt; from -&amp;gt; matching -&amp;gt; 실행 select -&amp;gt; as -&amp;gt; matching -&amp;gt; 실행 select -&amp;gt; matching -&amp;gt; 실행 select -&amp;gt; -&amp;gt; 실행 ReactiveSelectOperation 사용 # from : query를 실행할 table 이름을 전달 as : Entity를 전부 mapping 하지 않고 특정 필드만 mapping 하고 싶은 경우 Entity의 일부 프로퍼티만 담고 있는 subclass(혹은 인터페이스)를 넘겨서 projection projection이 제공되지 않는다면 Entity에 모든 필드를 mapping matching : query의 where문에 해당 matching을 생략하면 table 전체에 대한 요청을 보내는 것과 동일 실행 : 마지막으로 count, exists, first, one, all 등의 연산을 선택 count: 조건에 맞는 row의 개수 반환 exists: 조건에 맞는 row 존재 여부 반환 first: 조건에 맞는 첫 번째 row 반환 one: 조건에 맞는 하나의 row 반환.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/r2dbc/007_r2dbcRepository/</link>
+      <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/r2dbc/007_r2dbcRepository/</guid>
+      <description>07. R2dbcRepository # R2dbcRepository 구조 # ReactiveSortingRepository와 ReactiveQueryByExampleExecutor를 상속한 interface인 SimpleR2dbcRepository에서 구현 R2dbcRepository 등록 # R2dbcRepositoriesAutoConfiguration가 활성화되어 있다면 SpringBootApplication 기준으로 자동으로 scan 혹은 EnableR2dbcRepositories를 통해서 repository scan 만약 여러 r2dbcEntityTemplate이 존재하거나 여러 데이터베이스를 사용하는 경우, basePackages, entityOperationRef 등을 통해서 다른 경로, 다른 entityTemplate 설정 가능 Repository # Spring data에서는 Repository interface를 제공 데이터에 접근하는 계층을 추상화하고 CRUD 작업, Entity mapping, SQL 쿼리 생성 등을 자동으로 수행 ReactiveCrudRepository # Spring data reactive에서는 CrudRepository의 Reactive 버전인 ReactiveCrudRepository 지원 entity의 CRUD에 집중 모든 결과값 그리고 일부 인자들이 Publisher 지원 ReactiveCrudRepository - save # saveAll은 @Transactional을 사용해서 각각의 save를 하나의 tx로 묶고 concatMap을 통해서 save를 순차적으로 수행 ReactiveCrudRepository - find # id 기반으로 하나 혹은 여러 개의 항목을 탐색하거나 존재 여부를 확인 모든 항목을 탐색하거나 모든 항목의 개수를 확인 ReactiveCrudRepository - delete # id 기반으로 하나 혹은 여러 개의 항목을 제거하거나 하나 혹은 여러 개의 entity를 기반으로 id를 추출하여 제거하거나, 모두 제거 ReactiveSortingRepository # ReactiveCrudRepository를 상속 spring data의 Sort를 기반으로 여러 항목 탐색 Sort 객체는 여러 Order 객체를 포함 이를 기반으로 query에 sort 옵션을 제공 SimpleR2dbcRepository # R2dbcRepository를 구현 R2dbcEntityOperations를 기반으로 SQL 쿼리를 실행하고 결과를 Entity로 mapping 기본적으로 모든 메소드에 @Transactional(readOnly = true) 적용 SimpleR2dbcRepository - save # new entity 확인 전략 @Id에 해당하는 필드를 확인.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/r2dbc/008_r2dbc_query_method/</link>
+      <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/r2dbc/008_r2dbc_query_method/</guid>
+      <description>08. R2dbc Query Method # 쿼리 메소드 (Query method) # R2dbcRepository를 상속한 repository interface에 메소드를 추가 메소드의 이름을 기반으로 Query 생성 조회, 삭제 지원 @Query 어노테이션을 사용해서 복잡한 쿼리나 update 문도 실행 가능 쿼리 메소드 - find # id 뿐만 아니라 다른 필드를 이용해서 조회 가능 first 등의 키워드를 사용해서 query에 limit 제공 가능 기존의 Entity 뿐만 아니라 Projection을 사용하여 일부 필드만 조회 가능 findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내림차순으로 sort 하여 limit을 1로 모든 field를 조회하여 PersonEntity class로 mapping 쿼리 메소드 - delete # 다른 필드를 이용해서 삭제 가능 여러 반환 타입 지원 Integer: 영향을 받은 row 수 반환 Boolean: 삭제되었는지 여부 반환 Void: 반환값보다는 completion이 중요한 경우 deleteByAgeGreaterThan age가 100 초과인 row를 찾고 삭제한 후 영향을 받은 row가 있다면 true를, 없다면 false를 반환 쿼리 메서드 시작 키워드 # find, read, get, query, search, stream find 쿼리를 실행하고 결과를 Publisher으로 반환 exists find exists 쿼리를 실행하고 결과를 Publisher으로 반환 count find count 쿼리를 실행하고 결과를 Publisher으로 반환 delete, remove delete 쿼리를 실행하고 Publisher 혹은 publisher로 삭제된 개수 반환 쿼리 메서드 제한 키워드 # First, Top 쿼리의 limit을 N으로 설정.</description>
+    </item>
   </channel>
 </rss>
