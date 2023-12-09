@@ -16,6 +16,14 @@
     </item>
     <item>
       <title></title>
+      <link>https://example.com/docs/batch/001_performance_improved_batch_/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/batch/001_performance_improved_batch_/</guid>
+      <description> 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
+비운영 시간 데이터 # References _1) https://techblog.woowahan.com/13569/?ref=codenary _2) https://www.codenary.co.kr/search?keyword=Java </description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</guid>
@@ -137,13 +145,6 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
       <link>https://example.com/docs/algorithm/000_sample/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/algorithm/000_sample/</guid>
-      <description>sample</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://example.com/docs/batch/000_sample/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/batch/000_sample/</guid>
       <description>sample</description>
     </item>
     <item>

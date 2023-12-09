@@ -30,6 +30,13 @@
       <description></description>
     </item>
     <item>
+      <title>batch</title>
+      <link>https://example.com/tags/batch/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/batch/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>kotlin</title>
       <link>https://example.com/tags/kotlin/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>

@@ -107,6 +107,9 @@
     <loc>https://example.com/tags/webflux/</loc>
     <lastmod>2023-12-09T11:20:24+09:00</lastmod>
   </url><url>
+    <loc>https://example.com/docs/batch/001_performance_improved_batch_/</loc>
+    <lastmod>2023-12-08T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</loc>
     <lastmod>2023-12-08T18:12:40+09:00</lastmod>
   </url><url>
@@ -118,6 +121,9 @@
   </url><url>
     <loc>https://example.com/categories/2023-12-08/</loc>
     <lastmod>2023-12-09T11:20:24+09:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/batch/</loc>
+    <lastmod>2023-12-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/kotlin/</loc>
     <lastmod>2023-12-08T18:12:40+09:00</lastmod>
@@ -206,9 +212,6 @@
     <loc>https://example.com/docs/algorithm/000_sample/</loc>
     <lastmod>2023-12-02T10:58:07+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/batch/000_sample/</loc>
-    <lastmod>2023-12-02T10:58:07+09:00</lastmod>
-  </url><url>
     <loc>https://example.com/docs/data-structure/000_sample/</loc>
     <lastmod>2023-12-02T10:58:07+09:00</lastmod>
   </url><url>
@@ -276,6 +279,6 @@
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
     <loc>https://example.com/</loc>
-    <lastmod>2023-12-09T11:20:24+09:00</lastmod>
+    <lastmod>2023-12-09T11:27:19+09:00</lastmod>
   </url>
 </urlset>
