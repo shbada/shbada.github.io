@@ -11,7 +11,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/webflux/005_r2dbc_Metadata_mapping/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-09T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-12-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-09T11:12:41+09:00" />
 
 <title>005 R2dbc Metadata Mapping | TIL</title>
 <link rel="manifest" href="/manifest.json">
@@ -951,7 +951,7 @@ https://github.com/alex-shpak/hugo-book
 <li>@PersistenceCreator : id, fullName, age, gender를 인자로 받는 생성자 설정</li>
 <li>@Version : version 필드 설정
 
-  <img src="../../../static/image/webflux/005/img.png" alt="img.png" /></li>
+  <img src="/image/webflux/005/img.png" alt="img.png" /></li>
 </ul>
 <h2 id="metadata-mapping-실행">
   Metadata mapping 실행
@@ -963,9 +963,9 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li>데이터베이스에는 반영되지 않지만 변경된 score를 두번째 update된 결과에 포함
 
-  <img src="../../../static/image/webflux/005/img_1.png" alt="img_1.png" />
+  <img src="/image/webflux/005/img_1.png" alt="img_1.png" />
 
-  <img src="../../../static/image/webflux/005/img_2.png" alt="img_2.png" /></li>
+  <img src="/image/webflux/005/img_2.png" alt="img_2.png" /></li>
 </ul>
 </li>
 </ul>
@@ -977,9 +977,9 @@ https://github.com/alex-shpak/hugo-book
 <li>version을 강제로 1 증가시킨다. (마치, 다른 쓰레드가 증가시킨것처럼)</li>
 <li>OptimisticLockingFailureException 발생
 
-  <img src="../../../static/image/webflux/005/img_3.png" alt="img_3.png" />
+  <img src="/image/webflux/005/img_3.png" alt="img_3.png" />
 
-  <img src="../../../static/image/webflux/005/img_4.png" alt="img_4.png" /></li>
+  <img src="/image/webflux/005/img_4.png" alt="img_4.png" /></li>
 </ul>
 <h1 id="어떻게-property-mapping에서-mysql-타입을-java-타입으로-바꿀-수-있나">
   어떻게 property mapping에서 MySQL 타입을 java 타입으로 바꿀 수 있나?
@@ -992,7 +992,7 @@ https://github.com/alex-shpak/hugo-book
 <ul>
 <li>Row로부터 get을 통해서 특정 Java 클래스로 변환
 
-  <img src="../../../static/image/webflux/005/img_5.png" alt="img_5.png" /></li>
+  <img src="/image/webflux/005/img_5.png" alt="img_5.png" /></li>
 </ul>
 <h2 id="mysqlrow">
   MySqlRow
@@ -1006,7 +1006,7 @@ https://github.com/alex-shpak/hugo-book
 <li>FieldValue: column의 실제 값에 해당하는 ByteBuf 혹은 List<ByteBuf> 포함</li>
 <li>MySqlColumnDescriptor: MySqlType, column name, nullable, size 등의 column meta 정보 포함
 
-  <img src="../../../static/image/webflux/005/img_6.png" alt="img_6.png" /></li>
+  <img src="/image/webflux/005/img_6.png" alt="img_6.png" /></li>
 </ul>
 </li>
 </ul>
@@ -1023,7 +1023,7 @@ https://github.com/alex-shpak/hugo-book
 <li>canDecode : columnMetadata를 기반으로 target(특정 java 타입)으로 변경 가능한지 여부 반환</li>
 <li>decode : 주어진 column의 value를 특정 타입의 객체로 반환
 
-  <img src="../../../static/image/webflux/005/img_7.png" alt="img_7.png" /></li>
+  <img src="/image/webflux/005/img_7.png" alt="img_7.png" /></li>
 </ul>
 </li>
 </ul>
@@ -1048,7 +1048,7 @@ https://github.com/alex-shpak/hugo-book
 </li>
 <li>decodeInt에서 MySQL 타입에 따라서 int로 변환
 
-  <img src="../../../static/image/webflux/005/img_8.png" alt="img_8.png" /></li>
+  <img src="/image/webflux/005/img_8.png" alt="img_8.png" /></li>
 </ul>
 <h2 id="mysql-defaultcodecs-지원">
   MySQL DefaultCodecs 지원
@@ -1070,9 +1070,9 @@ https://github.com/alex-shpak/hugo-book
 <li>Clob, Blob</li>
 <li>ByteBuffer, ByteArray
 
-  <img src="../../../static/image/webflux/005/img_9.png" alt="img_9.png" />
+  <img src="/image/webflux/005/img_9.png" alt="img_9.png" />
 
-  <img src="../../../static/image/webflux/005/img_10.png" alt="img_10.png" /></li>
+  <img src="/image/webflux/005/img_10.png" alt="img_10.png" /></li>
 </ul>
 </li>
 </ul>
@@ -1093,6 +1093,12 @@ https://github.com/alex-shpak/hugo-book
         
   <div class="flex flex-wrap justify-between">
 
+
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/1c588d433716f2bdc2187cc9efd081c75951e30a" title='Last modified by seohaebada | December 9, 2023' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>December 9, 2023</span>
+    </a>
+  </div>
 
 
 
