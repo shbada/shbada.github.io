@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content=" 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
-비운영 시간 데이터 # References _1) https://techblog.woowahan.com/13569/?ref=codenary _2) https://www.codenary.co.kr/search?keyword=Java ">
+<meta name="description" content="누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다. 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
+비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &lsquo;가게가 운영하는지 안하는지&rsquo;에 대한 정보를 유관 부서에 전달한다. &lsquo;비운영시간 데이터&rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content=" 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
-비운영 시간 데이터 # References _1) https://techblog.woowahan.com/13569/?ref=codenary _2) https://www.codenary.co.kr/search?keyword=Java " />
+<meta property="og:description" content="누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다. 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행
+비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &lsquo;가게가 운영하는지 안하는지&rsquo;에 대한 정보를 유관 부서에 전달한다. &lsquo;비운영시간 데이터&rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/batch/001_performance_improved_batch_/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-09T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-12-09T11:34:19+09:00" />
+<meta property="article:modified_time" content="2023-12-09T11:37:35+09:00" />
 
 <title>001 Performance Improved Batch | TIL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff73b4288209d683277a39ab5e85537683bfc8e9353595f712364948d324f4e4.js" integrity="sha256-/3O0KIIJ1oMnejmrXoVTdoO/yOk1NZX3EjZJSNMk9OQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.c12bcd6f71335d38bb7c682c8414e8cf797fd854b91a63be707f1289a3d96b5d.js" integrity="sha256-wSvNb3EzXTi7fGgshBToz3l/2FS5GmO&#43;cH8SiaPZa10=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -935,6 +935,14 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#우아한형제들-셀러-시스템-배치-개선-이야기">우아한형제들 셀러 시스템 배치 개선 이야기</a></li>
         <li><a href="#비운영-시간-데이터">비운영 시간 데이터</a></li>
+        <li><a href="#문제상황">문제상황</a></li>
+        <li><a href="#io-최적화">I/O 최적화</a></li>
+        <li><a href="#도메인-로직-및-기타-최적화">도메인 로직 및 기타 최적화</a></li>
+        <li><a href="#최적화-검토">최적화 검토</a></li>
+        <li><a href="#검토해야할-부분">검토해야할 부분</a></li>
+        <li><a href="#너무-빨라도-문제">너무 빨라도 문제</a></li>
+        <li><a href="#최적화-작업">최적화 작업</a></li>
+        <li><a href="#참고">참고</a></li>
       </ul>
     </li>
   </ul>
@@ -957,11 +965,278 @@ https://github.com/alex-shpak/hugo-book
   우아한형제들 셀러 시스템 배치 개선 이야기
   <a class="anchor" href="#%ec%9a%b0%ec%95%84%ed%95%9c%ed%98%95%ec%a0%9c%eb%93%a4-%ec%85%80%eb%9f%ac-%ec%8b%9c%ec%8a%a4%ed%85%9c-%eb%b0%b0%ec%b9%98-%ea%b0%9c%ec%84%a0-%ec%9d%b4%ec%95%bc%ea%b8%b0">#</a>
 </h2>
-<p>최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행</p>
+<p>우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
+최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행</p>
 <h2 id="비운영-시간-데이터">
   비운영 시간 데이터
   <a class="anchor" href="#%eb%b9%84%ec%9a%b4%ec%98%81-%ec%8b%9c%ea%b0%84-%eb%8d%b0%ec%9d%b4%ed%84%b0">#</a>
 </h2>
+<ul>
+<li>셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리</li>
+<li>사장님들의 관리 사항
+
+  <img src="/image/batch/001/img.png" alt="img.png" /></li>
+<li>&lsquo;가게가 운영하는지 안하는지&rsquo;에 대한 정보를 유관 부서에 전달한다.
+<ul>
+<li>&lsquo;비운영시간 데이터&rsquo;</li>
+<li>실시간으로 수정되는 정보를 반영</li>
+<li>매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산
+
+  <img src="/image/batch/001/img_1.png" alt="img_1.png" /></p>
+</blockquote>
+<blockquote>
+<p>위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공
+
+  <img src="/image/batch/001/img_2.png" alt="img_2.png" /></p>
+</blockquote>
+<h2 id="문제상황">
+  문제상황
+  <a class="anchor" href="#%eb%ac%b8%ec%a0%9c%ec%83%81%ed%99%a9">#</a>
+</h2>
+<ul>
+<li>새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다.</li>
+<li>배포 예정 시간과 배치 실행 시간이 겹칠 경우, 배포가 여러번 복잡한 절차를 밟아 진행해야한다. (잠재적인 리스크)</li>
+<li>배치 성능 개선이 필요</li>
+</ul>
+<h2 id="io-최적화">
+  I/O 최적화
+  <a class="anchor" href="#io-%ec%b5%9c%ec%a0%81%ed%99%94">#</a>
+</h2>
+<ul>
+<li>I/O 병목을 먼저 살펴본다.</li>
+</ul>
+<blockquote>
+<p>I/O (Input / Output) 병목이란?
+컴퓨팅에서 부하를 설명할 때에는 크게 CPU 부하와 I/O 부하로 나뉩니다.
+데이터를 계산하고 처리하는 과정인 CPU 부하와 달리, I/O 부하는 디스크에 파일을 읽고 쓰거나 DB 및 외부 컴포넌트와 통신하는 과정에서 발생합니다.
+I/O 병목은 이러한 I/O 부하가 시스템의 전체적인 효율성을 떨어뜨리는 부분을 말합니다.</p>
+</blockquote>
+<ul>
+<li>배치에서 사용하는 I/O 부하 중 가장 핵심은 DB 쿼리였다.</li>
+<li>원인 : JPA 지연 로딩으로 설정된 연관 관계 엔티티를 가져오는 과정에서 N+1 문제가 발생
+
+  <img src="/image/batch/001/img_3.png" alt="img_3.png" /></li>
+<li>데이터가 모두 1:N 구조의 연관관계로 설정되어 있어서 관련 데이터를 가져오는데에 오랜 시간이 걸린다.
+
+  <img src="/image/batch/001/img_4.png" alt="img_4.png" /></li>
+</ul>
+<blockquote>
+<p>해결</p>
+</blockquote>
+<ul>
+<li>연관관계로 설정된 엔티티의 종류가 많고 실제 연관관계 데이터의 수정은 불필요하다는 점 등을 고려하여,</li>
+<li>각 엔티티 정보를 연관관계를 통해 가져오는 것이 아닌 별도 쿼리 호출을 통해 명시적으로 한 번에 읽어오게끔 수정</li>
+</ul>
+<blockquote>
+<p>Before</p>
+</blockquote>
+<pre tabindex="0"><code>public List&lt;LiveShopClose&gt; generateLiveShopClose(Shop shop, LocalDate startDate, LocalDate endDate) {
+    final List&lt;ShopCalendar&gt; shopCalendars = shopCalendarRepository.findAllByCalendarDateBetween(startDate, endDate);
+    final List&lt;ShopTemporaryClosed&gt; shopTemporaryCloses = shop.getActiveShopTemporaryClosed();
+    final List&lt;ShopClosed&gt; shopCloses = shop.getActiveShopClosed();
+    final List&lt;ShopOperationHour&gt; operationHours = shop.getShopOperationHourIsType(OperationHourType.OPERATION);
+
+    return /* LiveShopClose 데이터 생성 */
+}
+</code></pre><blockquote>
+<p>After</p>
+</blockquote>
+<pre tabindex="0"><code>List&lt;LiveShopClose&gt; generateLiveShopCloses(List&lt;Long&gt; shopNos, LocalDate startDate, LocalDate endDate) {
+    List&lt;ShopNo&gt; shopNoEntities = shopNos.stream().map(ShopNo::new).collect(Collectors.toList());
+
+    List&lt;ShopCalendar&gt; shopCalendars = shopCalendarRepository.findAllByCalendarDateBetween(startDate, endDate);
+    Map&lt;Long, List&lt;ShopTemporaryClosed&gt;&gt; activeShopTemporaryClosedMap =
+            shopTemporaryClosedRepository.findActiveByShopNos(shopNoEntities).stream()
+                    .collect(groupingBy(ShopTemporaryClosed::getShopNo, Collectors.toList()));
+    Map&lt;Long, List&lt;ShopClosed&gt;&gt; activeShopClosedMap =
+            shopClosedRepository.findActiveByShopNos(shopNoEntities).stream()
+                    .collect(groupingBy(ShopClosed::getShopNo, Collectors.toList()));
+    Map&lt;Long, List&lt;ShopOperationHour&gt;&gt; operationHoursMap =
+            shopOperationHoursRepository.findOperationHoursByShopNos(shopNoEntities).stream()
+                    .collect(groupingBy(ShopOperationHour::getShopNo, Collectors.toList()));
+
+    return shopNos.stream()
+            .flatMap(shopNo -&gt; generateLiveShopClose(
+                    shopNo,
+                    shopCalendars,
+                    ListUtils.emptyIfNull(activeShopTemporaryClosedMap.get(shopNo)),
+                    ListUtils.emptyIfNull(activeShopClosedMap.get(shopNo)),
+                    ListUtils.emptyIfNull(operationHoursMap.get(shopNo))
+            ).stream())
+            .collect(Collectors.toList());
+}
+
+List&lt;LiveShopClose&gt; generateLiveShopClose(Long shopNo, List&lt;ShopCalendar&gt; shopCalendars,
+                                          List&lt;ShopTemporaryClosed&gt; activeShopTemporaryCloses,
+                                          List&lt;ShopClosed&gt; activeShopCloses,
+                                          List&lt;ShopOperationHour&gt; operationHours) {
+
+    return /* LiveShopClose 데이터 생성 */
+}
+</code></pre><h2 id="도메인-로직-및-기타-최적화">
+  도메인 로직 및 기타 최적화
+  <a class="anchor" href="#%eb%8f%84%eb%a9%94%ec%9d%b8-%eb%a1%9c%ec%a7%81-%eb%b0%8f-%ea%b8%b0%ed%83%80-%ec%b5%9c%ec%a0%81%ed%99%94">#</a>
+</h2>
+<p>
+  <img src="/image/batch/001/img_5.png" alt="img_5.png" /></p>
+<ul>
+<li>현재 가게의 비운영시간 데이터가 업데이트될 경우, 변경된 가게에 대한 이벤트를 발행</li>
+<li>기존 로직에서는 실제 데이터의 변경 여부와는 관계없이 D-1~D+2 데이터를 무조건 재생성하기 때문에,</li>
+<li>실제로는 데이터가 변경되지 않을 테지만 다시 데이터가 생성되어 변경 이벤트가 전송되는 케이스 존재
+
+  <img src="/image/batch/001/img_6.png" alt="img_6.png" /></li>
+<li>대응 : 이러한 케이스에 대응하여 데이터가 바뀌었는지 여부를 확인한 후 실제로 바뀐 경우에만 변경 사항을 적용</li>
+<li>효과 : 변경 이벤트로 인한 간접적인 부하 개선</li>
+</ul>
+<h2 id="최적화-검토">
+  최적화 검토
+  <a class="anchor" href="#%ec%b5%9c%ec%a0%81%ed%99%94-%ea%b2%80%ed%86%a0">#</a>
+</h2>
+<ol>
+<li>성능 효율을 높이기 위해 컴퓨팅 업계에서는 많은 죄악이 저질러지는데(심지어 효율적이지조차 않을 때도 있다) 그 수는 그냥 멍청해서 저지르는 죄악보다 많다.</li>
+</ol>
+<ul>
+<li>William A. Wulf (1972)</li>
+</ul>
+<ol start="2">
+<li>우리는 세세한 성능 효율에 대해서는 무시할 필요가 있다. 말하자면 97%가 이 경우에 해당한다. 섣부른 최적화는 만악의 근원이다.</li>
+</ol>
+<ul>
+<li>Donald E. Knuth (1974)</li>
+</ul>
+<ol start="3">
+<li>우리는 최적화에 대해서 다음 두가지 규칙을 따른다.
+첫째. 하지 마라.
+둘째. (전문가 한정) 아직은 하지 마라. 최적화되지 않은 상태로도 완벽하게 깔끔한 해결책을 찾는 것이 먼저다.</li>
+</ol>
+<ul>
+<li>M. A. Jackson (1975)</li>
+</ul>
+<p>효율만 쫒다가 득보다 실이 큰 경우를 경계하라는 뜻</p>
+<blockquote>
+<p>최적화를 하기 전에 항상 아래 두가지를 검토</p>
+</blockquote>
+<ol>
+<li>
+<p>최적화 이전에 먼저 좋은 코드를 작성하기
+코드를 작성하는 데 있어서 성능을 염두에 두는 것은 물론 중요합니다.
+하지만 많은 경우 대부분의 코드는 성능상 영향이 크지 않고 실제로 병목이 되는 부분은 극히 일부분입니다.
+좋은 코드를 최적화하기는 쉽지만, 섣부르게 최적화된 코드를 좋은 코드로 만드는 건 어렵습니다.
+빠른 코드보다는 좋은 코드를 짜는 데에 먼저 집중하고 최적화는 그 다음에 생각해야 합니다.</p>
+</li>
+<li>
+<p>정량적으로 성능을 측정하면서 병목을 파악하기
+정량화된 지표를 통해 실제로 병목이 되는 부분을 파악해야 합니다.
+지엽적인 부분을 일일히 개선하는 마이크로 최적화는 많은 경우 100ms 를 99ms로 줄이는 것에 그칩니다.
+마이크로 최적화 보다는 거시적인 관점에서 중요한 병목을 찾고 이를 구조적으로 해결하는 것이 중요합니다.
+그리고 실질적으로 얼마나 빨라졌는지 정량적인 성과로 나타낼 수 있어야 합니다.</p>
+</li>
+</ol>
+<h2 id="검토해야할-부분">
+  검토해야할 부분
+  <a class="anchor" href="#%ea%b2%80%ed%86%a0%ed%95%b4%ec%95%bc%ed%95%a0-%eb%b6%80%eb%b6%84">#</a>
+</h2>
+<p>위 개선을 통해 배치 수행시간이 너무 빨라졌다.
+MSA 구조에서는 애플리케이션과 직접적으로 연동되는 DB와 로드밸런서 뿐만 아니라,
+많은 모듈 및 유관부서들이 유기적으로 연결되어있기 때문에 영향 범위를 면밀히 검토해야한다.
+
+  <img src="/image/batch/001/img_7.png" alt="img_7.png" /></p>
+<ul>
+<li>
+<p>데이터 변경이 발생하면 변경 사항이 큐를 통해서 유관 부서에 전달된다.
+
+  <img src="/image/batch/001/img_8.png" alt="img_8.png" /></p>
+</li>
+<li>
+<p>확인 지표</p>
+<ul>
+<li>개발 환경에서 테스트 당시 애플리케이션이 실행되는 서버의 CPU 및 I/O 지표</li>
+<li>개발 환경에서 테스트 당시 DB CPU, 쿼리 지연 시간 등 지표</li>
+<li>예상 트래픽을 산출, 현재 운영 환경에서의 피크 트래픽과 비교하여 문제가 없을지 검토</li>
+<li>변경 사항을 전달하는 큐에서 지연이 발생해도 문제가 없을지 검토</li>
+</ul>
+</li>
+</ul>
+<h2 id="너무-빨라도-문제">
+  너무 빨라도 문제
+  <a class="anchor" href="#%eb%84%88%eb%ac%b4-%eb%b9%a8%eb%9d%bc%eb%8f%84-%eb%ac%b8%ec%a0%9c">#</a>
+</h2>
+<ul>
+<li>빠르게 동작하기 때문에, 유관 부서 트래픽 또한 예상 이상으로 인입되어 DB CPU가 높아짐</li>
+</ul>
+<blockquote>
+<p>해결방안 : 의도적으로 지연 시간 설정</p>
+</blockquote>
+<pre tabindex="0"><code>@Bean(STEP_NAME)
+@JobScope
+public Step liveShopCloseCreateStep() {
+    return stepBuilderFactory.get(STEP_NAME)
+            .&lt;Long, Long&gt;chunk(CHUNK_SIZE)
+            .reader(shopCloseScheduleReader(null))
+            .writer(liveShopCloseWriter(null, null, null))
+            .transactionManager(storeTransactionManager)
+            .listener(new AfterChunkSleepListener(200))
+            .build();
+}
+</code></pre><pre tabindex="0"><code>@Slf4j
+public class AfterChunkSleepListener implements ChunkListener {
+    private final long sleepMillis;
+
+    public AfterChunkSleepListener(long sleepMillis) {
+        this.sleepMillis = sleepMillis;
+    }
+
+    @Override
+    public void afterChunk(ChunkContext context) {
+        try {
+            log.info(&#34;Chunk 실행 후 sleep {} millis. 현재 read Count : {}&#34;,
+                    sleepMillis,
+                    context.getStepContext().getStepExecution().getReadCount());
+            TimeUnit.MILLISECONDS.sleep(sleepMillis);
+        } catch (InterruptedException e) {
+            log.error(&#34;Thread sleep interrupted.&#34;, e);
+        }
+    }
+
+    @Override
+    public void afterChunkError(ChunkContext context) {
+        // 사용안함.
+    }
+
+    @Override
+    public void beforeChunk(ChunkContext context) {
+        // 사용안함.
+    }
+}
+</code></pre><ul>
+<li>지연 시간을 설정해도 배치는 390분 -&gt; 30분 소요되는 결과를 얻음
+
+  <img src="/image/batch/001/img_9.png" alt="img_9.png" /></li>
+</ul>
+<h2 id="최적화-작업">
+  최적화 작업
+  <a class="anchor" href="#%ec%b5%9c%ec%a0%81%ed%99%94-%ec%9e%91%ec%97%85">#</a>
+</h2>
+<ul>
+<li>리스크를 확인하고 과제에 대한 우선순위를 조정하기</li>
+<li>문제 상황을 분석하고 병목을 확인하기</li>
+<li>I/O의 경우 최대한 한번에 여러건을 읽고 쓰도록 하여 효율성 높이기</li>
+<li>도메인 로직을 검토하여 개선할 수 있는 부분이 있는지 살피기</li>
+<li>유의미한 최적화인가? 정량적인 지표로 다시 검토하기</li>
+<li>빨라도 문제일 수 있으니 최적화에 의한 영향 범위를 검토하고 운영 환경에서도 문제가 없을지 확인하기</li>
+</ul>
+<h2 id="참고">
+  참고
+  <a class="anchor" href="#%ec%b0%b8%ea%b3%a0">#</a>
+</h2>
+<ul>
+<li>위 배치의 chunk size : 100으로 설정</li>
+</ul>
 <hr>
 
 
@@ -983,7 +1258,7 @@ _2)
   <div class="flex flex-wrap justify-between">
 
 
-  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/b76a3963a7df2712e25891871782a8f4e896e4d3" title='Last modified by seohaebada | December 9, 2023' target="_blank" rel="noopener">
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/cda6638f97951c21768546f6c0fcc76acae40ff3" title='Last modified by seohaebada | December 9, 2023' target="_blank" rel="noopener">
       <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
       <span>December 9, 2023</span>
     </a>
@@ -1032,6 +1307,14 @@ _2)
       <ul>
         <li><a href="#우아한형제들-셀러-시스템-배치-개선-이야기">우아한형제들 셀러 시스템 배치 개선 이야기</a></li>
         <li><a href="#비운영-시간-데이터">비운영 시간 데이터</a></li>
+        <li><a href="#문제상황">문제상황</a></li>
+        <li><a href="#io-최적화">I/O 최적화</a></li>
+        <li><a href="#도메인-로직-및-기타-최적화">도메인 로직 및 기타 최적화</a></li>
+        <li><a href="#최적화-검토">최적화 검토</a></li>
+        <li><a href="#검토해야할-부분">검토해야할 부분</a></li>
+        <li><a href="#너무-빨라도-문제">너무 빨라도 문제</a></li>
+        <li><a href="#최적화-작업">최적화 작업</a></li>
+        <li><a href="#참고">참고</a></li>
       </ul>
     </li>
   </ul>
