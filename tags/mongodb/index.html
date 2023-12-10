@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.06fdc63b12276c688d20380ba6ab07a0bf7ecae255b7e5e59ad066c44c5beeaa.js" integrity="sha256-Bv3GOxInbGiNIDgLpqsHoL9&#43;yuJVt&#43;XlmtBmxExb7qo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.5b24f17ddf449b368adf9f134c52e58839cc38d78a9f91a7e848b55102d9199f.js" integrity="sha256-WyTxfd9EmzaK358TTFLliDnMONeKn5Gn6Ei1UQLZGZ8=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/mongodb/index.xml" title="TIL" />
@@ -418,6 +418,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
   
 
         </li>
@@ -987,7 +1000,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-10/">2023-12-10</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -1051,12 +1064,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/mongodb/">mongodb</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/webflux/">webflux</a>
-          <span>9</span>
+          <span>10</span>
         </li>
       
         <li class="flex justify-between">
@@ -1163,6 +1176,39 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/mongodb/002_mongodb_document/">002 Mongodb Document</a>
+    </h2>
+    
+  <h5>December 10, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-10/">2023-12-10</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/mongodb/">mongodb</a>
+  </div>
+  
+
+
+
+
+    <p>Reactive MongoDB Document # Document # MongoCollection에 query를 실행하여 bson의 Document를 반환 bson의 Document : Map&lt;String, Object&gt;를 구현하고 내부에 LinkedHashMap을 저장하여 Map 메서드 override Document 예제 # collection에서 findAll query를 실행 결과를 subscribe하여 onNext로 출력 모든 결과를 찾은 후, onComplete 이벤트로 종료 MongoDB BSON 인코딩 # 첫 줄은 전체 document의 크기를 가리킨다 데이터타입, 필드명, 길이(데이터 타입에 따라 optional), 값으로 구성 BSON Codec # bson 라이브러리는 Codec을 제공 Codec을 통해서 특정 java type이 주어졌을때 어떻게 encode, docode 해야할지 지정 Default codec # MongoClientSettings에서 Default codec을 제공 Java 자체 클래스와 관련된 codec들 IterableCodecProvider: Iterable 클래스 지원 MapCodecProvider: Map 클래스 지원 ValueCodecProvider: Java에서 제공하는 클래스 지원 Jsr310CodecProvider: Instant, LocalDate, LocalDateTime 등 Date, Time 관련 클래스 지원 EnumCodecProvider: Enum 지원 Jep395RecordCodecProvider: Record 지원 Bson과 관련된 codec들 BsonValueCodecProvider: Bson 타입들을 java로 1대1 맵핑한 클래스 지원 DBRefCodecProvider: DBRef 지원 DBObjectCodecProvider: DBObject 지원 DocumentCodecProvider: Document 지원 GeoJsonCodecProvider: Geometry, LineString, MultiPoint, Point, Polygon 등의 geojson 지원 GridFSFileCodecProvider: GridFSFile 지원 JsonObjectCodecProvider: JsonObject 지원 BsonValueCodecProvider # Bson 타입들과 1 대 1 매칭 BsonNull, BsonUndefined BsonBinary BsonBoolean BsonDateTime, BsonTimestamp BsonDBPointer BsonDouble, BsonInt32, BsonInt64, BsonDecimal128 BsonMinKey, BsonMaxKey BsonJavaScript BsonObjectId BsonRegularExpression BsonString, BsonSymbol ValueCodecProvider # Java 타입들을 지원 Binary (byte[]), Byte, ByteArray (byte[]) Boolean, AtomicBoolean Date Short, Float, Double, Integer, Long, Decimal128, BigDecimal, AtomicInteger, AtomicLong MinKey, MaxKey Code (javascript code) ObjectId Pattern Character, String, Symbol Codec 예제 - StringCodec # String을 binary로 encode 만약 변환 대상이 Bson.
+        <a href="/docs/mongodb/002_mongodb_document/">...</a>
+      
+    </p>
+  </article>
+  
 
   
  
@@ -1208,7 +1254,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-10/">2023-12-10</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -1272,12 +1318,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/mongodb/">mongodb</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/webflux/">webflux</a>
-          <span>9</span>
+          <span>10</span>
         </li>
       
         <li class="flex justify-between">

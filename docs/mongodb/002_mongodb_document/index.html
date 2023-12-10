@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Reactive MongoDB Document # Document # MongoCollection에 query를 실행하여 bson의 Document를 반환 bson의 Document : Map&lt;String, Object&gt;를 구현하고 내부에 LinkedHashMap을 저장하여 Map 메서드 override Document 예제 # collection에서 findAll query를 실행 결과를 subscribe하여 onNext로 출력 모든 결과를 찾은 후, onComplete 이벤트로 종료 MongoDB BSON 인코딩 # 첫 줄은 전체 document의 크기를 가리킨다 데이터타입, 필드명, 길이(데이터 타입에 따라 optional), 값으로 구성 BSON Codec # bson 라이브러리는 Codec을 제공 Codec을 통해서 특정 java type이 주어졌을때 어떻게 encode, docode 해야할지 지정 Default codec # MongoClientSettings에서 Default codec을 제공 Java 자체 클래스와 관련된 codec들 IterableCodecProvider: Iterable 클래스 지원 MapCodecProvider: Map 클래스 지원 ValueCodecProvider: Java에서 제공하는 클래스 지원 Jsr310CodecProvider: Instant, LocalDate, LocalDateTime 등 Date, Time 관련 클래스 지원 EnumCodecProvider: Enum 지원 Jep395RecordCodecProvider: Record 지원 Bson과 관련된 codec들 BsonValueCodecProvider: Bson 타입들을 java로 1대1 맵핑한 클래스 지원 DBRefCodecProvider: DBRef 지원 DBObjectCodecProvider: DBObject 지원 DocumentCodecProvider: Document 지원 GeoJsonCodecProvider: Geometry, LineString, MultiPoint, Point, Polygon 등의 geojson 지원 GridFSFileCodecProvider: GridFSFile 지원 JsonObjectCodecProvider: JsonObject 지원 BsonValueCodecProvider # Bson 타입들과 1 대 1 매칭 BsonNull, BsonUndefined BsonBinary BsonBoolean BsonDateTime, BsonTimestamp BsonDBPointer BsonDouble, BsonInt32, BsonInt64, BsonDecimal128 BsonMinKey, BsonMaxKey BsonJavaScript BsonObjectId BsonRegularExpression BsonString, BsonSymbol ValueCodecProvider # Java 타입들을 지원 Binary (byte[]), Byte, ByteArray (byte[]) Boolean, AtomicBoolean Date Short, Float, Double, Integer, Long, Decimal128, BigDecimal, AtomicInteger, AtomicLong MinKey, MaxKey Code (javascript code) ObjectId Pattern Character, String, Symbol Codec 예제 - StringCodec # String을 binary로 encode 만약 변환 대상이 Bson.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Reactive MongoDB Document # Document # MongoCollection에 query를 실행하여 bson의 Document를 반환 bson의 Document : Map&lt;String, Object&gt;를 구현하고 내부에 LinkedHashMap을 저장하여 Map 메서드 override Document 예제 # collection에서 findAll query를 실행 결과를 subscribe하여 onNext로 출력 모든 결과를 찾은 후, onComplete 이벤트로 종료 MongoDB BSON 인코딩 # 첫 줄은 전체 document의 크기를 가리킨다 데이터타입, 필드명, 길이(데이터 타입에 따라 optional), 값으로 구성 BSON Codec # bson 라이브러리는 Codec을 제공 Codec을 통해서 특정 java type이 주어졌을때 어떻게 encode, docode 해야할지 지정 Default codec # MongoClientSettings에서 Default codec을 제공 Java 자체 클래스와 관련된 codec들 IterableCodecProvider: Iterable 클래스 지원 MapCodecProvider: Map 클래스 지원 ValueCodecProvider: Java에서 제공하는 클래스 지원 Jsr310CodecProvider: Instant, LocalDate, LocalDateTime 등 Date, Time 관련 클래스 지원 EnumCodecProvider: Enum 지원 Jep395RecordCodecProvider: Record 지원 Bson과 관련된 codec들 BsonValueCodecProvider: Bson 타입들을 java로 1대1 맵핑한 클래스 지원 DBRefCodecProvider: DBRef 지원 DBObjectCodecProvider: DBObject 지원 DocumentCodecProvider: Document 지원 GeoJsonCodecProvider: Geometry, LineString, MultiPoint, Point, Polygon 등의 geojson 지원 GridFSFileCodecProvider: GridFSFile 지원 JsonObjectCodecProvider: JsonObject 지원 BsonValueCodecProvider # Bson 타입들과 1 대 1 매칭 BsonNull, BsonUndefined BsonBinary BsonBoolean BsonDateTime, BsonTimestamp BsonDBPointer BsonDouble, BsonInt32, BsonInt64, BsonDecimal128 BsonMinKey, BsonMaxKey BsonJavaScript BsonObjectId BsonRegularExpression BsonString, BsonSymbol ValueCodecProvider # Java 타입들을 지원 Binary (byte[]), Byte, ByteArray (byte[]) Boolean, AtomicBoolean Date Short, Float, Double, Integer, Long, Decimal128, BigDecimal, AtomicInteger, AtomicLong MinKey, MaxKey Code (javascript code) ObjectId Pattern Character, String, Symbol Codec 예제 - StringCodec # String을 binary로 encode 만약 변환 대상이 Bson." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/mongodb/002_mongodb_document/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-10T00:00:00+00:00" />
+
+<title>002 Mongodb Document | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.5b24f17ddf449b368adf9f134c52e58839cc38d78a9f91a7e848b55102d9199f.js" integrity="sha256-WyTxfd9EmzaK358TTFLliDnMONeKn5Gn6Ei1UQLZGZ8=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle" checked />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="active">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>002 Mongodb Document</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reactive-mongodb-document">Reactive MongoDB Document</a>
+      <ul>
+        <li><a href="#document">Document</a></li>
+        <li><a href="#document-예제">Document 예제</a></li>
+        <li><a href="#mongodb-bson-인코딩">MongoDB BSON 인코딩</a></li>
+        <li><a href="#bson-codec">BSON Codec</a></li>
+        <li><a href="#default-codec">Default codec</a></li>
+        <li><a href="#bsonvaluecodecprovider">BsonValueCodecProvider</a></li>
+        <li><a href="#valuecodecprovider">ValueCodecProvider</a></li>
+        <li><a href="#codec-예제---stringcodec">Codec 예제 - StringCodec</a></li>
+        <li><a href="#pojocodec">PojoCodec</a></li>
+        <li><a href="#pojocodec-등록">PojoCodec 등록</a></li>
+        <li><a href="#custom-codec">Custom Codec</a></li>
+        <li><a href="#custom-codec-등록">Custom Codec 등록</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="reactive-mongodb-document">
+  Reactive MongoDB Document
+  <a class="anchor" href="#reactive-mongodb-document">#</a>
+</h1>
+<h2 id="document">
+  Document
+  <a class="anchor" href="#document">#</a>
+</h2>
+<ul>
+<li>MongoCollection에 query를 실행하여 bson의 Document를 반환</li>
+<li>bson의 Document : Map&lt;String, Object&gt;를 구현하고 내부에 LinkedHashMap을 저장하여 Map 메서드 override
+
+  <img src="/image/mongodb/002/img.png" alt="img.png" /></li>
+</ul>
+<h2 id="document-예제">
+  Document 예제
+  <a class="anchor" href="#document-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<ol>
+<li>collection에서 findAll query를 실행</li>
+<li>결과를 subscribe하여 onNext로 출력</li>
+<li>모든 결과를 찾은 후, onComplete 이벤트로 종료
+
+  <img src="/image/mongodb/002/img_1.png" alt="img_1.png" />
+
+  <img src="/image/mongodb/002/img_2.png" alt="img_2.png" /></li>
+</ol>
+<h2 id="mongodb-bson-인코딩">
+  MongoDB BSON 인코딩
+  <a class="anchor" href="#mongodb-bson-%ec%9d%b8%ec%bd%94%eb%94%a9">#</a>
+</h2>
+<ol>
+<li>첫 줄은 전체 document의 크기를 가리킨다</li>
+<li>데이터타입, 필드명, 길이(데이터 타입에 따라 optional), 값으로 구성
+
+  <img src="/image/mongodb/002/img_3.png" alt="img_3.png" /></li>
+</ol>
+<h2 id="bson-codec">
+  BSON Codec
+  <a class="anchor" href="#bson-codec">#</a>
+</h2>
+<ul>
+<li>bson 라이브러리는 Codec을 제공</li>
+<li>Codec을 통해서 특정 java type이 주어졌을때 어떻게 encode, docode 해야할지 지정
+
+  <img src="/image/mongodb/002/img_4.png" alt="img_4.png" /></li>
+</ul>
+<h2 id="default-codec">
+  Default codec
+  <a class="anchor" href="#default-codec">#</a>
+</h2>
+<ul>
+<li>MongoClientSettings에서 Default codec을 제공</li>
+<li>Java 자체 클래스와 관련된 codec들
+<ul>
+<li>IterableCodecProvider: Iterable 클래스 지원</li>
+<li>MapCodecProvider: Map 클래스 지원</li>
+<li>ValueCodecProvider: Java에서 제공하는 클래스 지원</li>
+<li>Jsr310CodecProvider: Instant, LocalDate, LocalDateTime 등 Date, Time 관련 클래스 지원</li>
+<li>EnumCodecProvider: Enum 지원</li>
+<li>Jep395RecordCodecProvider: Record 지원</li>
+</ul>
+</li>
+<li>Bson과 관련된 codec들
+<ul>
+<li>BsonValueCodecProvider: Bson 타입들을 java로 1대1 맵핑한 클래스 지원</li>
+<li>DBRefCodecProvider: DBRef 지원</li>
+<li>DBObjectCodecProvider: DBObject 지원</li>
+<li>DocumentCodecProvider: Document 지원</li>
+<li>GeoJsonCodecProvider: Geometry, LineString, MultiPoint, Point, Polygon 등의 geojson 지원</li>
+<li>GridFSFileCodecProvider: GridFSFile 지원</li>
+<li>JsonObjectCodecProvider: JsonObject 지원
+
+  <img src="/image/mongodb/002/img_5.png" alt="img_5.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="bsonvaluecodecprovider">
+  BsonValueCodecProvider
+  <a class="anchor" href="#bsonvaluecodecprovider">#</a>
+</h2>
+<ul>
+<li>Bson 타입들과 1 대 1 매칭
+<ul>
+<li>BsonNull, BsonUndefined</li>
+<li>BsonBinary</li>
+<li>BsonBoolean</li>
+<li>BsonDateTime, BsonTimestamp</li>
+<li>BsonDBPointer</li>
+<li>BsonDouble, BsonInt32, BsonInt64, BsonDecimal128</li>
+<li>BsonMinKey, BsonMaxKey</li>
+<li>BsonJavaScript</li>
+<li>BsonObjectId</li>
+<li>BsonRegularExpression</li>
+<li>BsonString, BsonSymbol
+
+  <img src="/image/mongodb/002/img_6.png" alt="img_6.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="valuecodecprovider">
+  ValueCodecProvider
+  <a class="anchor" href="#valuecodecprovider">#</a>
+</h2>
+<ul>
+<li>Java 타입들을 지원
+<ul>
+<li>Binary (byte[]), Byte, ByteArray (byte[])</li>
+<li>Boolean, AtomicBoolean</li>
+<li>Date</li>
+<li>Short, Float, Double, Integer, Long, Decimal128, BigDecimal, AtomicInteger, AtomicLong</li>
+<li>MinKey, MaxKey</li>
+<li>Code (javascript code)</li>
+<li>ObjectId</li>
+<li>Pattern</li>
+<li>Character, String, Symbol
+
+  <img src="/image/mongodb/002/img_7.png" alt="img_7.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="codec-예제---stringcodec">
+  Codec 예제 - StringCodec
+  <a class="anchor" href="#codec-%ec%98%88%ec%a0%9c---stringcodec">#</a>
+</h2>
+<ol>
+<li>String을 binary로 encode</li>
+</ol>
+<ul>
+<li>만약 변환 대상이 Bson.STRING 라면 그대로 write</li>
+<li>만약 변환 대상이 Bson.OBJECT_ID 라면 ObjectId로 변환해서 write
+
+  <img src="/image/mongodb/002/img_8.png" alt="img_8.png" /></li>
+</ul>
+<ol start="2">
+<li>binary를 String으로 decode</li>
+</ol>
+<ul>
+<li>만약 Bson.STRING 에서 String 으로 변환하는 경우 readString 혹은 readSymbol</li>
+<li>만약 Bson.OBJECT_ID 에서 String으로 변환하는 경우 readObjectId 후 hexString으로 변환
+
+  <img src="/image/mongodb/002/img_9.png" alt="img_9.png" /></li>
+</ul>
+<h2 id="pojocodec">
+  PojoCodec
+  <a class="anchor" href="#pojocodec">#</a>
+</h2>
+<ul>
+<li>주어진 POJO (Plain old java object)를 bson으로 bson을 POJO로 자동 변환하는 Codec</li>
+<li>PojoCodec은 기본으로 추가되지 않으므로 별도로 추가 필요
+
+  <img src="/image/mongodb/002/img_10.png" alt="img_10.png" /></li>
+</ul>
+<h2 id="pojocodec-등록">
+  PojoCodec 등록
+  <a class="anchor" href="#pojocodec-%eb%93%b1%eb%a1%9d">#</a>
+</h2>
+<ul>
+<li>PojoCodecProvider builder를 이용하여 automatic을 true로 제공
+<ul>
+<li>automatic을 true로 제공해야만 pojo 변환을 지원</li>
+</ul>
+</li>
+<li>getCollection의 2번째 인자로 PersonDocument 제공</li>
+<li>Document 대신 PersonDocument로 find
+
+  <img src="/image/mongodb/002/img_11.png" alt="img_11.png" />
+
+  <img src="/image/mongodb/002/img_12.png" alt="img_12.png" /></li>
+</ul>
+<h2 id="custom-codec">
+  Custom Codec
+  <a class="anchor" href="#custom-codec">#</a>
+</h2>
+<ul>
+<li>Codec 인터페이스를 직접 구현</li>
+<li>reader의 readObjectId, readString 등을 사용하면 하나의 필드를 읽고 java 클래스로 mapping
+<ul>
+<li>만약 encode 되어있는 필드 순서와 read하는 순서가 다르면 exception 발생 가능</li>
+<li>이를 위해 readName을 호출하여 필드 이름을 파악한 후 해당 필드 이름과 매칭되는 readXX 메소드 호출도 가능
+
+  <img src="/image/mongodb/002/img_13.png" alt="img_13.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="custom-codec-등록">
+  Custom Codec 등록
+  <a class="anchor" href="#custom-codec-%eb%93%b1%eb%a1%9d">#</a>
+</h2>
+<ul>
+<li>fromCodecs를 이용하여 custom codec을 CodecRegistry로 변형</li>
+<li>해당 CodecRegistry를 fromRegistries로 settings에 등록
+
+  <img src="/image/mongodb/002/img_14.png" alt="img_14.png" />
+
+  <img src="/image/mongodb/002/img_15.png" alt="img_15.png" /></li>
+</ul>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><em>1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지</em></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/mongodb/002_mongodb_document.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reactive-mongodb-document">Reactive MongoDB Document</a>
+      <ul>
+        <li><a href="#document">Document</a></li>
+        <li><a href="#document-예제">Document 예제</a></li>
+        <li><a href="#mongodb-bson-인코딩">MongoDB BSON 인코딩</a></li>
+        <li><a href="#bson-codec">BSON Codec</a></li>
+        <li><a href="#default-codec">Default codec</a></li>
+        <li><a href="#bsonvaluecodecprovider">BsonValueCodecProvider</a></li>
+        <li><a href="#valuecodecprovider">ValueCodecProvider</a></li>
+        <li><a href="#codec-예제---stringcodec">Codec 예제 - StringCodec</a></li>
+        <li><a href="#pojocodec">PojoCodec</a></li>
+        <li><a href="#pojocodec-등록">PojoCodec 등록</a></li>
+        <li><a href="#custom-codec">Custom Codec</a></li>
+        <li><a href="#custom-codec-등록">Custom Codec 등록</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
