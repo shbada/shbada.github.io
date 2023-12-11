@@ -6,8 +6,44 @@
     <description>Recent content in webflux on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 10 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/webflux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/mongodb/003_spring_data_mongodb/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/mongodb/003_spring_data_mongodb/</guid>
+      <description>Spring data mongodb reactive # Entity # 데이터베이스에서 하나의 Document와 매칭되는 클래스 ReactiveMongoEntityTemplate, ReactiveMongoRepository 등은 데이터베이스에 요청을 보내고 그 결과를 Entity 형태로 반환한다. Collection, Document에 필요한 데이터베이스 metadata를 어노테이션 등으로 제공 ReactiveMongoTemplate # ReactiveMongoTemplate은 Spring data mongodb reactive의 추상화 클래스 Mongo 쿼리들을 Bson 형태로 넘기거나 PojoCodec, Custom codec 등을 등록하지 않아도, 메소드 체이닝을 통해서 쿼리를 수행하고 결과를 entity 객체로 받을 수 있다 ReactiveMongoOperations를 구현 MongoTemplate 생성 # MongoClient와 databaseName을 전달하여 생성 가능 spring에서는 ReactiveMongoDatabaseFactory와 MongoConverter을 주입받아 생성 ReactiveMongoOperations # ReactiveMongoTemplate의 operations를 담당하는 interface ReactiveFluentMongoOperations를 상속하고 MongoConverter 제공 MongoConverter: 주어진 Document를 Entity로 만드는 converter ReactiveMongoDatabaseFactory # getMongoDatabase: MongoDatabase를 반환 getCodecRegistry: bson의 CodecRegistry를 반환 ReactiveMongoTemplate은 ReactiveMongoDatabaseFactory의 MongoDatabase를 통해서 MongoCollection에 접근 ReactiveMongoTemplate 구현 # ReactiveMongoTemplate은 createMono 혹은 createFlux를 이용하여 MongoCollection을 획득 ReactiveMongoTemplate 구현 # createFlux를 이용하여 collectionName과 callback을 전달 callback에서 Publisher를 반환 이런 방식으로 여러 operations를 구현 MongoConverter # MongoWriter(EntityWriter를 상속), EntityReader를 구현</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/mongodb/004_object_mapping/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/mongodb/004_object_mapping/</guid>
+      <description>Object mapping # Spring data의 object mapping # 만약 지원하는 converter가 없다면 MappingMongoConverter는 다음 과정을 거쳐서 Document를 entity로 변환 Object creation constructor, factory method 등을 이용해서 Document의 field들로 Object 생성 Property population setter, with.. 메소드 등을 이용해서 Document의 field를 Object에 주입 Object creation # 다음 순서로 체크하여 해당하는 알고리즘으로 Document를 Object로 변환 @PersistenceCreator 어노테이션을 갖는 constructor가 있다면 해당 constructor 사용 인자가 없는 constructor가 있다면 해당 constructor 사용 constructor가 정확히 하나 있다면 해당 constructor 사용 id mapping # mongodb에서 모든 document는 _id를 필요 MappingMongoConverter는 다음의 방법으로 _id를 감지 @Id가 붙어있는 필드 필드명이 id이고 @Field를 통해서 별도의 이름이 부여되지 않은 경우 id 필드가 제공되지 않는 경우, 자동으로 추가 Property population # r2dbc에서는 property가 mutable할때만 property population 적용이 가능했지만, mongodb에서는 with 메소드 지원 No-args constructor를 호출하여 텅 빈 객체를 만들고, gender를 제외한 나머지 필드는 reflection으로 진행 gender는 withGender 메소드 호출 Metadata Mapping # Entity 클래스에 annotation을 추가하여 데이터베이스와 관련된 설정들을 주입 @Id: _id에 해당하는 필드에 적용 @Document: entity class에 적용.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/mongodb/005_mongoOperations/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/mongodb/005_mongoOperations/</guid>
+      <description>ReactiveMongoOperations # ReactiveMongoOperations # ReactiveFluentMongoOperations를 상속 ReactiveFluentMongoOperations는 여러 Operations를 상속 ReactiveFindOperation: find query와 관련된 메서드 제공 ReactiveInsertOperation: insert query와 관련된 메서드 제공 ReactiveUpdateOperation: update query와 관련된 메서드 제공 ReactiveRemoveOperation: delete query와 관련된 메서드 제공 ReactiveAggregationOperation: aggregation query와 관련된 메서드 제공 ReactiveChangeStreamOperation: watch query와 관련된 메서드 제공 ReactiveFindOperation # ReactiveFindOperation의 query 부터 시작 TerminatingFind의 count, exists, first, one, all, tail 등으로 종료 query -&amp;gt; inCollection -&amp;gt; as -&amp;gt; matching -&amp;gt; 최종 query -&amp;gt; inCollection -&amp;gt; matching -&amp;gt; 최종 query -&amp;gt; as -&amp;gt; matching -&amp;gt; 최종 query -&amp;gt; matching -&amp;gt; 최종 query -&amp;gt; 최종 ReactiveFindOperation # inCollection query를 실행할 collection 이름을 전달 제공되지 않을 경우 domain Type의 class 이름 통해 collection 이름 획득 @Document 어노테이션 통해 collection 이름 획득 as Entity를 전부 mapping하지 않고 특정 필드만 mapping 하고 싶은 경우 Entity의 일부 property만 담고 있는 subclass 또는 interface를 넘겨서 projection projection이 제공되지 않는다면 Entity에 모든 필드를 mapping matching query의 filter에 해당 Query를 전달하여 filter에 들어갈 내용을 설정 matching을 생략하면 collection 전체에 대한 요청을 보내는 것과 동일 최종 마지막으로 count, exists, first, one, all, tail 등의 연산을 선택 count: 조건에 맞는 document의 개수 반환 exists: 조건에 맞는 document 존재 여부 반환 first: 조건에 맞는 첫 번째 document 반환 one: 조건에 맞는 하나의 document 반환.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/mongodb/006_reactiveMongoRepository/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/mongodb/006_reactiveMongoRepository/</guid>
+      <description> ReactiveMongoRepository # ReactiveMongoRepository # ReactiveSortingRepository, ReactiveQueryByExampleExecutor를 상속한 interface SimpleReactiveMongoRepository에서 구현 ReactiveMongoRepository 등록 # MongoReactiveRepositoriesAutoConfiguration가 활성화되어 있다면 SpringBootApplication 기준으로 자동으로 scan 혹은 EnableReactiveMongoRepositories를 통해서 repository scan SimpleReactiveMongoRepository # ReactiveMongoRepository를 구현 ReactiveMongoOperations를 기반으로 Mongo 쿼리를 실행하고 결과를 Entity로 mapping save # save mongoOperations의 insert 혹은 update를 이용 새로운 entity라면 insert, 아니라면 update, Id 필드가 null이라면 new saveAll concatMap을 이용하여 save를 순차적으로 실행 전부 new entity라면 bulkInsert, 아니라면 각각을 save @Transactional이 없는 점 find # findById, existsById, count 모두 ReactiveMongoOperations에서 제공하는 단축 메소드 (findById, exists, count) 사용 delete # ReactiveMongoOperations에서 제공하는 단축 메소드 (remove) 사용 References 1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지 </description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/mongodb/007_query_method/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/mongodb/007_query_method/</guid>
+      <description>Query method # 쿼리 메소드 (Query method) # ReactiveMongoRepository를 상속한 repository interface에 메소드를 추가 메소드의 이름을 기반으로 Query 생성 조회, 삭제 지원 @Query, @Update, @Aggregation 어노테이션을 사용해서 복잡한 쿼리 실행 가능 쿼리 메소드 - find # id 뿐만 아니라 다른 필드를 이용해서 조회 가능 first 등의 키워드를 사용해서 query에 limit 제공 가능 기존의 Entity 뿐만 아니라 Projection을 사용하여 일부 필드만 조회 가능 사용예제
+findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내림차순으로 sort 하여 limit을 1로 모든 field를 조회하여 PersonDocument class로 mapping 쿼리 메소드 - delete # 다른 필드를 이용해서 삭제 가능 여러 반환 타입 지원 Long: 영향을 받은 row 수 반환 Flux: 삭제된 document 반환 사용예제</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/mongodb/001_reactive_mongodb/</link>

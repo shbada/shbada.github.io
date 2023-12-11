@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Spring data mongodb reactive # Entity # 데이터베이스에서 하나의 Document와 매칭되는 클래스 ReactiveMongoEntityTemplate, ReactiveMongoRepository 등은 데이터베이스에 요청을 보내고 그 결과를 Entity 형태로 반환한다. Collection, Document에 필요한 데이터베이스 metadata를 어노테이션 등으로 제공 ReactiveMongoTemplate # ReactiveMongoTemplate은 Spring data mongodb reactive의 추상화 클래스 Mongo 쿼리들을 Bson 형태로 넘기거나 PojoCodec, Custom codec 등을 등록하지 않아도, 메소드 체이닝을 통해서 쿼리를 수행하고 결과를 entity 객체로 받을 수 있다 ReactiveMongoOperations를 구현 MongoTemplate 생성 # MongoClient와 databaseName을 전달하여 생성 가능 spring에서는 ReactiveMongoDatabaseFactory와 MongoConverter을 주입받아 생성 ReactiveMongoOperations # ReactiveMongoTemplate의 operations를 담당하는 interface ReactiveFluentMongoOperations를 상속하고 MongoConverter 제공 MongoConverter: 주어진 Document를 Entity로 만드는 converter ReactiveMongoDatabaseFactory # getMongoDatabase: MongoDatabase를 반환 getCodecRegistry: bson의 CodecRegistry를 반환 ReactiveMongoTemplate은 ReactiveMongoDatabaseFactory의 MongoDatabase를 통해서 MongoCollection에 접근 ReactiveMongoTemplate 구현 # ReactiveMongoTemplate은 createMono 혹은 createFlux를 이용하여 MongoCollection을 획득 ReactiveMongoTemplate 구현 # createFlux를 이용하여 collectionName과 callback을 전달 callback에서 Publisher를 반환 이런 방식으로 여러 operations를 구현 MongoConverter # MongoWriter(EntityWriter를 상속), EntityReader를 구현">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Spring data mongodb reactive # Entity # 데이터베이스에서 하나의 Document와 매칭되는 클래스 ReactiveMongoEntityTemplate, ReactiveMongoRepository 등은 데이터베이스에 요청을 보내고 그 결과를 Entity 형태로 반환한다. Collection, Document에 필요한 데이터베이스 metadata를 어노테이션 등으로 제공 ReactiveMongoTemplate # ReactiveMongoTemplate은 Spring data mongodb reactive의 추상화 클래스 Mongo 쿼리들을 Bson 형태로 넘기거나 PojoCodec, Custom codec 등을 등록하지 않아도, 메소드 체이닝을 통해서 쿼리를 수행하고 결과를 entity 객체로 받을 수 있다 ReactiveMongoOperations를 구현 MongoTemplate 생성 # MongoClient와 databaseName을 전달하여 생성 가능 spring에서는 ReactiveMongoDatabaseFactory와 MongoConverter을 주입받아 생성 ReactiveMongoOperations # ReactiveMongoTemplate의 operations를 담당하는 interface ReactiveFluentMongoOperations를 상속하고 MongoConverter 제공 MongoConverter: 주어진 Document를 Entity로 만드는 converter ReactiveMongoDatabaseFactory # getMongoDatabase: MongoDatabase를 반환 getCodecRegistry: bson의 CodecRegistry를 반환 ReactiveMongoTemplate은 ReactiveMongoDatabaseFactory의 MongoDatabase를 통해서 MongoCollection에 접근 ReactiveMongoTemplate 구현 # ReactiveMongoTemplate은 createMono 혹은 createFlux를 이용하여 MongoCollection을 획득 ReactiveMongoTemplate 구현 # createFlux를 이용하여 collectionName과 callback을 전달 callback에서 Publisher를 반환 이런 방식으로 여러 operations를 구현 MongoConverter # MongoWriter(EntityWriter를 상속), EntityReader를 구현" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/mongodb/003_spring_data_mongodb/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-11T00:00:00+00:00" />
+
+<title>003 Spring Data Mongodb | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.0466c8d19fec517029184f09555cda42f2350af024dd45818fe0ec95006adabe.js" integrity="sha256-BGbI0Z/sUXApGE8JVVzaQvI1CvAk3UWBj&#43;DslQBq2r4=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle" checked />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="active">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4b72011c96998ec0902edd8bbd5b602e" class="toggle"  />
+    <label for="section-4b72011c96998ec0902edd8bbd5b602e" class="flex justify-between">
+      <a href="/docs/test/" class="">Test</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>003 Spring Data Mongodb</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#spring-data-mongodb-reactive">Spring data mongodb reactive</a>
+      <ul>
+        <li><a href="#entity">Entity</a></li>
+        <li><a href="#reactivemongotemplate">ReactiveMongoTemplate</a></li>
+        <li><a href="#mongotemplate-생성">MongoTemplate 생성</a></li>
+        <li><a href="#reactivemongooperations">ReactiveMongoOperations</a></li>
+        <li><a href="#reactivemongodatabasefactory">ReactiveMongoDatabaseFactory</a></li>
+        <li><a href="#reactivemongotemplate-구현">ReactiveMongoTemplate 구현</a></li>
+        <li><a href="#reactivemongotemplate-구현-1">ReactiveMongoTemplate 구현</a></li>
+        <li><a href="#mongoconverter">MongoConverter</a></li>
+        <li><a href="#custom-converter-mapping">Custom converter mapping</a></li>
+        <li><a href="#readconverter">ReadConverter</a></li>
+        <li><a href="#writeconverter">WriteConverter</a></li>
+        <li><a href="#위-customconverter-등록">위 CustomConverter 등록</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="spring-data-mongodb-reactive">
+  Spring data mongodb reactive
+  <a class="anchor" href="#spring-data-mongodb-reactive">#</a>
+</h1>
+<h2 id="entity">
+  Entity
+  <a class="anchor" href="#entity">#</a>
+</h2>
+<ul>
+<li>데이터베이스에서 하나의 Document와 매칭되는 클래스</li>
+<li>ReactiveMongoEntityTemplate, ReactiveMongoRepository 등은 데이터베이스에 요청을 보내고 그 결과를 Entity 형태로 반환한다.</li>
+<li>Collection, Document에 필요한 데이터베이스 metadata를 어노테이션 등으로 제공
+
+  <img src="/image/mongodb/003/img.png" alt="img.png" /></li>
+</ul>
+<h2 id="reactivemongotemplate">
+  ReactiveMongoTemplate
+  <a class="anchor" href="#reactivemongotemplate">#</a>
+</h2>
+<ul>
+<li>ReactiveMongoTemplate은 Spring data mongodb reactive의 추상화 클래스</li>
+<li>Mongo 쿼리들을 Bson 형태로 넘기거나 PojoCodec, Custom codec 등을 등록하지 않아도, 메소드 체이닝을 통해서 쿼리를 수행하고 결과를 entity 객체로 받을 수 있다</li>
+<li>ReactiveMongoOperations를 구현
+
+  <img src="/image/mongodb/003/img_1.png" alt="img_1.png" /></li>
+</ul>
+<h2 id="mongotemplate-생성">
+  MongoTemplate 생성
+  <a class="anchor" href="#mongotemplate-%ec%83%9d%ec%84%b1">#</a>
+</h2>
+<ul>
+<li>MongoClient와 databaseName을 전달하여 생성 가능</li>
+<li>spring에서는 ReactiveMongoDatabaseFactory와 MongoConverter을 주입받아 생성
+
+  <img src="/image/mongodb/003/img_2.png" alt="img_2.png" /></li>
+</ul>
+<h2 id="reactivemongooperations">
+  ReactiveMongoOperations
+  <a class="anchor" href="#reactivemongooperations">#</a>
+</h2>
+<ul>
+<li>ReactiveMongoTemplate의 operations를 담당하는 interface</li>
+<li>ReactiveFluentMongoOperations를 상속하고 MongoConverter 제공
+<ul>
+<li>MongoConverter: 주어진 Document를 Entity로 만드는 converter
+
+  <img src="/image/mongodb/003/img_3.png" alt="img_3.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="reactivemongodatabasefactory">
+  ReactiveMongoDatabaseFactory
+  <a class="anchor" href="#reactivemongodatabasefactory">#</a>
+</h2>
+<ul>
+<li>getMongoDatabase: MongoDatabase를 반환</li>
+<li>getCodecRegistry: bson의 CodecRegistry를 반환</li>
+<li>ReactiveMongoTemplate은 ReactiveMongoDatabaseFactory의 MongoDatabase를 통해서 MongoCollection에 접근
+
+  <img src="/image/mongodb/003/img_4.png" alt="img_4.png" /></li>
+</ul>
+<h2 id="reactivemongotemplate-구현">
+  ReactiveMongoTemplate 구현
+  <a class="anchor" href="#reactivemongotemplate-%ea%b5%ac%ed%98%84">#</a>
+</h2>
+<ul>
+<li>ReactiveMongoTemplate은 createMono 혹은 createFlux를 이용하여 MongoCollection을 획득
+
+  <img src="/image/mongodb/003/img_5.png" alt="img_5.png" /></li>
+</ul>
+<h2 id="reactivemongotemplate-구현-1">
+  ReactiveMongoTemplate 구현
+  <a class="anchor" href="#reactivemongotemplate-%ea%b5%ac%ed%98%84-1">#</a>
+</h2>
+<ul>
+<li>createFlux를 이용하여 collectionName과 callback을 전달</li>
+<li>callback에서 Publisher를 반환</li>
+<li>이런 방식으로 여러 operations를 구현
+
+  <img src="/image/mongodb/003/img_6.png" alt="img_6.png" />
+
+  <img src="/image/mongodb/003/img_7.png" alt="img_7.png" /></li>
+</ul>
+<h2 id="mongoconverter">
+  MongoConverter
+  <a class="anchor" href="#mongoconverter">#</a>
+</h2>
+<ul>
+<li>
+<p>MongoWriter(EntityWriter를 상속), EntityReader를 구현</p>
+</li>
+<li>
+<p>구현체로 MappingMongoConverter
+
+  <img src="/image/mongodb/003/img_8.png" alt="img_8.png" /></p>
+</li>
+<li>
+<p>다양한 전략을 통해서 Object &lt;-&gt; document 변환</p>
+<ul>
+<li>custom converter로 mapping</li>
+<li>Spring data의 object mapping</li>
+<li>convention 기반의 mapping</li>
+<li>metadata 기반의 mapping
+
+  <img src="/image/mongodb/003/img_9.png" alt="img_9.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="custom-converter-mapping">
+  Custom converter mapping
+  <a class="anchor" href="#custom-converter-mapping">#</a>
+</h2>
+<ul>
+<li>Configuration를 통해서 converter들을 등록</li>
+<li>데이터베이스에 읽고 쓰기를 하기 위해 두개의 Converter가 필요
+<ul>
+<li>bson.Document -&gt; Target 클래스로 변환하는 Converter</li>
+<li>Target -&gt; bson.Document로 변환하는 Converter
+
+  <img src="/image/mongodb/003/img_10.png" alt="img_10.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="readconverter">
+  ReadConverter
+  <a class="anchor" href="#readconverter">#</a>
+</h2>
+<ul>
+<li>Document -&gt; source, Entity -&gt; target으로 하는 Converter</li>
+<li>Document로부터 name으로 field에 접근할 수 있고, 변환하고나 type에 해당하는 메서드 호출
+
+  <img src="/image/mongodb/003/img_11.png" alt="img_11.png" /></li>
+</ul>
+<h2 id="writeconverter">
+  WriteConverter
+  <a class="anchor" href="#writeconverter">#</a>
+</h2>
+<ul>
+<li>Entity -&gt; source, Document -&gt; target으로 하는 Converter</li>
+<li>Document에 값을 추가</li>
+<li>put을 통해서 field의 이름, value 순으로 전달</li>
+<li>Document를 데이터베이스에 전달
+
+  <img src="/image/mongodb/003/img_12.png" alt="img_12.png" /></li>
+</ul>
+<h2 id="위-customconverter-등록">
+  위 CustomConverter 등록
+  <a class="anchor" href="#%ec%9c%84-customconverter-%eb%93%b1%eb%a1%9d">#</a>
+</h2>
+<ul>
+<li>AbstractMongoClientConfiguration를 상속하는 Configuration 생성</li>
+<li>AbstractR2dbcConfiguration의 configureConverters에 custom converter들을 register
+
+  <img src="/image/mongodb/003/img_13.png" alt="img_13.png" /></li>
+</ul>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><em>1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지</em></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/mongodb/003_spring_data_mongodb.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#spring-data-mongodb-reactive">Spring data mongodb reactive</a>
+      <ul>
+        <li><a href="#entity">Entity</a></li>
+        <li><a href="#reactivemongotemplate">ReactiveMongoTemplate</a></li>
+        <li><a href="#mongotemplate-생성">MongoTemplate 생성</a></li>
+        <li><a href="#reactivemongooperations">ReactiveMongoOperations</a></li>
+        <li><a href="#reactivemongodatabasefactory">ReactiveMongoDatabaseFactory</a></li>
+        <li><a href="#reactivemongotemplate-구현">ReactiveMongoTemplate 구현</a></li>
+        <li><a href="#reactivemongotemplate-구현-1">ReactiveMongoTemplate 구현</a></li>
+        <li><a href="#mongoconverter">MongoConverter</a></li>
+        <li><a href="#custom-converter-mapping">Custom converter mapping</a></li>
+        <li><a href="#readconverter">ReadConverter</a></li>
+        <li><a href="#writeconverter">WriteConverter</a></li>
+        <li><a href="#위-customconverter-등록">위 CustomConverter 등록</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
