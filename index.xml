@@ -9,6 +9,14 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/kafka/001_kafka_cdc/</link>
+      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/001_kafka_cdc/</guid>
+      <description>[tech blog 읽기] CDC 너두 할 수 있어(feat. B2B 알림 서비스에 Kafka CDC 적용하기) # B2B 알림 서비스에 CDC를 도입을 하게 되었다.
+B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민 B2C 고객 서비스에서는 알림센터라는 시스템을 통해 고객에 알림을 발송한다. 하지만, 사장님에게 발송되는 알림은 플랫폼이 부재한 관계로 카카오 알림톡으로 발송하고 있었다. 개선을 위해 알림센터를 활용해 사장님에게 전달되는 메시지를 내부 서비스를 통해 전달함으로써, 내부 서비스 활용도와 사용자 편의성을 향상시키고자 진행한 프로젝트가 &amp;lsquo;B2B 알림서비스&amp;rsquo;다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/mongodb/003_spring_data_mongodb/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/mongodb/003_spring_data_mongodb/</guid>
@@ -62,7 +70,7 @@ findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내�
       <link>https://example.com/docs/batch/001_performance_improved_batch/</link>
       <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/batch/001_performance_improved_batch/</guid>
-      <description>누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
+      <description>[tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행한 내용에 대한 포스팅이다.
 비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &amp;lsquo;가게가 운영하는지 안하는지&amp;rsquo;에 대한 정보를 유관 부서에 전달한다. &amp;lsquo;비운영시간 데이터&amp;rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다.</description>
     </item>
@@ -270,13 +278,6 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
     </item>
     <item>
       <title></title>
-      <link>https://example.com/docs/kafka/000_sample/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/kafka/000_sample/</guid>
-      <description>sample</description>
-    </item>
-    <item>
-      <title></title>
       <link>https://example.com/docs/linux/000_sample/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/linux/000_sample/</guid>
@@ -343,13 +344,6 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
       <link>https://example.com/docs/spring/000_sample/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/spring/000_sample/</guid>
-      <description>sample</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://example.com/docs/test/000_sample/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/test/000_sample/</guid>
       <description>sample</description>
     </item>
     <item>
