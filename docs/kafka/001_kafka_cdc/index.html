@@ -13,7 +13,7 @@ B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/kafka/001_kafka_cdc/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-12-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-11T21:33:03+09:00" />
 
 <title>001 Kafka Cdc | TIL</title>
 <link rel="manifest" href="/manifest.json">
@@ -1091,7 +1091,7 @@ https://github.com/alex-shpak/hugo-book
 내부 서비스 활용도와 사용자 편의성을 향상시키고자 진행한 프로젝트가 &lsquo;B2B 알림서비스&rsquo;다.
 여기서, <code>세일즈 매니저에 대한 알림톡을 알림센터 내 웹 푸시 알림으로 전환</code> 하는 과정에서 CDC를 도입하게되었다.
 
-  <img src="../../../static/image/kafka/001/img.png" alt="img.png" /></p>
+  <img src="/image/kafka/001/img.png" alt="img.png" /></p>
 <h2 id="b2b-알림서비스에-cdc를-도입하게-된-이유">
   B2B 알림서비스에 CDC를 도입하게 된 이유
   <a class="anchor" href="#b2b-%ec%95%8c%eb%a6%bc%ec%84%9c%eb%b9%84%ec%8a%a4%ec%97%90-cdc%eb%a5%bc-%eb%8f%84%ec%9e%85%ed%95%98%ea%b2%8c-%eb%90%9c-%ec%9d%b4%ec%9c%a0">#</a>
@@ -1351,7 +1351,7 @@ class CdcConsumerConfig {
 <li>
 <p>어떤 이벤트인가? : 요청이 승인됨, 요청이 반려됨 등
 
-  <img src="../../../static/image/kafka/001/img_1.png" alt="img_1.png" /></p>
+  <img src="/image/kafka/001/img_1.png" alt="img_1.png" /></p>
 </li>
 <li>
 <p>각 이벤트 프로세서에 이벤트를 전달하는 코드</p>
@@ -1506,6 +1506,12 @@ binlog dump thread의 부하가 심해지는 경우 INSERT, UPDATE, DELETE, COMM
         
   <div class="flex flex-wrap justify-between">
 
+
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/1ef0b78621f613e9445cf74e121f4914c0a56253" title='Last modified by seohaebada | December 11, 2023' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>December 11, 2023</span>
+    </a>
+  </div>
 
 
 
