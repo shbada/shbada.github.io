@@ -9,6 +9,20 @@
     <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>msa</title>
+      <link>https://example.com/tags/msa/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/msa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>reactive</title>
+      <link>https://example.com/tags/reactive/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/reactive/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>redis</title>
       <link>https://example.com/tags/redis/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
@@ -90,13 +104,6 @@
       <link>https://example.com/tags/munity/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/munity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>reactive</title>
-      <link>https://example.com/tags/reactive/</link>
-      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/reactive/</guid>
       <description></description>
     </item>
     <item>

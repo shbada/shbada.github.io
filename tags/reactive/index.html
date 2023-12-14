@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.10a3ce61a875be85340d3accf29ee9a4d85735abd5982707ae25571101ce6ee2.js" integrity="sha256-EKPOYah1voU0DTrM8p7ppNhXNavVmCcHriVXEQHObuI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.7d49b90f49ec64a1da4d89d329f7fb7de76810ca223801900ccbb1572b9808df.js" integrity="sha256-fUm5D0nsZKHaTYnTKff7fedoEMoiOAGQDMuxVyuYCN8=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/reactive/index.xml" title="TIL" />
@@ -547,6 +547,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
     
   </ul>
 
@@ -1122,7 +1148,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-14/">2023-12-14</a>
-          <span>4</span>
+          <span>6</span>
         </li>
       
         <li class="flex justify-between">
@@ -1200,6 +1226,16 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/msa/">msa</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/reactive/">reactive</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/redis/">redis</a>
           <span>6</span>
         </li>
@@ -1260,11 +1296,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/reactive/">reactive</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/reactive-streams/">reactive streams</a>
           <span>4</span>
         </li>
@@ -1299,6 +1330,72 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/msa/001_reactive/">001 Reactive</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/msa/">msa</a>, 
+      <a href="/tags/reactive/">reactive</a>
+  </div>
+  
+
+
+
+
+    <p>1. Reactive Mircroservice의 Reactive # Spring cloud # Reactive systems의 핵심 가치 # Responsive(응답성) # 요구사항 문제를 신속하게 탐지하고 효과적으로 대처 신속하고 일관성 있는 응답 시간 제공 신뢰할 수 있는 상한선을 설정하여 일관된 서비스 품질을 제공 결과 가능한 한 즉각적으로 응답 사용자의 편의성과 유용성의 기초 오류 처리를 단순화 일반 사용자에게 신뢰를 조성하고, 새로운 상호작용 촉진 Resilient(복원력) # 요구사항 복제, 봉쇄, 격리, 위임에 의해 실현 장애는 각각의 구성 요소에 포함 (봉쇄) 구성 요소들은 서로 분리 (격리) 복구 프로세스는 다른(외부의) 구성 요소에 위임 (위임) 필요한 경우 복제를 통해 고가용성이 보장 (복제) 결과 장애에 직면하더라도 응답성을 유지 시스템이 부분적으로 고장이 나더라도, 전체 시스템 을 위험하게 하지 않고 복구 할 수 있도록 보장 구성 요소의 클라이언트는 장애를 처리하는데에 압박을 받지 않습니다 Elastic(유연성) # 요구사항 경쟁하는 지점이나 중앙 집중적인 병목 현상이 존재하지 않도록 설계 구성 요소를 샤딩하거나 복제하여 입력을 분산 실시간 성능을 측정하는 도구를 제공 응답성 있고 예측 가능한 규모 확장 알고리즘을 지원 결과 작업량이 변화하더라도 응답성을 유지 입력 속도의 변화에 따라 이러한 입력에 할당된 자원을 증가시키거나 감소 상품 및 소프트웨어 플랫폼에 비용 효율이 높은 방식으로 유연성을 제공 Message Driven(메시지 기반) # 비동기 통신: 구성 요소는 서로 비동기적으로 메시지를 주고 받으며, 독립적인 실행을 보장한다.
+        <a href="/docs/msa/001_reactive/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/msa/002_reactive_microservice/">002 Reactive Microservice</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/msa/">msa</a>, 
+      <a href="/tags/reactive/">reactive</a>
+  </div>
+  
+
+
+
+
+    <p>2. Reactive Mircroservice의 Microservice # Monolithic 아키텍쳐 # 모든 컴퍼넌트가 하나의 서버 내에 존재 단순성: 코드 저장소가 하나로 존재하는 경우가 많아서 관리 포인트가 줄어든다 일관성: 각각의 서비스는 하나의 기술 스택으로 제공되기 때문에 접근성이 높다 높은 효율: 서비스 사이에 네트워크 통신이 없기 때문에 네트워크 지연이나 데이터 직렬화에 의한 오버헤드가 없다 Monolithic 아키텍쳐의 단점 # 확장성의 한계: 모든 서비스가 하나의 서버로 구성되어 있기 때문에 특정 서비스가 부하를 받더라도 서버 전체를 늘려야 한다 장애의 전파: 서비스 중 한 곳에서 문제가 발생하면 시스템 전체에 영향을 줄 수 있다 배포의 단일화: 하나의 서비스를 변경하더라도 전체 시스템을 다시 배포해야 한다 기술의 정체: 모든 서비스가 하나의 코드베이스에 결합되어 있어서 새로운 기술을 도입하거나 아키텍쳐의 변경이 전체에 큰 영향을 줄 수 있다 유지보수의 어려움: 모든 구성요소가 직접 연결 되어 있기 때문에 작은 부분의 수정이 전체에 영향을 미칠 수 있다 Microservice 아키텍쳐 # 이러한 단점을 극복하기 위해 서비스와 저장 소, 데이터베이스 등을 분리 독립적인 배포: 각 서비스는 독립적으로 배포 유연한 확장: 각 서비스는 각각 탄력적으로 확장 가능.
+        <a href="/docs/msa/002_reactive_microservice/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -1483,7 +1580,7 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-14/">2023-12-14</a>
-          <span>4</span>
+          <span>6</span>
         </li>
       
         <li class="flex justify-between">
@@ -1561,6 +1658,16 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/msa/">msa</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/reactive/">reactive</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/redis/">redis</a>
           <span>6</span>
         </li>
@@ -1618,11 +1725,6 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
         <li class="flex justify-between">
           <a href="/tags/munity/">munity</a>
           <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactive/">reactive</a>
-          <span>4</span>
         </li>
       
         <li class="flex justify-between">
