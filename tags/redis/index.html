@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ea239527f182a0398ef27527ead952174263fd353f4af31d07087c56f0ff1f04.js" integrity="sha256-6iOVJ/GCoDmO8nUn6tlSF0Jj/TU/SvMdBwh8VvD/HwQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.10a3ce61a875be85340d3accf29ee9a4d85735abd5982707ae25571101ce6ee2.js" integrity="sha256-EKPOYah1voU0DTrM8p7ppNhXNavVmCcHriVXEQHObuI=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/redis/index.xml" title="TIL" />
@@ -879,6 +879,58 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
   
 
@@ -1069,6 +1121,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-12-14/">2023-12-14</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-12-13/">2023-12-13</a>
           <span>1</span>
         </li>
@@ -1143,6 +1200,16 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/redis/">redis</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/webflux/">webflux</a>
+          <span>19</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/designPattern/">designPattern</a>
           <span>1</span>
         </li>
@@ -1165,11 +1232,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/mongodb/">mongodb</a>
           <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/webflux/">webflux</a>
-          <span>15</span>
         </li>
       
         <li class="flex justify-between">
@@ -1218,11 +1280,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/redis/">redis</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/Functional-Programming/">Functional Programming</a>
           <span>2</span>
         </li>
@@ -1242,6 +1299,138 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/003_reactive_redis_intro/">003 Reactive Redis Intro</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>1. Redis 소개 # Redis instance # 여러 client가 하나의 redis 서버로 요청 전달 단일 redis 서버에 문제가 발생하면 장애 -&gt; 모든 client에서 접속 불가 Redis replication # master와 replica로 구성 master에 데이터가 업데이트 -&gt; replica 동기화 replica : 읽기만 가능 replica에 문제 발생 -&gt; 여러 node에 data가 복제되었기 때문에 복구 가능 master에 문제 발생 -&gt; 개발자가 직접 replica 중 하나를 master로 변경 Redis sentinel # master에 문제 발생 -&gt; replica들이 master를 선출 이전 master가 복구 된 경우, replica로 전환되어 새로운 master를 바라보게된다.
+        <a href="/docs/redis/003_reactive_redis_intro/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/004_Lettuce/">004 Lettuce</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>2. Lettuce # 구조 # Reactor 기반으로 Reactive API 지원 Reactive streams API 지원 동기 API, 비동기 API 모두 지원 Netty 기반으로 높은 성능과 확장성 제공 일반 TCP 통신 뿐만 아니라 epoll, kqueue 기반의 multiplexing I/O 지원 주요 컴포넌트 # RedisClient : Redis의 연결 정보를 포함하는 객체 Netty의 Channel, EventLoopGroup 등을 포함하기 때문에 가능한한 재사용 RedisConnecction 생성 StatefulRedisConnection : Redis 서버 Connection 여러 쓰레드가 동시에 접근해도 안전 동기, 비동기, Reactive command를 제공 RedisReactiveCommand : Redis API와 관련된 reactive command 제공 RedisReactiveCommand 획득 # RedisClient.
+        <a href="/docs/redis/004_Lettuce/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/005_ReactiveRedisTemplate/">005 Reactive Redis Template</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>3. ReactiveRedisTemplate # ReactiveRedisTemplate # ReactiveRedisTemplate은 Spring data redis reactive의 추상화 클래스 ReactiveRedisConnectionFactory를 통해서 RedisConnection을 주입 ReactiveRedisConnectionFactory # ReactiveRedisConnectionFactory는 RedisConnection을 제공 LettuceConnectionFactory와 JedisConnectionFactory 구현체 RedisTemplate bean # RedisReactiveAutoConfiguration를 통해서 자동으로 ReactiveRedisTemplate bean 생성 JdkSerializationRedisSerializer는 ObjectOutputStream을 이용하여 key와 value로 주어지는 object를 binary로 변환 key, value에 대해서 String만 지원하는 ReactiveStringRedisTemplate bean도 등록 ReactiveRedisOperations # ReactiveRedisConnection에 직접 접근할 수 있는 execute, executeInSession 메소드 pub/sub 메소드 key와 관련된 메소드 스크립트 메소드 operations 접근 메소드 pub/sub # convertAndSend: destination 채널로 message를 전달하고 메시지를 받은 클라이언트의 숫자를 반환 listenToChannel: channels에 주어진 채널들을 listen하고 메시지를 Flux 형태로 전달 key 관련 # hasKey: EXISTS.
+        <a href="/docs/redis/005_ReactiveRedisTemplate/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/006_ReactiveOperations/">006 Reactive Operations</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>4. ReactiveOperations # ReactiveValueOperations 실행 # set으로 특정 key에 value를 추가 setIfAbsent로 key에 값이 없을때만 설정 get으로 key의 value를 조회 multiGet으로 여러 key에 접근 increment로 특정 key의 value를 증가 ReactiveListOperations # size: LLEN. list의 크기를 반환 leftPush: LPUSH. list의 head에 값을 추가 rightPush: RPUSH. list의 tail에 값을 추가 set: LSET. 특정한 index에 값을 설정 remove: LREM. list에서 value를 count 숫자만큼 제거 leftPop: LPOP. list의 head에서 값을 제거하고 반환 rightPop: RPOP.
+        <a href="/docs/redis/006_ReactiveOperations/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -1355,6 +1544,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-12-14/">2023-12-14</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-12-13/">2023-12-13</a>
           <span>1</span>
         </li>
@@ -1429,6 +1623,16 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/redis/">redis</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/webflux/">webflux</a>
+          <span>19</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/designPattern/">designPattern</a>
           <span>1</span>
         </li>
@@ -1451,11 +1655,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/mongodb/">mongodb</a>
           <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/webflux/">webflux</a>
-          <span>15</span>
         </li>
       
         <li class="flex justify-between">
@@ -1501,11 +1700,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/rxjava/">rxjava</a>
           <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/redis/">redis</a>
-          <span>2</span>
         </li>
       
         <li class="flex justify-between">

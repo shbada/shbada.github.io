@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ea239527f182a0398ef27527ead952174263fd353f4af31d07087c56f0ff1f04.js" integrity="sha256-6iOVJ/GCoDmO8nUn6tlSF0Jj/TU/SvMdBwh8VvD/HwQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.10a3ce61a875be85340d3accf29ee9a4d85735abd5982707ae25571101ce6ee2.js" integrity="sha256-EKPOYah1voU0DTrM8p7ppNhXNavVmCcHriVXEQHObuI=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/webflux/index.xml" title="TIL" />
@@ -879,6 +879,58 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
   
 
@@ -1069,6 +1121,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2023-12-14/">2023-12-14</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-12-13/">2023-12-13</a>
           <span>1</span>
         </li>
@@ -1143,6 +1200,16 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/redis/">redis</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/webflux/">webflux</a>
+          <span>19</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/designPattern/">designPattern</a>
           <span>1</span>
         </li>
@@ -1165,11 +1232,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/mongodb/">mongodb</a>
           <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/webflux/">webflux</a>
-          <span>15</span>
         </li>
       
         <li class="flex justify-between">
@@ -1218,11 +1280,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/redis/">redis</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/Functional-Programming/">Functional Programming</a>
           <span>2</span>
         </li>
@@ -1242,6 +1299,138 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/003_reactive_redis_intro/">003 Reactive Redis Intro</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>1. Redis 소개 # Redis instance # 여러 client가 하나의 redis 서버로 요청 전달 단일 redis 서버에 문제가 발생하면 장애 -&gt; 모든 client에서 접속 불가 Redis replication # master와 replica로 구성 master에 데이터가 업데이트 -&gt; replica 동기화 replica : 읽기만 가능 replica에 문제 발생 -&gt; 여러 node에 data가 복제되었기 때문에 복구 가능 master에 문제 발생 -&gt; 개발자가 직접 replica 중 하나를 master로 변경 Redis sentinel # master에 문제 발생 -&gt; replica들이 master를 선출 이전 master가 복구 된 경우, replica로 전환되어 새로운 master를 바라보게된다.
+        <a href="/docs/redis/003_reactive_redis_intro/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/004_Lettuce/">004 Lettuce</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>2. Lettuce # 구조 # Reactor 기반으로 Reactive API 지원 Reactive streams API 지원 동기 API, 비동기 API 모두 지원 Netty 기반으로 높은 성능과 확장성 제공 일반 TCP 통신 뿐만 아니라 epoll, kqueue 기반의 multiplexing I/O 지원 주요 컴포넌트 # RedisClient : Redis의 연결 정보를 포함하는 객체 Netty의 Channel, EventLoopGroup 등을 포함하기 때문에 가능한한 재사용 RedisConnecction 생성 StatefulRedisConnection : Redis 서버 Connection 여러 쓰레드가 동시에 접근해도 안전 동기, 비동기, Reactive command를 제공 RedisReactiveCommand : Redis API와 관련된 reactive command 제공 RedisReactiveCommand 획득 # RedisClient.
+        <a href="/docs/redis/004_Lettuce/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/005_ReactiveRedisTemplate/">005 Reactive Redis Template</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>3. ReactiveRedisTemplate # ReactiveRedisTemplate # ReactiveRedisTemplate은 Spring data redis reactive의 추상화 클래스 ReactiveRedisConnectionFactory를 통해서 RedisConnection을 주입 ReactiveRedisConnectionFactory # ReactiveRedisConnectionFactory는 RedisConnection을 제공 LettuceConnectionFactory와 JedisConnectionFactory 구현체 RedisTemplate bean # RedisReactiveAutoConfiguration를 통해서 자동으로 ReactiveRedisTemplate bean 생성 JdkSerializationRedisSerializer는 ObjectOutputStream을 이용하여 key와 value로 주어지는 object를 binary로 변환 key, value에 대해서 String만 지원하는 ReactiveStringRedisTemplate bean도 등록 ReactiveRedisOperations # ReactiveRedisConnection에 직접 접근할 수 있는 execute, executeInSession 메소드 pub/sub 메소드 key와 관련된 메소드 스크립트 메소드 operations 접근 메소드 pub/sub # convertAndSend: destination 채널로 message를 전달하고 메시지를 받은 클라이언트의 숫자를 반환 listenToChannel: channels에 주어진 채널들을 listen하고 메시지를 Flux 형태로 전달 key 관련 # hasKey: EXISTS.
+        <a href="/docs/redis/005_ReactiveRedisTemplate/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/redis/006_ReactiveOperations/">006 Reactive Operations</a>
+    </h2>
+    
+  <h5>December 14, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-14/">2023-12-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/webflux/">webflux</a>, 
+      <a href="/tags/redis/">redis</a>
+  </div>
+  
+
+
+
+
+    <p>4. ReactiveOperations # ReactiveValueOperations 실행 # set으로 특정 key에 value를 추가 setIfAbsent로 key에 값이 없을때만 설정 get으로 key의 value를 조회 multiGet으로 여러 key에 접근 increment로 특정 key의 value를 증가 ReactiveListOperations # size: LLEN. list의 크기를 반환 leftPush: LPUSH. list의 head에 값을 추가 rightPush: RPUSH. list의 tail에 값을 추가 set: LSET. 특정한 index에 값을 설정 remove: LREM. list에서 value를 count 숫자만큼 제거 leftPop: LPOP. list의 head에서 값을 제거하고 반환 rightPop: RPOP.
+        <a href="/docs/redis/006_ReactiveOperations/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -1440,139 +1629,6 @@ findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내�
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/mongodb/002_mongodb_document/">002 Mongodb Document</a>
-    </h2>
-    
-  <h5>December 10, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-12-10/">2023-12-10</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/webflux/">webflux</a>, 
-      <a href="/tags/mongodb/">mongodb</a>
-  </div>
-  
-
-
-
-
-    <p>Reactive MongoDB Document # Document # MongoCollection에 query를 실행하여 bson의 Document를 반환 bson의 Document : Map&lt;String, Object&gt;를 구현하고 내부에 LinkedHashMap을 저장하여 Map 메서드 override Document 예제 # collection에서 findAll query를 실행 결과를 subscribe하여 onNext로 출력 모든 결과를 찾은 후, onComplete 이벤트로 종료 MongoDB BSON 인코딩 # 첫 줄은 전체 document의 크기를 가리킨다 데이터타입, 필드명, 길이(데이터 타입에 따라 optional), 값으로 구성 BSON Codec # bson 라이브러리는 Codec을 제공 Codec을 통해서 특정 java type이 주어졌을때 어떻게 encode, docode 해야할지 지정 Default codec # MongoClientSettings에서 Default codec을 제공 Java 자체 클래스와 관련된 codec들 IterableCodecProvider: Iterable 클래스 지원 MapCodecProvider: Map 클래스 지원 ValueCodecProvider: Java에서 제공하는 클래스 지원 Jsr310CodecProvider: Instant, LocalDate, LocalDateTime 등 Date, Time 관련 클래스 지원 EnumCodecProvider: Enum 지원 Jep395RecordCodecProvider: Record 지원 Bson과 관련된 codec들 BsonValueCodecProvider: Bson 타입들을 java로 1대1 맵핑한 클래스 지원 DBRefCodecProvider: DBRef 지원 DBObjectCodecProvider: DBObject 지원 DocumentCodecProvider: Document 지원 GeoJsonCodecProvider: Geometry, LineString, MultiPoint, Point, Polygon 등의 geojson 지원 GridFSFileCodecProvider: GridFSFile 지원 JsonObjectCodecProvider: JsonObject 지원 BsonValueCodecProvider # Bson 타입들과 1 대 1 매칭 BsonNull, BsonUndefined BsonBinary BsonBoolean BsonDateTime, BsonTimestamp BsonDBPointer BsonDouble, BsonInt32, BsonInt64, BsonDecimal128 BsonMinKey, BsonMaxKey BsonJavaScript BsonObjectId BsonRegularExpression BsonString, BsonSymbol ValueCodecProvider # Java 타입들을 지원 Binary (byte[]), Byte, ByteArray (byte[]) Boolean, AtomicBoolean Date Short, Float, Double, Integer, Long, Decimal128, BigDecimal, AtomicInteger, AtomicLong MinKey, MaxKey Code (javascript code) ObjectId Pattern Character, String, Symbol Codec 예제 - StringCodec # String을 binary로 encode 만약 변환 대상이 Bson.
-        <a href="/docs/mongodb/002_mongodb_document/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/">005 R2dbc Metadata Mapping</a>
-    </h2>
-    
-  <h5>December 9, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-12-09/">2023-12-09</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/webflux/">webflux</a>, 
-      <a href="/tags/r2dbc/">r2dbc</a>, 
-      <a href="/tags/mysql/">mysql</a>
-  </div>
-  
-
-
-
-
-    <p>05. Metadata mapping # Entity 클래스에 어노테이션을 추가 # @Id: primary key에 해당하는 필드에 적용 @Table: entity class에 적용. Table 이름을 변경 가능 @Transient: 기본적으로 모든 필드는 mapping 대상. @Transient가 붙은 필드는 mapping 에서 제외 @Column: entity의 property 필드에 적용. @Column이 붙은 필드에 대해서는 convention 기반 대신 Column에 주어진 name으로 적용 @Version: 낙관적 잠금 (Optimistic Lock)에 이용. entity가 update 될때마다 자동으로 update @PersistenceConstructor: 특정 constructor에 대해서 Object creation할 때 사용하게끔 지정.
-        <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/r2dbc/006_r2dbcEntityOperations/">006 R2dbc Entity Operations</a>
-    </h2>
-    
-  <h5>December 9, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-12-09/">2023-12-09</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/webflux/">webflux</a>, 
-      <a href="/tags/r2dbc/">r2dbc</a>
-  </div>
-  
-
-
-
-
-    <p>06. R2dbcEntityOperations # 구조 # R2dbcEntityTemplate가 R2dbcEntityOperations를 상속한다. R2dbcEntityOperations가 FluentR2dbcOperations를 상속한다. FluentR2dbcOperations는 여러 Operations를 상속한다. ReactiveSelectOperation : select query와 관련된 메서드 제공 ReactiveInsertOperation : insert query와 관련된 메서드 제공 ReactiveUpdateOperation : update query와 관련된 메서드 제공 ReactiveDeleteOperation : delete query와 관련된 메서드 제공 ReactiveSelectOperation # ReactiveSelectOperation의 select부터 시작 TerminatingSelect의 count, exists, first, one, all 등으로 종료 구조 select -&gt; from -&gt; as -&gt; matching -&gt; 실행 select -&gt; from -&gt; matching -&gt; 실행 select -&gt; as -&gt; matching -&gt; 실행 select -&gt; matching -&gt; 실행 select -&gt; -&gt; 실행 ReactiveSelectOperation 사용 # from : query를 실행할 table 이름을 전달 as : Entity를 전부 mapping 하지 않고 특정 필드만 mapping 하고 싶은 경우 Entity의 일부 프로퍼티만 담고 있는 subclass(혹은 인터페이스)를 넘겨서 projection projection이 제공되지 않는다면 Entity에 모든 필드를 mapping matching : query의 where문에 해당 matching을 생략하면 table 전체에 대한 요청을 보내는 것과 동일 실행 : 마지막으로 count, exists, first, one, all 등의 연산을 선택 count: 조건에 맞는 row의 개수 반환 exists: 조건에 맞는 row 존재 여부 반환 first: 조건에 맞는 첫 번째 row 반환 one: 조건에 맞는 하나의 row 반환.
-        <a href="/docs/r2dbc/006_r2dbcEntityOperations/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/r2dbc/007_r2dbcRepository/">007 R2dbc Repository</a>
-    </h2>
-    
-  <h5>December 9, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-12-09/">2023-12-09</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/webflux/">webflux</a>, 
-      <a href="/tags/r2dbc/">r2dbc</a>
-  </div>
-  
-
-
-
-
-    <p>07. R2dbcRepository # R2dbcRepository 구조 # ReactiveSortingRepository와 ReactiveQueryByExampleExecutor를 상속한 interface인 SimpleR2dbcRepository에서 구현 R2dbcRepository 등록 # R2dbcRepositoriesAutoConfiguration가 활성화되어 있다면 SpringBootApplication 기준으로 자동으로 scan 혹은 EnableR2dbcRepositories를 통해서 repository scan 만약 여러 r2dbcEntityTemplate이 존재하거나 여러 데이터베이스를 사용하는 경우, basePackages, entityOperationRef 등을 통해서 다른 경로, 다른 entityTemplate 설정 가능 Repository # Spring data에서는 Repository interface를 제공 데이터에 접근하는 계층을 추상화하고 CRUD 작업, Entity mapping, SQL 쿼리 생성 등을 자동으로 수행 ReactiveCrudRepository # Spring data reactive에서는 CrudRepository의 Reactive 버전인 ReactiveCrudRepository 지원 entity의 CRUD에 집중 모든 결과값 그리고 일부 인자들이 Publisher 지원 ReactiveCrudRepository - save # saveAll은 @Transactional을 사용해서 각각의 save를 하나의 tx로 묶고 concatMap을 통해서 save를 순차적으로 수행 ReactiveCrudRepository - find # id 기반으로 하나 혹은 여러 개의 항목을 탐색하거나 존재 여부를 확인 모든 항목을 탐색하거나 모든 항목의 개수를 확인 ReactiveCrudRepository - delete # id 기반으로 하나 혹은 여러 개의 항목을 제거하거나 하나 혹은 여러 개의 entity를 기반으로 id를 추출하여 제거하거나, 모두 제거 ReactiveSortingRepository # ReactiveCrudRepository를 상속 spring data의 Sort를 기반으로 여러 항목 탐색 Sort 객체는 여러 Order 객체를 포함 이를 기반으로 query에 sort 옵션을 제공 SimpleR2dbcRepository # R2dbcRepository를 구현 R2dbcEntityOperations를 기반으로 SQL 쿼리를 실행하고 결과를 Entity로 mapping 기본적으로 모든 메소드에 @Transactional(readOnly = true) 적용 SimpleR2dbcRepository - save # new entity 확인 전략 @Id에 해당하는 필드를 확인.
-        <a href="/docs/r2dbc/007_r2dbcRepository/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -1635,6 +1691,11 @@ findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내�
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2023-12-14/">2023-12-14</a>
+          <span>4</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-13/">2023-12-13</a>
@@ -1711,6 +1772,16 @@ findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내�
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/redis/">redis</a>
+          <span>6</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/webflux/">webflux</a>
+          <span>19</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/designPattern/">designPattern</a>
           <span>1</span>
         </li>
@@ -1733,11 +1804,6 @@ findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내�
         <li class="flex justify-between">
           <a href="/tags/mongodb/">mongodb</a>
           <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/webflux/">webflux</a>
-          <span>15</span>
         </li>
       
         <li class="flex justify-between">
@@ -1783,11 +1849,6 @@ findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내�
         <li class="flex justify-between">
           <a href="/tags/rxjava/">rxjava</a>
           <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/redis/">redis</a>
-          <span>2</span>
         </li>
       
         <li class="flex justify-between">
