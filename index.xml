@@ -16,6 +16,13 @@
     </item>
     <item>
       <title></title>
+      <link>https://example.com/docs/operating_system/001_thread/</link>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/operating_system/001_thread/</guid>
+      <description>스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드 # 우리가 작성한 프로그램의 동작방식 # 하드웨어 OS Kernel User Program : 운영체제를 통해 하드웨어를 사용 Hardware thread # 코어(core)의 고민 : 메모리에서 데이터를 기다리는 시간이 꽤 오래 걸린다. 코어에서 프로그램이 실행될때 각종 연산 작업이 있을테고, 이를 위해 메모리에 접근하는 작업들이 있다. 이 코어에서 실행되는 연산 작업에 비해 메모리에서 데이터를 기다리는 시간이 더 오래 걸린다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/msa/001_reactive/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/msa/001_reactive/</guid>
@@ -351,13 +358,6 @@ FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConst
       <link>https://example.com/docs/network/000_sample/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/network/000_sample/</guid>
-      <description>sample</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://example.com/docs/operating-system/000_sample/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/operating-system/000_sample/</guid>
       <description>sample</description>
     </item>
     <item>

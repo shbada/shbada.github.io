@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드 # 우리가 작성한 프로그램의 동작방식 # 하드웨어 OS Kernel User Program : 운영체제를 통해 하드웨어를 사용 Hardware thread # 코어(core)의 고민 : 메모리에서 데이터를 기다리는 시간이 꽤 오래 걸린다. 코어에서 프로그램이 실행될때 각종 연산 작업이 있을테고, 이를 위해 메모리에 접근하는 작업들이 있다. 이 코어에서 실행되는 연산 작업에 비해 메모리에서 데이터를 기다리는 시간이 더 오래 걸린다.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드 # 우리가 작성한 프로그램의 동작방식 # 하드웨어 OS Kernel User Program : 운영체제를 통해 하드웨어를 사용 Hardware thread # 코어(core)의 고민 : 메모리에서 데이터를 기다리는 시간이 꽤 오래 걸린다. 코어에서 프로그램이 실행될때 각종 연산 작업이 있을테고, 이를 위해 메모리에 접근하는 작업들이 있다. 이 코어에서 실행되는 연산 작업에 비해 메모리에서 데이터를 기다리는 시간이 더 오래 걸린다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/operating_system/001_thread/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-15T00:00:00+00:00" />
+
+<title>001 Thread | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.d49356c2b2a29e7b871742e8004611c9e4d58e94deaac7acb22fc7bef78c8c3b.js" integrity="sha256-1JNWwrKinnuHF0LoAEYRyeTVjpTeqsessi/HvveMjDs=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bbe16af0cda0a52165d4874f0cea4ee0" class="toggle" checked />
+    <label for="section-bbe16af0cda0a52165d4874f0cea4ee0" class="flex justify-between">
+      <a href="/docs/operating_system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/operating_system/001_thread/" class="active">001 Thread</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/001_facade_pattern/" class="">001 Facade Pattern</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/001_kafka_cdc/" class="">001 Kafka Cdc</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/003_circuit_breaker/" class="">003 Circuit Breaker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>001 Thread</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#스레드-종류---하드웨어-스레드-os-스레드-네이티브-스레드-커널-스레드-유저-스레드-그린-스레드">스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드</a>
+      <ul>
+        <li><a href="#우리가-작성한-프로그램의-동작방식">우리가 작성한 프로그램의 동작방식</a></li>
+        <li><a href="#hardware-thread">Hardware thread</a></li>
+        <li><a href="#os-thread">OS Thread</a></li>
+        <li><a href="#user-thread">User Thread</a></li>
+        <li><a href="#green-thread">Green Thread</a></li>
+        <li><a href="#kernel-thread">Kernel Thread</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="스레드-종류---하드웨어-스레드-os-스레드-네이티브-스레드-커널-스레드-유저-스레드-그린-스레드">
+  스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드
+  <a class="anchor" href="#%ec%8a%a4%eb%a0%88%eb%93%9c-%ec%a2%85%eb%a5%98---%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4-%ec%8a%a4%eb%a0%88%eb%93%9c-os-%ec%8a%a4%eb%a0%88%eb%93%9c-%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c-%ec%8a%a4%eb%a0%88%eb%93%9c-%ec%bb%a4%eb%84%90-%ec%8a%a4%eb%a0%88%eb%93%9c-%ec%9c%a0%ec%a0%80-%ec%8a%a4%eb%a0%88%eb%93%9c-%ea%b7%b8%eb%a6%b0-%ec%8a%a4%eb%a0%88%eb%93%9c">#</a>
+</h1>
+<h2 id="우리가-작성한-프로그램의-동작방식">
+  우리가 작성한 프로그램의 동작방식
+  <a class="anchor" href="#%ec%9a%b0%eb%a6%ac%ea%b0%80-%ec%9e%91%ec%84%b1%ed%95%9c-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%98-%eb%8f%99%ec%9e%91%eb%b0%a9%ec%8b%9d">#</a>
+</h2>
+<ul>
+<li>하드웨어</li>
+<li>OS Kernel</li>
+<li>User Program : 운영체제를 통해 하드웨어를 사용
+
+  <img src="/image/operating_system/001/img.png" alt="img.png" /></li>
+</ul>
+<h2 id="hardware-thread">
+  Hardware thread
+  <a class="anchor" href="#hardware-thread">#</a>
+</h2>
+<ul>
+<li>코어(core)의 고민 : 메모리에서 데이터를 기다리는 시간이 꽤 오래 걸린다.
+<ul>
+<li>코어에서 프로그램이 실행될때 각종 연산 작업이 있을테고, 이를 위해 메모리에 접근하는 작업들이 있다.
+이 코어에서 실행되는 연산 작업에 비해 메모리에서 데이터를 기다리는 시간이 더 오래 걸린다.
+이는 코어를 낭비하고있다는 말과 같다.</li>
+<li>메모리를 기다리는 동안 다른 쓰레드를 실행하는건 어떨까?</li>
+<li>예시) 코어 -&gt; Computing 작업 -&gt; 메모리에 접근하여 데이터 처리 -&gt; Computing 작업 -&gt; 메모리에 접근&hellip;
+<ul>
+<li>코어가 쉬고있을때마다 코어를 낭비하는 것과 같다.</li>
+</ul>
+</li>
+<li>이를 해결하기 위해, 메모리에 접근하는 동안 독립적으로 또다른 무언가를 실행하면 어떨까?</li>
+<li>1개의 코어에서 2개의 쓰레드를 실행하는 것 -&gt; 이 각각의 쓰레드를 Hardware Thread라고 한다.
+<ul>
+<li>이를 인텔의 Hyper-threading 이라고 한다.
+<ul>
+<li>물리적인 코어마다 하드웨어 스레드가 2개다.</li>
+</ul>
+</li>
+<li>Hardware Thread : OS 관점에서는 가상의 코어</li>
+<li>싱글코어 CPU에 하드웨어 스레드가 2개라면, OS는 이 CPU를 듀얼 코어로 인식하고, 이에 맞춰서 OS 레벨의 스레드들을 스케줄링한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="os-thread">
+  OS Thread
+  <a class="anchor" href="#os-thread">#</a>
+</h2>
+<ul>
+<li>OS Kernel 영역에 해당되는 부분</li>
+<li>커널(kernel)
+<ul>
+<li>운영체제의 핵심</li>
+<li>시스템의 전반을 관리/감독하는 역할</li>
+<li>하드웨어와 관련된 작업을 직접 수행</li>
+</ul>
+</li>
+<li>OS Thread
+<ul>
+<li>OS 커널 레벨에서 생성되고 관리되는 스레드</li>
+<li>CPU에서 실제로 실행되는 단위, CPU 스케줄링의 단위</li>
+<li>OS 스레드들의 컨텍스트 스위칭은 커널이 개입 -&gt; 비용 발생</li>
+<li>사용자 코드와 커널 모드 모두 OS 스레드에서 실행된다.
+<ul>
+<li>우리가 작성한 코드가 OS 스레드로 실행되고, system call을 사용하면 커널 모드로 전환되고, 여기서 커널 코드가 실행되는데 이도 OS 스레드에서 실행된다.</li>
+</ul>
+</li>
+<li>native 스레드, 커널 스레드, 커널-레벨 스레드, OS-레벨 스레드 라고 불리기도한다.</li>
+<li>OS 스레드 8개가 하이퍼 스레딩이 적용된 인텔 듀어코어 위에서 동작한다면 OS 스레드들을 어떻게 코어에 균등하게 할당할까?
+
+  <img src="/image/operating_system/001/img_1.png" alt="img_1.png" />
+<ul>
+<li>코어마다 하드웨어 쓰레드가 2개씩 있고, OS 입장에서는 하드웨어 쓰레드 각각이 코어로 인식되고, 이 코어 당 쓰레드 2개씩 할당한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="user-thread">
+  User Thread
+  <a class="anchor" href="#user-thread">#</a>
+</h2>
+<ul>
+<li>유저-레벨 쓰레드라고 불리기도한다.</li>
+<li>스레드 개념을 프로그래밍 레벨에서 추상화 한것이다.
+<pre tabindex="0"><code>Thread thread = new Thread();
+thread.start();
+</code></pre>
+  <img src="/image/operating_system/001/img_2.png" alt="img_2.png" /></li>
+<li>자바에서 제공하는 Thread라는 Class 사용 - start()의 구현부에서 start0() 메서드를 호출하는데, 이는 JNI라는 기술을 통해 OS SystemCall을 호출한다.
+<ul>
+<li>리눅스라면 clone 이라는 system call 호출 -&gt; 리눅스에서는 OS 레벨의 쓰레드를 1개 생성하게된다. 이 쓰레드는 User-level의 쓰레드와 연결이 된다.</li>
+</ul>
+</li>
+<li>유저 스레드가 CPU에서 실행되려면 OS 스레드와 반드시 연결되어야한다.</li>
+<li>유저 스레드와 OS 쓰레드를 어떻게 연결할까?
+<ul>
+<li>
+<ol>
+<li>One-to-One model : start() 하는 순간, OS 레벨의 쓰레드를 생성하여 1:1로 연결한다.</li>
+</ol>
+<ul>
+<li>쓰레드 관리를 OS에 위임한다. (스케줄링 포함)</li>
+<li>스케줄링도 커널이 수행한다.</li>
+<li>CPU가 만약에 멀티코어를 가진다고 해도, 이 멀티코어에 OS 쓰레드를 잘 분배하여 동작시키면, 1:1로 분배되는 유저 쓰레드도 멀티코어를 잘 활용하게된다.</li>
+<li>한 쓰레드가 block이 되도, 나머지 쓰레드에는 영향없이 잘 동작한다.</li>
+<li>race condition 발생 가능성 있음</li>
+</ul>
+</li>
+<li>
+<ol start="2">
+<li>Many-to-One model : User 레벨의 쓰레드가 여러개있고, OS 레벨의 쓰레드는 1개만 있다. N:1로 연결한다.</li>
+</ol>
+<ul>
+<li>Context Switching이 더 빠르다. (User 레벨에서 발생하기때문에 커널의 개입이 없다.)</li>
+<li>OS 쓰레드만 보면 싱글 쓰레드이기 때문에 OS 레벨에서 race condition이 발생할 가능성이 거의 없다. (User Thread는 있다.)</li>
+<li>멀티코어를 활용할 수 없다. 실제로 코어에서 실행되는 쓰레드는 OS 쓰레드이기 때문이다.</li>
+<li>첫번째 User-Thread가 blocki I/O를 호출했을때, OS 쓰레드에서 block I/O를 호출하게되어, 다른 User-Thread 모두 block된다.</li>
+</ul>
+</li>
+<li>
+<ol start="3">
+<li>Many-to-Many model : User Thread, OS Thread 가 모두 N:N으로 연결된다.</li>
+</ol>
+<ul>
+<li>위 1), 2) 방법의 장점을 살린 방법</li>
+<li>구현이 복잡하다.
+
+  <img src="/image/operating_system/001/img_3.png" alt="img_3.png" /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>기술 문서에서는 OS와는 독립적으로 유저 레벨에서 스케줄링되는 스레드라고 한다.
+<ul>
+<li>Many-to-One model, Many-to-Many model 로 볼 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="green-thread">
+  Green Thread
+  <a class="anchor" href="#green-thread">#</a>
+</h2>
+<ul>
+<li>Java 초창기 버전은, Many-to-One 스레딩 모델을 사용, 이때 유저 스레드들을 그린 쓰레드라고 호칭했다.</li>
+<li>OS와는 독립적으로 유저 레벨에서 스케줄링되는 스레드</li>
+<li>Many-to-One model, Many-to-Many model 로 볼 수 있다.</li>
+</ul>
+<h2 id="kernel-thread">
+  Kernel Thread
+  <a class="anchor" href="#kernel-thread">#</a>
+</h2>
+<ul>
+<li>OS 커널의 역할을 수행하는 스레드</li>
+</ul>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner">_1) Youtube 강의 : 
+  <a href="https://www.youtube.com/watch?v=vorIqiLM7jc">https://www.youtube.com/watch?v=vorIqiLM7jc</a></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/operating_system/001_thread.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#스레드-종류---하드웨어-스레드-os-스레드-네이티브-스레드-커널-스레드-유저-스레드-그린-스레드">스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드</a>
+      <ul>
+        <li><a href="#우리가-작성한-프로그램의-동작방식">우리가 작성한 프로그램의 동작방식</a></li>
+        <li><a href="#hardware-thread">Hardware thread</a></li>
+        <li><a href="#os-thread">OS Thread</a></li>
+        <li><a href="#user-thread">User Thread</a></li>
+        <li><a href="#green-thread">Green Thread</a></li>
+        <li><a href="#kernel-thread">Kernel Thread</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
