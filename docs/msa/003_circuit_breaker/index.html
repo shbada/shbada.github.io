@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Spring cloud circuit breaker # Circuit breaker # 전기 회로의 차단기와 유사한 역할을 하는 소프트웨어 디자인 패턴 특정 서비스가 과부하 상태가 되었을 때 추가적인 요청을 차단하여 시스템의 안정성을 유지 해당 서비스가 복구될 수 있는 시간 확보 Reactive systems의 Resilient(복원력)를 지원 Spring Cloud Circuit Breaker # Spring에서 circuit breaker를 지원하기 위해 만든 라이브러리 resilience4j와 spring retry를 추상화하여 Circuit breaker를 지원 reactive 환경에서는 resilience4j 만 사용 가능 Resilience4j # java에서 circuit breaker를 지원하는 라이브러리 Circuit breaker, Rate Limiter, Retry, Bulkhead, Time Limiter, Cache 등의 기능을 제공 Circuit breaker 준비 # org.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Spring cloud circuit breaker # Circuit breaker # 전기 회로의 차단기와 유사한 역할을 하는 소프트웨어 디자인 패턴 특정 서비스가 과부하 상태가 되었을 때 추가적인 요청을 차단하여 시스템의 안정성을 유지 해당 서비스가 복구될 수 있는 시간 확보 Reactive systems의 Resilient(복원력)를 지원 Spring Cloud Circuit Breaker # Spring에서 circuit breaker를 지원하기 위해 만든 라이브러리 resilience4j와 spring retry를 추상화하여 Circuit breaker를 지원 reactive 환경에서는 resilience4j 만 사용 가능 Resilience4j # java에서 circuit breaker를 지원하는 라이브러리 Circuit breaker, Rate Limiter, Retry, Bulkhead, Time Limiter, Cache 등의 기능을 제공 Circuit breaker 준비 # org." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/msa/003_circuit_breaker/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-15T00:00:00+00:00" />
+
+<title>003 Circuit Breaker | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.2de369ba04e0de082a8955d861e2d4c7eb20fa9fe5a73bca919e26d9116d7561.js" integrity="sha256-LeNpugTg3ggqiVXYYeLUx&#43;sg&#43;p/lpzvKkZ4m2RFtdWE=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3fd9018456329c22500501d97c791fad" class="toggle"  />
+    <label for="section-3fd9018456329c22500501d97c791fad" class="flex justify-between">
+      <a href="/docs/data-structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/001_facade_pattern/" class="">001 Facade Pattern</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/001_kafka_cdc/" class="">001 Kafka Cdc</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle" checked />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/003_circuit_breaker/" class="active">003 Circuit Breaker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-83cd0ab2c9840783352e3b96d8e79d5c" class="toggle"  />
+    <label for="section-83cd0ab2c9840783352e3b96d8e79d5c" class="flex justify-between">
+      <a href="/docs/operating-system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-0a72c474e6931ed755713a00cb7d19a4" class="toggle"  />
+    <label for="section-0a72c474e6931ed755713a00cb7d19a4" class="flex justify-between">
+      <a href="/docs/reactive-streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive-streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>003 Circuit Breaker</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#spring-cloud-circuit-breaker">Spring cloud circuit breaker</a>
+      <ul>
+        <li><a href="#circuit-breaker">Circuit breaker</a></li>
+        <li><a href="#spring-cloud-circuit-breaker-1">Spring Cloud Circuit Breaker</a></li>
+        <li><a href="#resilience4j">Resilience4j</a></li>
+        <li><a href="#circuit-breaker-준비">Circuit breaker 준비</a></li>
+        <li><a href="#circuit-breaker-상태">Circuit breaker 상태</a></li>
+        <li><a href="#circuit-breaker-상태-변화">Circuit breaker 상태 변화</a></li>
+        <li><a href="#reactor-transform-연산자">Reactor transform 연산자</a></li>
+        <li><a href="#reactor-transform-연산자-테스트">Reactor transform 연산자 테스트</a></li>
+        <li><a href="#circuit-breaker-closed">Circuit breaker closed</a></li>
+        <li><a href="#closed-테스트-서비스">closed 테스트 서비스</a></li>
+        <li><a href="#closed-테스트-어노테이션">closed 테스트 어노테이션</a></li>
+        <li><a href="#closed-테스트-설정">closed 테스트 설정</a></li>
+        <li><a href="#closed-테스트">closed 테스트</a></li>
+        <li><a href="#circuit-breaker-sliding-window">Circuit breaker sliding window</a></li>
+        <li><a href="#sliding-window와-failure-rate">sliding window와 failure rate</a></li>
+        <li><a href="#closed에서-open으로-전환">closed에서 open으로 전환</a></li>
+        <li><a href="#closed-전환-테스트">closed 전환 테스트</a></li>
+        <li><a href="#circuit-breaker-open">Circuit breaker open</a></li>
+        <li><a href="#open-테스트">open 테스트</a></li>
+        <li><a href="#open에서-half-open으로">open에서 half open으로</a></li>
+        <li><a href="#open-전환-테스트">open 전환 테스트</a></li>
+        <li><a href="#open-전환-테스트-1">open 전환 테스트</a></li>
+        <li><a href="#circuit-breaker-half-open">Circuit breaker half open</a></li>
+        <li><a href="#half-open에서-closed-혹은-open">half open에서 closed 혹은 open</a></li>
+        <li><a href="#half-open-전환-테스트">half open 전환 테스트</a></li>
+        <li><a href="#circuit-breaker-설정">Circuit breaker 설정</a></li>
+        <li><a href="#circuitbreakerconfig-설정">CircuitBreakerConfig 설정</a></li>
+        <li><a href="#timelimiterconfig-설정">TimeLimiterConfig 설정</a></li>
+        <li><a href="#circuit-breaker-yaml-설정">Circuit breaker yaml 설정</a></li>
+        <li><a href="#circuit-breaker-group">Circuit breaker group</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="spring-cloud-circuit-breaker">
+  Spring cloud circuit breaker
+  <a class="anchor" href="#spring-cloud-circuit-breaker">#</a>
+</h1>
+<h2 id="circuit-breaker">
+  Circuit breaker
+  <a class="anchor" href="#circuit-breaker">#</a>
+</h2>
+<ul>
+<li>전기 회로의 차단기와 유사한 역할을 하는 소프트웨어 디자인 패턴</li>
+<li>특정 서비스가 과부하 상태가 되었을 때 추가적인 요청을 차단하여 시스템의 안정성을 유지</li>
+<li>해당 서비스가 복구될 수 있는 시간 확보</li>
+<li>Reactive systems의 Resilient(복원력)를 지원</li>
+</ul>
+<h2 id="spring-cloud-circuit-breaker-1">
+  Spring Cloud Circuit Breaker
+  <a class="anchor" href="#spring-cloud-circuit-breaker-1">#</a>
+</h2>
+<ul>
+<li>Spring에서 circuit breaker를 지원하기 위해 만든 라이브러리</li>
+<li>resilience4j와 spring retry를 추상화하여 Circuit breaker를 지원
+<ul>
+<li>reactive 환경에서는 resilience4j 만 사용 가능
+
+  <img src="/image/msa/003/img.png" alt="img.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="resilience4j">
+  Resilience4j
+  <a class="anchor" href="#resilience4j">#</a>
+</h2>
+<ul>
+<li>java에서 circuit breaker를 지원하는 라이브러리</li>
+<li>Circuit breaker, Rate Limiter, Retry, Bulkhead, Time Limiter, Cache 등의 기능을 제공
+
+  <img src="/image/msa/003/img_1.png" alt="img_1.png" /></li>
+</ul>
+<h2 id="circuit-breaker-준비">
+  Circuit breaker 준비
+  <a class="anchor" href="#circuit-breaker-%ec%a4%80%eb%b9%84">#</a>
+</h2>
+<ul>
+<li>org.springframework.cloud:springcloud-starter-circuitbreaker-reactorresilience4j 를 추가</li>
+<li>mavenBom에 cloud-dependencies 버전을 명시</li>
+<li>circuit breaker에는 별도의 버전 명시 없이 사용 가능
+
+  <img src="/image/msa/003/img_2.png" alt="img_2.png" /></li>
+</ul>
+<h2 id="circuit-breaker-상태">
+  Circuit breaker 상태
+  <a class="anchor" href="#circuit-breaker-%ec%83%81%ed%83%9c">#</a>
+</h2>
+<ul>
+<li>Circuit breaker의 상태는 finite state machine으로 표현 가능</li>
+<li>Closed, Open, Half Open으로 구성
+<ul>
+<li>Closed: 정상적으로 요청을 받을 수 있는 상태</li>
+<li>Open: Circuit breaker가 작동하여, 목적지로 가는 트래픽, 요청을 막고 fallback 반환</li>
+<li>Half Open: 트래픽을 조금 흘려보고 Open을 유지할지 Closed로 변경할지 결정
+
+  <img src="/image/msa/003/img_3.png" alt="img_3.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="circuit-breaker-상태-변화">
+  Circuit breaker 상태 변화
+  <a class="anchor" href="#circuit-breaker-%ec%83%81%ed%83%9c-%eb%b3%80%ed%99%94">#</a>
+</h2>
+<ul>
+<li>Closed에서 Open으로 변경
+<ul>
+<li>호출하는 대상에 문제가 생긴 경우</li>
+</ul>
+</li>
+<li>Open에서 Half Open으로 변경
+<ul>
+<li>일정 시간이 지나거나</li>
+<li>강제로 상태 변경</li>
+</ul>
+</li>
+<li>Half Open에서 Open 혹은 Close로 변경
+<ul>
+<li>half open 동안 실제 대상을 호출하여 문제가 없는지 검증
+
+  <img src="/image/msa/003/img_4.png" alt="img_4.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="reactor-transform-연산자">
+  Reactor transform 연산자
+  <a class="anchor" href="#reactor-transform-%ec%97%b0%ec%82%b0%ec%9e%90">#</a>
+</h2>
+<ul>
+<li>원본 publisher를 인자로 전달 받고 변환된 publisher를 반환</li>
+<li>통째로 넘기기 때문에 다른 연산자보다 더 유연하게 데이터 스트림을 처리 가능
+
+  <img src="/image/msa/003/img_5.png" alt="img_5.png" /></li>
+</ul>
+<h2 id="reactor-transform-연산자-테스트">
+  Reactor transform 연산자 테스트
+  <a class="anchor" href="#reactor-transform-%ec%97%b0%ec%82%b0%ec%9e%90-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>함수형 인터페이스를 직접 구현</li>
+<li>apply에서 인자로 현재 mono를 받고 각각의 item에 1을 더하는 연산자를 추가하여 반환
+
+  <img src="/image/msa/003/img_6.png" alt="img_6.png" /></li>
+<li>error를 반환하는 Flux를 무조건 1을 반환하는 Flux로 변환하여 반환
+
+  <img src="/image/msa/003/img_7.png" alt="img_7.png" /></li>
+</ul>
+<h2 id="circuit-breaker-closed">
+  Circuit breaker closed
+  <a class="anchor" href="#circuit-breaker-closed">#</a>
+</h2>
+<ul>
+<li>기본 상태</li>
+<li>들어오는 모든 요청을 대상 메소드, 서비스에 전달</li>
+<li>서비스에 전달 후 응답이 느리거나 error가 발생한다면 fallback을 실행하여 결과 전달
+
+  <img src="/image/msa/003/img_8.png" alt="img_8.png" /></li>
+</ul>
+<h2 id="closed-테스트-서비스">
+  closed 테스트 서비스
+  <a class="anchor" href="#closed-%ed%85%8c%ec%8a%a4%ed%8a%b8-%ec%84%9c%eb%b9%84%ec%8a%a4">#</a>
+</h2>
+<ul>
+<li>ReactiveCircuitBreakerFactory bean 주입</li>
+<li>doGreeting을 호출하여 특정 delay 이후 인사를 반환하는 Mono 획득</li>
+<li>transform을 사용하여 해당 publisher를 circuit breaker에 전달</li>
+<li>“normal” id를 갖는 circuit breaker를 생성</li>
+<li>fallback으로 fallbackMessage를 반환
+
+  <img src="/image/msa/003/img_9.png" alt="img_9.png" />
+
+  <img src="/image/msa/003/img_10.png" alt="img_10.png" /></li>
+</ul>
+<h2 id="closed-테스트-어노테이션">
+  closed 테스트 어노테이션
+  <a class="anchor" href="#closed-%ed%85%8c%ec%8a%a4%ed%8a%b8-%ec%96%b4%eb%85%b8%ed%85%8c%ec%9d%b4%ec%85%98">#</a>
+</h2>
+<ul>
+<li>GreetingCircuitBreakerServiceTest를 생성</li>
+<li>AutoConfigureReactiveCircuitBreaker를 만들어서 제공
+
+  <img src="/image/msa/003/img_11.png" alt="img_11.png" /></li>
+</ul>
+<h2 id="closed-테스트-설정">
+  closed 테스트 설정
+  <a class="anchor" href="#closed-%ed%85%8c%ec%8a%a4%ed%8a%b8-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<ul>
+<li>로깅을 위한 customizer 추가</li>
+<li>요청이 성공하거나 문제가 발생하거나</li>
+<li>circuit breaker의 상태가 바뀌거나</li>
+<li>slowCallRate, failureRate 등이 바뀌면 로깅
+
+  <img src="/image/msa/003/img_12.png" alt="img_12.png" /></li>
+<li>eventLogger 외에는 모두 기본 설정</li>
+<li>configureDefault를 통해 별도의 설정을 갖지 않는 다른 모든 circuit breaker에 해당 설정이 적용
+<ul>
+<li>“normal”에 대한 별도의 설정을 제공하지 않기 때문에 normal circuit breaker는 default config를 사용
+
+  <img src="/image/msa/003/img_13.png" alt="img_13.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="closed-테스트">
+  closed 테스트
+  <a class="anchor" href="#closed-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>테스트 생성</li>
+<li>Greeter를 @SpyBean으로 설정</li>
+<li>GreetingCircuitBreakerService와 CircuitBreakerRegistry를 @Autowired로 successMessage과 fallbackMessage를 지정
+
+  <img src="/image/msa/003/img_14.png" alt="img_14.png" /></li>
+</ul>
+<blockquote>
+<p>success 예제</p>
+</blockquote>
+<ul>
+<li>delay를 0ms로 제공</li>
+<li>바로 기대한 결과인 “Hello grizz!” 를 반환</li>
+<li>circuitBreaker id를 normal로 설정했기 때문에 logging에서도 normal로 남는다</li>
+<li>greeter의 generate는 한번 실행
+
+  <img src="/image/msa/003/img_15.png" alt="img_15.png" />
+
+  <img src="/image/msa/003/img_16.png" alt="img_16.png" /></li>
+</ul>
+<blockquote>
+<p>GreetingCircuitBreakerServiceTest
+
+  <img src="/image/msa/003/img_17.png" alt="img_17.png" /></p>
+</blockquote>
+<blockquote>
+<p>fallback 예제</p>
+</blockquote>
+<ul>
+<li>delay를 5000ms로 제공</li>
+<li>withVirtualTime을 사용해서 시간이 지난 것처럼 시뮬레이션</li>
+<li>1초가 지나는 시점에 “Hello world!” 반환</li>
+<li>5초를 기다리게 해도 결과는 동일</li>
+<li>circuit breaker에서 TimeoutException 발생시키고 fallback 실행</li>
+<li>greeter는 중간에 cancel되어 실행되지 않음
+
+  <img src="/image/msa/003/img_18.png" alt="img_18.png" /></li>
+</ul>
+<blockquote>
+<p>exception이 발생한 경우도 fallback 실행</p>
+</blockquote>
+<ul>
+<li>it 이 Mono의 결과 (error)
+
+  <img src="/image/msa/003/img_19.png" alt="img_19.png" /></li>
+</ul>
+<h2 id="circuit-breaker-sliding-window">
+  Circuit breaker sliding window
+  <a class="anchor" href="#circuit-breaker-sliding-window">#</a>
+</h2>
+<ul>
+<li>circuit breaker는 대상이 되는 서비스 호출과 관련된 성공, 실패 여부를 sliding window 형태로 저장</li>
+<li>count-based sliding window에서는 특정 개수 n개만큼의 측정 결과를 저장</li>
+<li>저장된 측정 결과의 개수가 n개에 도달하면 최초에 저장했던 결과를 제거하고 새로운 결과를 저장
+<ul>
+<li>circular array를 사용</li>
+</ul>
+</li>
+<li>각각의 과정에서 전체 개수 대비 실패 비율을 계산
+<ul>
+<li>이를 failure rate 라고 부른다
+
+  <img src="/image/msa/003/img_20.png" alt="img_20.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="sliding-window와-failure-rate">
+  sliding window와 failure rate
+  <a class="anchor" href="#sliding-window%ec%99%80-failure-rate">#</a>
+</h2>
+<ul>
+<li>failure rate = 실패한 호출 수 / sliding window 크기</li>
+<li>item 하나가 새로 추가되면 failure rate 계산에 O(1) 만큼의 시간복잡도가 필요
+<ul>
+<li>sliding window 크기는 고정이기 때문에 총 합에서 새로운 값을 더하고 없어진 값을 제거하여 다시 계산</li>
+</ul>
+</li>
+<li>failure rate이 설정한 임계치에 도달하는 순간 closed 상태에서 open 상태로 변경
+
+  <img src="/image/msa/003/img_21.png" alt="img_21.png" /></li>
+</ul>
+<h2 id="closed에서-open으로-전환">
+  closed에서 open으로 전환
+  <a class="anchor" href="#closed%ec%97%90%ec%84%9c-open%ec%9c%bc%eb%a1%9c-%ec%a0%84%ed%99%98">#</a>
+</h2>
+<ul>
+<li>closed 상태에서 open 상태로 바뀌면서 circuit breaker는 state transition 이벤트를 발행
+
+  <img src="/image/msa/003/img_22.png" alt="img_22.png" /></li>
+</ul>
+<h2 id="closed-전환-테스트">
+  closed 전환 테스트
+  <a class="anchor" href="#closed-%ec%a0%84%ed%99%98-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>
+<p>circuit breaker id를 외부에서 바꿀 수 있게 추가
+
+  <img src="/image/msa/003/img_23.png" alt="img_23.png" /></p>
+</li>
+<li>
+<p>sliding window size를 4</p>
+<ul>
+<li>기본값은 100</li>
+</ul>
+</li>
+<li>
+<p>failure rate threshold를 50</p>
+<ul>
+<li>failure rate 임계치를 퍼센티지로 표현</li>
+<li>기본값은 50이고 0에서 100 사이</li>
+</ul>
+</li>
+<li>
+<p>“mini” 라는 이름을 갖는 circuit breaker 생성</p>
+</li>
+<li>
+<p>sliding window size가 4이고 failure rate threshold가 50이기 때문에 전체 호출 중 절반이 실패하는 순간 open으로 전환
+
+  <img src="/image/msa/003/img_24.png" alt="img_24.png" /></p>
+</li>
+<li>
+<p>처음 4개가 성공하여 failureRate이 0.0</p>
+</li>
+<li>
+<p>이후 2개가 실패하고 failureRate이 50.0이 되면서 open 상태로 전환
+
+  <img src="/image/msa/003/img_25.png" alt="img_25.png" />
+
+  <img src="/image/msa/003/img_26.png" alt="img_26.png" /></p>
+</li>
+</ul>
+<h2 id="circuit-breaker-open">
+  Circuit breaker open
+  <a class="anchor" href="#circuit-breaker-open">#</a>
+</h2>
+<ul>
+<li>open 상태에서는 기존에 호출하던 대상을 더이상 호출하지 않는다</li>
+<li>fallback이 실행되어 반환</li>
+<li>호출하는 서비스를 보호하고 복구할 수 있는 시간 확보</li>
+<li>fallback이 실행되기 때문에 서비스의 장애가 전파되지 않는다
+
+  <img src="/image/msa/003/img_27.png" alt="img_27.png" /></li>
+</ul>
+<h2 id="open-테스트">
+  open 테스트
+  <a class="anchor" href="#open-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>open 상태에서는 delay를 0으로 전달해도 무조건 fallback 메세지 반환
+<ul>
+<li>closed 상태였다면 무조건 성공</li>
+</ul>
+</li>
+<li>100번을 호출했지만, spyGreeter는 처음 성공했던 4번 호출 이후 한번도 호출되지 않는다
+
+  <img src="/image/msa/003/img_28.png" alt="img_28.png" /></li>
+</ul>
+<h2 id="open에서-half-open으로">
+  open에서 half open으로
+  <a class="anchor" href="#open%ec%97%90%ec%84%9c-half-open%ec%9c%bc%eb%a1%9c">#</a>
+</h2>
+<ul>
+<li>open 상태에서 half open 상태로 바뀌면서 circuit breaker는 state transition 이벤트를 발행</li>
+<li>open 상태에서 half open으로 가기 위해서는 2가지 방법이 존재
+<ul>
+<li>circuit breaker api를 사용해서 명시적으로 변경</li>
+<li>옵션을 지정하여 특정 시간이 지나면 자동으로 변경
+
+  <img src="/image/msa/003/img_29.png" alt="img_29.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="open-전환-테스트">
+  open 전환 테스트
+  <a class="anchor" href="#open-%ec%a0%84%ed%99%98-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>처음 4번 실패하게 만들어 open 상태로 전환</li>
+<li>CircuitBreakerRegistry를 이용해서 circuitBreaker에 접근하고 transitionToHalfOpenState를 호출</li>
+<li>하지만 직접 상태를 관리해야 하기 때문에 어쩔 수 없는 겨우가 아니라면 가급적 권장 하지 않는다
+
+  <img src="/image/msa/003/img_30.png" alt="img_30.png" />
+
+  <img src="/image/msa/003/img_31.png" alt="img_31.png" /></li>
+</ul>
+<h2 id="open-전환-테스트-1">
+  open 전환 테스트
+  <a class="anchor" href="#open-%ec%a0%84%ed%99%98-%ed%85%8c%ec%8a%a4%ed%8a%b8-1">#</a>
+</h2>
+<ul>
+<li>enableAutomaticTransitionFromOpenToHalfOpen: 일정 시간이 지나면 자동으로 open에서 half open으로 변경되게 설정</li>
+<li>waitDurationInOpenState: 얼마만큼의 시간이 지난 후 half open으로 변경할지 설정
+
+  <img src="/image/msa/003/img_32.png" alt="img_32.png" /></li>
+</ul>
+<blockquote>
+<p>예제</p>
+</blockquote>
+<ul>
+<li>처음 4개를 실패 상태로 만들어 open 상태로 waitDurationInOpenState를 5초로 설정했기 때문에 6초동안 대기</li>
+<li>이후 자동으로 half open 상태로 변경
+
+  <img src="/image/msa/003/img_33.png" alt="img_33.png" />
+
+  <img src="/image/msa/003/img_34.png" alt="img_34.png" /></li>
+</ul>
+<h2 id="circuit-breaker-half-open">
+  Circuit breaker half open
+  <a class="anchor" href="#circuit-breaker-half-open">#</a>
+</h2>
+<ul>
+<li>half open 상태에서 정해진 개수만큼 요청을 전달</li>
+<li>half open에서 측정한 결과에 따라서 open 혹은 closed로 변경</li>
+<li>대상 서비스가 복구된 경우, 자동으로 장애 복구하기 위한 목적
+
+  <img src="/image/msa/003/img_35.png" alt="img_35.png" /></li>
+</ul>
+<h2 id="half-open에서-closed-혹은-open">
+  half open에서 closed 혹은 open
+  <a class="anchor" href="#half-open%ec%97%90%ec%84%9c-closed-%ed%98%b9%ec%9d%80-open">#</a>
+</h2>
+<ul>
+<li>half open 상태에서 sliding window와 같이 특정 개수(permittedNumberOfCalls)에 대해서 측정 결과 저장</li>
+<li>half open의 failure rate = 실패한 호출 수 / permittedNumberOfCalls</li>
+<li>open으로 전환 : failure rate이 임계점보다 높거나 같다면</li>
+<li>close로 전환 : failure rate이 임계점보다 낮다면
+
+  <img src="/image/msa/003/img_36.png" alt="img_36.png" /></li>
+</ul>
+<h2 id="half-open-전환-테스트">
+  half open 전환 테스트
+  <a class="anchor" href="#half-open-%ec%a0%84%ed%99%98-%ed%85%8c%ec%8a%a4%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>3초가 지나면 자동으로 open에서 half open으로 전환</li>
+<li>half open 상태에서 6개의 요청을 분석하고 3개 이상 실패하면 open으로 2개 이하 실패하면 closed로
+<ul>
+<li>permittedNumberOfCallsInHalfOpenState가 6이라서 6개의 요청을 분석</li>
+<li>failureRateThreshold가 50이기 때문에 3개가 기준이 된다
+
+  <img src="/image/msa/003/img_37.png" alt="img_37.png" /></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>close로 변경 예제</p>
+</blockquote>
+<ul>
+<li>circuit breaker를 half open 상태로 변경</li>
+<li>4번은 성공, 2번은 실패</li>
+<li>6번 (permittedNumberOfCalls) 요청이 끝나는 시점에 failureRate은 33퍼센트</li>
+<li>50퍼센트 (failureRateThreshold) 보다 작기 때문에 closed로 상태 변경
+
+  <img src="/image/msa/003/img_38.png" alt="img_38.png" /></li>
+</ul>
+<blockquote>
+<p>open으로 변경 예제</p>
+</blockquote>
+<ul>
+<li>circuit breaker를 half open 상태로 변경</li>
+<li>3번은 성공, 3번은 실패</li>
+<li>6번 (permittedNumberOfCalls) 요청이 끝나는 시점에 failureRate은 50퍼센트</li>
+<li>50퍼센트 (failureRateThreshold) 보다 크거나 같기 때문에 open으로 상태 변경
+
+  <img src="/image/msa/003/img_39.png" alt="img_39.png" /></li>
+</ul>
+<h2 id="circuit-breaker-설정">
+  Circuit breaker 설정
+  <a class="anchor" href="#circuit-breaker-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<ul>
+<li>ReactiveResilience4JCircuitBreakerFactory에 CircuitBreakerConfig와 TimeLimiterConfig 제공</li>
+<li>CircuitBreakerConfig는 circuit breaker 설정 제공</li>
+<li>TimeLimiterConfig는 timeout과 관련된 설정 제공
+
+  <img src="/image/msa/003/img_40.png" alt="img_40.png" /></li>
+</ul>
+<h2 id="circuitbreakerconfig-설정">
+  CircuitBreakerConfig 설정
+  <a class="anchor" href="#circuitbreakerconfig-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<ul>
+<li>slidingWindowSize: 호출 결과를 저장할 sliding window 크기. 기본 100</li>
+<li>failureRateThreshold: 실패 비율 임계점. 기본 50</li>
+<li>enableAutomaticTransitionFromOpenToHalfOpen: open에서 half open으로 자동 전환할지 여부. 기본 false</li>
+<li>waitDurationInOpenState: open에서 half open로 전환될 때까지 필요한 시간. 기본 60초</li>
+<li>permittedNumberOfCallsInHalfOpenState: half open 상태에서 허용할 호출 수. 기본 10</li>
+<li>ignoreExceptions: 서비스에서 exception을 던지는 경우, 허용할 exceptions 목록. 기본 empty</li>
+<li>maxWaitDurationInHalfOpenState: half open 상태에서 대기할 수 있는 최대 시간. 기본 0
+
+  <img src="/image/msa/003/img_41.png" alt="img_41.png" /></li>
+</ul>
+<h2 id="timelimiterconfig-설정">
+  TimeLimiterConfig 설정
+  <a class="anchor" href="#timelimiterconfig-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<ul>
+<li>cancelRunningFuture: future가 진행중인 경우, cancel 할지 여부. 기본 true</li>
+<li>timeoutDuration: timeout 기준 시간. 기본 1초</li>
+<li>factory.configure에 circuit breaker id를 전달하여 특정 id를 갖는 circuit breaker들에 대한 설정 가능</li>
+<li>일반적인 모든 circuit breaker에 설정을 적용하려면 configureDefault를 사용
+
+  <img src="/image/msa/003/img_42.png" alt="img_42.png" /></li>
+</ul>
+<h2 id="circuit-breaker-yaml-설정">
+  Circuit breaker yaml 설정
+  <a class="anchor" href="#circuit-breaker-yaml-%ec%84%a4%ec%a0%95">#</a>
+</h2>
+<ul>
+<li>yaml을 통해서도 설정 가능</li>
+<li>resilience4j.circuitbreaker.instances.<instance id>로 특정 circuit breaker instance의 설정을 주입</li>
+<li>resilience4j.circuitbreaker.instances.example을 앞선 @Bean 설정과 동일
+
+  <img src="/image/msa/003/img_43.png" alt="img_43.png" /></li>
+<li>resilience4j.circuitbreaker.configs.default를 설정하여 정확히 일치하는 instance가 없는 circuit breaker에 대한 설정 제공
+
+  <img src="/image/msa/003/img_44.png" alt="img_44.png" /></li>
+</ul>
+<h2 id="circuit-breaker-group">
+  Circuit breaker group
+  <a class="anchor" href="#circuit-breaker-group">#</a>
+</h2>
+<ul>
+<li>circuit breaker instance를 만들면서 group을 제공할 수 있다</li>
+<li>아래의 순서로 설정을 찾게 된다
+<ul>
+<li>instance id와 정확히 일치하는 설정 사용</li>
+<li>없다면, group과 정확히 일치하는 설정 사용</li>
+<li>없다면, default 설정
+
+  <img src="/image/msa/003/img_45.png" alt="img_45.png" />
+
+  <img src="/image/msa/003/img_46.png" alt="img_46.png" /></li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><em>1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지</em></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/msa/003_circuit_breaker.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#spring-cloud-circuit-breaker">Spring cloud circuit breaker</a>
+      <ul>
+        <li><a href="#circuit-breaker">Circuit breaker</a></li>
+        <li><a href="#spring-cloud-circuit-breaker-1">Spring Cloud Circuit Breaker</a></li>
+        <li><a href="#resilience4j">Resilience4j</a></li>
+        <li><a href="#circuit-breaker-준비">Circuit breaker 준비</a></li>
+        <li><a href="#circuit-breaker-상태">Circuit breaker 상태</a></li>
+        <li><a href="#circuit-breaker-상태-변화">Circuit breaker 상태 변화</a></li>
+        <li><a href="#reactor-transform-연산자">Reactor transform 연산자</a></li>
+        <li><a href="#reactor-transform-연산자-테스트">Reactor transform 연산자 테스트</a></li>
+        <li><a href="#circuit-breaker-closed">Circuit breaker closed</a></li>
+        <li><a href="#closed-테스트-서비스">closed 테스트 서비스</a></li>
+        <li><a href="#closed-테스트-어노테이션">closed 테스트 어노테이션</a></li>
+        <li><a href="#closed-테스트-설정">closed 테스트 설정</a></li>
+        <li><a href="#closed-테스트">closed 테스트</a></li>
+        <li><a href="#circuit-breaker-sliding-window">Circuit breaker sliding window</a></li>
+        <li><a href="#sliding-window와-failure-rate">sliding window와 failure rate</a></li>
+        <li><a href="#closed에서-open으로-전환">closed에서 open으로 전환</a></li>
+        <li><a href="#closed-전환-테스트">closed 전환 테스트</a></li>
+        <li><a href="#circuit-breaker-open">Circuit breaker open</a></li>
+        <li><a href="#open-테스트">open 테스트</a></li>
+        <li><a href="#open에서-half-open으로">open에서 half open으로</a></li>
+        <li><a href="#open-전환-테스트">open 전환 테스트</a></li>
+        <li><a href="#open-전환-테스트-1">open 전환 테스트</a></li>
+        <li><a href="#circuit-breaker-half-open">Circuit breaker half open</a></li>
+        <li><a href="#half-open에서-closed-혹은-open">half open에서 closed 혹은 open</a></li>
+        <li><a href="#half-open-전환-테스트">half open 전환 테스트</a></li>
+        <li><a href="#circuit-breaker-설정">Circuit breaker 설정</a></li>
+        <li><a href="#circuitbreakerconfig-설정">CircuitBreakerConfig 설정</a></li>
+        <li><a href="#timelimiterconfig-설정">TimeLimiterConfig 설정</a></li>
+        <li><a href="#circuit-breaker-yaml-설정">Circuit breaker yaml 설정</a></li>
+        <li><a href="#circuit-breaker-group">Circuit breaker group</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

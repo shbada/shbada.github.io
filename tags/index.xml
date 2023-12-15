@@ -6,19 +6,26 @@
     <description>Recent content in Tags on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 15 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>circit breaker</title>
+      <link>https://example.com/tags/circit-breaker/</link>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/circit-breaker/</guid>
+      <description></description>
+    </item>
     <item>
       <title>msa</title>
       <link>https://example.com/tags/msa/</link>
-      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/msa/</guid>
       <description></description>
     </item>
     <item>
       <title>reactive</title>
       <link>https://example.com/tags/reactive/</link>
-      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/reactive/</guid>
       <description></description>
     </item>

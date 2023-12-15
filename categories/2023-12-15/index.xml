@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2023-12-15 on TIL</title>
+    <link>https://example.com/categories/2023-12-15/</link>
+    <description>Recent content in 2023-12-15 on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 15 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/categories/2023-12-15/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/msa/003_circuit_breaker/</link>
+      <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/msa/003_circuit_breaker/</guid>
+      <description>Spring cloud circuit breaker # Circuit breaker # 전기 회로의 차단기와 유사한 역할을 하는 소프트웨어 디자인 패턴 특정 서비스가 과부하 상태가 되었을 때 추가적인 요청을 차단하여 시스템의 안정성을 유지 해당 서비스가 복구될 수 있는 시간 확보 Reactive systems의 Resilient(복원력)를 지원 Spring Cloud Circuit Breaker # Spring에서 circuit breaker를 지원하기 위해 만든 라이브러리 resilience4j와 spring retry를 추상화하여 Circuit breaker를 지원 reactive 환경에서는 resilience4j 만 사용 가능 Resilience4j # java에서 circuit breaker를 지원하는 라이브러리 Circuit breaker, Rate Limiter, Retry, Bulkhead, Time Limiter, Cache 등의 기능을 제공 Circuit breaker 준비 # org.</description>
+    </item>
+  </channel>
+</rss>
