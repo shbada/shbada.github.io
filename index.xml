@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/batch/002_batch_performance/</link>
+      <pubDate>Sat, 16 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/batch/002_batch_performance/</guid>
+      <description>[Youtube 세미나 보기] Batch Performance 극한으로 끌어올리기: 1억 건 데이터 처리를 위한 노력 / if(kakao)2022 # 다루고자 하는 내용 # 개발자들은 언제 Batch를 개발할까? 특정 시간에 많은 데이터를 일괄 처리 배치를 사용하는 상황 일괄 생성 일괄 수정 통계 무관심한 Batch Performance # Batch 개발을 쉽게 생각하는 경향 배포후 관리 소홀 배치를 지원하는 APM Tool의 부재 많은 데이터 처리량 # 2017년 : 하루 평균 25만번 현재 : 1억번 그럼에도 Batch 수행시간은 1시간으로 동일하다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/msa/003_circuit_breaker/</link>
       <pubDate>Fri, 15 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/msa/003_circuit_breaker/</guid>
