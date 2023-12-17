@@ -10,9 +10,9 @@
     <atom:link href="https://example.com/categories/2023-06-11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.com/docs/reactive-streams/001_reactive_streams_component/</link>
+      <link>https://example.com/docs/reactive_streams/001_reactive_streams_component/</link>
       <pubDate>Sun, 11 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/reactive-streams/001_reactive_streams_component/</guid>
+      <guid>https://example.com/docs/reactive_streams/001_reactive_streams_component/</guid>
       <description>리액티브 스트림즈란? # 리액티브한 코드 작성을 위한 구성을 도와주는 리액티브 라이브러리가 있다. 이 리액티브 라이브러리를 어떻게 구현해야할지 정의해놓은 별도의 표준 사양을 리액티브 스트림즈(Reactive Streams)라고 한다.
 리액티브 스트림즈는 &amp;lsquo;데이터 스트림을 Non-Blocking이면서 비동기적인 방식으로 처리하기 위한 리액티브 라이브러리 표준 사양&amp;rsquo;이라고 표현할 수 있다. 이를 구현한 구현체로는 RxJava, Reactor, Akka Streams, Java 9 Flow API 등이 있고, 그 중에 Spring framework와 가장 궁합이 잘 맞는 구현체는 Reactor이다.
 리액티브 구성요소 # 리액티브 스트림즈를 통해 구현해야 되는 API 컴포넌트에는 Publisher, Subscriber, Subscription, Processor 가 있다.</description>

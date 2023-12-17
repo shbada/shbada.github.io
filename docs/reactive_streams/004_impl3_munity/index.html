@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Reactive Streams 구현 라이브러리 (3) Munity # Mutiny # Hibernate reactive에서 비동기 라이브러리로 제공 Multi, Uni publisher 제공 Mutiny - Multi # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 flux와 유사 Multi 예제 # @Slf4j public class p218_MultiExample { public static void main(String[] args) { getItems() .subscribe() // subscribe 동시에 넘길 수 없음, subscribe() 호출 후 아래 호출 필요 .">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Reactive Streams 구현 라이브러리 (3) Munity # Mutiny # Hibernate reactive에서 비동기 라이브러리로 제공 Multi, Uni publisher 제공 Mutiny - Multi # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 flux와 유사 Multi 예제 # @Slf4j public class p218_MultiExample { public static void main(String[] args) { getItems() .subscribe() // subscribe 동시에 넘길 수 없음, subscribe() 호출 후 아래 호출 필요 ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/reactive_streams/004_impl3_munity/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-02T00:00:00+00:00" />
+
+<title>004 Impl3 Munity | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.a06e05c4631c8ab0deb20e9cdc820db8a01d8014f92337a1472d362259e49764.js" integrity="sha256-oG4FxGMcirDesg6c3IINuKAdgBT5IzehRy02Ilnkl2Q=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="toggle"  />
+    <label for="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="flex justify-between">
+      <a href="/docs/clean_code/" class="">Clean Code</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/clean_code/001_argument/" class="">001 Argument</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a396ef4e072acbb7275e447dad1284d6" class="toggle" checked />
+    <label for="section-a396ef4e072acbb7275e447dad1284d6" class="flex justify-between">
+      <a href="/docs/reactive_streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/004_impl3_munity/" class="active">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/002_batch_performance/" class="">002 Batch Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="toggle"  />
+    <label for="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="flex justify-between">
+      <a href="/docs/data_structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/001_facade_pattern/" class="">001 Facade Pattern</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/001_kafka_cdc/" class="">001 Kafka Cdc</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/003_circuit_breaker/" class="">003 Circuit Breaker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bbe16af0cda0a52165d4874f0cea4ee0" class="toggle"  />
+    <label for="section-bbe16af0cda0a52165d4874f0cea4ee0" class="flex justify-between">
+      <a href="/docs/operating_system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/operating_system/001_thread/" class="">001 Thread</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c1a35f6db1170c97addf30f5d9f50bc9" class="toggle"  />
+    <label for="section-c1a35f6db1170c97addf30f5d9f50bc9" class="flex justify-between">
+      <a href="/docs/rdbms/" class="">Rdbms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/001_basic_join/" class="">001 Basic Join</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>004 Impl3 Munity</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reactive-streams-구현-라이브러리-3-munity">Reactive Streams 구현 라이브러리 (3) Munity</a>
+      <ul>
+        <li><a href="#mutiny">Mutiny</a></li>
+        <li><a href="#mutiny---multi">Mutiny - Multi</a></li>
+        <li><a href="#multi-예제">Multi 예제</a></li>
+        <li><a href="#mutiny---uni">Mutiny - Uni</a></li>
+        <li><a href="#uni-예제">Uni 예제</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="reactive-streams-구현-라이브러리-3-munity">
+  Reactive Streams 구현 라이브러리 (3) Munity
+  <a class="anchor" href="#reactive-streams-%ea%b5%ac%ed%98%84-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-3-munity">#</a>
+</h1>
+<h2 id="mutiny">
+  Mutiny
+  <a class="anchor" href="#mutiny">#</a>
+</h2>
+<ul>
+<li>Hibernate reactive에서 비동기 라이브러리로 제공</li>
+<li>Multi, Uni publisher 제공</li>
+</ul>
+<p>
+  <img src="/image/reactive_streams/004/img.png" alt="img.png" /></p>
+<h2 id="mutiny---multi">
+  Mutiny - Multi
+  <a class="anchor" href="#mutiny---multi">#</a>
+</h2>
+<ul>
+<li>0..n개의 item을 전달</li>
+<li>에러가 발생하면 error signal 전달 하고 종료</li>
+<li>모든 item을 전달했다면 complete signal 전달하고 종료</li>
+<li>backPressure 지원</li>
+<li>Reactor의 flux와 유사</li>
+</ul>
+<h2 id="multi-예제">
+  Multi 예제
+  <a class="anchor" href="#multi-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<pre tabindex="0"><code>@Slf4j
+public class p218_MultiExample {
+    public static void main(String[] args) {
+        getItems()
+                .subscribe()
+                // subscribe 동시에 넘길 수 없음, subscribe() 호출 후 아래 호출 필요
+                .withSubscriber(
+                        new p218_SimpleMultiSubscriber&lt;&gt;(Integer.MAX_VALUE)
+                );
+    }
+
+    private static Multi&lt;Integer&gt; getItems() {
+        return Multi.createFrom().items(1, 2, 3, 4, 5);
+    }
+}
+</code></pre><p>SimpleMultiSubscriber</p>
+<pre tabindex="0"><code>@Slf4j
+@RequiredArgsConstructor
+public class p218_SimpleMultiSubscriber&lt;T&gt; implements MultiSubscriber&lt;T&gt; {
+    private final Integer count;
+
+    @Override
+    public void onSubscribe(Flow.Subscription s) {
+        s.request(count);
+        log.info(&#34;subscribe&#34;);
+    }
+
+    @Override
+    public void onItem(T item) {
+        log.info(&#34;item: {}&#34;, item);
+    }
+
+    @Override
+    public void onFailure(Throwable failure) {
+        log.error(&#34;fail: {}&#34;, failure.getMessage());
+    }
+
+    @Override
+    public void onCompletion() {
+        log.info(&#34;completion&#34;);
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>10:46:36.701 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - item: 1
+10:46:36.702 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - item: 2
+10:46:36.702 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - item: 3
+10:46:36.702 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - item: 4
+10:46:36.702 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - item: 5
+10:46:36.702 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - completion
+10:46:36.702 [main] INFO com.example06.mutiny.p218_SimpleMultiSubscriber - subscribe
+</code></pre><h2 id="mutiny---uni">
+  Mutiny - Uni
+  <a class="anchor" href="#mutiny---uni">#</a>
+</h2>
+<ul>
+<li>0..1개의 item을 전달</li>
+<li>에러가 발생하면 error signal 전달 하고 종료</li>
+<li>모든 item을 전달했다면 complete signal 전달하고 종료</li>
+<li>Reactor의 Mono와 유사</li>
+</ul>
+<h2 id="uni-예제">
+  Uni 예제
+  <a class="anchor" href="#uni-%ec%98%88%ec%a0%9c">#</a>
+</h2>
+<pre tabindex="0"><code>@Slf4j
+public class p220_UniExample {
+    public static void main(String[] args) {
+        getItem()
+                .subscribe()
+                .withSubscriber(new p220_SimpleUniSubscriber&lt;&gt;(Integer.MAX_VALUE));
+    }
+
+    private static Uni&lt;Integer&gt; getItem() {
+        return Uni.createFrom().item(1);
+    }
+}
+</code></pre><p>SimpleUniSubscriber</p>
+<pre tabindex="0"><code>@Slf4j
+@RequiredArgsConstructor
+public class p220_SimpleUniSubscriber&lt;T&gt; implements UniSubscriber&lt;T&gt; {
+    private final Integer count;
+    private UniSubscription subscription;
+
+    @Override
+    public void onSubscribe(UniSubscription s) {
+        this.subscription = s;
+        s.request(1);
+        log.info(&#34;subscribe&#34;);
+    }
+
+    @Override
+    public void onItem(T item) {
+        log.info(&#34;item: {}&#34;, item);
+    }
+
+    @Override
+    public void onFailure(Throwable failure) {
+        log.error(&#34;error: {}&#34;, failure.getMessage());
+    }
+}
+</code></pre><p>실행결과</p>
+<pre tabindex="0"><code>10:47:27.202 [main] INFO com.example06.mutiny.p220_SimpleUniSubscriber - subscribe
+10:47:27.208 [main] INFO com.example06.mutiny.p220_SimpleUniSubscriber - item: 1
+</code></pre><hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><em>1) 강의 : Spring Webflux 완전 정복 : 코루틴부터 리액티브 MSA 프로젝트까지</em><br>
+<em>2) github 예제코드 : 
+  <a href="https://github.com/seohaebada/webflux">https://github.com/seohaebada/webflux</a></em></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/reactive_streams/004_impl3_munity.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#reactive-streams-구현-라이브러리-3-munity">Reactive Streams 구현 라이브러리 (3) Munity</a>
+      <ul>
+        <li><a href="#mutiny">Mutiny</a></li>
+        <li><a href="#mutiny---multi">Mutiny - Multi</a></li>
+        <li><a href="#multi-예제">Multi 예제</a></li>
+        <li><a href="#mutiny---uni">Mutiny - Uni</a></li>
+        <li><a href="#uni-예제">Uni 예제</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

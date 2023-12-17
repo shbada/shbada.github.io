@@ -10,9 +10,9 @@
     <atom:link href="https://example.com/tags/rxjava/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.com/docs/reactive-streams/003_impl2_rxjava/</link>
+      <link>https://example.com/docs/reactive_streams/003_impl2_rxjava/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/reactive-streams/003_impl2_rxjava/</guid>
+      <guid>https://example.com/docs/reactive_streams/003_impl2_rxjava/</guid>
       <description>Reactive Streams 구현 라이브러리 (2) RxJava # RxJava # Netflix 사에서 개발 닷넷 프레임워크를 지원하는 Reactive Extensions를 포팅 Flowable, Observable, Single, Maybe, Completable, publisher 제공 RxJava - Flowable # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 Flux와 유사 Flowable 예제 # @Slf4j public class p199_FlowableExample { public static void main(String[] args) { log.info(&amp;#34;start main&amp;#34;); getItems() .subscribe(new p181_SimpleSubscriber&amp;lt;&amp;gt;(Integer.</description>
     </item>
   </channel>

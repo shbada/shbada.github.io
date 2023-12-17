@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cleanCode on TIL</title>
+    <link>https://example.com/tags/cleanCode/</link>
+    <description>Recent content in cleanCode on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/tags/cleanCode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/clean_code/001_argument/</link>
+      <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/clean_code/001_argument/</guid>
+      <description>[tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?
+class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, isForceSend: Boolean?, recipient: String, id: Long, mailDomainFilterService: MailDomainFilterService?, mailRetryService: MailRetryService?, title: String, body: String, param: Map&amp;lt;Any, Any&amp;gt;, reservedAt: Instant?, ) } 위 클래스를 다음과 같이 호출한다.</description>
+    </item>
+  </channel>
+</rss>

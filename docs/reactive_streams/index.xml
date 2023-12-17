@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TIL</title>
+    <link>https://example.com/docs/reactive_streams/</link>
+    <description>Recent content on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/docs/reactive_streams/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/reactive_streams/002_impl1_reactor/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/reactive_streams/002_impl1_reactor/</guid>
+      <description>Reactive Streams 구현 라이브러리 (1) Reactor # Project reactor # Pivotal 사에서 개발 Spring reactor에서 사용 Mono와 Flux publisher 제공 Project reactor - Flux # 0..n개의 item을 전달 에러가 발생하면 error signal 전달하고 종료 모든 item을 전달했다면 complete signal 전달 하고 종료 backPressure 지원 Flux 예제 # SimpleSubscriber
+FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConstructor public class p181_SimpleSubscriber&amp;lt;T&amp;gt; implements Subscriber&amp;lt;T&amp;gt; { private final Integer count; /** * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음 * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)} */ @Override public void onSubscribe(Subscription s) { log.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/reactive_streams/003_impl2_rxjava/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/reactive_streams/003_impl2_rxjava/</guid>
+      <description>Reactive Streams 구현 라이브러리 (2) RxJava # RxJava # Netflix 사에서 개발 닷넷 프레임워크를 지원하는 Reactive Extensions를 포팅 Flowable, Observable, Single, Maybe, Completable, publisher 제공 RxJava - Flowable # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 Flux와 유사 Flowable 예제 # @Slf4j public class p199_FlowableExample { public static void main(String[] args) { log.info(&amp;#34;start main&amp;#34;); getItems() .subscribe(new p181_SimpleSubscriber&amp;lt;&amp;gt;(Integer.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/reactive_streams/004_impl3_munity/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/reactive_streams/004_impl3_munity/</guid>
+      <description>Reactive Streams 구현 라이브러리 (3) Munity # Mutiny # Hibernate reactive에서 비동기 라이브러리로 제공 Multi, Uni publisher 제공 Mutiny - Multi # 0..n개의 item을 전달 에러가 발생하면 error signal 전달 하고 종료 모든 item을 전달했다면 complete signal 전달하고 종료 backPressure 지원 Reactor의 flux와 유사 Multi 예제 # @Slf4j public class p218_MultiExample { public static void main(String[] args) { getItems() .subscribe() // subscribe 동시에 넘길 수 없음, subscribe() 호출 후 아래 호출 필요 .</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/reactive_streams/001_reactive_streams_component/</link>
+      <pubDate>Sun, 11 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/reactive_streams/001_reactive_streams_component/</guid>
+      <description>리액티브 스트림즈란? # 리액티브한 코드 작성을 위한 구성을 도와주는 리액티브 라이브러리가 있다. 이 리액티브 라이브러리를 어떻게 구현해야할지 정의해놓은 별도의 표준 사양을 리액티브 스트림즈(Reactive Streams)라고 한다.
+리액티브 스트림즈는 &amp;lsquo;데이터 스트림을 Non-Blocking이면서 비동기적인 방식으로 처리하기 위한 리액티브 라이브러리 표준 사양&amp;rsquo;이라고 표현할 수 있다. 이를 구현한 구현체로는 RxJava, Reactor, Akka Streams, Java 9 Flow API 등이 있고, 그 중에 Spring framework와 가장 궁합이 잘 맞는 구현체는 Reactor이다.
+리액티브 구성요소 # 리액티브 스트림즈를 통해 구현해야 되는 API 컴포넌트에는 Publisher, Subscriber, Subscription, Processor 가 있다.</description>
+    </item>
+  </channel>
+</rss>
