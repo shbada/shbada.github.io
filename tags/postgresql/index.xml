@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgresql on TIL</title>
+    <link>https://example.com/tags/postgresql/</link>
+    <description>Recent content in postgresql on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 17 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/rdbms/001_basic_join/</link>
+      <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/rdbms/001_basic_join/</guid>
+      <description> 조인(Join) - 조인 기반 메커니즘 # 조인 # 2개 이상의 테이블을 서로 연결하여 데이터 추출 관계형 DB에서는 조인을 통해 서로 다른 테이블간의 정보를 원하는 대로 가져올 수 있음 중요한 부분 # 1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다. 조인 결과 : M 집합 실습코드 # https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/01_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql </description>
+    </item>
+  </channel>
+</rss>
