@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content=" 조인(Join) - 조인 기반 메커니즘 # 조인 # 2개 이상의 테이블을 서로 연결하여 데이터 추출 관계형 DB에서는 조인을 통해 서로 다른 테이블간의 정보를 원하는 대로 가져올 수 있음 중요한 부분 # 1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다. 조인 결과 : M 집합 실습코드 # https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/01_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql ">
+<meta name="description" content="조인(Join) - 조인 기반 메커니즘 # 조인 # 2개 이상의 테이블을 서로 연결하여 데이터 추출 관계형 DB에서는 조인을 통해 서로 다른 테이블간의 정보를 원하는 대로 가져올 수 있음 중요한 부분 # 1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다. 조인 결과 : M 집합 Left Outer Join # Right Outer Join은 사용하지 말자. -&gt; 테이블 위치를 바꾸면 Left Outer join처럼 사용 가능 Left Outer Join 또다른 표기 (&#43;) # SELECT * FROM TEST1 A, TEST2 B WHERE A.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content=" 조인(Join) - 조인 기반 메커니즘 # 조인 # 2개 이상의 테이블을 서로 연결하여 데이터 추출 관계형 DB에서는 조인을 통해 서로 다른 테이블간의 정보를 원하는 대로 가져올 수 있음 중요한 부분 # 1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다. 조인 결과 : M 집합 실습코드 # https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/01_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql " />
+<meta property="og:description" content="조인(Join) - 조인 기반 메커니즘 # 조인 # 2개 이상의 테이블을 서로 연결하여 데이터 추출 관계형 DB에서는 조인을 통해 서로 다른 테이블간의 정보를 원하는 대로 가져올 수 있음 중요한 부분 # 1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다. 조인 결과 : M 집합 Left Outer Join # Right Outer Join은 사용하지 말자. -&gt; 테이블 위치를 바꾸면 Left Outer join처럼 사용 가능 Left Outer Join 또다른 표기 (&#43;) # SELECT * FROM TEST1 A, TEST2 B WHERE A." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/rdbms/001_basic_join/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-17T00:00:00+00:00" />
@@ -18,7 +18,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff2ce7cd02686749ea8805f6af99048dcc8e791b77fd4a7401c1c1e945ed585b.js" integrity="sha256-/yznzQJoZ0nqiAX2r5kEjcyOeRt3/Up0AcHB6UXtWFs=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.43ab623f39ab614268f3844feaf4dbcb6eff51bde5908b0327ad36b594bf635e.js" integrity="sha256-Q6tiPzmrYUJo84RP6vTby27/Ub3lkIsDJ602tZS/Y14=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -1253,6 +1253,8 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#조인">조인</a></li>
         <li><a href="#중요한-부분">중요한 부분</a></li>
+        <li><a href="#left-outer-join">Left Outer Join</a></li>
+        <li><a href="#left-outer-join-또다른-표기-">Left Outer Join 또다른 표기 (+)</a></li>
         <li><a href="#실습코드">실습코드</a></li>
       </ul>
     </li>
@@ -1288,13 +1290,41 @@ https://github.com/alex-shpak/hugo-book
 <li>1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다.</li>
 <li>조인 결과 : M 집합</li>
 </ul>
-<h2 id="실습코드">
+<h2 id="left-outer-join">
+  Left Outer Join
+  <a class="anchor" href="#left-outer-join">#</a>
+</h2>
+<ul>
+<li>Right Outer Join은 사용하지 말자. -&gt; 테이블 위치를 바꾸면 Left Outer join처럼 사용 가능
+
+  <img src="/image/rdbms/001/img.png" alt="img.png" /></li>
+</ul>
+<h2 id="left-outer-join-또다른-표기-">
+  Left Outer Join 또다른 표기 (+)
+  <a class="anchor" href="#left-outer-join-%eb%98%90%eb%8b%a4%eb%a5%b8-%ed%91%9c%ea%b8%b0-">#</a>
+</h2>
+<pre tabindex="0"><code>SELECT *
+FROM TEST1 A, TEST2 B
+WHERE A.COL1 = B.COL1(+)
+
+--
+
+SELECT *
+FROM TEST1 A LEFT OUTER JOIN TEST2 B
+ON A.COL1 = B.COL1
+</code></pre><h2 id="실습코드">
   실습코드
   <a class="anchor" href="#%ec%8b%a4%ec%8a%b5%ec%bd%94%eb%93%9c">#</a>
 </h2>
 <ul>
 <li>
-  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/01_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql">https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/01_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql</a></li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/01_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql">01_조인실습.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/02_1_outer_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql">02_1_outer_조인실습.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/02_2_full_outer_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql">02_2_full_outer_조인실습.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/02_3_non_equi_%EC%A1%B0%EC%9D%B8_cross_%EC%A1%B0%EC%9D%B8%EC%8B%A4%EC%8A%B5.sql">02_3_non_equi_조인_cross_조인실습.sql</a></li>
 </ul>
 </article>
  
@@ -1354,6 +1384,8 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#조인">조인</a></li>
         <li><a href="#중요한-부분">중요한 부분</a></li>
+        <li><a href="#left-outer-join">Left Outer Join</a></li>
+        <li><a href="#left-outer-join-또다른-표기-">Left Outer Join 또다른 표기 (+)</a></li>
         <li><a href="#실습코드">실습코드</a></li>
       </ul>
     </li>
