@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.43ab623f39ab614268f3844feaf4dbcb6eff51bde5908b0327ad36b594bf635e.js" integrity="sha256-Q6tiPzmrYUJo84RP6vTby27/Ub3lkIsDJ602tZS/Y14=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.4409bf4fbf53de83982a2025a113472a0144244d43da34cf3a33d8dc7dc1cec7.js" integrity="sha256-RAm/T79T3oOYKiAloRNHKgFEJE1D2jTPOjPY3H3Bzsc=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/categories/2023-12-17/index.xml" title="TIL" />
@@ -911,6 +911,32 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/002_date_interval/" class="">002 Date Interval</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/003_groupby/" class="">003 Groupby</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -1255,7 +1281,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-17/">2023-12-17</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -1354,12 +1380,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/postgresql/">postgresql</a>
-          <span>1</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/rdbms/">rdbms</a>
-          <span>1</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
@@ -1549,6 +1575,72 @@ class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, 
     </p>
   </article>
   
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/rdbms/002_date_interval/">002 Date Interval</a>
+    </h2>
+    
+  <h5>December 17, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-17/">2023-12-17</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/rdbms/">rdbms</a>, 
+      <a href="/tags/postgresql/">postgresql</a>
+  </div>
+  
+
+
+
+
+    <p>Date, Timestamp, Interval 다루기 # Date 일자로서 년, 월, 일 정보를 가짐. YYYY-MM-DD Timestamp 일자를 시간 정보까지 같이 가짐. YYYY-MM-DD HH24:MI:SS Time 오직 시간 정보만 가짐. HH24:MI:SS Interval N days HH24:MI_SS pattern # hh24 하루중 시간(00-23) hh12 하루중 시간(01-12) mi 분(00-59) ss 초(00-59) yyyy 년도 mm 월(01-12) dd 일(월중 일자 01-31) month 월 이름 day 요일 이름 w 월의 주(1-5) ww 년의 주(1-52) d 요일. 일요일(1) ~ 토요일(7) am 또는 pm AM 또는 PM 표시 tz 시간대 interval 활용 # Date 타입에 숫자값을 더하거나/빼면 숫자값에 해당하는 일자를 더하거나/빼서 날짜 계산 곱셈/나눗셈은 불가능 -- DATE 타입에 곱하기나 나누기는 할 수 없음.
+        <a href="/docs/rdbms/002_date_interval/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/rdbms/003_groupby/">003 Groupby</a>
+    </h2>
+    
+  <h5>December 17, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-17/">2023-12-17</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/rdbms/">rdbms</a>, 
+      <a href="/tags/postgresql/">postgresql</a>
+  </div>
+  
+
+
+
+
+    <p>Group by 와 집계 함수(Aggregate Function) # Group by절 # Group by 절에 기술된 컬럼 값(또는 가공 컬럼값)으로 그룹화 한 뒤 집계(Aggregation) 함수와 함께 사용되어 그룹화된 집계 정보를 제공 Group by 절에 기술된 컬럼 값으로 반드시 1의 집합을 가지게 됨 Select 절에는 Group by 절에 기술된 컬럼(또는 가공 컬럼)과 집계 함수만 사용될 수 있음 Null을 계산하지 않음 case~when 사용한 pivoting # Group by 시 행 레벨로 만들어진 데이터를 열 레벨로 전환할 때 Aggregate와 case when을 결합하여 사용 -- DEPTNO로 GROUP BY하고 JOB으로 PIVOTING SELECT SUM(CASE WHEN JOB = &#39;SALESMAN&#39; THEN SAL END) AS SALES_SUM , SUM(CASE WHEN JOB = &#39;MANAGER&#39; THEN SAL END) AS MANAGER_SUM , SUM(CASE WHEN JOB = &#39;ANALYST&#39; THEN SAL END) AS ANALYST_SUM , SUM(CASE WHEN JOB = &#39;CLERK&#39; THEN SAL END) AS CLERK_SUM , SUM(CASE WHEN JOB = &#39;PRESIDENT&#39; THEN SAL END) AS PRESIDENT_SUM FROM HR.
+        <a href="/docs/rdbms/003_groupby/">...</a>
+      
+    </p>
+  </article>
+  
 
   
  
@@ -1594,7 +1686,7 @@ class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, 
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-17/">2023-12-17</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -1693,12 +1785,12 @@ class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, 
       
         <li class="flex justify-between">
           <a href="/tags/postgresql/">postgresql</a>
-          <span>1</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/rdbms/">rdbms</a>
-          <span>1</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">

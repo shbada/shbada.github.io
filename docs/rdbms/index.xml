@@ -14,5 +14,19 @@
       <guid>https://example.com/docs/rdbms/001_basic_join/</guid>
       <description>조인(Join) - 조인 기반 메커니즘 # 조인 # 2개 이상의 테이블을 서로 연결하여 데이터 추출 관계형 DB에서는 조인을 통해 서로 다른 테이블간의 정보를 원하는 대로 가져올 수 있음 중요한 부분 # 1:M 조인시, 결과 집합은 M 집합의 레벨을 그대로 유지한다. 조인 결과 : M 집합 Left Outer Join # Right Outer Join은 사용하지 말자. -&amp;gt; 테이블 위치를 바꾸면 Left Outer join처럼 사용 가능 Left Outer Join 또다른 표기 (+) # SELECT * FROM TEST1 A, TEST2 B WHERE A.</description>
     </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/rdbms/002_date_interval/</link>
+      <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/rdbms/002_date_interval/</guid>
+      <description>Date, Timestamp, Interval 다루기 # Date 일자로서 년, 월, 일 정보를 가짐. YYYY-MM-DD Timestamp 일자를 시간 정보까지 같이 가짐. YYYY-MM-DD HH24:MI:SS Time 오직 시간 정보만 가짐. HH24:MI:SS Interval N days HH24:MI_SS pattern # hh24 하루중 시간(00-23) hh12 하루중 시간(01-12) mi 분(00-59) ss 초(00-59) yyyy 년도 mm 월(01-12) dd 일(월중 일자 01-31) month 월 이름 day 요일 이름 w 월의 주(1-5) ww 년의 주(1-52) d 요일. 일요일(1) ~ 토요일(7) am 또는 pm AM 또는 PM 표시 tz 시간대 interval 활용 # Date 타입에 숫자값을 더하거나/빼면 숫자값에 해당하는 일자를 더하거나/빼서 날짜 계산 곱셈/나눗셈은 불가능 -- DATE 타입에 곱하기나 나누기는 할 수 없음.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/rdbms/003_groupby/</link>
+      <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/rdbms/003_groupby/</guid>
+      <description>Group by 와 집계 함수(Aggregate Function) # Group by절 # Group by 절에 기술된 컬럼 값(또는 가공 컬럼값)으로 그룹화 한 뒤 집계(Aggregation) 함수와 함께 사용되어 그룹화된 집계 정보를 제공 Group by 절에 기술된 컬럼 값으로 반드시 1의 집합을 가지게 됨 Select 절에는 Group by 절에 기술된 컬럼(또는 가공 컬럼)과 집계 함수만 사용될 수 있음 Null을 계산하지 않음 case~when 사용한 pivoting # Group by 시 행 레벨로 만들어진 데이터를 열 레벨로 전환할 때 Aggregate와 case when을 결합하여 사용 -- DEPTNO로 GROUP BY하고 JOB으로 PIVOTING SELECT SUM(CASE WHEN JOB = &amp;#39;SALESMAN&amp;#39; THEN SAL END) AS SALES_SUM , SUM(CASE WHEN JOB = &amp;#39;MANAGER&amp;#39; THEN SAL END) AS MANAGER_SUM , SUM(CASE WHEN JOB = &amp;#39;ANALYST&amp;#39; THEN SAL END) AS ANALYST_SUM , SUM(CASE WHEN JOB = &amp;#39;CLERK&amp;#39; THEN SAL END) AS CLERK_SUM , SUM(CASE WHEN JOB = &amp;#39;PRESIDENT&amp;#39; THEN SAL END) AS PRESIDENT_SUM FROM HR.</description>
+    </item>
   </channel>
 </rss>
