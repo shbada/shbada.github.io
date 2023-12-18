@@ -6,8 +6,15 @@
     <description>Recent content in rdbms on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 17 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 18 Dec 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/rdbms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/rdbms/004_window_function/</link>
+      <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/rdbms/004_window_function/</guid>
+      <description>Analytic SQL - 집계(Aggregate) Analytic과 Window 상세 # Aggregate Functions vs Window Functions # Aggregate Functions Group by는 원본 데이터 집합의 레벨을 변경하여 적용 Window Functions Analytic SQL은 원본 데이터 집합의 레벨을 그대로 유지하면서 적용 Window를 이용하여 Row 단위의 집합 연산 수행 가능 원본 데이터의 레벨을 그대로 유지하면서, 그룹핑 레벨에서 자유롭게 Window의 이동과 크기를 조절하면서 Analytic을 수행 Analytic SQL 적용 로직 # &amp;lt;Analytic function&amp;gt; (인자1, ...) OVER ( [Partition절] [Sorting절] [Window절] ) 자유로운 window 설정에 따른 analytic 구사가 가능하므로, SQL의 Analytic 함수를 window 함수로도 지칭한다.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/rdbms/001_basic_join/</link>
