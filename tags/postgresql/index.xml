@@ -17,6 +17,13 @@
     </item>
     <item>
       <title></title>
+      <link>https://example.com/docs/rdbms/005_subquery/</link>
+      <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/rdbms/005_subquery/</guid>
+      <description>섹션 8. 서브 쿼리(Sub-query) # 서브쿼리(Sub-query) # 서브쿼리는 하나의 쿼리 내에 또다른 쿼리가 포함되어있는 쿼리를 의미 서브 쿼리는 메인 쿼리(Main Query) 내에 포함되어있는 관계 Where절에 사용될 경우 복잡한 업무적인 조건을 직관적인 SQL로 표현하여 필터링하는데 주로 사용됨 서브쿼리 유형 # Where절에 사용되는 서브쿼리 -- 평균 급여 이상의 급여를 받는 직원 select * from hr.emp where sal &amp;gt;= (select avg(sal) from hr.emp); -- 가장 최근 급여 정보 select * from hr.emp_salary_hist a where todate = (select max(todate) from hr.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/rdbms/001_basic_join/</link>
       <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/rdbms/001_basic_join/</guid>

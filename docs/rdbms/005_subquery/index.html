@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="섹션 8. 서브 쿼리(Sub-query) # 서브쿼리(Sub-query) # 서브쿼리는 하나의 쿼리 내에 또다른 쿼리가 포함되어있는 쿼리를 의미 서브 쿼리는 메인 쿼리(Main Query) 내에 포함되어있는 관계 Where절에 사용될 경우 복잡한 업무적인 조건을 직관적인 SQL로 표현하여 필터링하는데 주로 사용됨 서브쿼리 유형 # Where절에 사용되는 서브쿼리 -- 평균 급여 이상의 급여를 받는 직원 select * from hr.emp where sal &gt;= (select avg(sal) from hr.emp); -- 가장 최근 급여 정보 select * from hr.emp_salary_hist a where todate = (select max(todate) from hr.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="섹션 8. 서브 쿼리(Sub-query) # 서브쿼리(Sub-query) # 서브쿼리는 하나의 쿼리 내에 또다른 쿼리가 포함되어있는 쿼리를 의미 서브 쿼리는 메인 쿼리(Main Query) 내에 포함되어있는 관계 Where절에 사용될 경우 복잡한 업무적인 조건을 직관적인 SQL로 표현하여 필터링하는데 주로 사용됨 서브쿼리 유형 # Where절에 사용되는 서브쿼리 -- 평균 급여 이상의 급여를 받는 직원 select * from hr.emp where sal &gt;= (select avg(sal) from hr.emp); -- 가장 최근 급여 정보 select * from hr.emp_salary_hist a where todate = (select max(todate) from hr." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/rdbms/005_subquery/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-18T00:00:00+00:00" />
+
+<title>005 Subquery | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.1f7220128040d58c1627b6bf42425b5928328a38ddfef3ffbd9bb98f8321b3f1.js" integrity="sha256-H3IgEoBA1YwWJ7a/QkJbWSgyijjd/vP/vZu5j4Mhs/E=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/002_batch_performance/" class="">002 Batch Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="toggle"  />
+    <label for="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="flex justify-between">
+      <a href="/docs/clean_code/" class="">Clean Code</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/clean_code/001_argument/" class="">001 Argument</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="toggle"  />
+    <label for="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="flex justify-between">
+      <a href="/docs/data_structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/001_facade_pattern/" class="">001 Facade Pattern</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/001_kafka_cdc/" class="">001 Kafka Cdc</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/003_circuit_breaker/" class="">003 Circuit Breaker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bbe16af0cda0a52165d4874f0cea4ee0" class="toggle"  />
+    <label for="section-bbe16af0cda0a52165d4874f0cea4ee0" class="flex justify-between">
+      <a href="/docs/operating_system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/operating_system/001_thread/" class="">001 Thread</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c1a35f6db1170c97addf30f5d9f50bc9" class="toggle" checked />
+    <label for="section-c1a35f6db1170c97addf30f5d9f50bc9" class="flex justify-between">
+      <a href="/docs/rdbms/" class="">Rdbms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/004_window_function/" class="">004 Window Function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/005_subquery/" class="active">005 Subquery</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/001_basic_join/" class="">001 Basic Join</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/002_date_interval/" class="">002 Date Interval</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/003_groupby/" class="">003 Groupby</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a396ef4e072acbb7275e447dad1284d6" class="toggle"  />
+    <label for="section-a396ef4e072acbb7275e447dad1284d6" class="flex justify-between">
+      <a href="/docs/reactive_streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>005 Subquery</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#섹션-8-서브-쿼리sub-query">섹션 8. 서브 쿼리(Sub-query)</a>
+      <ul>
+        <li><a href="#서브쿼리sub-query">서브쿼리(Sub-query)</a></li>
+        <li><a href="#서브쿼리-유형">서브쿼리 유형</a></li>
+        <li><a href="#서브쿼리-특징">서브쿼리 특징</a></li>
+        <li><a href="#서브쿼리-활용">서브쿼리 활용</a></li>
+        <li><a href="#exists-연산자">Exists 연산자</a></li>
+        <li><a href="#not-in-vs-not-exists">Not in vs Not Exists</a></li>
+        <li><a href="#null-조합">Null 조합</a></li>
+        <li><a href="#스칼라-서브쿼리">스칼라 서브쿼리</a></li>
+        <li><a href="#실습코드">실습코드</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="섹션-8-서브-쿼리sub-query">
+  섹션 8. 서브 쿼리(Sub-query)
+  <a class="anchor" href="#%ec%84%b9%ec%85%98-8-%ec%84%9c%eb%b8%8c-%ec%bf%bc%eb%a6%acsub-query">#</a>
+</h1>
+<h2 id="서브쿼리sub-query">
+  서브쿼리(Sub-query)
+  <a class="anchor" href="#%ec%84%9c%eb%b8%8c%ec%bf%bc%eb%a6%acsub-query">#</a>
+</h2>
+<ul>
+<li>서브쿼리는 하나의 쿼리 내에 또다른 쿼리가 포함되어있는 쿼리를 의미</li>
+<li>서브 쿼리는 메인 쿼리(Main Query) 내에 포함되어있는 관계</li>
+<li>Where절에 사용될 경우 복잡한 업무적인 조건을 직관적인 SQL로 표현하여 필터링하는데 주로 사용됨</li>
+</ul>
+<h2 id="서브쿼리-유형">
+  서브쿼리 유형
+  <a class="anchor" href="#%ec%84%9c%eb%b8%8c%ec%bf%bc%eb%a6%ac-%ec%9c%a0%ed%98%95">#</a>
+</h2>
+<ol>
+<li>Where절에 사용되는 서브쿼리</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 평균 급여 이상의 급여를 받는 직원
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> hr.emp <span style="color:#66d9ef">where</span> sal <span style="color:#f92672">&gt;=</span> (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">avg</span>(sal) <span style="color:#66d9ef">from</span> hr.emp);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 가장 최근 급여 정보
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> hr.emp_salary_hist a <span style="color:#66d9ef">where</span> todate <span style="color:#f92672">=</span> (<span style="color:#66d9ef">select</span> <span style="color:#66d9ef">max</span>(todate) <span style="color:#66d9ef">from</span> hr.emp_salary_hist x <span style="color:#66d9ef">where</span> a.empno <span style="color:#f92672">=</span> x.empno);
+</span></span></code></pre></div><ol start="2">
+<li>Select 절에 사용되는 서브쿼리 = 스칼라 서브쿼리</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> ename, deptno,
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">select</span> dname <span style="color:#66d9ef">from</span> hr.dept x <span style="color:#66d9ef">where</span> x.deptno<span style="color:#f92672">=</span>a.deptno) <span style="color:#66d9ef">as</span> dname
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span> hr.emp a;
+</span></span></code></pre></div><ol start="3">
+<li>From 절에 사용되는 서브쿼리 = 인라인 뷰</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">select</span> a.deptno, b.dname, a.sum_sal
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>(
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">select</span> deptno, <span style="color:#66d9ef">sum</span>(sal) <span style="color:#66d9ef">as</span> sum_sal
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">from</span> hr.emp
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">group</span> <span style="color:#66d9ef">by</span> deptno
+</span></span><span style="display:flex;"><span>) a
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">join</span> hr.dept b
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">on</span> a.deptno <span style="color:#f92672">=</span> b.deptno;
+</span></span></code></pre></div><h2 id="서브쿼리-특징">
+  서브쿼리 특징
+  <a class="anchor" href="#%ec%84%9c%eb%b8%8c%ec%bf%bc%eb%a6%ac-%ed%8a%b9%ec%a7%95">#</a>
+</h2>
+<ul>
+<li>서브쿼리는 메인 쿼리에 where 조건으로 값을 전달하거나 메인쿼리와 연결되어 메인 쿼리의 필터링 작업을 수행
+<ul>
+<li>서브쿼리 컬럼은 메인쿼리로 전달 불가능</li>
+<li>메인쿼리의 컬럼은 서브쿼리에서 사용 가능</li>
+</ul>
+</li>
+<li>서브쿼리와 메인쿼리로 연결시 메인쿼리의 집합 레벨이 바뀌지않음
+<ul>
+<li>메인쿼리와 서브쿼리 연결시 서브쿼리는 연결 컬럼으로 무조건 유니크한 집합, 즉 1의 집합이 되므로 메인쿼리의 집합 레벨을 변경하지않음</li>
+</ul>
+</li>
+<li>Order와 Order_Items는 order_id를 기준으로 하면 1:M 연결관계를 가진다.
+<ul>
+<li>하지만 서브쿼리는 메인 쿼리 집합을 변화시키지 않으므로 결과 집합은 orders 집합 레벨이다.</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>select * from nw.orders a where order_id in (select order_id from nw.order_items where amount &gt; 100);
+</code></pre><h2 id="서브쿼리-활용">
+  서브쿼리 활용
+  <a class="anchor" href="#%ec%84%9c%eb%b8%8c%ec%bf%bc%eb%a6%ac-%ed%99%9c%ec%9a%a9">#</a>
+</h2>
+<ul>
+<li>비상관(non-correlated) 서브쿼리
+<ul>
+<li>서브쿼리 자체적으로 메인쿼리에 값을 전달</li>
+</ul>
+</li>
+<li>상관(correlated) 서브쿼리
+<ul>
+<li>서브쿼리 내에 메인쿼리의 연결 컬럼을 가지고 있음
+
+  <img src="/image/rdbms/005/img.png" alt="img.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="exists-연산자">
+  Exists 연산자
+  <a class="anchor" href="#exists-%ec%97%b0%ec%82%b0%ec%9e%90">#</a>
+</h2>
+<ul>
+<li>메인쿼리의 레코드 별로 서브쿼리의 결과가 한건이라도 존재하면 true가 되어 메인쿼리의 결과를 반환한다.</li>
+<li>문맥적으로 메인쿼리의 레코드가 서브쿼리에서 존재하는지를 체크하기 위해 활용</li>
+</ul>
+<h2 id="not-in-vs-not-exists">
+  Not in vs Not Exists
+  <a class="anchor" href="#not-in-vs-not-exists">#</a>
+</h2>
+<ul>
+<li>IN 연산자
+<ul>
+<li>여러개의 값이 입력될 경우 개별 값의 = 조건들의 OR 연산이 적용된다.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> HR.EMP <span style="color:#66d9ef">WHERE</span> DEPTNO <span style="color:#66d9ef">IN</span> (<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#66d9ef">NULL</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> HR.EMP <span style="color:#66d9ef">WHERE</span> DEPTNO <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span> <span style="color:#66d9ef">OR</span> DEPTNO<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span> <span style="color:#66d9ef">OR</span> DEPTNO <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>;
+</span></span></code></pre></div><ul>
+<li>
+<p>NOT IN 연산자</p>
+<ul>
+<li>여러개의 개별 = 조건들이 NOT(조건=) AND NOT(조건=)로 변환되어 Null 적용시 직관가 다른 결과가 발생</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> HR.EMP <span style="color:#66d9ef">WHERE</span> DEPTNO <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">IN</span> (<span style="color:#ae81ff">20</span>, <span style="color:#ae81ff">30</span>, <span style="color:#66d9ef">NULL</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> HR.EMP <span style="color:#66d9ef">WHERE</span> DEPTNO <span style="color:#f92672">!=</span> <span style="color:#ae81ff">20</span> <span style="color:#66d9ef">AND</span> DEPTNO <span style="color:#f92672">!=</span> <span style="color:#ae81ff">30</span> <span style="color:#66d9ef">AND</span> DEPTNO <span style="color:#f92672">!=</span> <span style="color:#66d9ef">NULL</span>;
+</span></span></code></pre></div><ul>
+<li><code>AND DEPTNO != NULL;</code> 조건 때문에 결과가 없다. (자체로 NULL이다.)</li>
+<li>IS NOT NULL 이랑은 다름</li>
+<li>여러조건 결합시, <code>True and Null</code> 은 Null</li>
+<li>여러조건 결합시, <code>True or Null</code>은 True</li>
+</ul>
+</li>
+<li>
+<p>NOT EXISTS 연산자</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> A.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> NW.REGION A
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> (<span style="color:#66d9ef">SELECT</span> SHIP_REGION <span style="color:#66d9ef">FROM</span> NW.ORDERS X <span style="color:#66d9ef">WHERE</span> X.SHIP_REGION <span style="color:#f92672">=</span> A.REGION_NAME <span style="color:#75715e">--AND A.REGION_NAME IS NOT NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>);
+</span></span></code></pre></div><ul>
+<li>서브쿼리 반환값이 NULL이므로(반환값이 없다) NOT EXISTS 문은 true가 된다.</li>
+</ul>
+</li>
+<li>
+<p>NOT EXISTS의 경우 NULL 값을 제외하려면 서브쿼리가 아닌 메인쿼리 영역에서 제외해야한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>틀린 예제</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> A.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> NW.REGION A
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> (<span style="color:#66d9ef">SELECT</span> SHIP_REGION <span style="color:#66d9ef">FROM</span> NW.ORDERS X <span style="color:#66d9ef">WHERE</span> X.SHIP_REGION <span style="color:#f92672">=</span> A.REGION_NAME <span style="color:#66d9ef">AND</span> A.REGION_NAME <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span>                 );
+</span></span></code></pre></div><blockquote>
+<p>올바른 예제</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> A.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> NW.REGION A
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> (<span style="color:#66d9ef">SELECT</span> SHIP_REGION <span style="color:#66d9ef">FROM</span> NW.ORDERS X <span style="color:#66d9ef">WHERE</span> X.SHIP_REGION <span style="color:#f92672">=</span> A.REGION_NAME
+</span></span><span style="display:flex;"><span>                 )
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">AND</span> A.REGION_NAME <span style="color:#66d9ef">IS</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>;
+</span></span></code></pre></div><h2 id="null-조합">
+  Null 조합
+  <a class="anchor" href="#null-%ec%a1%b0%ed%95%a9">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- TRUE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- FALSE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">AND</span> <span style="color:#66d9ef">NULL</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">AND</span> (<span style="color:#66d9ef">NULL</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- TRUE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">OR</span> <span style="color:#66d9ef">NULL</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- FALSE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">NOT</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>;
+</span></span></code></pre></div><h2 id="스칼라-서브쿼리">
+  스칼라 서브쿼리
+  <a class="anchor" href="#%ec%8a%a4%ec%b9%bc%eb%9d%bc-%ec%84%9c%eb%b8%8c%ec%bf%bc%eb%a6%ac">#</a>
+</h2>
+<ul>
+<li>Select 절에 사용할 수 있는 서브쿼리로 상관 서브쿼리와 유사하게 동작</li>
+<li>단 한 개의 로우, 단 한 개의 컬럼값만 반환할 수 있음.</li>
+<li>조인과 유사하게 from절의 집합과 연결되어 원하는 결과를 추출할 수 있으며, from절의 집합 레벨을 변화 시키지 않음.</li>
+<li>From 절의 집합에서 한 건씩 스칼라 서브쿼리의 연결되어 값을 반환하므로 from절 집합이 커질 경우 수행 속도가 저하됨</li>
+<li>스칼라 서브쿼리는 Left Outer Join으로 대체 될 수 있음</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> A.<span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>	(<span style="color:#66d9ef">SELECT</span> DNAME <span style="color:#66d9ef">FROM</span> HR.DEPT X <span style="color:#66d9ef">WHERE</span> X.DEPTNO<span style="color:#f92672">=</span>A.DEPTNO) <span style="color:#66d9ef">AS</span> DNAME
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> HR.EMP A;
+</span></span></code></pre></div><h2 id="실습코드">
+  실습코드
+  <a class="anchor" href="#%ec%8b%a4%ec%8a%b5%ec%bd%94%eb%93%9c">#</a>
+</h2>
+<ul>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_1_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC_%EC%9C%A0%ED%98%95.sql">07_1_서브쿼리_유형.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_2_where%EC%A0%88_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC.sql">07_2_where절_서브쿼리.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_2_where%EC%A0%88_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC.sql">07_3_non-correlated_서브쿼리.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_4_correlated_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC.sql">07_4_correlated_서브쿼리.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_5_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC_%EC%8B%A4%EC%8A%B5.sql">07_5_서브쿼리_실습.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_6_not_in_not_exists_%EC%B0%A8%EC%9D%B4.sql">07_6_not_in_not_exists_차이.sql</a></li>
+<li>
+  <a href="https://github.com/seohaebada/inflearn-sql-fundamentals/blob/main/04_%EB%82%B4%EA%B0%80%EC%A0%95%EB%A6%AC%ED%95%9C_%EC%BD%94%EB%93%9C/07_7_%EC%8A%A4%EC%B9%BC%EB%9D%BC_%EC%84%9C%EB%B8%8C%EC%BF%BC%EB%A6%AC.sql">07_7_스칼라_서브쿼리.sql</a></li>
+</ul>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/rdbms/005_subquery.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#섹션-8-서브-쿼리sub-query">섹션 8. 서브 쿼리(Sub-query)</a>
+      <ul>
+        <li><a href="#서브쿼리sub-query">서브쿼리(Sub-query)</a></li>
+        <li><a href="#서브쿼리-유형">서브쿼리 유형</a></li>
+        <li><a href="#서브쿼리-특징">서브쿼리 특징</a></li>
+        <li><a href="#서브쿼리-활용">서브쿼리 활용</a></li>
+        <li><a href="#exists-연산자">Exists 연산자</a></li>
+        <li><a href="#not-in-vs-not-exists">Not in vs Not Exists</a></li>
+        <li><a href="#null-조합">Null 조합</a></li>
+        <li><a href="#스칼라-서브쿼리">스칼라 서브쿼리</a></li>
+        <li><a href="#실습코드">실습코드</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
