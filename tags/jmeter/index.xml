@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jmeter on TIL</title>
+    <link>https://example.com/tags/jmeter/</link>
+    <description>Recent content in jmeter on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 19 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/tags/jmeter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/etc/001_jmeter/</link>
+      <pubDate>Tue, 19 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/etc/001_jmeter/</guid>
+      <description> 설치 # Jmeter 설치 터미널에서 수행 brew install jmeter jmeter 실행 터미널에서 수행 open /opt/homebrew/bin/Jmeter 사용방법 # Number Of Thread (users) : 몇 개의 쓰레드(유저 수)로 테스트할 지 Ramp-up period (seconds) : {Number of Thread} 만큼의 쓰레드를 몇초에 걸쳐서 만들 지 Loop Count : 요청을 몇번을 반복할 지 (설정된 값에 따라 Number of Threads * Ramp-up period 만큼 요청을 다시 보낸다.) References https://jaeyeong951.medium.com/kotlin-lambda-with-receiver-5c2cccd8265a https://0soo.tistory.com/220 </description>
+    </item>
+  </channel>
+</rss>
