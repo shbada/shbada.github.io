@@ -10,9 +10,9 @@
     <atom:link href="https://example.com/tags/redis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.com/docs/redis/007_redis-Cluster-Migration/</link>
+      <link>https://example.com/docs/redis/007_redis_cluster_migration/</link>
       <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/redis/007_redis-Cluster-Migration/</guid>
+      <guid>https://example.com/docs/redis/007_redis_cluster_migration/</guid>
       <description>[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.
 Master/Slave 구조와 Cluster 구조 # Master/Slave 구조
 Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조 어떤 key가 들어오든 간에 하나의 master에서 처리를 진행 Cluster 구조

@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.
+Master/Slave 구조와 Cluster 구조 # Master/Slave 구조
+Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조 어떤 key가 들어오든 간에 하나의 master에서 처리를 진행 Cluster 구조
+여러대의 Master를 두어 가용성을 높인 구조 하나의 Master가 fail되면 짝을 이루고있던 Slave가 Master로 승격되어 가용성을 보장하는 구조 일반적으로 Cluster 구조에서는 3개의 node를 구성해서 사용 (경우에 따라 node의 개수 변경 가능) key를 hash한 값에 따라 들어가는 master node가 달라진다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="thread" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://example.com/tags/thread/" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.
+Master/Slave 구조와 Cluster 구조 # Master/Slave 구조
+Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조 어떤 key가 들어오든 간에 하나의 master에서 처리를 진행 Cluster 구조
+여러대의 Master를 두어 가용성을 높인 구조 하나의 Master가 fail되면 짝을 이루고있던 Slave가 Master로 승격되어 가용성을 보장하는 구조 일반적으로 Cluster 구조에서는 3개의 node를 구성해서 사용 (경우에 따라 node의 개수 변경 가능) key를 hash한 값에 따라 들어가는 master node가 달라진다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/redis/007_redis_cluster_migration/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2023-12-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-21T00:00:00+00:00" />
 
-<title>thread | TIL</title>
+<title>007 Redis Cluster Migration | TIL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
@@ -19,7 +27,6 @@
   <script defer src="/en.search.min.66cb7c61e9ea8df3f86a207b23022fc7dfb8ef0556e9edee9adb2c55e62dd729.js" integrity="sha256-Zst8YenqjfP4aiB7IwIvx9&#43;47wVW6e3umtssVeYt1yk=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="https://example.com/tags/thread/index.xml" title="TIL" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -1061,7 +1068,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle" checked />
     <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
       <a href="/docs/redis/" class="">Redis</a>
     </label>
@@ -1077,7 +1084,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/redis/007_redis_cluster_migration/" class="">007 Redis Cluster Migration</a>
+    <a href="/docs/redis/007_redis_cluster_migration/" class="active">007 Redis Cluster Migration</a>
   
 
         </li>
@@ -1310,7 +1317,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>thread</strong>
+  <strong>007 Redis Cluster Migration</strong>
 
   <label for="toc-control">
     
@@ -1323,259 +1330,21 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#tech-blog-읽기-초보-개발자를-위한-redis-cluster-migration-가이드라인">[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인</a>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-21/">2023-12-21</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-19/">2023-12-19</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-18/">2023-12-18</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-17/">2023-12-17</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-16/">2023-12-16</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-15/">2023-12-15</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-14/">2023-12-14</a>
-          <span>6</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-13/">2023-12-13</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-11/">2023-12-11</a>
-          <span>6</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-10/">2023-12-10</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-09/">2023-12-09</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-08/">2023-12-08</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-07/">2023-12-07</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-05/">2023-12-05</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-04/">2023-12-04</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-02/">2023-12-02</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-01/">2023-12-01</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-11-26/">2023-11-26</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-11-22/">2023-11-22</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-06-11/">2023-06-11</a>
-          <span>1</span>
-        </li>
-      
+        <li><a href="#요청상황">요청상황</a></li>
+        <li><a href="#masterslave-구조와-cluster-구조">Master/Slave 구조와 Cluster 구조</a></li>
+        <li><a href="#동시에-여러-key에-접근하지-않도록-하기">동시에 여러 key에 접근하지 않도록 하기</a></li>
+        <li><a href="#트랜잭션-전면-재검토">트랜잭션 전면 재검토</a></li>
+        <li><a href="#하나의-node에-몰아넣는-방법---hash-tags">하나의 node에 몰아넣는 방법 - hash tags</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/cluster/">cluster</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/redis/">redis</a>
-          <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/jmeter/">jmeter</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/postgresql/">postgresql</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/rdbms/">rdbms</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/cleanCode/">cleanCode</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/batch/">batch</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/circit-breaker/">circit breaker</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/msa/">msa</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/operatingSystem/">operatingSystem</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactive/">reactive</a>
-          <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/thread/">thread</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/webflux/">webflux</a>
-          <span>19</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/designPattern/">designPattern</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/java/">java</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/cdc/">cdc</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/mongodb/">mongodb</a>
-          <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/mysql/">mysql</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/r2dbc/">r2dbc</a>
-          <span>8</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kotlin/">kotlin</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/munity/">munity</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactive-streams/">reactive streams</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactor/">reactor</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/rxjava/">rxjava</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/Functional-Programming/">Functional Programming</a>
-          <span>2</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
 
   </aside>
@@ -1585,42 +1354,126 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/operating_system/001_thread/">001 Thread</a>
-    </h2>
-    
-  <h5>December 15, 2023</h5>
+  <article class="markdown"><h1 id="tech-blog-읽기-초보-개발자를-위한-redis-cluster-migration-가이드라인">
+  [tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인
+  <a class="anchor" href="#tech-blog-%ec%9d%bd%ea%b8%b0-%ec%b4%88%eb%b3%b4-%ea%b0%9c%eb%b0%9c%ec%9e%90%eb%a5%bc-%ec%9c%84%ed%95%9c-redis-cluster-migration-%ea%b0%80%ec%9d%b4%eb%93%9c%eb%9d%bc%ec%9d%b8">#</a>
+</h1>
+<h2 id="요청상황">
+  요청상황
+  <a class="anchor" href="#%ec%9a%94%ec%b2%ad%ec%83%81%ed%99%a9">#</a>
+</h2>
+<p>Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다.
+즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.</p>
+<h2 id="masterslave-구조와-cluster-구조">
+  Master/Slave 구조와 Cluster 구조
+  <a class="anchor" href="#masterslave-%ea%b5%ac%ec%a1%b0%ec%99%80-cluster-%ea%b5%ac%ec%a1%b0">#</a>
+</h2>
+<ul>
+<li>
+<p>Master/Slave 구조</p>
+<ul>
+<li>Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조</li>
+<li>어떤 key가 들어오든 간에 하나의 master에서 처리를 진행
+
+  <img src="/image/redis/007/img.png" alt="img.png" /></li>
+</ul>
+</li>
+<li>
+<p>Cluster 구조</p>
+<ul>
+<li>여러대의 Master를 두어 가용성을 높인 구조</li>
+<li>하나의 Master가 fail되면 짝을 이루고있던 Slave가 Master로 승격되어 가용성을 보장하는 구조</li>
+<li>일반적으로 Cluster 구조에서는 3개의 node를 구성해서 사용 (경우에 따라 node의 개수 변경 가능)</li>
+<li>key를 hash한 값에 따라 들어가는 master node가 달라진다.
+
+  <img src="/image/redis/007/img_1.png" alt="img_1.png" /></li>
+</ul>
+</li>
+</ul>
+<h2 id="동시에-여러-key에-접근하지-않도록-하기">
+  동시에 여러 key에 접근하지 않도록 하기
+  <a class="anchor" href="#%eb%8f%99%ec%8b%9c%ec%97%90-%ec%97%ac%eb%9f%ac-key%ec%97%90-%ec%a0%91%ea%b7%bc%ed%95%98%ec%a7%80-%ec%95%8a%eb%8f%84%eb%a1%9d-%ed%95%98%ea%b8%b0">#</a>
+</h2>
+<blockquote>
+<p>Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황</p>
+</blockquote>
+<p>Cluster 구조에서는 key가 한 node에 있지 않고 여러 node에 분산되어 있는데, 그렇게 되면 동시에 여러 key에 접근하는 것이 불가능하다.
+여러 key에 접근한다는 의미는 Redis 연산을 수행할 때 인자로 여러 개의 key를 넘기는 상황을 의미한다. (명령어 mget, mset 등)</p>
+<pre tabindex="0"><code># redis의 현재 상황
+# {key: key1, value: &#34;first&#34;}
+# {key: key2, value: &#34;second&#34;}
+redis-cli &gt; SET key1 &#34;first&#34;
+redis-cli &gt; SET key2 &#34;second&#34;
+
+# MGET으로 2개의 key에 대한 값을 동시에 가져옴
+redis-cli &gt; MGET key1 key2
+1) &#34;first&#34;
+2) &#34;second&#34;
+</code></pre><p>mget의 파라미터로 2개의 key를 넘겨주고 있는데, 코드에서 이러한 부분이 보이면 수정을 진행해야한다.</p>
+<p>lettuce.io 에서는 Redis 연산자명 != 메서드명이다. 아래 코드를 보면 multiGet=mget 임을 알 수 있다.</p>
+<pre tabindex="0"><code>// redis 연결
+RedisTemplate&lt;String, Integer&gt; redisTemplate = new RedisTemplate&lt;&gt;();
+redisTemplate.setConnectionFactory(redisConnectionFactory);
+
+// keys : key들이 들어있는 ArrayList
+redisTemplate.opsForValue().multiGet(keys);
+</code></pre><blockquote>
+<p>코드를 바꾸는 간단한 방법
+for(반복문)을 돌면서 하나의 key에 대한 연산을 개별적으로 진행한다.</p>
+</blockquote>
+<pre tabindex="0"><code>// redis 연결 부분 생략
+
+// keys : key들이 들어있는 ArrayList
+for(var key : keys) {
+    redisTemplate.opsForValue().get(key);  
+}
+</code></pre><blockquote>
+<p>delete의 경우도 봐야함</p>
+</blockquote>
+<pre tabindex="0"><code>var keys = new ArrayList&lt;String&gt;(); // 생성 후 element를 넣었다고 가정
+var key = &#34;key&#34;;
+
+redisTemplate.delete(key);   // cluster 구조에서 문제 없음 -&gt; 변경대상 아님
+redisTemplate.delete(keys);  // cluster 구조에서 문제 있음 -&gt; 변경대상
+</code></pre><h2 id="트랜잭션-전면-재검토">
+  트랜잭션 전면 재검토
+  <a class="anchor" href="#%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98-%ec%a0%84%eb%a9%b4-%ec%9e%ac%ea%b2%80%ed%86%a0">#</a>
+</h2>
+<p>동시에 여러 key에 접근할 수 없게 만들었던 원흉인 Cluster의 key에 따른 node 분배 때문에 &lsquo;트랜잭션&rsquo;을 신경써야한다.
+트랜잭션은 같은 node 안에서만 실행할 수 있기에, key의 hash값에 따라 들어가는 node가 달라지는 Cluster 구조에서는 트랜잭션을 적용하는 것이 불가능하다.
+Redis는 트랜잭션을 할 수 있도록 나름의 방법인 hash tag를 제공하고있다.</p>
+<h2 id="하나의-node에-몰아넣는-방법---hash-tags">
+  하나의 node에 몰아넣는 방법 - hash tags
+  <a class="anchor" href="#%ed%95%98%eb%82%98%ec%9d%98-node%ec%97%90-%eb%aa%b0%ec%95%84%eb%84%a3%eb%8a%94-%eb%b0%a9%eb%b2%95---hash-tags">#</a>
+</h2>
+<p>Redis의 key를 중괄호로 묶으면, 중괄호 내의 key를 hash한 결과값을 바탕으로 node에 할당한다.</p>
+<pre tabindex="0"><code>key:{group}:test
+key:group:test
+key:{group}:hello
+</code></pre><ul>
+<li>hash tag : 여기서 group이라는 문자열이 중괄호로 묶여 있는 것
+<ul>
+<li>hash tag가 없는 key는 key 전체를 hash하는 반면, hash tag를 포함한 key는 hash tag 내부에 있는 문자열에만 hash를 진행한다.</li>
+<li>따라서 같은 hash tag를 가진 다른 key도 같은 node에 들어가는 것을 보장할 수 있다.
+
+  <img src="/image/redis/007/img_2.png" alt="img_2.png" /></li>
+</ul>
+</li>
+</ul>
+<hr>
 
 
 
-  
-  <div>
-    
-      <a href="/categories/2023-12-15/">2023-12-15</a>
-  </div>
-  
 
-  
-  <div>
-    
-      <a href="/tags/operatingSystem/">operatingSystem</a>, 
-      <a href="/tags/thread/">thread</a>
-  </div>
-  
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><ol>
+<li>
+  <a href="https://dev.gmarket.com/71">https://dev.gmarket.com/71</a></li>
+</ol>
+</div></div>
 
-
-
-
-    <p>스레드 종류 - 하드웨어 스레드, OS 스레드, 네이티브 스레드, 커널 스레드, 유저 스레드, 그린 스레드 # 우리가 작성한 프로그램의 동작방식 # 하드웨어 OS Kernel User Program : 운영체제를 통해 하드웨어를 사용 Hardware thread # 코어(core)의 고민 : 메모리에서 데이터를 기다리는 시간이 꽤 오래 걸린다. 코어에서 프로그램이 실행될때 각종 연산 작업이 있을테고, 이를 위해 메모리에 접근하는 작업들이 있다. 이 코어에서 실행되는 연산 작업에 비해 메모리에서 데이터를 기다리는 시간이 더 오래 걸린다.
-        <a href="/docs/operating_system/001_thread/">...</a>
-      
-    </p>
-  </article>
-  
-
-  
+</article>
  
       
 
@@ -1630,6 +1483,13 @@ https://github.com/alex-shpak/hugo-book
 
 
 
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/redis/007_redis_cluster_migration.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
 
 
 </div>
@@ -1645,6 +1505,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -1654,259 +1518,21 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#tech-blog-읽기-초보-개발자를-위한-redis-cluster-migration-가이드라인">[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인</a>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-21/">2023-12-21</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-19/">2023-12-19</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-18/">2023-12-18</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-17/">2023-12-17</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-16/">2023-12-16</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-15/">2023-12-15</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-14/">2023-12-14</a>
-          <span>6</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-13/">2023-12-13</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-11/">2023-12-11</a>
-          <span>6</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-10/">2023-12-10</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-09/">2023-12-09</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-08/">2023-12-08</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-07/">2023-12-07</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-05/">2023-12-05</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-04/">2023-12-04</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-02/">2023-12-02</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-12-01/">2023-12-01</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-11-26/">2023-11-26</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-11-22/">2023-11-22</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2023-06-11/">2023-06-11</a>
-          <span>1</span>
-        </li>
-      
+        <li><a href="#요청상황">요청상황</a></li>
+        <li><a href="#masterslave-구조와-cluster-구조">Master/Slave 구조와 Cluster 구조</a></li>
+        <li><a href="#동시에-여러-key에-접근하지-않도록-하기">동시에 여러 key에 접근하지 않도록 하기</a></li>
+        <li><a href="#트랜잭션-전면-재검토">트랜잭션 전면 재검토</a></li>
+        <li><a href="#하나의-node에-몰아넣는-방법---hash-tags">하나의 node에 몰아넣는 방법 - hash tags</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-        <li class="flex justify-between">
-          <a href="/tags/cluster/">cluster</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/redis/">redis</a>
-          <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/jmeter/">jmeter</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/postgresql/">postgresql</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/rdbms/">rdbms</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/cleanCode/">cleanCode</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/batch/">batch</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/circit-breaker/">circit breaker</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/msa/">msa</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/operatingSystem/">operatingSystem</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactive/">reactive</a>
-          <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/thread/">thread</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/webflux/">webflux</a>
-          <span>19</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/designPattern/">designPattern</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/java/">java</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/cdc/">cdc</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/mongodb/">mongodb</a>
-          <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/mysql/">mysql</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/r2dbc/">r2dbc</a>
-          <span>8</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kotlin/">kotlin</a>
-          <span>5</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/munity/">munity</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactive-streams/">reactive streams</a>
-          <span>4</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/reactor/">reactor</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/rxjava/">rxjava</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/Functional-Programming/">Functional Programming</a>
-          <span>2</span>
-        </li>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
  
       </div>
