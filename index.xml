@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/redis/008_spring_sesion_redis/</link>
+      <pubDate>Mon, 25 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/redis/008_spring_sesion_redis/</guid>
+      <description>[tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.&#xA;도입 배경 # 기존 Aerospike -&amp;gt; Redis로의 전환을 결정하게 되었다. 전환을 통해 바라는 점&#xA;Spring Session의 도입 가능 Spring Session은 Redis 이외에도 다양한 세션 저장소를 지원하여 세션 정보를 유연하게 관리할 수 있다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/parallel_programming/001_process_thread/</link>
       <pubDate>Fri, 22 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/001_process_thread/</guid>
