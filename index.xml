@@ -12,28 +12,37 @@
       <link>https://example.com/docs/redis/008_spring_session_redis/</link>
       <pubDate>Mon, 25 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/redis/008_spring_session_redis/</guid>
-      <description>[tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.&#xA;도입 배경 # 기존 Aerospike -&amp;gt; Redis로의 전환을 결정하게 되었다. 전환을 통해 바라는 점&#xA;Spring Session의 도입 가능 Spring Session은 Redis 이외에도 다양한 세션 저장소를 지원하여 세션 정보를 유연하게 관리할 수 있다.</description>
+      <description>tech blog 글 읽고 정리하기 # 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.
+도입 배경 # 기존 Aerospike -&amp;gt; Redis로의 전환을 결정하게 되었다. 전환을 통해 바라는 점
+Spring Session의 도입 가능 Spring Session은 Redis 이외에도 다양한 세션 저장소를 지원하여 세션 정보를 유연하게 관리할 수 있다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/001_process_thread/</link>
       <pubDate>Fri, 22 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/001_process_thread/</guid>
-      <description>강의 메모 - Process &amp;amp; Thread # Process # File down -&amp;gt; .exe 파일 실행 -&amp;gt; 설치된 상태 : 프로그램 (!= 프로세스) 프로세스는 프로그램의 실제 실행. =&amp;gt; 프로그램 데이터들이 메모리에 올라와 CPU를 할당받고 명령을 수행하고있는 상태&#xA;각각의 프로세스는 RAM(메모리)의 각각의 영역을 할당받음&#xA;4GB 정도 할당 받는다고 해보자.&#xA;1GB 정도는 운영체제를 위한 커널(Kernel) 서비스를 위해 차지한다. 나머지 3GB가 Stack, heap, data, code 등 영역을 차지한다. 프로세스는 자식 프로세스를 가질 수 있다.</description>
+      <description>강의 메모 - Process &amp;amp; Thread # Process # File down -&amp;gt; .exe 파일 실행 -&amp;gt; 설치된 상태 : 프로그램 (!= 프로세스) 프로세스는 프로그램의 실제 실행. =&amp;gt; 프로그램 데이터들이 메모리에 올라와 CPU를 할당받고 명령을 수행하고있는 상태
+각각의 프로세스는 RAM(메모리)의 각각의 영역을 할당받음
+4GB 정도 할당 받는다고 해보자.
+1GB 정도는 운영체제를 위한 커널(Kernel) 서비스를 위해 차지한다. 나머지 3GB가 Stack, heap, data, code 등 영역을 차지한다. 프로세스는 자식 프로세스를 가질 수 있다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/002_parallel_concurrent/</link>
       <pubDate>Fri, 22 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/002_parallel_concurrent/</guid>
-      <description>강의 메모 - Parallel &amp;amp; Concurrent # 동시성 # 특정한 순서 없이 겹치는 기간에 시작, 실행 및 온료되는 여러 작업에 관한것 ex) 사람이 있다. 작업1, 작업2가 있다. 이 사람은 작업1, 작업2를 모두 해야한다. 작업1을 하고 작업2를 하는데, 시간적으로 동시에하는건 아니고 계속 번갈아가면서 한다. 이게 짧은 찰나로 번갈아가면서 하기 때문에 동시에 하는것처럼 보인다. (순차적이지 않다. 순서가 없다.) (시간적인 동시성이 아님)&#xA;작업의 갯수 &amp;gt; CPU 갯수 Thread1, Thread2가 번갈아가면서 Task를 수행 빠른게 목적이 아닌, CPU의 효율적인 사용이 목적이다.</description>
+      <description>강의 메모 - Parallel &amp;amp; Concurrent # 동시성 # 특정한 순서 없이 겹치는 기간에 시작, 실행 및 온료되는 여러 작업에 관한것 ex) 사람이 있다. 작업1, 작업2가 있다. 이 사람은 작업1, 작업2를 모두 해야한다. 작업1을 하고 작업2를 하는데, 시간적으로 동시에하는건 아니고 계속 번갈아가면서 한다. 이게 짧은 찰나로 번갈아가면서 하기 때문에 동시에 하는것처럼 보인다. (순차적이지 않다. 순서가 없다.) (시간적인 동시성이 아님)
+작업의 갯수 &amp;gt; CPU 갯수 Thread1, Thread2가 번갈아가면서 Task를 수행 빠른게 목적이 아닌, CPU의 효율적인 사용이 목적이다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/redis/007_redis_cluster_migration/</link>
       <pubDate>Thu, 21 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/redis/007_redis_cluster_migration/</guid>
-      <description>[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.&#xA;Master/Slave 구조와 Cluster 구조 # Master/Slave 구조&#xA;Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조 어떤 key가 들어오든 간에 하나의 master에서 처리를 진행 Cluster 구조&#xA;여러대의 Master를 두어 가용성을 높인 구조 하나의 Master가 fail되면 짝을 이루고있던 Slave가 Master로 승격되어 가용성을 보장하는 구조 일반적으로 Cluster 구조에서는 3개의 node를 구성해서 사용 (경우에 따라 node의 개수 변경 가능) key를 hash한 값에 따라 들어가는 master node가 달라진다.</description>
+      <description>tech blog 글 읽고 정리하기 # 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.
+Master/Slave 구조와 Cluster 구조 # Master/Slave 구조
+Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조 어떤 key가 들어오든 간에 하나의 master에서 처리를 진행 Cluster 구조
+여러대의 Master를 두어 가용성을 높인 구조 하나의 Master가 fail되면 짝을 이루고있던 Slave가 Master로 승격되어 가용성을 보장하는 구조 일반적으로 Cluster 구조에서는 3개의 node를 구성해서 사용 (경우에 따라 node의 개수 변경 가능) key를 hash한 값에 따라 들어가는 master node가 달라진다.</description>
     </item>
     <item>
       <title></title>
@@ -61,7 +70,8 @@
       <link>https://example.com/docs/clean_code/001_argument/</link>
       <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/clean_code/001_argument/</guid>
-      <description>[tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?&#xA;class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, isForceSend: Boolean?, recipient: String, id: Long, mailDomainFilterService: MailDomainFilterService?, mailRetryService: MailRetryService?, title: String, body: String, param: Map&amp;lt;Any, Any&amp;gt;, reservedAt: Instant?, ) } 위 클래스를 다음과 같이 호출한다.</description>
+      <description>tech blog 글 읽고 정리하기 # 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?
+class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, isForceSend: Boolean?, recipient: String, id: Long, mailDomainFilterService: MailDomainFilterService?, mailRetryService: MailRetryService?, title: String, body: String, param: Map&amp;lt;Any, Any&amp;gt;, reservedAt: Instant?, ) } 위 클래스를 다음과 같이 호출한다.</description>
     </item>
     <item>
       <title></title>
@@ -159,7 +169,8 @@
       <link>https://example.com/docs/kafka/001_kafka_cdc/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kafka/001_kafka_cdc/</guid>
-      <description>[tech blog 읽기] CDC 너두 할 수 있어(feat. B2B 알림 서비스에 Kafka CDC 적용하기) # B2B 알림 서비스에 CDC를 도입을 하게 되었다.&#xA;B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민 B2C 고객 서비스에서는 알림센터라는 시스템을 통해 고객에 알림을 발송한다. 하지만, 사장님에게 발송되는 알림은 플랫폼이 부재한 관계로 카카오 알림톡으로 발송하고 있었다. 개선을 위해 알림센터를 활용해 사장님에게 전달되는 메시지를 내부 서비스를 통해 전달함으로써, 내부 서비스 활용도와 사용자 편의성을 향상시키고자 진행한 프로젝트가 &amp;lsquo;B2B 알림서비스&amp;rsquo;다.</description>
+      <description>tech blog 글 읽고 정리하기 # CDC 너두 할 수 있어(feat. B2B 알림 서비스에 Kafka CDC 적용하기) # B2B 알림 서비스에 CDC를 도입을 하게 되었다.
+B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민 B2C 고객 서비스에서는 알림센터라는 시스템을 통해 고객에 알림을 발송한다. 하지만, 사장님에게 발송되는 알림은 플랫폼이 부재한 관계로 카카오 알림톡으로 발송하고 있었다. 개선을 위해 알림센터를 활용해 사장님에게 전달되는 메시지를 내부 서비스를 통해 전달함으로써, 내부 서비스 활용도와 사용자 편의성을 향상시키고자 진행한 프로젝트가 &amp;lsquo;B2B 알림서비스&amp;rsquo;다.</description>
     </item>
     <item>
       <title></title>
@@ -194,7 +205,8 @@
       <link>https://example.com/docs/mongodb/007_query_method/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/mongodb/007_query_method/</guid>
-      <description>Query method # 쿼리 메소드 (Query method) # ReactiveMongoRepository를 상속한 repository interface에 메소드를 추가 메소드의 이름을 기반으로 Query 생성 조회, 삭제 지원 @Query, @Update, @Aggregation 어노테이션을 사용해서 복잡한 쿼리 실행 가능 쿼리 메소드 - find # id 뿐만 아니라 다른 필드를 이용해서 조회 가능 first 등의 키워드를 사용해서 query에 limit 제공 가능 기존의 Entity 뿐만 아니라 Projection을 사용하여 일부 필드만 조회 가능 사용예제&#xA;findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내림차순으로 sort 하여 limit을 1로 모든 field를 조회하여 PersonDocument class로 mapping 쿼리 메소드 - delete # 다른 필드를 이용해서 삭제 가능 여러 반환 타입 지원 Long: 영향을 받은 row 수 반환 Flux: 삭제된 document 반환 사용예제</description>
+      <description>Query method # 쿼리 메소드 (Query method) # ReactiveMongoRepository를 상속한 repository interface에 메소드를 추가 메소드의 이름을 기반으로 Query 생성 조회, 삭제 지원 @Query, @Update, @Aggregation 어노테이션을 사용해서 복잡한 쿼리 실행 가능 쿼리 메소드 - find # id 뿐만 아니라 다른 필드를 이용해서 조회 가능 first 등의 키워드를 사용해서 query에 limit 제공 가능 기존의 Entity 뿐만 아니라 Projection을 사용하여 일부 필드만 조회 가능 사용예제
+findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내림차순으로 sort 하여 limit을 1로 모든 field를 조회하여 PersonDocument class로 mapping 쿼리 메소드 - delete # 다른 필드를 이용해서 삭제 가능 여러 반환 타입 지원 Long: 영향을 받은 row 수 반환 Flux: 삭제된 document 반환 사용예제</description>
     </item>
     <item>
       <title></title>
@@ -215,7 +227,9 @@
       <link>https://example.com/docs/batch/001_performance_improved_batch/</link>
       <pubDate>Sat, 09 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/batch/001_performance_improved_batch/</guid>
-      <description>[tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.&#xA;최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행한 내용에 대한 포스팅이다.&#xA;비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &amp;lsquo;가게가 운영하는지 안하는지&amp;rsquo;에 대한 정보를 유관 부서에 전달한다. &amp;lsquo;비운영시간 데이터&amp;rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다.</description>
+      <description>tech blog 글 읽고 정리하기 # 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
+최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행한 내용에 대한 포스팅이다.
+비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &amp;lsquo;가게가 운영하는지 안하는지&amp;rsquo;에 대한 정보를 유관 부서에 전달한다. &amp;lsquo;비운영시간 데이터&amp;rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다.</description>
     </item>
     <item>
       <title></title>
@@ -250,7 +264,8 @@
       <link>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</guid>
-      <description>Kotlin에서 리스트 추출하기 : subList, slice, take, drop # 리스트의 부분 리스트 구하기 : subList(), slice(), take() # Kotlin에서는 리스트의 부분 리스트를 구하는 메서드로 여러 메서드를 제공한다. 부분 리스트를 추출하는 기능을 하는 메서드에 대해 알아보자. 원본 리스트를 변경하지 않고 추출한 새로운 리스트를 반환하는 특징이 있다. 이 메서드들은 immutable한 리스트와 mutable한 리스트 모두에서 사용할 수 있다.&#xA;subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추출하여, 새로운 리스트를 생성한다. Java의 subList와 유사하게 시작 인덱스부터 끝 인덱스까지 요소를 추출한다.</description>
+      <description>Kotlin에서 리스트 추출하기 : subList, slice, take, drop # 리스트의 부분 리스트 구하기 : subList(), slice(), take() # Kotlin에서는 리스트의 부분 리스트를 구하는 메서드로 여러 메서드를 제공한다. 부분 리스트를 추출하는 기능을 하는 메서드에 대해 알아보자. 원본 리스트를 변경하지 않고 추출한 새로운 리스트를 반환하는 특징이 있다. 이 메서드들은 immutable한 리스트와 mutable한 리스트 모두에서 사용할 수 있다.
+subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추출하여, 새로운 리스트를 생성한다. Java의 subList와 유사하게 시작 인덱스부터 끝 인덱스까지 요소를 추출한다.</description>
     </item>
     <item>
       <title></title>
@@ -278,7 +293,9 @@
       <link>https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/</link>
       <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/</guid>
-      <description>Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치&#xA;block : T.() -&amp;gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.&#xA;receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&amp;gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.</description>
+      <description>Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치
+block : T.() -&amp;gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.
+receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&amp;gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.</description>
     </item>
     <item>
       <title></title>
@@ -299,7 +316,8 @@
       <link>https://example.com/docs/reactive_streams/002_impl1_reactor/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/reactive_streams/002_impl1_reactor/</guid>
-      <description>Reactive Streams 구현 라이브러리 (1) Reactor # Project reactor # Pivotal 사에서 개발 Spring reactor에서 사용 Mono와 Flux publisher 제공 Project reactor - Flux # 0..n개의 item을 전달 에러가 발생하면 error signal 전달하고 종료 모든 item을 전달했다면 complete signal 전달 하고 종료 backPressure 지원 Flux 예제 # SimpleSubscriber&#xA;FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConstructor public class p181_SimpleSubscriber&amp;lt;T&amp;gt; implements Subscriber&amp;lt;T&amp;gt; { private final Integer count; /** * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음 * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)} */ @Override public void onSubscribe(Subscription s) { log.</description>
+      <description>Reactive Streams 구현 라이브러리 (1) Reactor # Project reactor # Pivotal 사에서 개발 Spring reactor에서 사용 Mono와 Flux publisher 제공 Project reactor - Flux # 0..n개의 item을 전달 에러가 발생하면 error signal 전달하고 종료 모든 item을 전달했다면 complete signal 전달 하고 종료 backPressure 지원 Flux 예제 # SimpleSubscriber
+FluxIterable publisher Subscription : StrictSubscriber @Slf4j @RequiredArgsConstructor public class p181_SimpleSubscriber&amp;lt;T&amp;gt; implements Subscriber&amp;lt;T&amp;gt; { private final Integer count; /** * 지속적으로 요청을 하는게 아니라, 딱 한번 N개의 요청을 받고 그 이후로 값을 계속 받음 * @param s the {@link Subscription} that allows requesting data via {@link Subscription#request(long)} */ @Override public void onSubscribe(Subscription s) { log.</description>
     </item>
     <item>
       <title></title>
@@ -320,21 +338,28 @@
       <link>https://example.com/docs/redis/001_redis_datastructure/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/redis/001_redis_datastructure/</guid>
-      <description>레디스 자료구조 활용사례 # 리더보드 # 경쟁자들의 순위와 현재 점수를 보여주는 순위표를 의미한다. 스코어로 정렬되어 상위 경쟁자의 순위를 보여준다.&#xA;절대적 리더보드 서비스의 모든 유저를 정렬시켜 상위권의 목록만을 표시&#xA;상대적 리더보드 사용자의 스코어를 기반으로 그들을 다른 사용자와 비교해 순위를 결정 ex) 유저와 인접해있는 경쟁자들의 스코어를 보여주는 리더보드, 특정 그룹 내에서의 순위를 보여주는 리더보드, 주간 리더보드&#xA;리더보드는 기본적으로 사용자의 스코어를 기반으로 데이터를 정렬하는 서비스이기 때문에 사용자의 증가에 따라 가공해야할 데이터가 몇 배로 증가한다.</description>
+      <description>레디스 자료구조 활용사례 # 리더보드 # 경쟁자들의 순위와 현재 점수를 보여주는 순위표를 의미한다. 스코어로 정렬되어 상위 경쟁자의 순위를 보여준다.
+절대적 리더보드 서비스의 모든 유저를 정렬시켜 상위권의 목록만을 표시
+상대적 리더보드 사용자의 스코어를 기반으로 그들을 다른 사용자와 비교해 순위를 결정 ex) 유저와 인접해있는 경쟁자들의 스코어를 보여주는 리더보드, 특정 그룹 내에서의 순위를 보여주는 리더보드, 주간 리더보드
+리더보드는 기본적으로 사용자의 스코어를 기반으로 데이터를 정렬하는 서비스이기 때문에 사용자의 증가에 따라 가공해야할 데이터가 몇 배로 증가한다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/redis/002_redis_cache/</link>
       <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/redis/002_redis_cache/</guid>
-      <description>레디스를 캐시로 사용하기 # [캐시란?] # 데이터의 원본보다 더 빠르고 효율적으로 액세스할 수 있는 임시 데이터 저장소를 의미한다.&#xA;[캐시로서의 레디스] # 레디스는 자체적으로 고가용성 기능을 가지고있다. 일부 캐싱 전략에서는 캐시에 접근할 수 없게 되면 이는 곧바로 서비스 장애로 이어질 수 있따. 캐시 저장소도 일반적인 데이터 저장소와 같이 안정적으로 운영될 수 있는 조건을 갖추는 것이 좋다. 레디스의 센티널, 클러스터 기능을 사용하면 마스터 노드의 장애를 자동으로 감지해 페일오버(Failover; 장애대비)를 발생시키기 때문에, 운영자의 개입 없이 캐시는 정상으로 유지될 수 있어 가용성이 높아진다.</description>
+      <description>레디스를 캐시로 사용하기 # [캐시란?] # 데이터의 원본보다 더 빠르고 효율적으로 액세스할 수 있는 임시 데이터 저장소를 의미한다.
+[캐시로서의 레디스] # 레디스는 자체적으로 고가용성 기능을 가지고있다. 일부 캐싱 전략에서는 캐시에 접근할 수 없게 되면 이는 곧바로 서비스 장애로 이어질 수 있따. 캐시 저장소도 일반적인 데이터 저장소와 같이 안정적으로 운영될 수 있는 조건을 갖추는 것이 좋다. 레디스의 센티널, 클러스터 기능을 사용하면 마스터 노드의 장애를 자동으로 감지해 페일오버(Failover; 장애대비)를 발생시키기 때문에, 운영자의 개입 없이 캐시는 정상으로 유지될 수 있어 가용성이 높아진다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/kotlin/002_Functional_Programming_Example/</link>
       <pubDate>Sun, 26 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/002_Functional_Programming_Example/</guid>
-      <description>코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제&#xA;함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수&#xA;고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램&#xA;루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &amp;lt;1&amp;gt; if (n &amp;lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.</description>
+      <description>코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제
+함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수
+고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램
+루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &amp;lt;1&amp;gt; if (n &amp;lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.</description>
     </item>
     <item>
       <title></title>
@@ -348,7 +373,9 @@
       <link>https://example.com/docs/reactive_streams/001_reactive_streams_component/</link>
       <pubDate>Sun, 11 Jun 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/reactive_streams/001_reactive_streams_component/</guid>
-      <description>리액티브 스트림즈란? # 리액티브한 코드 작성을 위한 구성을 도와주는 리액티브 라이브러리가 있다. 이 리액티브 라이브러리를 어떻게 구현해야할지 정의해놓은 별도의 표준 사양을 리액티브 스트림즈(Reactive Streams)라고 한다.&#xA;리액티브 스트림즈는 &amp;lsquo;데이터 스트림을 Non-Blocking이면서 비동기적인 방식으로 처리하기 위한 리액티브 라이브러리 표준 사양&amp;rsquo;이라고 표현할 수 있다. 이를 구현한 구현체로는 RxJava, Reactor, Akka Streams, Java 9 Flow API 등이 있고, 그 중에 Spring framework와 가장 궁합이 잘 맞는 구현체는 Reactor이다.&#xA;리액티브 구성요소 # 리액티브 스트림즈를 통해 구현해야 되는 API 컴포넌트에는 Publisher, Subscriber, Subscription, Processor 가 있다.</description>
+      <description>리액티브 스트림즈란? # 리액티브한 코드 작성을 위한 구성을 도와주는 리액티브 라이브러리가 있다. 이 리액티브 라이브러리를 어떻게 구현해야할지 정의해놓은 별도의 표준 사양을 리액티브 스트림즈(Reactive Streams)라고 한다.
+리액티브 스트림즈는 &amp;lsquo;데이터 스트림을 Non-Blocking이면서 비동기적인 방식으로 처리하기 위한 리액티브 라이브러리 표준 사양&amp;rsquo;이라고 표현할 수 있다. 이를 구현한 구현체로는 RxJava, Reactor, Akka Streams, Java 9 Flow API 등이 있고, 그 중에 Spring framework와 가장 궁합이 잘 맞는 구현체는 Reactor이다.
+리액티브 구성요소 # 리액티브 스트림즈를 통해 구현해야 되는 API 컴포넌트에는 Publisher, Subscriber, Subscription, Processor 가 있다.</description>
     </item>
     <item>
       <title></title>

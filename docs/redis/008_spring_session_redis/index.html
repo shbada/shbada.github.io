@@ -3,26 +3,26 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="[tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.
+<meta name="description" content="tech blog 글 읽고 정리하기 # 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.
 도입 배경 # 기존 Aerospike -&gt; Redis로의 전환을 결정하게 되었다. 전환을 통해 바라는 점
 Spring Session의 도입 가능 Spring Session은 Redis 이외에도 다양한 세션 저장소를 지원하여 세션 정보를 유연하게 관리할 수 있다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content="[tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.
+<meta property="og:description" content="tech blog 글 읽고 정리하기 # 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인 # 개요 # 줌인터넷의 회원 서비스는 분산 환경에서 운영되고있다. 분산 환경에서 세션 동기화 문제를 해결하기 위해 사용하고 있는 세션 저장소를 Redis로 교체하게 된 이유와 기존 아키텍처를 유지하면서 안정적으로 Spring Session으로 도입할 수 있는 방법을 소개한다.
 도입 배경 # 기존 Aerospike -&gt; Redis로의 전환을 결정하게 되었다. 전환을 통해 바라는 점
 Spring Session의 도입 가능 Spring Session은 Redis 이외에도 다양한 세션 저장소를 지원하여 세션 정보를 유연하게 관리할 수 있다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/redis/008_spring_session_redis/" /><meta property="article:section" content="docs" />
 <meta property="article:published_time" content="2023-12-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-12-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-12-26T00:04:38+09:00" />
 
 <title>008 Spring Session Redis | TIL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.2d24eee7b56fde15a29bc9850e83d287504cc21e8a904ffb0c5c7680d02cfe08.js" integrity="sha256-LSTu57Vv3hWim8mFDoPSh1BMwh6KkE/7DFx2gNAs/gg=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6329777308d375abcf34f66d8a63567dda2fff082d525da057506c4b8f50a2fc.js" integrity="sha256-Yyl3cwjTdavPNPZtimNWfdov/wgtUl2gV1BsS49Qovw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -1391,7 +1391,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#tech-blog-읽기-제목은-spring-session-도입기로-하겠습니다-근데-이제-redis를-곁들인">[tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인</a>
+    <li><a href="#tech-blog-글-읽고-정리하기"><code>tech blog 글 읽고 정리하기</code></a></li>
+    <li><a href="#제목은-spring-session-도입기로-하겠습니다-근데-이제-redis를-곁들인">제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인</a>
       <ul>
         <li><a href="#개요">개요</a></li>
         <li><a href="#도입-배경">도입 배경</a></li>
@@ -1418,9 +1419,13 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="tech-blog-읽기-제목은-spring-session-도입기로-하겠습니다-근데-이제-redis를-곁들인">
-  [tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인
-  <a class="anchor" href="#tech-blog-%ec%9d%bd%ea%b8%b0-%ec%a0%9c%eb%aa%a9%ec%9d%80-spring-session-%eb%8f%84%ec%9e%85%ea%b8%b0%eb%a1%9c-%ed%95%98%ea%b2%a0%ec%8a%b5%eb%8b%88%eb%8b%a4-%ea%b7%bc%eb%8d%b0-%ec%9d%b4%ec%a0%9c-redis%eb%a5%bc-%ea%b3%81%eb%93%a4%ec%9d%b8">#</a>
+  <article class="markdown book-article"><h1 id="tech-blog-글-읽고-정리하기">
+  <code>tech blog 글 읽고 정리하기</code>
+  <a class="anchor" href="#tech-blog-%ea%b8%80-%ec%9d%bd%ea%b3%a0-%ec%a0%95%eb%a6%ac%ed%95%98%ea%b8%b0">#</a>
+</h1>
+<h1 id="제목은-spring-session-도입기로-하겠습니다-근데-이제-redis를-곁들인">
+  제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인
+  <a class="anchor" href="#%ec%a0%9c%eb%aa%a9%ec%9d%80-spring-session-%eb%8f%84%ec%9e%85%ea%b8%b0%eb%a1%9c-%ed%95%98%ea%b2%a0%ec%8a%b5%eb%8b%88%eb%8b%a4-%ea%b7%bc%eb%8d%b0-%ec%9d%b4%ec%a0%9c-redis%eb%a5%bc-%ea%b3%81%eb%93%a4%ec%9d%b8">#</a>
 </h1>
 <h2 id="개요">
   개요
@@ -1822,6 +1827,12 @@ Spring Session을 적용하였기 때문에 기존의 HttpSession 객체는 Spri
   <div class="flex flex-wrap justify-between">
 
 
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/467cc73d5c6b75e92913e930fff07301c13cb387" title='Last modified by seohaebada | December 26, 2023' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>December 26, 2023</span>
+    </a>
+  </div>
+
 
 
   <div>
@@ -1861,7 +1872,8 @@ Spring Session을 적용하였기 때문에 기존의 HttpSession 객체는 Spri
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#tech-blog-읽기-제목은-spring-session-도입기로-하겠습니다-근데-이제-redis를-곁들인">[tech blog 읽기] 제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인</a>
+    <li><a href="#tech-blog-글-읽고-정리하기"><code>tech blog 글 읽고 정리하기</code></a></li>
+    <li><a href="#제목은-spring-session-도입기로-하겠습니다-근데-이제-redis를-곁들인">제목은 Spring Session 도입기로 하겠습니다. 근데 이제 Redis를 곁들인</a>
       <ul>
         <li><a href="#개요">개요</a></li>
         <li><a href="#도입-배경">도입 배경</a></li>

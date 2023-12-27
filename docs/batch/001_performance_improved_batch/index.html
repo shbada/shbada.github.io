@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="[tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
+<meta name="description" content="tech blog 글 읽고 정리하기 # 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행한 내용에 대한 포스팅이다.
 비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &lsquo;가게가 운영하는지 안하는지&rsquo;에 대한 정보를 유관 부서에 전달한다. &lsquo;비운영시간 데이터&rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content="[tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
+<meta property="og:description" content="tech blog 글 읽고 정리하기 # 누구나 할 수 있는 10배 더 빠른 배치 만들기 # 우아한형제들 셀러 시스템 배치 개선 이야기 # 우아한형제들 기술 블로그의 글을 읽으면서 정리해본다.
 최근 셀러시스템팀에서 하루 한 번 주기로 실행되는 배치를 최적화하는 과제를 진행한 내용에 대한 포스팅이다.
 비운영 시간 데이터 # 셀러시스템에서는 가게와 업주에 대한 다양한 데이터를 관리 사장님들의 관리 사항 &lsquo;가게가 운영하는지 안하는지&rsquo;에 대한 정보를 유관 부서에 전달한다. &lsquo;비운영시간 데이터&rsquo; 실시간으로 수정되는 정보를 반영 매일 새벽에 전체 데이터를 계산하고 그 결과를 미리 갱신해둔 후, 유관부서에 전파 다양한 채널에서 입력되는 각족 운영과 휴무 데이터를 취합해서 비운영시간 데이터를 계산 위 계산된 데이터가 클라이언트까지 잘 전달될 수 있도록 각 지면에 적절한 형태로 가공하여 제공 문제상황 # 새벽에 배치 작업을 할때, 수많은 가게의 데이터를 매일 갱신하므로 배치 수행시간이 오래걸린다." />
 <meta property="og:type" content="article" />
@@ -22,7 +22,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.2d24eee7b56fde15a29bc9850e83d287504cc21e8a904ffb0c5c7680d02cfe08.js" integrity="sha256-LSTu57Vv3hWim8mFDoPSh1BMwh6KkE/7DFx2gNAs/gg=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6329777308d375abcf34f66d8a63567dda2fff082d525da057506c4b8f50a2fc.js" integrity="sha256-Yyl3cwjTdavPNPZtimNWfdov/wgtUl2gV1BsS49Qovw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -1391,7 +1391,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#tech-blog-읽기-누구나-할-수-있는-10배-더-빠른-배치-만들기">[tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기</a>
+    <li><a href="#tech-blog-글-읽고-정리하기"><code>tech blog 글 읽고 정리하기</code></a></li>
+    <li><a href="#누구나-할-수-있는-10배-더-빠른-배치-만들기">누구나 할 수 있는 10배 더 빠른 배치 만들기</a>
       <ul>
         <li><a href="#우아한형제들-셀러-시스템-배치-개선-이야기">우아한형제들 셀러 시스템 배치 개선 이야기</a></li>
         <li><a href="#비운영-시간-데이터">비운영 시간 데이터</a></li>
@@ -1417,9 +1418,13 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="tech-blog-읽기-누구나-할-수-있는-10배-더-빠른-배치-만들기">
-  [tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기
-  <a class="anchor" href="#tech-blog-%ec%9d%bd%ea%b8%b0-%eb%88%84%ea%b5%ac%eb%82%98-%ed%95%a0-%ec%88%98-%ec%9e%88%eb%8a%94-10%eb%b0%b0-%eb%8d%94-%eb%b9%a0%eb%a5%b8-%eb%b0%b0%ec%b9%98-%eb%a7%8c%eb%93%a4%ea%b8%b0">#</a>
+  <article class="markdown book-article"><h1 id="tech-blog-글-읽고-정리하기">
+  <code>tech blog 글 읽고 정리하기</code>
+  <a class="anchor" href="#tech-blog-%ea%b8%80-%ec%9d%bd%ea%b3%a0-%ec%a0%95%eb%a6%ac%ed%95%98%ea%b8%b0">#</a>
+</h1>
+<h1 id="누구나-할-수-있는-10배-더-빠른-배치-만들기">
+  누구나 할 수 있는 10배 더 빠른 배치 만들기
+  <a class="anchor" href="#%eb%88%84%ea%b5%ac%eb%82%98-%ed%95%a0-%ec%88%98-%ec%9e%88%eb%8a%94-10%eb%b0%b0-%eb%8d%94-%eb%b9%a0%eb%a5%b8-%eb%b0%b0%ec%b9%98-%eb%a7%8c%eb%93%a4%ea%b8%b0">#</a>
 </h1>
 <h2 id="우아한형제들-셀러-시스템-배치-개선-이야기">
   우아한형제들 셀러 시스템 배치 개선 이야기
@@ -1766,7 +1771,8 @@ public class AfterChunkSleepListener implements ChunkListener {
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#tech-blog-읽기-누구나-할-수-있는-10배-더-빠른-배치-만들기">[tech blog 읽기] 누구나 할 수 있는 10배 더 빠른 배치 만들기</a>
+    <li><a href="#tech-blog-글-읽고-정리하기"><code>tech blog 글 읽고 정리하기</code></a></li>
+    <li><a href="#누구나-할-수-있는-10배-더-빠른-배치-만들기">누구나 할 수 있는 10배 더 빠른 배치 만들기</a>
       <ul>
         <li><a href="#우아한형제들-셀러-시스템-배치-개선-이야기">우아한형제들 셀러 시스템 배치 개선 이야기</a></li>
         <li><a href="#비운영-시간-데이터">비운영 시간 데이터</a></li>

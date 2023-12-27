@@ -13,7 +13,8 @@
       <link>https://example.com/docs/kafka/001_kafka_cdc/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kafka/001_kafka_cdc/</guid>
-      <description>[tech blog 읽기] CDC 너두 할 수 있어(feat. B2B 알림 서비스에 Kafka CDC 적용하기) # B2B 알림 서비스에 CDC를 도입을 하게 되었다.&#xA;B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민 B2C 고객 서비스에서는 알림센터라는 시스템을 통해 고객에 알림을 발송한다. 하지만, 사장님에게 발송되는 알림은 플랫폼이 부재한 관계로 카카오 알림톡으로 발송하고 있었다. 개선을 위해 알림센터를 활용해 사장님에게 전달되는 메시지를 내부 서비스를 통해 전달함으로써, 내부 서비스 활용도와 사용자 편의성을 향상시키고자 진행한 프로젝트가 &amp;lsquo;B2B 알림서비스&amp;rsquo;다.</description>
+      <description>tech blog 글 읽고 정리하기 # CDC 너두 할 수 있어(feat. B2B 알림 서비스에 Kafka CDC 적용하기) # B2B 알림 서비스에 CDC를 도입을 하게 되었다.
+B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민 B2C 고객 서비스에서는 알림센터라는 시스템을 통해 고객에 알림을 발송한다. 하지만, 사장님에게 발송되는 알림은 플랫폼이 부재한 관계로 카카오 알림톡으로 발송하고 있었다. 개선을 위해 알림센터를 활용해 사장님에게 전달되는 메시지를 내부 서비스를 통해 전달함으로써, 내부 서비스 활용도와 사용자 편의성을 향상시키고자 진행한 프로젝트가 &amp;lsquo;B2B 알림서비스&amp;rsquo;다.</description>
     </item>
     <item>
       <title></title>
@@ -48,7 +49,8 @@
       <link>https://example.com/docs/mongodb/007_query_method/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/mongodb/007_query_method/</guid>
-      <description>Query method # 쿼리 메소드 (Query method) # ReactiveMongoRepository를 상속한 repository interface에 메소드를 추가 메소드의 이름을 기반으로 Query 생성 조회, 삭제 지원 @Query, @Update, @Aggregation 어노테이션을 사용해서 복잡한 쿼리 실행 가능 쿼리 메소드 - find # id 뿐만 아니라 다른 필드를 이용해서 조회 가능 first 등의 키워드를 사용해서 query에 limit 제공 가능 기존의 Entity 뿐만 아니라 Projection을 사용하여 일부 필드만 조회 가능 사용예제&#xA;findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내림차순으로 sort 하여 limit을 1로 모든 field를 조회하여 PersonDocument class로 mapping 쿼리 메소드 - delete # 다른 필드를 이용해서 삭제 가능 여러 반환 타입 지원 Long: 영향을 받은 row 수 반환 Flux: 삭제된 document 반환 사용예제</description>
+      <description>Query method # 쿼리 메소드 (Query method) # ReactiveMongoRepository를 상속한 repository interface에 메소드를 추가 메소드의 이름을 기반으로 Query 생성 조회, 삭제 지원 @Query, @Update, @Aggregation 어노테이션을 사용해서 복잡한 쿼리 실행 가능 쿼리 메소드 - find # id 뿐만 아니라 다른 필드를 이용해서 조회 가능 first 등의 키워드를 사용해서 query에 limit 제공 가능 기존의 Entity 뿐만 아니라 Projection을 사용하여 일부 필드만 조회 가능 사용예제
+findFirstByNameOrderByAgeDesc name이 “taewoo”인 row들을 찾고 age 내림차순으로 sort 하여 limit을 1로 모든 field를 조회하여 PersonDocument class로 mapping 쿼리 메소드 - delete # 다른 필드를 이용해서 삭제 가능 여러 반환 타입 지원 Long: 영향을 받은 row 수 반환 Flux: 삭제된 document 반환 사용예제</description>
     </item>
   </channel>
 </rss>

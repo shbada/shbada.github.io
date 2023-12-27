@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.2d24eee7b56fde15a29bc9850e83d287504cc21e8a904ffb0c5c7680d02cfe08.js" integrity="sha256-LSTu57Vv3hWim8mFDoPSh1BMwh6KkE/7DFx2gNAs/gg=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6329777308d375abcf34f66d8a63567dda2fff082d525da057506c4b8f50a2fc.js" integrity="sha256-Yyl3cwjTdavPNPZtimNWfdov/wgtUl2gV1BsS49Qovw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/categories/2023-12-21/index.xml" title="TIL" />
@@ -1693,7 +1693,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-    <p>[tech blog 읽기] 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.
+    <p>tech blog 글 읽고 정리하기 # 초보 개발자를 위한 Redis Cluster Migration 가이드라인 # 요청상황 # Master/Slave 구조의 Redis에서 Cluster 구조의 Redis로 migration 되니, 관련 코드 작업을 진행해야한다. 즉, Master/Slave에는 모든 key가 한 node에 있고 Cluster는 그렇지 않은 상황이다.
 Master/Slave 구조와 Cluster 구조 # Master/Slave 구조
 Master의 내용을 Slave에 복제하여 read/write 권한을 나눠 사용하는 구조 어떤 key가 들어오든 간에 하나의 master에서 처리를 진행 Cluster 구조
 여러대의 Master를 두어 가용성을 높인 구조 하나의 Master가 fail되면 짝을 이루고있던 Slave가 Master로 승격되어 가용성을 보장하는 구조 일반적으로 Cluster 구조에서는 3개의 node를 구성해서 사용 (경우에 따라 node의 개수 변경 가능) key를 hash한 값에 따라 들어가는 master node가 달라진다.

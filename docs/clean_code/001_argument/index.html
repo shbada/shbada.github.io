@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="[tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?
+<meta name="description" content="tech blog 글 읽고 정리하기 # 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?
 class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, isForceSend: Boolean?, recipient: String, id: Long, mailDomainFilterService: MailDomainFilterService?, mailRetryService: MailRetryService?, title: String, body: String, param: Map&lt;Any, Any&gt;, reservedAt: Instant?, ) } 위 클래스를 다음과 같이 호출한다.">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content="[tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?
+<meta property="og:description" content="tech blog 글 읽고 정리하기 # 인자가 많은 메서드는 왜 나쁠까? # 상황 # 재전송, 메일 수신자 필터링, SMS 전송(fallback) 등 다양한 기능을 제공하는 메일 발송 기능이 있을때. 이 기능을 하는 메서드의 인자가 11개 정도 있다면?
 class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, isForceSend: Boolean?, recipient: String, id: Long, mailDomainFilterService: MailDomainFilterService?, mailRetryService: MailRetryService?, title: String, body: String, param: Map&lt;Any, Any&gt;, reservedAt: Instant?, ) } 위 클래스를 다음과 같이 호출한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/clean_code/001_argument/" /><meta property="article:section" content="docs" />
@@ -20,7 +20,7 @@ class Mail( // ... ) { fun send( phoneFallback: Boolean?, phoneNumber: String?, 
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.2d24eee7b56fde15a29bc9850e83d287504cc21e8a904ffb0c5c7680d02cfe08.js" integrity="sha256-LSTu57Vv3hWim8mFDoPSh1BMwh6KkE/7DFx2gNAs/gg=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6329777308d375abcf34f66d8a63567dda2fff082d525da057506c4b8f50a2fc.js" integrity="sha256-Yyl3cwjTdavPNPZtimNWfdov/wgtUl2gV1BsS49Qovw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -1389,7 +1389,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#tech-blog-읽기-인자가-많은-메서드는-왜-나쁠까">[tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까?</a>
+    <li><a href="#tech-blog-글-읽고-정리하기"><code>tech blog 글 읽고 정리하기</code></a></li>
+    <li><a href="#인자가-많은-메서드는-왜-나쁠까">인자가 많은 메서드는 왜 나쁠까?</a>
       <ul>
         <li><a href="#상황">상황</a></li>
         <li><a href="#샌상성-악마의-미소">샌상성 악마의 미소</a></li>
@@ -1413,9 +1414,13 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown book-article"><h1 id="tech-blog-읽기-인자가-많은-메서드는-왜-나쁠까">
-  [tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까?
-  <a class="anchor" href="#tech-blog-%ec%9d%bd%ea%b8%b0-%ec%9d%b8%ec%9e%90%ea%b0%80-%eb%a7%8e%ec%9d%80-%eb%a9%94%ec%84%9c%eb%93%9c%eb%8a%94-%ec%99%9c-%eb%82%98%ec%81%a0%ea%b9%8c">#</a>
+  <article class="markdown book-article"><h1 id="tech-blog-글-읽고-정리하기">
+  <code>tech blog 글 읽고 정리하기</code>
+  <a class="anchor" href="#tech-blog-%ea%b8%80-%ec%9d%bd%ea%b3%a0-%ec%a0%95%eb%a6%ac%ed%95%98%ea%b8%b0">#</a>
+</h1>
+<h1 id="인자가-많은-메서드는-왜-나쁠까">
+  인자가 많은 메서드는 왜 나쁠까?
+  <a class="anchor" href="#%ec%9d%b8%ec%9e%90%ea%b0%80-%eb%a7%8e%ec%9d%80-%eb%a9%94%ec%84%9c%eb%93%9c%eb%8a%94-%ec%99%9c-%eb%82%98%ec%81%a0%ea%b9%8c">#</a>
 </h1>
 <h2 id="상황">
   상황
@@ -1984,7 +1989,8 @@ mail.enableSmsFallbackFeature(&#34;010-1234-5678&#34;)
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#tech-blog-읽기-인자가-많은-메서드는-왜-나쁠까">[tech blog 읽기] 인자가 많은 메서드는 왜 나쁠까?</a>
+    <li><a href="#tech-blog-글-읽고-정리하기"><code>tech blog 글 읽고 정리하기</code></a></li>
+    <li><a href="#인자가-많은-메서드는-왜-나쁠까">인자가 많은 메서드는 왜 나쁠까?</a>
       <ul>
         <li><a href="#상황">상황</a></li>
         <li><a href="#샌상성-악마의-미소">샌상성 악마의 미소</a></li>
