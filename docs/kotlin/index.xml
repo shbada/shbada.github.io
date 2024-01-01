@@ -12,17 +12,14 @@
       <link>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/005_Kotlin_extractList_Method/</guid>
-      <description>Kotlin에서 리스트 추출하기 : subList, slice, take, drop # 리스트의 부분 리스트 구하기 : subList(), slice(), take() # Kotlin에서는 리스트의 부분 리스트를 구하는 메서드로 여러 메서드를 제공한다. 부분 리스트를 추출하는 기능을 하는 메서드에 대해 알아보자. 원본 리스트를 변경하지 않고 추출한 새로운 리스트를 반환하는 특징이 있다. 이 메서드들은 immutable한 리스트와 mutable한 리스트 모두에서 사용할 수 있다.
-subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추출하여, 새로운 리스트를 생성한다. Java의 subList와 유사하게 시작 인덱스부터 끝 인덱스까지 요소를 추출한다.</description>
+      <description>Kotlin에서 리스트 추출하기 : subList, slice, take, drop # 리스트의 부분 리스트 구하기 : subList(), slice(), take() # Kotlin에서는 리스트의 부분 리스트를 구하는 메서드로 여러 메서드를 제공한다. 부분 리스트를 추출하는 기능을 하는 메서드에 대해 알아보자. 원본 리스트를 변경하지 않고 추출한 새로운 리스트를 반환하는 특징이 있다. 이 메서드들은 immutable한 리스트와 mutable한 리스트 모두에서 사용할 수 있다.&#xA;subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추출하여, 새로운 리스트를 생성한다. Java의 subList와 유사하게 시작 인덱스부터 끝 인덱스까지 요소를 추출한다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/</link>
       <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/004_Kotlin_Scoping_Functions/</guid>
-      <description>Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치
-block : T.() -&amp;gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.
-receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&amp;gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.</description>
+      <description>Kotlin Scoping Functions apply vs. with, let, also, and run # apply, with, let, also, run # Kotlin의 Receiver # 객체 외부의 람다 코드 블록을 마치 해당 객체 내부에서 사용하는 것 처럼 작성할 수 있게 해주는 장치&#xA;block : T.() -&amp;gt; R 위 람다 블록은 객체 T를 receiver로 이용하여 객체 R을 반환한다.&#xA;receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block : (T) -&amp;gt; R 위의 경우 객체 T를 리시버가 아니라 람다 파라미터로 받는다.</description>
     </item>
     <item>
       <title></title>
@@ -36,10 +33,7 @@ receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block
       <link>https://example.com/docs/kotlin/002_Functional_Programming_Example/</link>
       <pubDate>Sun, 26 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/002_Functional_Programming_Example/</guid>
-      <description>코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제
-함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수
-고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램
-루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &amp;lt;1&amp;gt; if (n &amp;lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.</description>
+      <description>코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제&#xA;함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수&#xA;고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램&#xA;루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &amp;lt;1&amp;gt; if (n &amp;lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.</description>
     </item>
     <item>
       <title></title>
