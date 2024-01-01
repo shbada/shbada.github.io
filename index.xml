@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/003_context_switching/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/003_context_switching/</guid>
+      <description>강의 메모 - ContextSwitching # 개요 # 하나의 CPU는 동일한 시간에 1개의 task만 수행 가능, 여러 프로세스를 동시에 실행X 하나의 CPU에서 여러 프로세스를 동시성으로 처리하기 위해서는 한 프로세스에서 다른 프로세스로 전환해야하는데, 이것을 컨텍스트 스위칭이라고 한다.&#xA;Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령을 수행했고, CPU Register에는 어떤 값이 저장되어있는지에 대한 정보가 필요하다. Context는 CPU가 해당 프로세스를 실행하기 위한 프로세스의 정보를 의미하며, 이 정보들은 운영체제가 관리하는 PCB라고 하는 자료구조의 공간에 저장된다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/etc/002_tps/</link>
       <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/etc/002_tps/</guid>
