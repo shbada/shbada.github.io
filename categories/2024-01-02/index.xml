@@ -29,5 +29,12 @@
       <guid>https://example.com/docs/parallel_programming/006_user_mode_kernel_mode_thread/</guid>
       <description>강의 메모 - 사용자 수준 스레드 &amp;amp; 커널 수준 스레드 # 개요 # 스레드는 사용자 수준 스레드(User Level Thread), 커널 수준 스레드(Kernel Level Thread) 로 구분된다. 사용자 수준 스레드 : 사용자 프로그램에서 관리하는 스레드 커널 수준 스레드 : OS에서 관리하는 스레드 ** CPU의 할당 단위는 쓰레드다. **&#xA;사용자 수준 스레드(User Level Thread) # 스레드 라이브러리(Pthreads, WIndows Threads, Java Threads(JVM))에 의해 스레드의 생성, 종료, 스레드간 메시지 전달, 스케줄링 스레드 보관 등 모든 것을 관리한다.</description>
     </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/007_java_thread/</link>
+      <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/007_java_thread/</guid>
+      <description>강의 메모 - Java Thread Fundamentals &amp;gt; 스레드 생성 # 개요 # 자바 스레드는 JVM에서 User Thread를 생성할때 시스템 콜을 통해서 커널에 생성된 Kernel Thread와 1:1 매핑이 되어 최종적으로 커널에서 관리된다. JVM에서 스레드를 생성할때마다 커널에서 자바 스레드와 대응하는 커널 스레드를 생성한다. 자바에서 Platform Thread으로 정의되어 있다. 즉, OS 플랫폼에 따라 JVM이 사용자 스레드를 매핑하게 된다. Platform Thread : 운영체제에서 스케줄링되는 Kernel 쓰레드와 1:1 매핑된 플랫폼 쓰레드의 생성을 지원한다. 사용자 수준 쓰레드처럼 쓰레드 관리, 스케줄링 등을 하지않고, 생성만 하고 커널 쓰레드와 매핑만 되어있음 (커널의 제어를 받는다.</description>
+    </item>
   </channel>
 </rss>
