@@ -24,6 +24,13 @@
     </item>
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/006_user_mode_kernel_mode_thread/</link>
+      <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/006_user_mode_kernel_mode_thread/</guid>
+      <description>강의 메모 - 사용자 수준 스레드 &amp;amp; 커널 수준 스레드 # 개요 # 스레드는 사용자 수준 스레드(User Level Thread), 커널 수준 스레드(Kernel Level Thread) 로 구분된다. 사용자 수준 스레드 : 사용자 프로그램에서 관리하는 스레드 커널 수준 스레드 : OS에서 관리하는 스레드 ** CPU의 할당 단위는 쓰레드다. **&#xA;사용자 수준 스레드(User Level Thread) # 스레드 라이브러리(Pthreads, WIndows Threads, Java Threads(JVM))에 의해 스레드의 생성, 종료, 스레드간 메시지 전달, 스케줄링 스레드 보관 등 모든 것을 관리한다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/parallel_programming/003_context_switching/</link>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/003_context_switching/</guid>
