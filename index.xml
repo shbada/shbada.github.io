@@ -16,6 +16,13 @@
     </item>
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</link>
+      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</guid>
+      <description>강의 메모 - CPU Bound &amp;amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.&#xA;CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/etc/002_tps/</link>
       <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/etc/002_tps/</guid>
