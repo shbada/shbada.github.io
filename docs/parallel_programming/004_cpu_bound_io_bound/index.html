@@ -12,15 +12,15 @@ CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를
 CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/" /><meta property="article:section" content="docs" />
-<meta property="article:published_time" content="2024-01-01T00:00:00+00:00" />
-<meta property="article:modified_time" content="2024-01-01T00:00:00+00:00" />
+<meta property="article:published_time" content="2024-01-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-02T18:34:34+09:00" />
 
 <title>004 CPU Bound Io Bound | TIL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.cc98c9256bb1385169f5f7da663880ab290067215db20c7cf7a071e59d22d3ca.js" integrity="sha256-zJjJJWuxOFFp9ffaZjiAqykAZyFdsgx896Bx5Z0i08o=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.0d1cfdc0cc3eb621f69810b6582d3db1418cdeec94342780d36f217c68bc394a.js" integrity="sha256-DRz9wMw&#43;tiH2mBC2WC09sUGM3uyUNCeA028hfGi8OUo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <!--
@@ -809,7 +809,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/parallel_programming/003_context_switching/" class="">003 Context Switching</a>
+    <a href="/docs/parallel_programming/004_cpu_bound_io_bound/" class="active">004 CPU Bound Io Bound</a>
   
 
         </li>
@@ -822,7 +822,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/parallel_programming/004_cpu_bound_io_bound/" class="active">004 CPU Bound Io Bound</a>
+    <a href="/docs/parallel_programming/005_user_kernel_systemcall/" class="">005 User Kernel Systemcall</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/003_context_switching/" class="">003 Context Switching</a>
   
 
         </li>
@@ -1557,6 +1570,12 @@ CPU 작업은 계속해서 쓰레드가 running 상태인거고, I/O 를 만나�
         
   <div class="flex flex-wrap justify-between">
 
+
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/7311b5b3a573d26a668f451dcd1eb23a13ebff83" title='Last modified by seohaebada | January 2, 2024' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>January 2, 2024</span>
+    </a>
+  </div>
 
 
 

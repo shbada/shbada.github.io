@@ -6,21 +6,28 @@
     <description>Recent content in parallel on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</link>
+      <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</guid>
+      <description>강의 메모 - CPU Bound &amp;amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.&#xA;CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/005_user_kernel_systemcall/</link>
+      <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/005_user_kernel_systemcall/</guid>
+      <description>강의 메모 - 사용자 모드 &amp;amp; 커널 모드 # 개요 # 운영체제 : 컴퓨터 시스템의 자원을 효율적으로 관리하는 소프트웨어 운영체제의 여러 기능 중 핵심 기능을 담당하는 부분을 커널(kernel) 이라고 한다.&#xA;사용자가 운영체제 위에서 실행되는 프로그램을 편하고 효율적으로 사용할 수 있게 하드웨어와 소프트웨어 간 중개자 역할을 한다. CPU, I/O 장치, 메모리, 저장소와 같은 하드웨어 자원을 프로그램에 잘 할당하는 데 있다. 운영체제는 응용 프로그램이 하드웨어 자원에 직접 접근하는 것을 방지하여 자원을 보호한다.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/003_context_switching/</link>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/003_context_switching/</guid>
       <description>강의 메모 - ContextSwitching # 개요 # 하나의 CPU는 동일한 시간에 1개의 task만 수행 가능, 여러 프로세스를 동시에 실행X 하나의 CPU에서 여러 프로세스를 동시성으로 처리하기 위해서는 한 프로세스에서 다른 프로세스로 전환해야하는데, 이것을 컨텍스트 스위칭이라고 한다.&#xA;Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령을 수행했고, CPU Register에는 어떤 값이 저장되어있는지에 대한 정보가 필요하다. Context는 CPU가 해당 프로세스를 실행하기 위한 프로세스의 정보를 의미하며, 이 정보들은 운영체제가 관리하는 PCB라고 하는 자료구조의 공간에 저장된다.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</link>
-      <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</guid>
-      <description>강의 메모 - CPU Bound &amp;amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.&#xA;CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.</description>
     </item>
     <item>
       <title></title>
