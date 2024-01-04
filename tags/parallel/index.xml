@@ -6,8 +6,15 @@
     <description>Recent content in parallel on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 03 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 04 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/009_thread_status/</link>
+      <pubDate>Thu, 04 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/009_thread_status/</guid>
+      <description>강의 메모 - 스레드 생명주기와 상태 # 개요 # 자바 스레드는 생성, 실행, 종료에 따른 상태를 가지고있다. OS 스레드 상태를 의미하지 않는다. 자바 스레드는 어떤 시점이던 6가지 상태 중 오직 1개의 상태를 가질 수 있다. 자바 스레드의 현재 상태를 가져오려면 Thread의 getState() 메서드를 사용하여 가져올 수 있다. Thread 클래스에는 스레드 상태에 대한 ENUM 상수를 정의하는 Thread.State 클래스를 제공한다. 스레드 상태 # NEW : 객체만 생성된 상태 RUNNABLE WAITING : 대기는 언제하는가?</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/008_thread_start/</link>

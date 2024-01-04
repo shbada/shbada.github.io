@@ -89,25 +89,31 @@
     <loc>https://example.com/docs/webflux/</loc>
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
+    <loc>https://example.com/docs/parallel_programming/009_thread_status/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/categories/2024-01-04/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/categories/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/docs/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/java/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/parallel/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/tags/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/docs/parallel_programming/008_thread_start/</loc>
     <lastmod>2024-01-03T19:02:36+09:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-03/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
-  </url><url>
-    <loc>https://example.com/categories/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
-  </url><url>
-    <loc>https://example.com/docs/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
-  </url><url>
-    <loc>https://example.com/tags/java/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
-  </url><url>
-    <loc>https://example.com/tags/parallel/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
-  </url><url>
-    <loc>https://example.com/tags/</loc>
     <lastmod>2024-01-03T19:02:36+09:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</loc>
@@ -480,6 +486,6 @@
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
     <loc>https://example.com/</loc>
-    <lastmod>2024-01-02T19:58:27+09:00</lastmod>
+    <lastmod>2024-01-03T19:03:35+09:00</lastmod>
   </url>
 </urlset>
