@@ -6,8 +6,36 @@
     <description>Recent content in Tags on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 04 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>batch</title>
+      <link>https://example.com/tags/batch/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/batch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>etc</title>
+      <link>https://example.com/tags/etc/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/etc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>springBatch</title>
+      <link>https://example.com/tags/springBatch/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/springBatch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>traffic</title>
+      <link>https://example.com/tags/traffic/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/traffic/</guid>
+      <description></description>
+    </item>
     <item>
       <title>java</title>
       <link>https://example.com/tags/java/</link>
@@ -76,13 +104,6 @@
       <link>https://example.com/tags/cleanCode/</link>
       <pubDate>Sun, 17 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/cleanCode/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>batch</title>
-      <link>https://example.com/tags/batch/</link>
-      <pubDate>Sat, 16 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/batch/</guid>
       <description></description>
     </item>
     <item>

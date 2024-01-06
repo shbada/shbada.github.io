@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>springBatch on TIL</title>
+    <link>https://example.com/tags/springBatch/</link>
+    <description>Recent content in springBatch on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/tags/springBatch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/batch/003_springbatch_start/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/batch/003_springbatch_start/</guid>
+      <description>스프링 배치 소개 # 탄생 배경 # 자바 기반 표준 배치 기술 부재 스프링 배치는 SpringSource(현재는 Pivotal)와 Accenture(경영 컨설팅 기업)의 합작품 Accenture - 배치 아키텍처를 구현하면서 쌓은 기술적인 경험과 노하우 SpringSource - 깊이 있는 기술적 기반과 스프링의 프로그래밍 모델 배치 핵심 패턴 # Read(데이터 조회), Process(데이터 가공), Write(데이터 저장) 배치 시나리오 # 배치 프로세스를 주기적으로 커밋 동시 다발적인 Job 의 배치 처리, 대용량 병렬 처리 실패 후 수동 또는 스케줄링에 의한 재시작 의존관계가 있는 step 여러 개를 순차적으로 처리 조건적 Flow 구성을 통한 체계적이고 유연한 배치 모델 구성 반복, 재시도, Skip 처리 아키텍처 # References https://www.</description>
+    </item>
+  </channel>
+</rss>

@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/docs/etc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/etc/003_huge_traffic_handling/</link>
+      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/etc/003_huge_traffic_handling/</guid>
+      <description>우아콘 2023, 우아한 형제들 세션 정리 # 대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화 # 성장통들 # 개선 대상 리스트 단일 장애 포인트 대용량 데이터 대규모 트랜잭션 복잡한 이벤트 아키텍처 단일 장애 포인트 # 루비라 불리는 중앙 집중 저장소에 모든 시스템이 의존 중앙 저장소의 부하 발생 해결 # 중앙 저장소 -&amp;gt; 각 시스템을 분리하는 프로젝트 진행 시스템 간 통신은 Message Queue 기반으로 통신 특정 시스템의 장애는 메시지 발행의 실패로 끝 정리 # 중앙 집중 DB의 장애, 전체 시스템의 전파 -&amp;gt; MQ를 이용한 이벤트 기반 통신으로 시스템간 영향도를 분리</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/etc/002_tps/</link>
       <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/etc/002_tps/</guid>

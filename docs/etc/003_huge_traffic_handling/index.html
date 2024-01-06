@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="우아콘 2023, 우아한 형제들 세션 정리 # 대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화 # 성장통들 # 개선 대상 리스트 단일 장애 포인트 대용량 데이터 대규모 트랜잭션 복잡한 이벤트 아키텍처 단일 장애 포인트 # 루비라 불리는 중앙 집중 저장소에 모든 시스템이 의존 중앙 저장소의 부하 발생 해결 # 중앙 저장소 -&gt; 각 시스템을 분리하는 프로젝트 진행 시스템 간 통신은 Message Queue 기반으로 통신 특정 시스템의 장애는 메시지 발행의 실패로 끝 정리 # 중앙 집중 DB의 장애, 전체 시스템의 전파 -&gt; MQ를 이용한 이벤트 기반 통신으로 시스템간 영향도를 분리">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="우아콘 2023, 우아한 형제들 세션 정리 # 대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화 # 성장통들 # 개선 대상 리스트 단일 장애 포인트 대용량 데이터 대규모 트랜잭션 복잡한 이벤트 아키텍처 단일 장애 포인트 # 루비라 불리는 중앙 집중 저장소에 모든 시스템이 의존 중앙 저장소의 부하 발생 해결 # 중앙 저장소 -&gt; 각 시스템을 분리하는 프로젝트 진행 시스템 간 통신은 Message Queue 기반으로 통신 특정 시스템의 장애는 메시지 발행의 실패로 끝 정리 # 중앙 집중 DB의 장애, 전체 시스템의 전파 -&gt; MQ를 이용한 이벤트 기반 통신으로 시스템간 영향도를 분리" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/etc/003_huge_traffic_handling/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2024-01-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-06T01:19:39+09:00" />
+
+<title>003 Huge Traffic Handling | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.59c89ca9d00bb6be57c4a9af9ce0f6c2ab72d117c0b32fb179d2c9b06b8710b4.js" integrity="sha256-WcicqdALtr5XxKmvnOD2wqty0RfAsy&#43;xedLJsGuHELQ=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/003_springbatch_start/" class="">003 Springbatch Start</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/002_batch_performance/" class="">002 Batch Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="toggle"  />
+    <label for="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="flex justify-between">
+      <a href="/docs/clean_code/" class="">Clean Code</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/clean_code/001_argument/" class="">001 Argument</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="toggle"  />
+    <label for="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="flex justify-between">
+      <a href="/docs/data_structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle" checked />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/003_huge_traffic_handling/" class="active">003 Huge Traffic Handling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/002_tps/" class="">002 Tps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/001_jmeter/" class="">001 Jmeter</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/001_facade_pattern/" class="">001 Facade Pattern</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle"  />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/001_kafka_cdc/" class="">001 Kafka Cdc</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/003_circuit_breaker/" class="">003 Circuit Breaker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bbe16af0cda0a52165d4874f0cea4ee0" class="toggle"  />
+    <label for="section-bbe16af0cda0a52165d4874f0cea4ee0" class="flex justify-between">
+      <a href="/docs/operating_system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/operating_system/001_thread/" class="">001 Thread</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2aa56d1b653c397446719c79393a70da" class="toggle"  />
+    <label for="section-2aa56d1b653c397446719c79393a70da" class="flex justify-between">
+      <a href="/docs/parallel_programming/" class="">Parallel Programming</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/009_thread_status/" class="">009 Thread Status</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/008_thread_start/" class="">008 Thread Start</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/004_cpu_bound_io_bound/" class="">004 CPU Bound Io Bound</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/005_user_kernel_systemcall/" class="">005 User Kernel Systemcall</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/006_user_mode_kernel_mode_thread/" class="">006 User Mode Kernel Mode Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/007_java_thread/" class="">007 Java Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/003_context_switching/" class="">003 Context Switching</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/001_process_thread/" class="">001 Process Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/002_parallel_concurrent/" class="">002 Parallel Concurrent</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c1a35f6db1170c97addf30f5d9f50bc9" class="toggle"  />
+    <label for="section-c1a35f6db1170c97addf30f5d9f50bc9" class="flex justify-between">
+      <a href="/docs/rdbms/" class="">Rdbms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/004_window_function/" class="">004 Window Function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/005_subquery/" class="">005 Subquery</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/001_basic_join/" class="">001 Basic Join</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/002_date_interval/" class="">002 Date Interval</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/003_groupby/" class="">003 Groupby</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a396ef4e072acbb7275e447dad1284d6" class="toggle"  />
+    <label for="section-a396ef4e072acbb7275e447dad1284d6" class="flex justify-between">
+      <a href="/docs/reactive_streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/008_spring_session_redis/" class="">008 Spring Session Redis</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/007_redis_cluster_migration/" class="">007 Redis Cluster Migration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>003 Huge Traffic Handling</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#우아콘-2023-우아한-형제들-세션-정리">우아콘 2023, 우아한 형제들 세션 정리</a></li>
+    <li><a href="#대규모-트랜잭션을-처리하는-배민-주문시스템-규모에-따른-진화">대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화</a>
+      <ul>
+        <li><a href="#성장통들">성장통들</a></li>
+        <li><a href="#단일-장애-포인트">단일 장애 포인트</a>
+          <ul>
+            <li><a href="#해결">해결</a></li>
+            <li><a href="#정리">정리</a></li>
+          </ul>
+        </li>
+        <li><a href="#대용량-데이터">대용량 데이터</a>
+          <ul>
+            <li><a href="#해결-1">해결</a></li>
+            <li><a href="#정리-1">정리</a></li>
+          </ul>
+        </li>
+        <li><a href="#대규모-트랜잭션">대규모 트랜잭션</a>
+          <ul>
+            <li><a href="#해결-2">해결</a></li>
+            <li><a href="#정리-2">정리</a></li>
+          </ul>
+        </li>
+        <li><a href="#복잡한-이벤트-아키텍처">복잡한 이벤트 아키텍처</a>
+          <ul>
+            <li><a href="#해결-3">해결</a></li>
+            <li><a href="#또다른-문제">또다른 문제</a></li>
+            <li><a href="#해결-4">해결</a></li>
+            <li><a href="#정리-3">정리</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="우아콘-2023-우아한-형제들-세션-정리">
+  우아콘 2023, 우아한 형제들 세션 정리
+  <a class="anchor" href="#%ec%9a%b0%ec%95%84%ec%bd%98-2023-%ec%9a%b0%ec%95%84%ed%95%9c-%ed%98%95%ec%a0%9c%eb%93%a4-%ec%84%b8%ec%85%98-%ec%a0%95%eb%a6%ac">#</a>
+</h1>
+<h1 id="대규모-트랜잭션을-처리하는-배민-주문시스템-규모에-따른-진화">
+  대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화
+  <a class="anchor" href="#%eb%8c%80%ea%b7%9c%eb%aa%a8-%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ec%9d%84-%ec%b2%98%eb%a6%ac%ed%95%98%eb%8a%94-%eb%b0%b0%eb%af%bc-%ec%a3%bc%eb%ac%b8%ec%8b%9c%ec%8a%a4%ed%85%9c-%ea%b7%9c%eb%aa%a8%ec%97%90-%eb%94%b0%eb%a5%b8-%ec%a7%84%ed%99%94">#</a>
+</h1>
+<h2 id="성장통들">
+  성장통들
+  <a class="anchor" href="#%ec%84%b1%ec%9e%a5%ed%86%b5%eb%93%a4">#</a>
+</h2>
+<p>
+  <img src="/image/etc/003/img.png" alt="img.png" /></p>
+<ul>
+<li>개선 대상 리스트</li>
+</ul>
+<ol>
+<li>단일 장애 포인트</li>
+<li>대용량 데이터</li>
+<li>대규모 트랜잭션</li>
+<li>복잡한 이벤트 아키텍처</li>
+</ol>
+<h2 id="단일-장애-포인트">
+  단일 장애 포인트
+  <a class="anchor" href="#%eb%8b%a8%ec%9d%bc-%ec%9e%a5%ec%95%a0-%ed%8f%ac%ec%9d%b8%ed%8a%b8">#</a>
+</h2>
+<ul>
+<li>
+<p>루비라 불리는 중앙 집중 저장소에 모든 시스템이 의존
+
+  <img src="/image/etc/003/img_1.png" alt="img_1.png" /></p>
+</li>
+<li>
+<p>중앙 저장소의 부하 발생
+
+  <img src="/image/etc/003/img_2.png" alt="img_2.png" /></p>
+</li>
+</ul>
+<h3 id="해결">
+  해결
+  <a class="anchor" href="#%ed%95%b4%ea%b2%b0">#</a>
+</h3>
+<ul>
+<li>
+<p>중앙 저장소 -&gt; 각 시스템을 분리하는 프로젝트 진행
+
+  <img src="/image/etc/003/img_3.png" alt="img_3.png" /></p>
+</li>
+<li>
+<p>시스템 간 통신은 Message Queue 기반으로 통신
+
+  <img src="/image/etc/003/img_4.png" alt="img_4.png" /></p>
+</li>
+<li>
+<p>특정 시스템의 장애는 메시지 발행의 실패로 끝
+
+  <img src="/image/etc/003/img_5.png" alt="img_5.png" /></p>
+</li>
+</ul>
+<h3 id="정리">
+  정리
+  <a class="anchor" href="#%ec%a0%95%eb%a6%ac">#</a>
+</h3>
+<p>중앙 집중 DB의 장애, 전체 시스템의 전파 -&gt; MQ를 이용한 이벤트 기반 통신으로 시스템간 영향도를 분리</p>
+<h2 id="대용량-데이터">
+  대용량 데이터
+  <a class="anchor" href="#%eb%8c%80%ec%9a%a9%eb%9f%89-%eb%8d%b0%ec%9d%b4%ed%84%b0">#</a>
+</h2>
+<ul>
+<li>
+<p>주문 아키텍처
+
+  <img src="/image/etc/003/img_6.png" alt="img_6.png" /></p>
+</li>
+<li>
+<p>정규화된 주문 DB에서 저장 + 조회가 함께 발생
+
+  <img src="/image/etc/003/img_7.png" alt="img_7.png" /></p>
+</li>
+<li>
+<p>주문 내역 정보에는 많은 정보가 포함되어있음
+
+  <img src="/image/etc/003/img_8.png" alt="img_8.png" /></p>
+</li>
+</ul>
+<h3 id="해결-1">
+  해결
+  <a class="anchor" href="#%ed%95%b4%ea%b2%b0-1">#</a>
+</h3>
+<ul>
+<li>
+<p>정규화된 주문 애그리거트는 수많은 조인이 발생 -&gt; 조회 성능을 높이기위해 단일 도큐먼트로 역정규화
+
+  <img src="/image/etc/003/img_9.png" alt="img_9.png" /></p>
+</li>
+<li>
+<p>단순 단일 도큐먼트 조회만으로 주문 정보를 가져올 수 있음 (with MongoDB)
+
+  <img src="/image/etc/003/img_10.png" alt="img_10.png" /></p>
+</li>
+<li>
+<p>주문 도메인 생명주기 : 주문 도메인은 생명주기에서만 도메인 변경이 발생
+
+  <img src="/image/etc/003/img_11.png" alt="img_11.png" /></p>
+</li>
+<li>
+<p>주문 도메인 생명주기에 발생되는 도메인 이벤트를 통해 데이터 동기화 수행
+
+  <img src="/image/etc/003/img_12.png" alt="img_12.png" /></p>
+</li>
+<li>
+<p>CQRS 적용 아키텍처 : 저장과 조회를 분리한 아키텍처
+
+  <img src="/image/etc/003/img_13.png" alt="img_13.png" /></p>
+</li>
+</ul>
+<h3 id="정리-1">
+  정리
+  <a class="anchor" href="#%ec%a0%95%eb%a6%ac-1">#</a>
+</h3>
+<p>대용량 데이터 RDB 조회 성능 저하 -&gt; 커맨드 모델과 조회 모델을 분리, 조회 모델 역정규화를 통해 조회 성능 개</p>
+<h2 id="대규모-트랜잭션">
+  대규모 트랜잭션
+  <a class="anchor" href="#%eb%8c%80%ea%b7%9c%eb%aa%a8-%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98">#</a>
+</h2>
+<ul>
+<li>
+<p>주문 DB의 분당 쓰기 처리량 한계치 도달
+
+  <img src="/image/etc/003/img_14.png" alt="img_14.png" /></p>
+</li>
+<li>
+<p>쓰기 요청의 증가 : 스펙업으로 대응 (최고사양의 스펙으로도 처리량을 감당 불가능)
+
+  <img src="/image/etc/003/img_15.png" alt="img_15.png" /></p>
+</li>
+</ul>
+<h3 id="해결-2">
+  해결
+  <a class="anchor" href="#%ed%95%b4%ea%b2%b0-2">#</a>
+</h3>
+<ul>
+<li>
+<p>샤딩</p>
+</li>
+<li>
+<p>애플리케이션 샤딩 구현</p>
+<ul>
+<li>고민 1) 샤드 클러스터 내 어느 샤드에 접근할지 결정하는 샤딩 전략</li>
+<li>고민 2) 여러 샤드에 있는 데이터를 애그리게이트 하는 방법에 대한 고민</li>
+</ul>
+</li>
+<li>
+<p>샤딩 전략</p>
+<ul>
+<li>
+<ol>
+<li>Key Based Sharding : Shard Key를 이용하여 데이터 소스를 결정하는 방식 (Hash Based Sharding)</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Range Based Sharding : 값의 범위(Range) 기반으로 데이터를 분산시키는 방식</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>Directory Based Sharding : 샤드가 어떤 데이터를 가질지 look up table을 유지하는 방식</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-key-based-sharding">
+  1. Key Based Sharding
+  <a class="anchor" href="#1-key-based-sharding">#</a>
+</h4>
+<p>
+  <img src="/image/etc/003/img_16.png" alt="img_16.png" /></p>
+<ul>
+<li>장점 : 구현 간단, 데이터를 샤드에 골고루 분배 가능</li>
+<li>단점 : 장비를 동적으로 추가, 제거할때 데이터 재배치 필요</li>
+</ul>
+<h4 id="2-range-based-sharding">
+  2. Range Based Sharding
+  <a class="anchor" href="#2-range-based-sharding">#</a>
+</h4>
+<p>
+  <img src="/image/etc/003/img_17.png" alt="img_17.png" /></p>
+<ul>
+<li>장점 : 특정 값의 범위 기반으로 샤드를 결정하면 되기 때문에 구현이 간단</li>
+<li>단점 : 데이터가 균등하게 배분되지 않아 특정 샤드에 데이터가 몰리면 Hotspot이 되어 성능 저하 발생</li>
+</ul>
+<h4 id="3-directory-based-sharding">
+  3. Directory Based Sharding
+  <a class="anchor" href="#3-directory-based-sharding">#</a>
+</h4>
+<p>
+  <img src="/image/etc/003/img_18.png" alt="img_18.png" /></p>
+<ul>
+<li>장점 : 샤드 결정 로직이 Look Up Table로 분리되어있어 동적으로 샤드 추가하는데 유리</li>
+<li>단점 : 단일 장애 포인트</li>
+</ul>
+<blockquote>
+<p>주문 시스템의 특징
+주문이 정상 동작하지 않으면, 서비스 전체의 좋지않은 경험으로 이어지고, 동적 주문 데이터는 최대 30일만 저장한다.
+-&gt; 단일 장애 포인트를 피하고, 샤드 추가 이후 30일이 지나면 데이터는 다시 균등하게 분배된다.</p>
+</blockquote>
+<blockquote>
+<p>샤드키
+주문번호를 통해 주문 순번을 알 수 있다.
+-&gt; <code>B1MU00584X</code> : 주문순번 % 샤드 수 = 샤드번호</p>
+</blockquote>
+<h3 id="정리-2">
+  정리
+  <a class="anchor" href="#%ec%a0%95%eb%a6%ac-2">#</a>
+</h3>
+<p>
+  <img src="/image/etc/003/img_19.png" alt="img_19.png" />
+주문번호 샤드키를 이용한 해싱은 주문 순번 순으로 샤드에 고르게 분배된다.</p>
+<ul>
+<li>
+<p>다건 조회는 대용량 처리르 위해 몽고DB를 활용했고, 저장&amp;조회 로직을 분리해둔 덕분에 애플리케이션 샤딩 적용시 큰 도움이 되었다.</p>
+<ul>
+<li>N개의 샤드에 분산 저장된 데이터를 조합하여 내려주는것을 해결할 수 있었음
+
+  <img src="/image/etc/003/img_21.png" alt="img_21.png" /></li>
+</ul>
+</li>
+<li>
+<p>쓰기 요청 증가 스케일 아웃 대응
+
+  <img src="/image/etc/003/img_20.png" alt="img_20.png" />
+샤딩으로 인해 증가하는 트랜잭션을 스케일 아웃으로 대응 가능</p>
+</li>
+<li>
+<p>샤딩이 적용된 아키텍처 모습
+
+  <img src="/image/etc/003/img_22.png" alt="img_22.png" /></p>
+</li>
+</ul>
+<h2 id="복잡한-이벤트-아키텍처">
+  복잡한 이벤트 아키텍처
+  <a class="anchor" href="#%eb%b3%b5%ec%9e%a1%ed%95%9c-%ec%9d%b4%eb%b2%a4%ed%8a%b8-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98">#</a>
+</h2>
+<ul>
+<li>
+<p>규칙성 없는 무분별한 이벤트 발행</p>
+</li>
+<li>
+<p>주요 도메인 로직과 서비스 로직을 이벤트 기반으로 관심사를 분리
+
+  <img src="/image/etc/003/img_23.png" alt="img_23.png" /></p>
+</li>
+<li>
+<p>주문 시스템의 이벤트 아키텍처
+
+  <img src="/image/etc/003/img_24.png" alt="img_24.png" /></p>
+</li>
+<li>
+<p>문제점1. 스프링 애플리케이션 이벤트는 로직을 수행하는 주체를 파악하기 어려움
+
+  <img src="/image/etc/003/img_25.png" alt="img_25.png" /></p>
+</li>
+<li>
+<p>문제점2. 이벤트 유실이 발생할 경우 재처리가 어려움
+
+  <img src="/image/etc/003/img_26.png" alt="img_26.png" /></p>
+</li>
+</ul>
+<h3 id="해결-3">
+  해결
+  <a class="anchor" href="#%ed%95%b4%ea%b2%b0-3">#</a>
+</h3>
+<ul>
+<li>
+<p>내부 / 외부 이벤트 정리
+
+  <img src="/image/etc/003/img_27.png" alt="img_27.png" /></p>
+</li>
+<li>
+<p>ZERO Payload
+이벤트 처리기가 모든 서비스 로직을 처리
+필요한 데이터는 주문저장소(MongoDB) 조회
+
+  <img src="/image/etc/003/img_28.png" alt="img_28.png" /></p>
+</li>
+<li>
+<p>이벤트 처리 주체의 단일화
+
+  <img src="/image/etc/003/img_29.png" alt="img_29.png" />
+네트워크 비용보다 이벤트 처리 주체의 단일화에 이점이 있다.</p>
+</li>
+</ul>
+<h3 id="또다른-문제">
+  또다른 문제
+  <a class="anchor" href="#%eb%98%90%eb%8b%a4%eb%a5%b8-%eb%ac%b8%ec%a0%9c">#</a>
+</h3>
+<ul>
+<li>
+<p>이벤트 발행 실패 유형
+
+  <img src="/image/etc/003/img_30.png" alt="img_30.png" /></p>
+</li>
+<li>
+<p>트랜잭션 내부 외부에서 발행 실패 유무에 따라 처리가 달라진다.
+
+  <img src="/image/etc/003/img_31.png" alt="img_31.png" /></p>
+</li>
+</ul>
+<h3 id="해결-4">
+  해결
+  <a class="anchor" href="#%ed%95%b4%ea%b2%b0-4">#</a>
+</h3>
+<ul>
+<li>
+<p>트랜잭션 아웃박스 패턴</p>
+<ul>
+<li>이벤트 발행 실패와 서비스 실패를 격리하여 재발행 수단을 보장한다.
+
+  <img src="/image/etc/003/img_33.png" alt="img_33.png" /></li>
+</ul>
+</li>
+<li>
+<p>이벤트 발행 실패시, OUTBOX 엔티티에 저장된 페이로드를 재발행한다.</p>
+<ul>
+<li>유실된 데이터를 배치로 재발행
+
+  <img src="/image/etc/003/img_34.png" alt="img_34.png" /></li>
+</ul>
+</li>
+</ul>
+<h3 id="정리-3">
+  정리
+  <a class="anchor" href="#%ec%a0%95%eb%a6%ac-3">#</a>
+</h3>
+<p>규칙성 없는 무분별한 이벤트 발행 -&gt; 이벤트 로직을 단일 애플리케이션에 위임하여 관리 포인트를 집중</p>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><ol>
+<li>
+  <a href="https://www.youtube.com/watch?v=704qQs6KoUk">https://www.youtube.com/watch?v=704qQs6KoUk</a></li>
+</ol>
+</div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+  <div><a class="flex align-center" href="https://github.com/seohaebada/TIL/commit/c2a1da8170871d493001f54ee377e535f893d931" title='Last modified by seohaebada | January 6, 2024' target="_blank" rel="noopener">
+      <img src="/svg/calendar.svg" class="book-icon" alt="Calendar" />
+      <span>January 6, 2024</span>
+    </a>
+  </div>
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/etc/003_huge_traffic_handling.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#우아콘-2023-우아한-형제들-세션-정리">우아콘 2023, 우아한 형제들 세션 정리</a></li>
+    <li><a href="#대규모-트랜잭션을-처리하는-배민-주문시스템-규모에-따른-진화">대규모 트랜잭션을 처리하는 배민 주문시스템 규모에 따른 진화</a>
+      <ul>
+        <li><a href="#성장통들">성장통들</a></li>
+        <li><a href="#단일-장애-포인트">단일 장애 포인트</a>
+          <ul>
+            <li><a href="#해결">해결</a></li>
+            <li><a href="#정리">정리</a></li>
+          </ul>
+        </li>
+        <li><a href="#대용량-데이터">대용량 데이터</a>
+          <ul>
+            <li><a href="#해결-1">해결</a></li>
+            <li><a href="#정리-1">정리</a></li>
+          </ul>
+        </li>
+        <li><a href="#대규모-트랜잭션">대규모 트랜잭션</a>
+          <ul>
+            <li><a href="#해결-2">해결</a></li>
+            <li><a href="#정리-2">정리</a></li>
+          </ul>
+        </li>
+        <li><a href="#복잡한-이벤트-아키텍처">복잡한 이벤트 아키텍처</a>
+          <ul>
+            <li><a href="#해결-3">해결</a></li>
+            <li><a href="#또다른-문제">또다른 문제</a></li>
+            <li><a href="#해결-4">해결</a></li>
+            <li><a href="#정리-3">정리</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
