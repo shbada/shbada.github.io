@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.d05b466b6616e66d5cafd18daf1c79226f16db1ae185ed2a4cb2d24c56e4c2f5.js" integrity="sha256-0FtGa2YW5m1cr9GNrxx5Im8W2xrhhe0qTLLSTFbkwvU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.212e860c0aa119eb39347a917c9a5a1776daf6f670bb48e8a08f9024a1608465.js" integrity="sha256-IS6GDAqhGes5NHqRfJpaF3ba9vZwu0jooI&#43;QJKFghGU=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/batch/index.xml" title="TIL" />
@@ -63,40 +63,6 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <input type="checkbox" id="section-bc7d9ceb6dc60f10f3ecfb9266f57cb9" class="toggle"  />
-    <label for="section-bc7d9ceb6dc60f10f3ecfb9266f57cb9" class="flex justify-between">
-      <a href="/docs/springbatch/" class="">Springbatch</a>
-    </label>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/springbatch/001_springbatch_start/" class="">001 Springbatch Start</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
     
       
         <li>
@@ -1460,6 +1426,40 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <input type="checkbox" id="section-bc7d9ceb6dc60f10f3ecfb9266f57cb9" class="toggle"  />
+    <label for="section-bc7d9ceb6dc60f10f3ecfb9266f57cb9" class="flex justify-between">
+      <a href="/docs/springbatch/" class="">Springbatch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/springbatch/001_springbatch_start/" class="">001 Springbatch Start</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
     <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
       <a href="/docs/webflux/" class="">Webflux</a>
@@ -1720,11 +1720,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/batch/">batch</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
           <span>1</span>
         </li>
@@ -1777,6 +1772,11 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/cleanCode/">cleanCode</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/batch/">batch</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -1884,39 +1884,6 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/springbatch/001_springbatch_start/">001 Springbatch Start</a>
-    </h2>
-    
-  <h5>January 6, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-01-06/">2023-01-06</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/batch/">batch</a>, 
-      <a href="/tags/springBatch/">springBatch</a>
-  </div>
-  
-
-
-
-
-    <p>강의메모 # 스프링 배치 소개 # 탄생 배경 # 자바 기반 표준 배치 기술 부재 스프링 배치는 SpringSource(현재는 Pivotal)와 Accenture(경영 컨설팅 기업)의 합작품 Accenture - 배치 아키텍처를 구현하면서 쌓은 기술적인 경험과 노하우 SpringSource - 깊이 있는 기술적 기반과 스프링의 프로그래밍 모델 배치 핵심 패턴 # Read(데이터 조회), Process(데이터 가공), Write(데이터 저장) 배치 시나리오 # 배치 프로세스를 주기적으로 커밋 동시 다발적인 Job 의 배치 처리, 대용량 병렬 처리 실패 후 수동 또는 스케줄링에 의한 재시작 의존관계가 있는 step 여러 개를 순차적으로 처리 조건적 Flow 구성을 통한 체계적이고 유연한 배치 모델 구성 반복, 재시도, Skip 처리 아키텍처 # 도서 - 스프링배치 완벽가이드 # 1장.
-        <a href="/docs/springbatch/001_springbatch_start/">...</a>
-      
-    </p>
-  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2192,11 +2159,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/batch/">batch</a>
-          <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
           <span>1</span>
         </li>
@@ -2249,6 +2211,11 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/cleanCode/">cleanCode</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/batch/">batch</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
