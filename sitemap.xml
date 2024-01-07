@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/docs/springbatch/</loc>
+    <lastmod>2024-01-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/docs/algorithm/</loc>
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
@@ -90,43 +93,43 @@
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/parallel_programming/010_thread_sleep/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-07/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/java/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/parallel/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/</loc>
-    <lastmod>2024-01-07T10:01:19+09:00</lastmod>
-  </url><url>
-    <loc>https://example.com/docs/batch/003_springbatch_start/</loc>
-    <lastmod>2024-01-06T23:16:50+09:00</lastmod>
+    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/etc/003_huge_traffic_handling/</loc>
     <lastmod>2024-01-06T01:19:39+09:00</lastmod>
   </url><url>
+    <loc>https://example.com/docs/springbatch/001_springbatch_start/</loc>
+    <lastmod>2024-01-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/categories/2023-01-06/</loc>
-    <lastmod>2024-01-06T23:16:50+09:00</lastmod>
+    <lastmod>2024-01-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/batch/</loc>
-    <lastmod>2024-01-06T23:16:50+09:00</lastmod>
+    <lastmod>2024-01-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/etc/</loc>
     <lastmod>2024-01-06T01:19:39+09:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/springBatch/</loc>
-    <lastmod>2024-01-06T23:16:50+09:00</lastmod>
+    <lastmod>2024-01-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/traffic/</loc>
     <lastmod>2024-01-06T01:19:39+09:00</lastmod>
