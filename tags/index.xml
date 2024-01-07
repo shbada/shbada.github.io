@@ -6,8 +6,22 @@
     <description>Recent content in Tags on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>java</title>
+      <link>https://example.com/tags/java/</link>
+      <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>parallel</title>
+      <link>https://example.com/tags/parallel/</link>
+      <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/parallel/</guid>
+      <description></description>
+    </item>
     <item>
       <title>batch</title>
       <link>https://example.com/tags/batch/</link>
@@ -34,20 +48,6 @@
       <link>https://example.com/tags/traffic/</link>
       <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/traffic/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>java</title>
-      <link>https://example.com/tags/java/</link>
-      <pubDate>Thu, 04 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/java/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>parallel</title>
-      <link>https://example.com/tags/parallel/</link>
-      <pubDate>Thu, 04 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/parallel/</guid>
       <description></description>
     </item>
     <item>
