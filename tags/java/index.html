@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.59c89ca9d00bb6be57c4a9af9ce0f6c2ab72d117c0b32fb179d2c9b06b8710b4.js" integrity="sha256-WcicqdALtr5XxKmvnOD2wqty0RfAsy&#43;xedLJsGuHELQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e145c66ffb80ca85c8f0368b29596de84ee1a55aae1654fcdbbf8c192f79a8e8.js" integrity="sha256-4UXGb/uAyoXI8DaLKVlt6E7hpVquFlT827&#43;MGS95qOg=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -845,6 +845,19 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/parallel_programming/010_thread_sleep/" class="">010 Thread Sleep</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/parallel_programming/008_thread_start/" class="">008 Thread Start</a>
   
 
@@ -1528,7 +1541,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-04/">2024-01-04</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -1692,12 +1705,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>10</span>
+          <span>11</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>9</span>
+          <span>10</span>
         </li>
       
         <li class="flex justify-between">
@@ -1875,6 +1888,39 @@ https://github.com/alex-shpak/hugo-book
 
     <p>강의 메모 - 스레드 생명주기와 상태 # 개요 # 자바 스레드는 생성, 실행, 종료에 따른 상태를 가지고있다. OS 스레드 상태를 의미하지 않는다. 자바 스레드는 어떤 시점이던 6가지 상태 중 오직 1개의 상태를 가질 수 있다. 자바 스레드의 현재 상태를 가져오려면 Thread의 getState() 메서드를 사용하여 가져올 수 있다. Thread 클래스에는 스레드 상태에 대한 ENUM 상수를 정의하는 Thread.State 클래스를 제공한다. 스레드 상태 # NEW : 객체만 생성된 상태 RUNNABLE WAITING : 대기는 언제하는가?
         <a href="/docs/parallel_programming/009_thread_status/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/010_thread_sleep/">010 Thread Sleep</a>
+    </h2>
+    
+  <h5>January 4, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-04/">2024-01-04</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - sleep() # 개요 # 지정된 시간 동안 현재 스레드의 실행을 일시 정지하고 대기상태로 빠졌다가 시간이 지나면 실행대기 상태로 전환된다 native 메서드로 연결되며 시스템 콜을 통해 커널모드에서 수행 후 유저모드로 전환한다 이 간단한 메서드 자체도 jvm 자체에서 실행되지 못하고 커널모드에서 수행된다. 컨텍스트 스위칭 발생 API 및 예외 # staic sleep(long millis) throws InterruptedException # 지정한 밀리초 시간 동안 스레드를 수면 상태로 만든다 밀리초에 대한 인수 값은 음수가 될 수 없으며 음수 일 경우 IllegalArgumentException 이 발생한다
+        <a href="/docs/parallel_programming/010_thread_sleep/">...</a>
       
     </p>
   </article>
@@ -2153,41 +2199,28 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/java/001_facade_pattern/">001 Facade Pattern</a>
-    </h2>
-    
-  <h5>December 13, 2023</h5>
-
-
 
   
-  <div>
-    
-      <a href="/categories/2023-12-13/">2023-12-13</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/java/">java</a>, 
-      <a href="/tags/designPattern/">designPattern</a>
-  </div>
-  
-
-
-
-
-    <p>퍼사드 (Facade) 패턴 # 복잡한 서브 시스템 의존성을 최소화하는 방법. 클라이언트가 사용해야 하는 복잡한 서브 시스템 의존성을 간단한 인터페이스로 추상화 할 수 있다. 복잡한 디테일을 퍼사드 뒤로 숨긴다. 복잡한 서브 클래스들의 공통적인 기능을 정의하는 상위 수준의 인터페이스를 제공하는 패턴이다. 서브 클래스의 코드에 의존하는 일을 감소시켜 주고, 복잡한 소프트웨어를 간단히 사용 할 수 있게 간단한 인터페이스를 제공해준다. 서브 시스템(SubSystem)들 간의 종속성을 줄여줄 수 있으며, 퍼사드 객체를 사용하는 곳(Client)에서는 여러 서브 클래스들을 호출할 필요 없이 편리하게 사용할 수 있다.
-        <a href="/docs/java/001_facade_pattern/">...</a>
-      
-    </p>
-  </article>
-  
-
-  
+    <ul class="pagination pagination-default">
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/java/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/java/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/java/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
  
       
 
@@ -2236,7 +2269,7 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-04/">2024-01-04</a>
-          <span>1</span>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -2400,12 +2433,12 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>10</span>
+          <span>11</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>9</span>
+          <span>10</span>
         </li>
       
         <li class="flex justify-between">
