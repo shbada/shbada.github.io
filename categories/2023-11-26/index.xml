@@ -13,7 +13,10 @@
       <link>https://example.com/docs/kotlin/002_Functional_Programming_Example/</link>
       <pubDate>Sun, 26 Nov 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kotlin/002_Functional_Programming_Example/</guid>
-      <description>코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제&#xA;함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수&#xA;고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램&#xA;루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &amp;lt;1&amp;gt; if (n &amp;lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.</description>
+      <description>코틀린으로 함수형 프로그래밍 시작하기 # [고차함수 : 함수를 함수에 넘기기] # 함수형 프로그램을 작성할때 기본이 되는 몇가지 주제
+함수도 값이다. 함수를 변수에 대입하거나 데이터 구조에 저장하거나 함수의 인자로 넘길 수 있다. 고차함수란? 다른 함수를 인자로 받는 함수
+고차함수 예제 어떤 수의 절댓값과 다른 수의 계승(팩토리얼; factorial)을 출력하는 프로그램
+루프를 함수적으로 작성하는 방법 n의 계승을 계산하는 함수를 추가한다. 재귀(recursion)를 통해 순수 함수로 루프를 작성할 수 있다. fun factorial(i: Int): Int { fun go(n: Int, acc: Int): Int = // &amp;lt;1&amp;gt; if (n &amp;lt;= 0) acc // 루프를 종료시키려면 재귀 호출을 하지 않고, 값을 반환한다.</description>
     </item>
   </channel>
 </rss>
