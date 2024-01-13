@@ -92,7 +92,13 @@
     <loc>https://example.com/docs/webflux/</loc>
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/011_thread_interrupt/</loc>
+    <loc>https://example.com/docs/parallel_programming/012_thread_interrupt/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/docs/parallel_programming/013_thread_info/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://example.com/docs/parallel_programming/014_thread_priority/</loc>
     <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-13/</loc>
@@ -525,6 +531,6 @@
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
     <loc>https://example.com/</loc>
-    <lastmod>2024-01-12T19:16:53+09:00</lastmod>
+    <lastmod>2024-01-13T12:50:51+09:00</lastmod>
   </url>
 </urlset>

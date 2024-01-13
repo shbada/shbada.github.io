@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.f12cc9079b64bd203cc837d158e6d19abba8b1b09452eb264c7c9d4fc37728c0.js" integrity="sha256-8SzJB5tkvSA8yDfRWObRmruosbCUUusmTHydT8N3KMA=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.71d9537efe76069a1309f466f864c30261b9ef96097721e5482f9c54753e6b86.js" integrity="sha256-cdlTfv52BpoTCfRm&#43;GTDAmG575YJdyHlSC&#43;cVHU&#43;a4Y=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -819,7 +819,33 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/parallel_programming/011_thread_interrupt/" class="">011 Thread Interrupt</a>
+    <a href="/docs/parallel_programming/012_thread_interrupt/" class="">012 Thread Interrupt</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/013_thread_info/" class="">013 Thread Info</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/014_thread_priority/" class="">014 Thread Priority</a>
   
 
         </li>
@@ -1583,7 +1609,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-13/">2024-01-13</a>
-          <span>1</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
@@ -1747,12 +1773,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>13</span>
+          <span>15</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>12</span>
+          <span>14</span>
         </li>
       
         <li class="flex justify-between">
@@ -1923,6 +1949,73 @@ https://github.com/alex-shpak/hugo-book
   
   <article class="markdown book-post">
     <h2>
+      <a href="/docs/parallel_programming/007_java_thread/">007 Java Thread</a>
+    </h2>
+    
+  <h5>January 2, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-02/">2024-01-02</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Java Thread Fundamentals &gt; 스레드 생성 # 개요 # 자바 스레드는 JVM에서 User Thread를 생성할때 시스템 콜을 통해서 커널에 생성된 Kernel Thread와 1:1 매핑이 되어 최종적으로 커널에서 관리된다. JVM에서 스레드를 생성할때마다 커널에서 자바 스레드와 대응하는 커널 스레드를 생성한다. 자바에서 Platform Thread으로 정의되어 있다. 즉, OS 플랫폼에 따라 JVM이 사용자 스레드를 매핑하게 된다. Platform Thread : 운영체제에서 스케줄링되는 Kernel 쓰레드와 1:1 매핑된 플랫폼 쓰레드의 생성을 지원한다. 사용자 수준 쓰레드처럼 쓰레드 관리, 스케줄링 등을 하지않고, 생성만 하고 커널 쓰레드와 매핑만 되어있음 (커널의 제어를 받는다.
+        <a href="/docs/parallel_programming/007_java_thread/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/003_context_switching/">003 Context Switching</a>
+    </h2>
+    
+  <h5>January 1, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-01/">2024-01-01</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ContextSwitching # 개요 # 하나의 CPU는 동일한 시간에 1개의 task만 수행 가능, 여러 프로세스를 동시에 실행X 하나의 CPU에서 여러 프로세스를 동시성으로 처리하기 위해서는 한 프로세스에서 다른 프로세스로 전환해야하는데, 이것을 컨텍스트 스위칭이라고 한다.
+Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령을 수행했고, CPU Register에는 어떤 값이 저장되어있는지에 대한 정보가 필요하다. Context는 CPU가 해당 프로세스를 실행하기 위한 프로세스의 정보를 의미하며, 이 정보들은 운영체제가 관리하는 PCB라고 하는 자료구조의 공간에 저장된다.
+        <a href="/docs/parallel_programming/003_context_switching/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
       <a href="/docs/parallel_programming/001_process_thread/">001 Process Thread</a>
     </h2>
     
@@ -2056,7 +2149,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-13/">2024-01-13</a>
-          <span>1</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
@@ -2220,12 +2313,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>13</span>
+          <span>15</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>12</span>
+          <span>14</span>
         </li>
       
         <li class="flex justify-between">
