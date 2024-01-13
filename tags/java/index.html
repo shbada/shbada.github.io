@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.744e365c31fdeb74bbcab4ffcca521f5d279a85268d2d0651682869b8d668f1f.js" integrity="sha256-dE42XDH963S7yrT/zKUh9dJ5qFJo0tBlFoKGm41mjx8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.f12cc9079b64bd203cc837d158e6d19abba8b1b09452eb264c7c9d4fc37728c0.js" integrity="sha256-8SzJB5tkvSA8yDfRWObRmruosbCUUusmTHydT8N3KMA=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -819,6 +819,19 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="/docs/parallel_programming/011_thread_interrupt/" class="">011 Thread Interrupt</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="/docs/parallel_programming/011_thread_join/" class="">011 Thread Join</a>
   
 
@@ -1569,6 +1582,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-13/">2024-01-13</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-08/">2024-01-08</a>
           <span>1</span>
         </li>
@@ -1729,12 +1747,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>12</span>
+          <span>13</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>11</span>
+          <span>12</span>
         </li>
       
         <li class="flex justify-between">
@@ -1902,6 +1920,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/011_thread_interrupt/">011 Thread Interrupt</a>
+    </h2>
+    
+  <h5>January 13, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-13/">2024-01-13</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - interrupt() # 개요 # Interrupt 의 사전적 의미는 ‘방해하다’ 라는 뜻으로 어떤 주체의 행동이나 실행흐름을 방해한다는 의미로 해석 할 수 있다 자바 스레드에서 interrupt() 는 특정한 스레드에게 인터럽트 신호를 알려 줌으로써 스레드의 실행을 중단하거나, 작업 취소, 강제 종료 등으로 사용할 수 있다 interrupt() # interrupt() 는 스레드에게 인터럽트가 발생했다는 신호를 보내는 메카니즘이다 interrupt() 는 스레드가 현재 실행 흐름을 멈추고 인터럽트 이벤트를 먼저 처리하도록 시그널을 보내는 장치라 할 수 있다 interrupted 속성 스레드는 인터럽트 상태(Interrupt State )로 알려진 interrupted 를 가지고 있으며 인터럽트 발생 여부를 확인할 수 있는 상태 값이다.
+        <a href="/docs/parallel_programming/011_thread_interrupt/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2206,42 +2257,6 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/001_process_thread/">001 Process Thread</a>
-    </h2>
-    
-  <h5>December 22, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-12-22/">2023-12-22</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - Process &amp; Thread # Process # File down -&gt; .exe 파일 실행 -&gt; 설치된 상태 : 프로그램 (!= 프로세스) 프로세스는 프로그램의 실제 실행. =&gt; 프로그램 데이터들이 메모리에 올라와 CPU를 할당받고 명령을 수행하고있는 상태
-각각의 프로세스는 RAM(메모리)의 각각의 영역을 할당받음
-4GB 정도 할당 받는다고 해보자.
-1GB 정도는 운영체제를 위한 커널(Kernel) 서비스를 위해 차지한다. 나머지 3GB가 Stack, heap, data, code 등 영역을 차지한다. 프로세스는 자식 프로세스를 가질 수 있다.
-        <a href="/docs/parallel_programming/001_process_thread/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2304,6 +2319,11 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-01-13/">2024-01-13</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-08/">2024-01-08</a>
@@ -2466,12 +2486,12 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>12</span>
+          <span>13</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>11</span>
+          <span>12</span>
         </li>
       
         <li class="flex justify-between">
