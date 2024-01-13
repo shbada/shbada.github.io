@@ -27,11 +27,21 @@
       <link>https://example.com/docs/parallel_programming/014_thread_priority/</link>
       <pubDate>Sat, 13 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/014_thread_priority/</guid>
-      <description>강의 메모 - Priority # 스레드 우선순위 (Priority) # 단일 CPU에서 여러 스레드를 실행하는 것을 스케줄링이라고 하며 스레드는 스케줄링에 의해 선점되어 CPU 를 할당받는다
-자바 런타임은 고정 우선순위 선점형 스케줄링(fixed-priority pre-emptive scheduling ) 으로 알려진 매우 단순하고 결정적인 스케줄링 알고리즘을 지원한다
-이 알고리즘은 실행 대기 상태의 스레드 중에 상대적인 우선 순위에 따라 스레드를 예약한다
-우선순위 개념
-Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정수 값이 높을수록 우선순위가 높다 스레드가 생성될 때 우선순위 값이 정해지며 기본 우선 순위인 5 로 설정된다 스케줄러는 우선순위가 높은 스레드를 실행하다가 해당 스레드가 중지, 양보 또는 실행 불가능이 되는 경우 우선 순위가 낮은 스레드를 실행하기 시작한다 두 스레드의 우선순위가 같을 경우 라운드 로빈(순환 할당) 스케줄링 방식에 의해 다음 스레드를 선택한다 스케줄러가 반드시 우선순위가 높은 스레드를 실행한다고 보장 할 수 없다.</description>
+      <description>강의 메모 - Priority # 스레드 우선순위 (Priority) # 단일 CPU에서 여러 스레드를 실행하는 것을 스케줄링이라고 하며 스레드는 스케줄링에 의해 선점되어 CPU 를 할당받는다&#xA;자바 런타임은 고정 우선순위 선점형 스케줄링(fixed-priority pre-emptive scheduling ) 으로 알려진 매우 단순하고 결정적인 스케줄링 알고리즘을 지원한다&#xA;이 알고리즘은 실행 대기 상태의 스레드 중에 상대적인 우선 순위에 따라 스레드를 예약한다&#xA;우선순위 개념&#xA;Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정수 값이 높을수록 우선순위가 높다 스레드가 생성될 때 우선순위 값이 정해지며 기본 우선 순위인 5 로 설정된다 스케줄러는 우선순위가 높은 스레드를 실행하다가 해당 스레드가 중지, 양보 또는 실행 불가능이 되는 경우 우선 순위가 낮은 스레드를 실행하기 시작한다 두 스레드의 우선순위가 같을 경우 라운드 로빈(순환 할당) 스케줄링 방식에 의해 다음 스레드를 선택한다 스케줄러가 반드시 우선순위가 높은 스레드를 실행한다고 보장 할 수 없다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/015_thread_uncaughtExceptionHandler/</link>
+      <pubDate>Sat, 13 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/015_thread_uncaughtExceptionHandler/</guid>
+      <description>강의 메모 - 스레드 예외처리 - UncaughtExceptionHandler # 개요 # 기본적으로 스레드의 run() 은 예외를 던질 수 없기 때문에 예외가 발생할 경우 run() 안에서만 예외를 처리해야 한다 RuntimeException 타입의 예외가 발생할 지라도 스레드 밖에서 예외를 캐치할 수 없고 사라진다 스레드가 비정상적으로 종료되었거나 특정한 예외를 스레드 외부에서 캐치하기 위해서 자바에서는 UncaughtExceptionHandler 인터페이스를 제공한다 UncaughtExceptionHandler # 캐치 되지 않는 예외에 의해 Thread가 갑자기 종료했을 때에 호출되는 핸들러 인터페이스 어떤 원인으로 인해 스레드가 종료되었는지 대상 스레드와 예외를 파악할 수 있다 예외가 발생하면 uncaughtException 이 호출되고 대상 스레드 t 와 예외 e 가 인자로 전달된다 Thread API # static void setDefaultUncaughtExceptionHandler</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/016_thread_stop_flag/</link>
+      <pubDate>Sat, 13 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/016_thread_stop_flag/</guid>
+      <description>강의 메모 - 스레드 중지 – flag variable vs interrupt() - 1,2 # 개요 # 자바에서는 무한 반복이나 지속적인 실행 중에 있는 스레드를 중지하거나 종료할 수 있는 API 를 더 이상 사용할 수 없다 (suspend(), stop()) 수행 중에 강제로 종료해버리면 이슈가 생길 수 있기 때문 스레드를 종료하는 방법은 플래그 변수를 사용하거나 interrupt() 를 활용해서 구현할 수 있다 Flag Variable # 플래그 변수의 값이 어떤 조건에 만족할 경우 스레드의 실행을 중지하는 방식 플래그 변수는 동시성 문제로 가능한 atomic 변수나 volatile 키워드를 사용하도록 한다 동시성 문제 때문 running 변수는 여러 쓰레드가 있다.</description>
     </item>
     <item>
       <title></title>
@@ -59,33 +69,28 @@ Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정�
       <link>https://example.com/docs/parallel_programming/008_thread_start/</link>
       <pubDate>Wed, 03 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/008_thread_start/</guid>
-      <description>강의 메모 - 스레드 실행 및 종료 # 개요 # 자바 스레드는 OS 스케줄러에 의해 실행 순서가 결정되며, 스레드 실행 시점을 JVM에서 제어할 수 없다. kernel이 제어한다. 새로운 스레드는 현재 스레드와 독립적으로 실행되고, 최대 한번 시작할 수 있고, 스레드가 종료된 이후에는 다시 시작할 수 없다.
-스레드 실행 # start() : 스레드를 실행시키는 메서드로 시스템 콜을 통해서 커널에 커널 스레드 생성을 요청한다.
-start() 호출 후 System Call -&amp;gt; (execute) -&amp;gt; Kernel -&amp;gt; (create) -&amp;gt; Kernel Thread 순서</description>
+      <description>강의 메모 - 스레드 실행 및 종료 # 개요 # 자바 스레드는 OS 스케줄러에 의해 실행 순서가 결정되며, 스레드 실행 시점을 JVM에서 제어할 수 없다. kernel이 제어한다. 새로운 스레드는 현재 스레드와 독립적으로 실행되고, 최대 한번 시작할 수 있고, 스레드가 종료된 이후에는 다시 시작할 수 없다.&#xA;스레드 실행 # start() : 스레드를 실행시키는 메서드로 시스템 콜을 통해서 커널에 커널 스레드 생성을 요청한다.&#xA;start() 호출 후 System Call -&amp;gt; (execute) -&amp;gt; Kernel -&amp;gt; (create) -&amp;gt; Kernel Thread 순서</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</link>
       <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</guid>
-      <description>강의 메모 - CPU Bound &amp;amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.
-CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.</description>
+      <description>강의 메모 - CPU Bound &amp;amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.&#xA;CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/005_user_kernel_systemcall/</link>
       <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/005_user_kernel_systemcall/</guid>
-      <description>강의 메모 - 사용자 모드 &amp;amp; 커널 모드 # 개요 # 운영체제 : 컴퓨터 시스템의 자원을 효율적으로 관리하는 소프트웨어 운영체제의 여러 기능 중 핵심 기능을 담당하는 부분을 커널(kernel) 이라고 한다.
-사용자가 운영체제 위에서 실행되는 프로그램을 편하고 효율적으로 사용할 수 있게 하드웨어와 소프트웨어 간 중개자 역할을 한다. CPU, I/O 장치, 메모리, 저장소와 같은 하드웨어 자원을 프로그램에 잘 할당하는 데 있다. 운영체제는 응용 프로그램이 하드웨어 자원에 직접 접근하는 것을 방지하여 자원을 보호한다.</description>
+      <description>강의 메모 - 사용자 모드 &amp;amp; 커널 모드 # 개요 # 운영체제 : 컴퓨터 시스템의 자원을 효율적으로 관리하는 소프트웨어 운영체제의 여러 기능 중 핵심 기능을 담당하는 부분을 커널(kernel) 이라고 한다.&#xA;사용자가 운영체제 위에서 실행되는 프로그램을 편하고 효율적으로 사용할 수 있게 하드웨어와 소프트웨어 간 중개자 역할을 한다. CPU, I/O 장치, 메모리, 저장소와 같은 하드웨어 자원을 프로그램에 잘 할당하는 데 있다. 운영체제는 응용 프로그램이 하드웨어 자원에 직접 접근하는 것을 방지하여 자원을 보호한다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/006_user_mode_kernel_mode_thread/</link>
       <pubDate>Tue, 02 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/006_user_mode_kernel_mode_thread/</guid>
-      <description>강의 메모 - 사용자 수준 스레드 &amp;amp; 커널 수준 스레드 # 개요 # 스레드는 사용자 수준 스레드(User Level Thread), 커널 수준 스레드(Kernel Level Thread) 로 구분된다. 사용자 수준 스레드 : 사용자 프로그램에서 관리하는 스레드 커널 수준 스레드 : OS에서 관리하는 스레드 ** CPU의 할당 단위는 쓰레드다. **
-사용자 수준 스레드(User Level Thread) # 스레드 라이브러리(Pthreads, WIndows Threads, Java Threads(JVM))에 의해 스레드의 생성, 종료, 스레드간 메시지 전달, 스케줄링 스레드 보관 등 모든 것을 관리한다.</description>
+      <description>강의 메모 - 사용자 수준 스레드 &amp;amp; 커널 수준 스레드 # 개요 # 스레드는 사용자 수준 스레드(User Level Thread), 커널 수준 스레드(Kernel Level Thread) 로 구분된다. 사용자 수준 스레드 : 사용자 프로그램에서 관리하는 스레드 커널 수준 스레드 : OS에서 관리하는 스레드 ** CPU의 할당 단위는 쓰레드다. **&#xA;사용자 수준 스레드(User Level Thread) # 스레드 라이브러리(Pthreads, WIndows Threads, Java Threads(JVM))에 의해 스레드의 생성, 종료, 스레드간 메시지 전달, 스케줄링 스레드 보관 등 모든 것을 관리한다.</description>
     </item>
     <item>
       <title></title>
@@ -99,26 +104,21 @@ CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를
       <link>https://example.com/docs/parallel_programming/003_context_switching/</link>
       <pubDate>Mon, 01 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/003_context_switching/</guid>
-      <description>강의 메모 - ContextSwitching # 개요 # 하나의 CPU는 동일한 시간에 1개의 task만 수행 가능, 여러 프로세스를 동시에 실행X 하나의 CPU에서 여러 프로세스를 동시성으로 처리하기 위해서는 한 프로세스에서 다른 프로세스로 전환해야하는데, 이것을 컨텍스트 스위칭이라고 한다.
-Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령을 수행했고, CPU Register에는 어떤 값이 저장되어있는지에 대한 정보가 필요하다. Context는 CPU가 해당 프로세스를 실행하기 위한 프로세스의 정보를 의미하며, 이 정보들은 운영체제가 관리하는 PCB라고 하는 자료구조의 공간에 저장된다.</description>
+      <description>강의 메모 - ContextSwitching # 개요 # 하나의 CPU는 동일한 시간에 1개의 task만 수행 가능, 여러 프로세스를 동시에 실행X 하나의 CPU에서 여러 프로세스를 동시성으로 처리하기 위해서는 한 프로세스에서 다른 프로세스로 전환해야하는데, 이것을 컨텍스트 스위칭이라고 한다.&#xA;Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령을 수행했고, CPU Register에는 어떤 값이 저장되어있는지에 대한 정보가 필요하다. Context는 CPU가 해당 프로세스를 실행하기 위한 프로세스의 정보를 의미하며, 이 정보들은 운영체제가 관리하는 PCB라고 하는 자료구조의 공간에 저장된다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/001_process_thread/</link>
       <pubDate>Fri, 22 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/001_process_thread/</guid>
-      <description>강의 메모 - Process &amp;amp; Thread # Process # File down -&amp;gt; .exe 파일 실행 -&amp;gt; 설치된 상태 : 프로그램 (!= 프로세스) 프로세스는 프로그램의 실제 실행. =&amp;gt; 프로그램 데이터들이 메모리에 올라와 CPU를 할당받고 명령을 수행하고있는 상태
-각각의 프로세스는 RAM(메모리)의 각각의 영역을 할당받음
-4GB 정도 할당 받는다고 해보자.
-1GB 정도는 운영체제를 위한 커널(Kernel) 서비스를 위해 차지한다. 나머지 3GB가 Stack, heap, data, code 등 영역을 차지한다. 프로세스는 자식 프로세스를 가질 수 있다.</description>
+      <description>강의 메모 - Process &amp;amp; Thread # Process # File down -&amp;gt; .exe 파일 실행 -&amp;gt; 설치된 상태 : 프로그램 (!= 프로세스) 프로세스는 프로그램의 실제 실행. =&amp;gt; 프로그램 데이터들이 메모리에 올라와 CPU를 할당받고 명령을 수행하고있는 상태&#xA;각각의 프로세스는 RAM(메모리)의 각각의 영역을 할당받음&#xA;4GB 정도 할당 받는다고 해보자.&#xA;1GB 정도는 운영체제를 위한 커널(Kernel) 서비스를 위해 차지한다. 나머지 3GB가 Stack, heap, data, code 등 영역을 차지한다. 프로세스는 자식 프로세스를 가질 수 있다.</description>
     </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/002_parallel_concurrent/</link>
       <pubDate>Fri, 22 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/002_parallel_concurrent/</guid>
-      <description>강의 메모 - Parallel &amp;amp; Concurrent # 동시성 # 특정한 순서 없이 겹치는 기간에 시작, 실행 및 완료되는 여러 작업에 관한것 ex) 사람이 있다. 작업1, 작업2가 있다. 이 사람은 작업1, 작업2를 모두 해야한다. 작업1을 하고 작업2를 하는데, 시간적으로 동시에하는건 아니고 계속 번갈아가면서 한다. 이게 짧은 찰나로 번갈아가면서 하기 때문에 동시에 하는것처럼 보인다. (순차적이지 않다. 순서가 없다.) (시간적인 동시성이 아님)
-작업의 갯수 &amp;gt; CPU 갯수 Thread1, Thread2가 번갈아가면서 Task를 수행 빠른게 목적이 아닌, CPU의 효율적인 사용이 목적이다.</description>
+      <description>강의 메모 - Parallel &amp;amp; Concurrent # 동시성 # 특정한 순서 없이 겹치는 기간에 시작, 실행 및 완료되는 여러 작업에 관한것 ex) 사람이 있다. 작업1, 작업2가 있다. 이 사람은 작업1, 작업2를 모두 해야한다. 작업1을 하고 작업2를 하는데, 시간적으로 동시에하는건 아니고 계속 번갈아가면서 한다. 이게 짧은 찰나로 번갈아가면서 하기 때문에 동시에 하는것처럼 보인다. (순차적이지 않다. 순서가 없다.) (시간적인 동시성이 아님)&#xA;작업의 갯수 &amp;gt; CPU 갯수 Thread1, Thread2가 번갈아가면서 Task를 수행 빠른게 목적이 아닌, CPU의 효율적인 사용이 목적이다.</description>
     </item>
     <item>
       <title></title>
