@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.cac77a7426427ea322d9318bbfa5e8a2ec5d0582b0be8c23d9c98b3ad84f964d.js" integrity="sha256-ysd6dCZCfqMi2TGLv6XoouxdBYKwvowj2cmLOthPlk0=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.48bbf60eaa45f15646ec1886c261aede8ee3b08cfa49cc4161c8b7adacf8e36a.js" integrity="sha256-SLv2DqpF8VZG7BiGwmGu3o7jsIz6ScxBYci3raz442o=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -811,6 +811,45 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/017_thread_type/" class="">017 Thread Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/018_thread_group/" class="">018 Thread Group</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/019_threadLocal/" class="">019 Thread Local</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1634,6 +1673,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-14/">2024-01-14</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-13/">2024-01-13</a>
           <span>5</span>
         </li>
@@ -1799,12 +1843,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>17</span>
+          <span>20</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>16</span>
+          <span>19</span>
         </li>
       
         <li class="flex justify-between">
@@ -1972,6 +2016,108 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/009_thread_status/">009 Thread Status</a>
+    </h2>
+    
+  <h5>January 4, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-04/">2024-01-04</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 스레드 생명주기와 상태 # 개요 # 자바 스레드는 생성, 실행, 종료에 따른 상태를 가지고있다. OS 스레드 상태를 의미하지 않는다. 자바 스레드는 어떤 시점이던 6가지 상태 중 오직 1개의 상태를 가질 수 있다. 자바 스레드의 현재 상태를 가져오려면 Thread의 getState() 메서드를 사용하여 가져올 수 있다. Thread 클래스에는 스레드 상태에 대한 ENUM 상수를 정의하는 Thread.State 클래스를 제공한다. 스레드 상태 # NEW : 객체만 생성된 상태 RUNNABLE WAITING : 대기는 언제하는가?
+        <a href="/docs/parallel_programming/009_thread_status/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/008_thread_start/">008 Thread Start</a>
+    </h2>
+    
+  <h5>January 3, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-03/">2024-01-03</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 스레드 실행 및 종료 # 개요 # 자바 스레드는 OS 스케줄러에 의해 실행 순서가 결정되며, 스레드 실행 시점을 JVM에서 제어할 수 없다. kernel이 제어한다. 새로운 스레드는 현재 스레드와 독립적으로 실행되고, 최대 한번 시작할 수 있고, 스레드가 종료된 이후에는 다시 시작할 수 없다.
+스레드 실행 # start() : 스레드를 실행시키는 메서드로 시스템 콜을 통해서 커널에 커널 스레드 생성을 요청한다.
+start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt; Kernel Thread 순서
+        <a href="/docs/parallel_programming/008_thread_start/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/004_cpu_bound_io_bound/">004 CPU Bound Io Bound</a>
+    </h2>
+    
+  <h5>January 2, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-02/">2024-01-02</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - CPU Bound &amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.
+CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.
+        <a href="/docs/parallel_programming/004_cpu_bound_io_bound/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2275,6 +2421,11 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-14/">2024-01-14</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-13/">2024-01-13</a>
           <span>5</span>
         </li>
@@ -2440,12 +2591,12 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>17</span>
+          <span>20</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>16</span>
+          <span>19</span>
         </li>
       
         <li class="flex justify-between">
