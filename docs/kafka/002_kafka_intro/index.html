@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="강의 메모 # 아파치 카프카의 탄생과 기본 구조 # 카프카의 탄생 각각의 애플리케이션끼리 연결하여 데이터를 처리하는게 아닌, 한 곳에 모아 처리할 수 있도록 중앙집중화했다. 메시지 큐 구조를 그대로 살린 카프카 내부 구조 # 카프카 내부에 데이터가 저장되는 파티션의 동작은 FIFO(First In First Out) 방식의 큐 자료구조와 유사하다. 큐에 데이터를 보내는 것이 프로듀서 큐에서 데이터를 가져가는 것이 컨슈머 적재된 데이터를 하나하나 가져가더라도 파티션 내의 데이터는 삭제되지 않는다. 데이터를 읽는것 : 커밋 (데이터를 어디까지 읽었는지를 기록) 카프카가 데이터 파이프라인으로 적합한 4가지 이유 # 1.">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="강의 메모 # 아파치 카프카의 탄생과 기본 구조 # 카프카의 탄생 각각의 애플리케이션끼리 연결하여 데이터를 처리하는게 아닌, 한 곳에 모아 처리할 수 있도록 중앙집중화했다. 메시지 큐 구조를 그대로 살린 카프카 내부 구조 # 카프카 내부에 데이터가 저장되는 파티션의 동작은 FIFO(First In First Out) 방식의 큐 자료구조와 유사하다. 큐에 데이터를 보내는 것이 프로듀서 큐에서 데이터를 가져가는 것이 컨슈머 적재된 데이터를 하나하나 가져가더라도 파티션 내의 데이터는 삭제되지 않는다. 데이터를 읽는것 : 커밋 (데이터를 어디까지 읽었는지를 기록) 카프카가 데이터 파이프라인으로 적합한 4가지 이유 # 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/docs/kafka/002_kafka_intro/" /><meta property="article:section" content="docs" />
+<meta property="article:published_time" content="2024-01-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2024-01-16T00:00:00+00:00" />
+
+<title>002 Kafka Intro | TIL</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" >
+<link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.dd95079eb3417dbc47271af4ac7faf61638b2dcb633942d2d9ae4ba0cac1bdc5.js" integrity="sha256-3ZUHnrNBfbxHJxr0rH&#43;vYWOLLctjOULS2a5LoMrBvcU=" crossorigin="anonymous"></script>
+
+  <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>TIL</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-353f7a5578fa41dbc42c73ea30fe2255" class="toggle"  />
+    <label for="section-353f7a5578fa41dbc42c73ea30fe2255" class="flex justify-between">
+      <a href="/docs/algorithm/" class="">Algorithm</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-92d85911959de2466ef66b3821f607d7" class="toggle"  />
+    <label for="section-92d85911959de2466ef66b3821f607d7" class="flex justify-between">
+      <a href="/docs/batch/" class="">Batch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/002_batch_performance/" class="">002 Batch Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/batch/001_performance_improved_batch/" class="">001 Performance Improved Batch</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="toggle"  />
+    <label for="section-17728c6c6bedfdb3d8e5f42b88c6a9db" class="flex justify-between">
+      <a href="/docs/clean_code/" class="">Clean Code</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/clean_code/001_argument/" class="">001 Argument</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="toggle"  />
+    <label for="section-7cc6bc3da96a6c77d5e4cc0966a5e312" class="flex justify-between">
+      <a href="/docs/data_structure/" class="">Data Structure</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="toggle"  />
+    <label for="section-f63d6cf864a4b2a00c9bc1b7f8921b37" class="flex justify-between">
+      <a href="/docs/ddd/" class="">Ddd</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-10d41b0387e5bda7e9958b9b5ece051e" class="toggle"  />
+    <label for="section-10d41b0387e5bda7e9958b9b5ece051e" class="flex justify-between">
+      <a href="/docs/docker/" class="">Docker</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ba0b1465c1bad5a998860ad5f870bf7e" class="toggle"  />
+    <label for="section-ba0b1465c1bad5a998860ad5f870bf7e" class="flex justify-between">
+      <a href="/docs/etc/" class="">Etc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/004_sonarQube/" class="">004 Sonar Qube</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/003_huge_traffic_handling/" class="">003 Huge Traffic Handling</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/002_tps/" class="">002 Tps</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/etc/001_jmeter/" class="">001 Jmeter</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-eca69da21de5b0cd25d8421dec09a327" class="toggle"  />
+    <label for="section-eca69da21de5b0cd25d8421dec09a327" class="flex justify-between">
+      <a href="/docs/java/" class="">Java</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/java/001_facade_pattern/" class="">001 Facade Pattern</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="toggle"  />
+    <label for="section-f3c1d22d19edbcf158d04b84a4d9d6c2" class="flex justify-between">
+      <a href="/docs/jenkins/" class="">Jenkins</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-55218fb7ef47d61aa86fc77253026243" class="toggle"  />
+    <label for="section-55218fb7ef47d61aa86fc77253026243" class="flex justify-between">
+      <a href="/docs/jpa/" class="">Jpa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c03dced0c5b16cbce767a51b81ce1077" class="toggle" checked />
+    <label for="section-c03dced0c5b16cbce767a51b81ce1077" class="flex justify-between">
+      <a href="/docs/kafka/" class="">Kafka</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/002_kafka_intro/" class="active">002 Kafka Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/001_kafka_cdc/" class="">001 Kafka Cdc</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-04d541b0249994115320e926dbc9d6c5" class="toggle"  />
+    <label for="section-04d541b0249994115320e926dbc9d6c5" class="flex justify-between">
+      <a href="/docs/kotlin/" class="">Kotlin</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/004_Kotlin_Scoping_Functions/" class="">004 Kotlin Scoping Functions</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/003_Kotlin_basic/" class="">003 Kotlin Basic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/002_Functional_Programming_Example/" class="">002 Functional Programming Example</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/001_Functional_Programming/" class="">001 Functional Programming</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ae1a891fb3a3f71d71273fc61b29b76" class="toggle"  />
+    <label for="section-6ae1a891fb3a3f71d71273fc61b29b76" class="flex justify-between">
+      <a href="/docs/linux/" class="">Linux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-b16ff4658c272fcaa2c58683b4c10070" class="toggle"  />
+    <label for="section-b16ff4658c272fcaa2c58683b4c10070" class="flex justify-between">
+      <a href="/docs/mongodb/" class="">Mongodb</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/003_spring_data_mongodb/" class="">003 Spring Data Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/004_object_mapping/" class="">004 Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/005_mongoOperations/" class="">005 Mongo Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/006_reactiveMongoRepository/" class="">006 Reactive Mongo Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/007_query_method/" class="">007 Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/001_reactive_mongodb/" class="">001 Reactive Mongodb</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/mongodb/002_mongodb_document/" class="">002 Mongodb Document</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="toggle"  />
+    <label for="section-5e9a5c8a0cadf7504bcc8a3083d0b6fb" class="flex justify-between">
+      <a href="/docs/msa/" class="">Msa</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/003_circuit_breaker/" class="">003 Circuit Breaker</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/001_reactive/" class="">001 Reactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/msa/002_reactive_microservice/" class="">002 Reactive Microservice</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6d933f523f0d56e111956755e38e3f44" class="toggle"  />
+    <label for="section-6d933f523f0d56e111956755e38e3f44" class="flex justify-between">
+      <a href="/docs/mvc/" class="">Mvc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-e66e2e478c81786f553bd82d3931b216" class="toggle"  />
+    <label for="section-e66e2e478c81786f553bd82d3931b216" class="flex justify-between">
+      <a href="/docs/mysql/" class="">Mysql</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-3110560962cac834dcd3aead95e804a4" class="toggle"  />
+    <label for="section-3110560962cac834dcd3aead95e804a4" class="flex justify-between">
+      <a href="/docs/network/" class="">Network</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bbe16af0cda0a52165d4874f0cea4ee0" class="toggle"  />
+    <label for="section-bbe16af0cda0a52165d4874f0cea4ee0" class="flex justify-between">
+      <a href="/docs/operating_system/" class="">Operating System</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/operating_system/001_thread/" class="">001 Thread</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="toggle"  />
+    <label for="section-bf2e8ecdf9011d9f48a2a3a2c2d46bd1" class="flex justify-between">
+      <a href="/docs/oracle/" class="">Oracle</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-2aa56d1b653c397446719c79393a70da" class="toggle"  />
+    <label for="section-2aa56d1b653c397446719c79393a70da" class="flex justify-between">
+      <a href="/docs/parallel_programming/" class="">Parallel Programming</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/024_mutual_exclusion/" class="">024 Mutual Exclusion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/025_semaphore/" class="">025 Semaphore</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/020_single_multi_thread/" class="">020 Single Multi Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/021_synchronized_cpu/" class="">021 Synchronized CPU</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/022_critical_section/" class="">022 Critical Section</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/023_thread_safe/" class="">023 Thread Safe</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/017_thread_type/" class="">017 Thread Type</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/018_thread_group/" class="">018 Thread Group</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/019_threadLocal/" class="">019 Thread Local</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/012_thread_interrupt/" class="">012 Thread Interrupt</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/013_thread_info/" class="">013 Thread Info</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/014_thread_priority/" class="">014 Thread Priority</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/015_thread_uncaughtExceptionHandler/" class="">015 Thread Uncaught Exception Handler</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/016_thread_stop_flag/" class="">016 Thread Stop Flag</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/011_thread_join/" class="">011 Thread Join</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/010_thread_sleep/" class="">010 Thread Sleep</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/009_thread_status/" class="">009 Thread Status</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/008_thread_start/" class="">008 Thread Start</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/004_cpu_bound_io_bound/" class="">004 CPU Bound Io Bound</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/005_user_kernel_systemcall/" class="">005 User Kernel Systemcall</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/006_user_mode_kernel_mode_thread/" class="">006 User Mode Kernel Mode Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/007_java_thread/" class="">007 Java Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/003_context_switching/" class="">003 Context Switching</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/001_process_thread/" class="">001 Process Thread</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/002_parallel_concurrent/" class="">002 Parallel Concurrent</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-708c7a6270d696606cabeb20f951886f" class="toggle"  />
+    <label for="section-708c7a6270d696606cabeb20f951886f" class="flex justify-between">
+      <a href="/docs/r2dbc/" class="">R2dbc</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/005_r2dbc_Metadata_mapping/" class="">005 R2dbc Metadata Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/006_r2dbcEntityOperations/" class="">006 R2dbc Entity Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/007_r2dbcRepository/" class="">007 R2dbc Repository</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/008_r2dbc_query_method/" class="">008 R2dbc Query Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/003_r2dbcEntityTemplate/" class="">003 R2dbc Entity Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/004_r2dbc_object_mapping/" class="">004 R2dbc Object Mapping</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/002_r2dbc_mysql/" class="">002 R2dbc Mysql</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/r2dbc/001_r2dbc_intro/" class="">001 R2dbc Intro</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c1a35f6db1170c97addf30f5d9f50bc9" class="toggle"  />
+    <label for="section-c1a35f6db1170c97addf30f5d9f50bc9" class="flex justify-between">
+      <a href="/docs/rdbms/" class="">Rdbms</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/004_window_function/" class="">004 Window Function</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/005_subquery/" class="">005 Subquery</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/001_basic_join/" class="">001 Basic Join</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/002_date_interval/" class="">002 Date Interval</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/rdbms/003_groupby/" class="">003 Groupby</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a396ef4e072acbb7275e447dad1284d6" class="toggle"  />
+    <label for="section-a396ef4e072acbb7275e447dad1284d6" class="flex justify-between">
+      <a href="/docs/reactive_streams/" class="">Reactive Streams</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/002_impl1_reactor/" class="">002 Impl1 Reactor</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/003_impl2_rxjava/" class="">003 Impl2 Rxjava</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/004_impl3_munity/" class="">004 Impl3 Munity</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/reactive_streams/001_reactive_streams_component/" class="">001 Reactive Streams Component</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a27d7ef673b519721b4909eba7547282" class="toggle"  />
+    <label for="section-a27d7ef673b519721b4909eba7547282" class="flex justify-between">
+      <a href="/docs/redis/" class="">Redis</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/008_spring_session_redis/" class="">008 Spring Session Redis</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/007_redis_cluster_migration/" class="">007 Redis Cluster Migration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/003_reactive_redis_intro/" class="">003 Reactive Redis Intro</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/004_Lettuce/" class="">004 Lettuce</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/005_ReactiveRedisTemplate/" class="">005 Reactive Redis Template</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/006_ReactiveOperations/" class="">006 Reactive Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/001_redis_datastructure/" class="">001 Redis Datastructure</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/redis/002_redis_cache/" class="">002 Redis Cache</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-6ce8ef21c020ccdb7ed73156795b30be" class="toggle"  />
+    <label for="section-6ce8ef21c020ccdb7ed73156795b30be" class="flex justify-between">
+      <a href="/docs/security/" class="">Security</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-4442d34d5ae489970dcda30dcfc7289e" class="toggle"  />
+    <label for="section-4442d34d5ae489970dcda30dcfc7289e" class="flex justify-between">
+      <a href="/docs/servlet/" class="">Servlet</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-12bece9beab0746d531536027bb6a777" class="toggle"  />
+    <label for="section-12bece9beab0746d531536027bb6a777" class="flex justify-between">
+      <a href="/docs/spring/" class="">Spring</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-bc7d9ceb6dc60f10f3ecfb9266f57cb9" class="toggle"  />
+    <label for="section-bc7d9ceb6dc60f10f3ecfb9266f57cb9" class="flex justify-between">
+      <a href="/docs/springbatch/" class="">Springbatch</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/springbatch/001_springbatch_start/" class="">001 Springbatch Start</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
+    <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
+      <a href="/docs/webflux/" class="">Webflux</a>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/"  >
+        Categories and tags
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://github.com/seohaebada"  target="_blank" rel="noopener">
+        Github
+      </a>
+  </li>
+  
+  <li>
+    <a href="https://devfunny.tistory.com"  target="_blank" rel="noopener">
+        Blog
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>002 Kafka Intro</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#강의-메모">강의 메모</a>
+      <ul>
+        <li><a href="#아파치-카프카의-탄생과-기본-구조">아파치 카프카의 탄생과 기본 구조</a></li>
+        <li><a href="#메시지-큐-구조를-그대로-살린-카프카-내부-구조">메시지 큐 구조를 그대로 살린 카프카 내부 구조</a></li>
+        <li><a href="#카프카가-데이터-파이프라인으로-적합한-4가지-이유">카프카가 데이터 파이프라인으로 적합한 4가지 이유</a>
+          <ul>
+            <li><a href="#1-높은-처리량">1. 높은 처리량</a></li>
+            <li><a href="#2-확장성">2. 확장성</a></li>
+            <li><a href="#3-영속성">3. 영속성</a></li>
+            <li><a href="#4-고가용성">4. 고가용성</a></li>
+          </ul>
+        </li>
+        <li><a href="#빅데이터-아키텍처의-종류와-카프카의-미래">빅데이터 아키텍처의 종류와 카프카의 미래</a></li>
+        <li><a href="#람다-아키텍처">람다 아키텍처</a>
+          <ul>
+            <li><a href="#한계">한계</a></li>
+          </ul>
+        </li>
+        <li><a href="#카파-아키텍처">카파 아키텍처</a></li>
+        <li><a href="#카파-아키텍처의-활용">카파 아키텍처의 활용</a></li>
+        <li><a href="#배치-데이터-vs-스트림-데이터">배치 데이터 vs 스트림 데이터</a></li>
+        <li><a href="#배치-데이터를-처리하는-방법-in-하둡">배치 데이터를 처리하는 방법 (in 하둡)</a></li>
+        <li><a href="#스트림-데이터를-배치로-사용하는-방법-in-카프카">스트림 데이터를 배치로 사용하는 방법 (in 카프카)</a></li>
+        <li><a href="#스트리밍-데이터-레이크">스트리밍 데이터 레이크</a></li>
+        <li><a href="#오픈소스-아파치-카프카-생태계">오픈소스 아파치 카프카 생태계</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown book-article"><h1 id="강의-메모">
+  강의 메모
+  <a class="anchor" href="#%ea%b0%95%ec%9d%98-%eb%a9%94%eb%aa%a8">#</a>
+</h1>
+<h2 id="아파치-카프카의-탄생과-기본-구조">
+  아파치 카프카의 탄생과 기본 구조
+  <a class="anchor" href="#%e1%84%8b%e1%85%a1%e1%84%91%e1%85%a1%e1%84%8e%e1%85%b5-%e1%84%8f%e1%85%a1%e1%84%91%e1%85%b3%e1%84%8f%e1%85%a1%e1%84%8b%e1%85%b4-%e1%84%90%e1%85%a1%e1%86%ab%e1%84%89%e1%85%a2%e1%86%bc%e1%84%80%e1%85%aa-%e1%84%80%e1%85%b5%e1%84%87%e1%85%a9%e1%86%ab-%e1%84%80%e1%85%ae%e1%84%8c%e1%85%a9">#</a>
+</h2>
+<p>카프카의 탄생
+
+  <img src="/image/kafka/002/img.png" alt="img.png" /></p>
+<ul>
+<li>각각의 애플리케이션끼리 연결하여 데이터를 처리하는게 아닌, 한 곳에 모아 처리할 수 있도록 중앙집중화했다.</li>
+</ul>
+<h2 id="메시지-큐-구조를-그대로-살린-카프카-내부-구조">
+  메시지 큐 구조를 그대로 살린 카프카 내부 구조
+  <a class="anchor" href="#%eb%a9%94%ec%8b%9c%ec%a7%80-%ed%81%90-%ea%b5%ac%ec%a1%b0%eb%a5%bc-%ea%b7%b8%eb%8c%80%eb%a1%9c-%ec%82%b4%eb%a6%b0-%ec%b9%b4%ed%94%84%ec%b9%b4-%eb%82%b4%eb%b6%80-%ea%b5%ac%ec%a1%b0">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_1.png" alt="img_1.png" /></p>
+<ul>
+<li>카프카 내부에 데이터가 저장되는 파티션의 동작은 FIFO(First In First Out) 방식의 큐 자료구조와 유사하다.</li>
+<li>큐에 데이터를 보내는 것이 프로듀서</li>
+<li>큐에서 데이터를 가져가는 것이 컨슈머
+<ul>
+<li>적재된 데이터를 하나하나 가져가더라도 파티션 내의 데이터는 삭제되지 않는다.</li>
+<li>데이터를 읽는것 : 커밋 (데이터를 어디까지 읽었는지를 기록)</li>
+</ul>
+</li>
+</ul>
+<h2 id="카프카가-데이터-파이프라인으로-적합한-4가지-이유">
+  카프카가 데이터 파이프라인으로 적합한 4가지 이유
+  <a class="anchor" href="#%ec%b9%b4%ed%94%84%ec%b9%b4%ea%b0%80-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8%ec%9c%bc%eb%a1%9c-%ec%a0%81%ed%95%a9%ed%95%9c-4%ea%b0%80%ec%a7%80-%ec%9d%b4%ec%9c%a0">#</a>
+</h2>
+<h3 id="1-높은-처리량">
+  1. 높은 처리량
+  <a class="anchor" href="#1-%eb%86%92%ec%9d%80-%ec%b2%98%eb%a6%ac%eb%9f%89">#</a>
+</h3>
+<p>카프카는 프로듀서가 브로커로 데이터를 보낼때와 컨슈머가 브로커로부터 데이터를 받을때 모두 묶어서 전송한다.
+동일한 양의 데이터를 보낼때 네트워크 통신 횟수를 최소한으로 줄인다면 동일 시간 내에 더 많은 데이터를 전송할 수 있다.
+데이터를 묶음 단위로 처리하는 배치로 빠르게 처리할 수 있다. (대용량 실시간 데이터 처리에 적합)
+파티션 단위를 통해 동일 목적의 데이터를 여러 파티션에 분배하고 데이터를 병렬 처리할 수 있다.
+파티션 개수만큼 컨슈머 개수를 늘려서 동일 시간당 데이터 처리량을 늘리는 것이다.
+(sacle-out : 인스턴스 개수를 늘림 (컨슈머 개수를 늘림))</p>
+<h3 id="2-확장성">
+  2. 확장성
+  <a class="anchor" href="#2-%ed%99%95%ec%9e%a5%ec%84%b1">#</a>
+</h3>
+<p>데이터가 얼마나 들어올지 예측하기 어렵다.
+이러한 가변적인 환경에서도 안정적으로 확장 가능하다.
+데이터가 적을때는 카프카 클러스터의 브로커를 최소한의 개수로 운영하다가 데이터가 많아지면 클러스터의 브로커 개수를 자연스럽게 늘려 scale-out할 수 있다.</p>
+<p>클러스터개념으로 운영하는데,
+1개의 클러스터는 여러개의 브로커를 가지고있고, 각각의 브로커는 카프카 프로세서다.
+데이터를 전송하면 각각의 브로커에 데이터가 저장된다.
+각 브로커가 처리할 수 있는 데이터 처리량의 한계가 있고 데이터 처리량이 있을때 브로커를 추가하면 된다.</p>
+<p>반대로 데이터 개수가 적어지고 추가 서버들이 더는 필요없어지면 브로커 개수를 줄여 스케일 인(scale-in)할 수 있다.
+카프카의 스케일 아웃, 스케일 인 과정은 클러스터의 무중단 운영을 지원한다.</p>
+<h3 id="3-영속성">
+  3. 영속성
+  <a class="anchor" href="#3-%ec%98%81%ec%86%8d%ec%84%b1">#</a>
+</h3>
+<p>영속성 : 데이터를 생성한 프로그램이 종료되더라도 사라지지 않은 데이터의 특성</p>
+<p>카프카는 데이터를 파일 시스템에 저장한다.
+이는 보편적으로 느리다고 생각하겠지만, 카프카는 운영체제 레벨에서 파일 시스템을 최대한 활용하는 방법을 적용했다.
+페이지 캐시(page cache) 영역을 메모리에 따로 생성하여 사용한다.
+페이지 캐시 메모리 영역을 사용하여 한번 읽은 파일 내용은 메모리에 저장시켰다가 다시 사용하는 방식이다.
+카프카가 파일 시스템에 저장하고 데이터를 저장, 전송하더라도 처리량이 높은 것이다.
+디스크 기반의 파일 시스템을 사용하므로 급작스럽게 종료되더라도 프로세스를 재시작하여 안전하게 데이터를 다시 처리할 수 있다.</p>
+<h3 id="4-고가용성">
+  4. 고가용성
+  <a class="anchor" href="#4-%ea%b3%a0%ea%b0%80%ec%9a%a9%ec%84%b1">#</a>
+</h3>
+<p>3개 이상의 서버들로 운영되는 카프카 클러스터 : 일부 서버에 장애가 발생하더라도 무중단으로 안전하고 지속적으로 데이터를 처리할 수 있다.</p>
+<p>클러스터
+브로커1, 브로커2, 브로커3 (3개 이상 운영)
+-&gt; Producer 에서 데이터를 보냈을때 브로커1에서 브로커2,3으로 복제하여 저장한다.
+여러 브로커에 데이터를 모두 저장함으로써 1대의 브로커에 장애가 발생하더라도 복제된 데이터가 나머지 브로커에 있으므로 지속적으로 데이터 처리가 가능하다.
+이 적재된 데이터를 바탕으로 컨슈머가 각 브로커들의 데이터를 지속적으로 가져갈 수 있다.</p>
+<h2 id="빅데이터-아키텍처의-종류와-카프카의-미래">
+  빅데이터 아키텍처의 종류와 카프카의 미래
+  <a class="anchor" href="#%eb%b9%85%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98%ec%9d%98-%ec%a2%85%eb%a5%98%ec%99%80-%ec%b9%b4%ed%94%84%ec%b9%b4%ec%9d%98-%eb%af%b8%eb%9e%98">#</a>
+</h2>
+<p>초기 빅데이터 플랫폼
+
+  <img src="/image/kafka/002/img_2.png" alt="img_2.png" /></p>
+<p>각 서비스 애플리케이션으로부터 데이터를 배치로 모았다.
+이런 방식은 end-to-end로 운영
+데이터를 배치로 모으는 구조는 유연하지 못했고, 실시간으로 생성되는 데이터들에 대한 인사이트를 서비스 애플리케이션에 빠르게 전달하지 못했다.
+원천 데이터로부터 파생된 데이터의 히스토리 파악도 어려웠다.</p>
+<h2 id="람다-아키텍처">
+  람다 아키텍처
+  <a class="anchor" href="#%eb%9e%8c%eb%8b%a4-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_3.png" alt="img_3.png" /></p>
+<ul>
+<li>배치 레이어 : 배치 데이터를 모아서 특정 시간, 타이밍마다 일괄 처리</li>
+<li>서빙 레이어 : 가공된 데이터를 데이터 사용자, 서비스 애플리케이션이 사용할 수 있도록 데이터가 저장된 공간</li>
+<li>스피드 레이어 : 서비스에서 생성되는 원천 데이터를 실시간으로 분석하는 용도로 사용</li>
+</ul>
+<p>배치 데이터에 비해 낮은 지연으로 분석이 필요한 경우는 스피드 레이어를 통해 데이터를 분석한다.</p>
+<h3 id="한계">
+  한계
+  <a class="anchor" href="#%ed%95%9c%ea%b3%84">#</a>
+</h3>
+<ul>
+<li>레이어가 2개로 나눠져서 불편함 존재
+<ul>
+<li>데이터를 분석, 처리하는데에 필요한 로직이 2벌로 각각의 레이어에 따로 존재해야한다.
+<ul>
+<li>배치 데이터, 실시간 데이터를 융합하여 처리할 때는 다소 유연하지 못한 파이프라인을 생성해야한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="카파-아키텍처">
+  카파 아키텍처
+  <a class="anchor" href="#%ec%b9%b4%ed%8c%8c-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_4.png" alt="img_4.png" /></p>
+<p>스피드 레이어, 서빙 레이어로 구성된다.
+람다 아키텍처의 단점으로 부각되었던 로직의 파편화, 디버깅, 배포, 운영 분리에 대한 이슈를 제거하기 위해 배치 레이어를 제거했다.
+스피드 레이어에서 데이터를 모두 처리하여, 더욱 효율적으로 개발과 운영에 임할 수 있게되었다.</p>
+<h2 id="카파-아키텍처의-활용">
+  카파 아키텍처의 활용
+  <a class="anchor" href="#%ec%b9%b4%ed%8c%8c-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98%ec%9d%98-%ed%99%9c%ec%9a%a9">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_5.png" alt="img_5.png" /></p>
+<p>배치 데이터를 스트림으로 표현한다.
+각 시점의 배치 데이터의 변환 기록(change log)을 시간 순서대로 기록함으로써 각 시점의 모든 스냅샷 데이터를 저장하지 않고도 배치 데이터를 표현할 수 있게 되었다.</p>
+<h2 id="배치-데이터-vs-스트림-데이터">
+  배치 데이터 vs 스트림 데이터
+  <a class="anchor" href="#%eb%b0%b0%ec%b9%98-%eb%8d%b0%ec%9d%b4%ed%84%b0-vs-%ec%8a%a4%ed%8a%b8%eb%a6%bc-%eb%8d%b0%ec%9d%b4%ed%84%b0">#</a>
+</h2>
+<ol>
+<li>배치 데이터</li>
+</ol>
+<ul>
+<li>한정된(bounded) 데이터 처리 (분/시간 단위 처리 등)</li>
+<li>대규모 배치 데이터를 위한 분산 처리 수행</li>
+<li>복잡한 키 조인 수행</li>
+<li>분, 시간, 일 단위 처리를 위한 지연 발생</li>
+</ul>
+<ol start="2">
+<li>스트림 데이터</li>
+</ol>
+<ul>
+<li>무한(unbounded) 데이터 처리</li>
+<li>지속적으로 들어오는 데이터를 위한 분산 처리 수행</li>
+<li>분 단위 이하 지연 발생</li>
+<li>단순한 키 조인 수행</li>
+</ul>
+<h2 id="배치-데이터를-처리하는-방법-in-하둡">
+  배치 데이터를 처리하는 방법 (in 하둡)
+  <a class="anchor" href="#%eb%b0%b0%ec%b9%98-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc-%ec%b2%98%eb%a6%ac%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95-in-%ed%95%98%eb%91%a1">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_6.png" alt="img_6.png" /></p>
+<ul>
+<li>block 단위로 데이터를 저장하고, 이것을 각 데이터 노드에서 메모리로 올리는 방식으로 데이터를 처리하고, 다시 HDFS에 저장</li>
+</ul>
+<h2 id="스트림-데이터를-배치로-사용하는-방법-in-카프카">
+  스트림 데이터를 배치로 사용하는 방법 (in 카프카)
+  <a class="anchor" href="#%ec%8a%a4%ed%8a%b8%eb%a6%bc-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc-%eb%b0%b0%ec%b9%98%eb%a1%9c-%ec%82%ac%ec%9a%a9%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95-in-%ec%b9%b4%ed%94%84%ec%b9%b4">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_7.png" alt="img_7.png" /></p>
+<p>스트림 데이터를 배치 데이터로 사용하는 방법은 로그에 시간을 남기는 것이다.
+로그에 남겨진 시간을 기준으로 데이터를 처리하면 스트림으로 적재된 데이터도 배치로 처리할 수 있게 된다.
+카프카는 로그에 시간(timestamp)를 남기기 때문에 이런 방식의 처리가 가능하다.</p>
+<h2 id="스트리밍-데이터-레이크">
+  스트리밍 데이터 레이크
+  <a class="anchor" href="#%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%a0%88%ec%9d%b4%ed%81%ac">#</a>
+</h2>
+<p>
+  <img src="/image/kafka/002/img_8.png" alt="img_8.png" /></p>
+<p>카파 아키텍처랑 별개로 보면된다.
+카파 아키텍처는 데이터를 사용하는 고객을 위해 스트림 데이터를 서빙 레이어에 저장하는 것을 알 수 있다.
+스피드 레이어를 사용되는 카프카 분석과 프로세싱을 완료한 거대한 용량의 데이터를 오랜 기간 저장하고 사용할 수 있다면,
+서빙 레이어는 제거되어도 된다. -&gt; 서빙 레이어와 스피드 레이어가 이중으로 관리되는 운영 리소스를 줄일 수 있다.
+달성하기에는 어렵다.  (자주 사용하는 데이터, 자주 사용하지않은 데이터를 구분하는게 쉽지 않다.)</p>
+<p>
+  <img src="/image/kafka/002/img_9.png" alt="img_9.png" /></p>
+<p>개선을 위한 노력 (현재는 제공되고있지 않음)
+카프카 클러스터에서 자주 접근하지 않는 데이터는 오브젝트 스토리지와 같이 저렴하면서도 안전한 저장소에 옮겨 저장하고,
+자주 사용하는 데이터만 브로커에서 사용하는 구분 작업이 필요하다.</p>
+<h2 id="오픈소스-아파치-카프카-생태계">
+  오픈소스 아파치 카프카 생태계
+  <a class="anchor" href="#%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-%ec%95%84%ed%8c%8c%ec%b9%98-%ec%b9%b4%ed%94%84%ec%b9%b4-%ec%83%9d%ed%83%9c%ea%b3%84">#</a>
+</h2>
+<p>카프카 생태계
+
+  <img src="/image/kafka/002/img_10.png" alt="img_10.png" /></p>
+<ul>
+<li>프로듀서 -&gt; 토픽으로 데이터를 넣는다.</li>
+<li>토픽 &lt;- 컨슈머가 데이터를 가져간다.</li>
+<li>토픽에 저장된 데이터를 처리하고, 다시 토픽에 넣고 싶을때는 카프카 스트림즈라는 라이브러리를 사용한다.</li>
+<li>JAVA 라이브러리로 제공한다.
+<ul>
+<li>3rd party library (Go, js 등)
+<ul>
+<li>카프카에서 제공되는 여러 기능들을 완벽하게 쓴다는 보장이 없다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>오픈소스 카프카에 포함된 툴 (기본적인 release된 구조)
+<ul>
+<li>커넥트 : 데이터 파이프라인을 운영하는 툴</li>
+<li>커넥트(싱크) : 컨슈머 역할 (타겟 애플리케이션으로 데이터를 보내는 역할)</li>
+<li>커넥트(소스) : 프로듀서 역할 (특정 데이터베이스가 사용)
+<ul>
+<li>위 2개를 각 프로듀서, 컨슈머로 운영하면 되지않나?
+<ul>
+<li>템플릿 형태로 반복적으로 여러번 생성할 수 있고, 함께 운영하는게 특징이다.</li>
+<li>커넥트에서 REST API로 보내게되면 파이프라인을 반복적으로 만들 수 있다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-References" id="tabs-References-0" checked="checked" />
+  <label for="tabs-References-0">References</label>
+  <div class="book-tabs-content markdown-inner"><ol>
+<li>강의 : 
+  <a href="https://www.inflearn.com/course/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D">https://www.inflearn.com/course/%EC%95%84%ED%8C%8C%EC%B9%98-%EC%B9%B4%ED%94%84%EC%B9%B4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D</a></li>
+</ol>
+</div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+  <div>
+    <a class="flex align-center" href="https://github.com/seohaebada/TIL/content/docs/content/docs/kafka/002_kafka_intro.md" target="_blank" rel="noopener">
+      <img src="/svg/edit.svg" class="book-icon" alt="Edit" />
+      <span>Edit this page</span>
+    </a>
+  </div>
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#강의-메모">강의 메모</a>
+      <ul>
+        <li><a href="#아파치-카프카의-탄생과-기본-구조">아파치 카프카의 탄생과 기본 구조</a></li>
+        <li><a href="#메시지-큐-구조를-그대로-살린-카프카-내부-구조">메시지 큐 구조를 그대로 살린 카프카 내부 구조</a></li>
+        <li><a href="#카프카가-데이터-파이프라인으로-적합한-4가지-이유">카프카가 데이터 파이프라인으로 적합한 4가지 이유</a>
+          <ul>
+            <li><a href="#1-높은-처리량">1. 높은 처리량</a></li>
+            <li><a href="#2-확장성">2. 확장성</a></li>
+            <li><a href="#3-영속성">3. 영속성</a></li>
+            <li><a href="#4-고가용성">4. 고가용성</a></li>
+          </ul>
+        </li>
+        <li><a href="#빅데이터-아키텍처의-종류와-카프카의-미래">빅데이터 아키텍처의 종류와 카프카의 미래</a></li>
+        <li><a href="#람다-아키텍처">람다 아키텍처</a>
+          <ul>
+            <li><a href="#한계">한계</a></li>
+          </ul>
+        </li>
+        <li><a href="#카파-아키텍처">카파 아키텍처</a></li>
+        <li><a href="#카파-아키텍처의-활용">카파 아키텍처의 활용</a></li>
+        <li><a href="#배치-데이터-vs-스트림-데이터">배치 데이터 vs 스트림 데이터</a></li>
+        <li><a href="#배치-데이터를-처리하는-방법-in-하둡">배치 데이터를 처리하는 방법 (in 하둡)</a></li>
+        <li><a href="#스트림-데이터를-배치로-사용하는-방법-in-카프카">스트림 데이터를 배치로 사용하는 방법 (in 카프카)</a></li>
+        <li><a href="#스트리밍-데이터-레이크">스트리밍 데이터 레이크</a></li>
+        <li><a href="#오픈소스-아파치-카프카-생태계">오픈소스 아파치 카프카 생태계</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

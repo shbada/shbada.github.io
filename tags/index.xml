@@ -30,6 +30,13 @@
       <description></description>
     </item>
     <item>
+      <title>kafka</title>
+      <link>https://example.com/tags/kafka/</link>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/kafka/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>parallel</title>
       <link>https://example.com/tags/parallel/</link>
       <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
@@ -167,13 +174,6 @@
       <link>https://example.com/tags/cdc/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/cdc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>kafka</title>
-      <link>https://example.com/tags/kafka/</link>
-      <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/kafka/</guid>
       <description></description>
     </item>
     <item>

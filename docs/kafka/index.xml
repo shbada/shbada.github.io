@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/docs/kafka/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/kafka/002_kafka_intro/</link>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/002_kafka_intro/</guid>
+      <description>강의 메모 # 아파치 카프카의 탄생과 기본 구조 # 카프카의 탄생 각각의 애플리케이션끼리 연결하여 데이터를 처리하는게 아닌, 한 곳에 모아 처리할 수 있도록 중앙집중화했다. 메시지 큐 구조를 그대로 살린 카프카 내부 구조 # 카프카 내부에 데이터가 저장되는 파티션의 동작은 FIFO(First In First Out) 방식의 큐 자료구조와 유사하다. 큐에 데이터를 보내는 것이 프로듀서 큐에서 데이터를 가져가는 것이 컨슈머 적재된 데이터를 하나하나 가져가더라도 파티션 내의 데이터는 삭제되지 않는다. 데이터를 읽는것 : 커밋 (데이터를 어디까지 읽었는지를 기록) 카프카가 데이터 파이프라인으로 적합한 4가지 이유 # 1.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/kafka/001_kafka_cdc/</link>
       <pubDate>Mon, 11 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kafka/001_kafka_cdc/</guid>
