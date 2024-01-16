@@ -9,6 +9,20 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/024_mutual_exclusion/</link>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/024_mutual_exclusion/</guid>
+      <description>강의 메모 - Mutual Exclusion - 상호 배제 # 개요 # 뮤텍스(Mutual Exclusion) 또는 상호 배제는 공유 자원에 대한 경쟁 상태를 방지하고 동시성 제어를 위한 락 메커니즘이다 스레드가 임계영역에서 Mutex 객체의 플래그를 소유하고 있으면(락 획득) 다른 스레드가 액세스할 수 없으며 해당 임계영역에 액세스하려고 시도하는 모든 스레드는 차단되고 Mutex 객체 플래그가 해제된 경우(락 해제)에만 액세스할 수 있다 이 메커니즘은 Mutex 락을 가진 오직 한개의 스레드만이 임계영역에 진입할 수 있으며 락을 획득한 스레드만이 락을 해제 할 수 있다 결론 : 뮤텍스는 락과 락해제를 통해 자원을 보호하는 락체계 동기화 도구이다 Mutex 문제점 # 데드락(Deadlock)</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/025_semaphore/</link>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/025_semaphore/</guid>
+      <description>강의 메모 - Semaphore - 세마포어 - 1,2 # 개요 # 세마포어는 공유 자원에 대한 접근을 제어하기 위해 사용되는 신호전달 메커니즘 동기화 도구이다 Mutex는 락을 획득한 쓰레드가 락을 해제 할 수 있음 세마포어 : 신호전달로, 쓰레드가 임계영역에 들어갈 수 있도록 락을 풀어주거나 하나가 아닌 여러 쓰레드가 락을 동시에 가질 수 있다. 세마포어는 정수형 변수 S 와 P(Proberen: try), V(Verhogen: increment)의 두 가지 원자적 함수로 구성된 신호전달 메커니즘 동기화 도구이다 P : 임계 영역을 사용하려는 스레드의 진입 여부를 결정하는 연산, Wait 연산이라고도 함 락을 획득하는것 V : 대기 중인 프로세스를 깨우는 신호(Wake-up)로 Signal 연산 락을 획득하고 연산한 이후, 락을 해제하는것 스레드가 임계영역에 진입하지 못할 경우 자발적으로 &amp;lsquo;대기(BLOCK)&amp;lsquo;상태에 들어가고 임계영역을 빠져나오는 스레드가 대기상태의 스레드를 실행대기상태로 깨워준다 자바에서는 java.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/parallel_programming/020_single_multi_thread/</link>
       <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/020_single_multi_thread/</guid>

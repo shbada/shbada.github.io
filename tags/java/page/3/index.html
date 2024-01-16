@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.4f0117e74e5337280f18eb9641eae520cb4b25adcf5dd64fafad4664145a5957.css" integrity="sha256-TwEX505TNygPGOuWQerlIMtLJa3PXdZPr61GZBRaWVc=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.66c984e83d094572f609685bfe00cd85363899aced12398f9b41a1e3e478d129.js" integrity="sha256-ZsmE6D0JRXL2CWhb/gDNhTY4maztEjmPm0Gh4&#43;R40Sk=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.90178975785a2c2f137bcc60e81a1557bdb2181434f7719469be549bbbe781ea.js" integrity="sha256-kBeJdXhaLC8Te8xg6BoVV72yGBQ093GUab5Um7vngeo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -811,6 +811,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/024_mutual_exclusion/" class="">024 Mutual Exclusion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/025_semaphore/" class="">025 Semaphore</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1725,6 +1751,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-16/">2024-01-16</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-15/">2024-01-15</a>
           <span>4</span>
         </li>
@@ -1900,12 +1931,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>24</span>
+          <span>26</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>23</span>
+          <span>25</span>
         </li>
       
         <li class="flex justify-between">
@@ -2073,6 +2104,73 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/006_user_mode_kernel_mode_thread/">006 User Mode Kernel Mode Thread</a>
+    </h2>
+    
+  <h5>January 2, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-02/">2024-01-02</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 사용자 수준 스레드 &amp; 커널 수준 스레드 # 개요 # 스레드는 사용자 수준 스레드(User Level Thread), 커널 수준 스레드(Kernel Level Thread) 로 구분된다. 사용자 수준 스레드 : 사용자 프로그램에서 관리하는 스레드 커널 수준 스레드 : OS에서 관리하는 스레드 ** CPU의 할당 단위는 쓰레드다. **
+사용자 수준 스레드(User Level Thread) # 스레드 라이브러리(Pthreads, WIndows Threads, Java Threads(JVM))에 의해 스레드의 생성, 종료, 스레드간 메시지 전달, 스케줄링 스레드 보관 등 모든 것을 관리한다.
+        <a href="/docs/parallel_programming/006_user_mode_kernel_mode_thread/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/007_java_thread/">007 Java Thread</a>
+    </h2>
+    
+  <h5>January 2, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-02/">2024-01-02</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Java Thread Fundamentals &gt; 스레드 생성 # 개요 # 자바 스레드는 JVM에서 User Thread를 생성할때 시스템 콜을 통해서 커널에 생성된 Kernel Thread와 1:1 매핑이 되어 최종적으로 커널에서 관리된다. JVM에서 스레드를 생성할때마다 커널에서 자바 스레드와 대응하는 커널 스레드를 생성한다. 자바에서 Platform Thread으로 정의되어 있다. 즉, OS 플랫폼에 따라 JVM이 사용자 스레드를 매핑하게 된다. Platform Thread : 운영체제에서 스케줄링되는 Kernel 쓰레드와 1:1 매핑된 플랫폼 쓰레드의 생성을 지원한다. 사용자 수준 쓰레드처럼 쓰레드 관리, 스케줄링 등을 하지않고, 생성만 하고 커널 쓰레드와 매핑만 되어있음 (커널의 제어를 받는다.
+        <a href="/docs/parallel_programming/007_java_thread/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2278,6 +2376,11 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-16/">2024-01-16</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-15/">2024-01-15</a>
           <span>4</span>
         </li>
@@ -2453,12 +2556,12 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>24</span>
+          <span>26</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>23</span>
+          <span>25</span>
         </li>
       
         <li class="flex justify-between">
