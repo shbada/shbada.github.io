@@ -6,8 +6,15 @@
     <description>Recent content in kafka on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/kafka/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/kafka/003_transactional_outbox_pattern/</link>
+      <pubDate>Sat, 20 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/003_transactional_outbox_pattern/</guid>
+      <description>기술 블로그 정리 # Transactional Outbox 패턴이 등장하게된 상황 # Event Driven Architecture &amp;gt; 메시지 발행의 신뢰성 보장 패턴 Event driven ARchitecture : Message Broker를 이용해 다양한 메시지(이벤트)를 publish(발행) 하고, 그에 연관된 작업을 비동기적으로 처리하여 시스템을 통합 DB 트랜잭션을 실행한 뒤, 연관 메시지를 Message Broker에 publish 하게 되는데, 메시지 publish가 반드시 완료되어야하는 경우가 있다. 예시) 리디 주문 기능; 주문이 발생하면 사용한 캐시&amp;amp;포인트 금액을 차감하고 상품을 지급하며 주문 완료로 상태를 바꾸는 DB 트랜잭션이 발생 -&amp;gt; Message Broker에 주문 완료 메시지를 publish 이 경우, DB와 Message Broker의 트랜잭션 원자성 보장이 어렵다.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/kafka/002_kafka_intro/</link>

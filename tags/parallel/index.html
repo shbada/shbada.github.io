@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.f93b1364adfb62269c0fecb6e7ebedb507c22988901400c86021fc1cbeb7e805.js" integrity="sha256-&#43;TsTZK37YiacD&#43;y25&#43;vttQfCKYiQFADIYCH8HL636AU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.bb8cc21c92badfd16794905a5fcd7d1122bbbfcd7a5f944403f705b0fbb2c6b3.js" integrity="sha256-u4zCHJK639FnlJBaX819ESK7v816X5REA/cFsPuyxrM=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -393,6 +393,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/003_transactional_outbox_pattern/" class="">003 Transactional Outbox Pattern</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -837,6 +850,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/027_spin_lock/" class="">027 Spin Lock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/028_synchronized_basic/" class="">028 Synchronized Basic</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1790,6 +1829,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-20/">2024-01-20</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-19/">2024-01-19</a>
           <span>1</span>
         </li>
@@ -1980,12 +2024,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>27</span>
+          <span>29</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/kafka/">kafka</a>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>26</span>
+          <span>28</span>
         </li>
       
         <li class="flex justify-between">
@@ -1995,11 +2044,6 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
           <span>2</span>
         </li>
       
@@ -2158,6 +2202,72 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/027_spin_lock/">027 Spin Lock</a>
+    </h2>
+    
+  <h5>January 20, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-20/">2024-01-20</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - SpinLock &amp; Busy Waiting # 개요 # 스핀락(SpinLock)은 뮤텍스나 세마포어와 같은 동기화 기법의 일종으로, 기다리지 않고 스레드가 임계영역을 사용할 수 있을 때까지 계속 반복하여 검사하는 동기화 메커니즘이다 작동방식 # 스레드가 공유 자원에 접근하려고 할 때, 먼저 스핀락을 시도한다 test_and_set() 함수가 이전 락 값인 0 을 반환하면 아직 락이 잠기지 않았다는 것을 의미하며 while 루프를 빠져 나온다 스레드는 스핀락을 얻고 해당 자원을 사용한다 그러나 이전 락 값이 1이면 이미 다른 스레드에 의해 잠긴 것을 의미하며 스핀락을 얻을 때까지 계속해서 반복적으로 검사를 수행한다 스레드가 자원 사용이 끝나면 lock 을 0 으로 변경해서 스핀락을 해제한다 Busy Waiting (바쁜 대기) # Busy waiting은 스레드가 어떤 조건이 만족될 때까지 계속해서 반복적으로 검사하는 것을 말한다 스레드가 특정 조건을 기다리는 동안 아무런 유용한 작업을 수행하지 않고, 무한 반복 루프를 돌며 CPU 자원을 계속 사용하는 것을 의미한다 스핀락은 이러한 busy waiting을 사용하는 동기화 기법 중 하나이다 스핀락 자바 구현 # 임계영역을 수행하고 unlock() 호출 스핀락의 장점, 단점 # 장점
+        <a href="/docs/parallel_programming/027_spin_lock/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/028_synchronized_basic/">028 Synchronized Basic</a>
+    </h2>
+    
+  <h5>January 20, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-20/">2024-01-20</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - synchronized 기본 # 개요 # 자바는 단일 연산 특성을 보장하기 위해 synchronized 키워드를 제공하고 있으며 synchronized 구문을 통해 모니터 영역을 동기화 할수 있다 synchronized 는 명시적으로 락을 구현하는 것이 아닌 자바에 내장된 락으로서 이를 암묵적인 락(Intrinsic Lock) 혹은 모니터락 (Monitor Lock) 이라고 한다 자바에 내장된 락 (암묵적인 락, 모니터락) synchronized 은 동일한 모니터를 가진 객체에 대해 오직 하나의 스레드만 임계영역에 접근할 수 있도록 보장하며 모니터의 조건 변수를 통해 스레드간 협력으로 동기화를 보장해 준다 synchronized 가 적용된 한 개의 메서드만 호출해도 같은 모니터의 모든 synchronized 메서드까지 락에 잠기게 되어 락이 해제될 때 까지는 접근이 안되는 특징을 가지고 있다 앞에서 배운 &lsquo;모니터&rsquo;를 synchronized 키워드에 넣었으므로 모니터 장점을 가지고있음 락은 스레드가 synchronized 블록에 들어가기 전에 자동 확보되며 정상적이든 비정상적이든 예외가 발생해서든 해당 블록을 벗어날 때 자동으로 해제된다 lock은 자동 확보/자동 해제 synchronized 는 모니터 락을 사용하여 동기화 할 수 있는 4가지 방법을 제공한다 # method synchronized method static synchronized method block synchronized block static synchronized method 원리는 동일 세부적으로는 인스턴스냐, 클래스냐 (method, block 각각 안에서도 세부적으로 나누는 기준) A 메서드 안에 4가지(위 구분 4가지)를 정의했다고 해보자.
+        <a href="/docs/parallel_programming/028_synchronized_basic/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2425,72 +2535,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/018_thread_group/">018 Thread Group</a>
-    </h2>
-    
-  <h5>January 14, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-14/">2024-01-14</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - ThreadGroup # 개요 # 자바는 스레드 그룹(ThreadGroup)이라는 객체를 통해서 여러 스레드를 그룹화하는 편리한 방법을 제공한다 ThreadGroup은 스레드 집합을 나타내며 스레드 그룹에는 다른 스레드 그룹도 포함될 수 있고 그룹 내의 모든 스레드는 한 번에 종료하거나 중단할 수 있다 스레드는 반드시 하나의 스레드 그룹에 포함되어야 하며 명시적으로 스레드 그룹에 포함시키지 않으면 자신을 생성한 스레드가 속해 있는 스레드 그룹에 포함되어 진다 일반적으로 사용자가 main 스레드에서 생성하는 모든 스레드는 기본적으로 main 스레드 그룹에 속하게 된다 코드로 별도 스레드를 만들면 기본적으로 main 스레드 그룹에 속해진다.
-        <a href="/docs/parallel_programming/018_thread_group/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/019_threadLocal/">019 Thread Local</a>
-    </h2>
-    
-  <h5>January 14, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-14/">2024-01-14</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - ThreadLocal - 1,2 # 개요 # 자바에서 스레드는 오직 자신만이 접근해서 읽고 쓸수 있는 로컬 변수 저장소를 제공하는데 이를 ThreadLocal 이라고 한다 각 스레드는 고유한 ThreadLocal 객체를 속성으로 가지고 있으며 ThreadLocal 은 스레드 간 격리되어 있다 스레드는 ThreadLocal 에 저장된 값을 특정한 위치나 시점에 상관없이 어디에서나 전역변수처럼 접근해서 사용할 수 있다. 변수 값을 전달하지 않아도 된다 모든 스레드가 공통적으로 처리해야 하는 기능이나 객체를 제어해야 하는 상황에서 스레드마다 다른 값을 적용해야 하는 경우 사용한다 (인증 주체 보관, 트랜잭션 전파, 로그 추적기 등) Thread 마다 ThreadLocal을 가지고있다.
-        <a href="/docs/parallel_programming/019_threadLocal/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2556,6 +2600,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-01-20/">2024-01-20</a>
+          <span>3</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-19/">2024-01-19</a>
@@ -2748,12 +2797,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>27</span>
+          <span>29</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/kafka/">kafka</a>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>26</span>
+          <span>28</span>
         </li>
       
         <li class="flex justify-between">
@@ -2763,11 +2817,6 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
           <span>2</span>
         </li>
       

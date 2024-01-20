@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.f93b1364adfb62269c0fecb6e7ebedb507c22988901400c86021fc1cbeb7e805.js" integrity="sha256-&#43;TsTZK37YiacD&#43;y25&#43;vttQfCKYiQFADIYCH8HL636AU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.bb8cc21c92badfd16794905a5fcd7d1122bbbfcd7a5f944403f705b0fbb2c6b3.js" integrity="sha256-u4zCHJK639FnlJBaX819ESK7v816X5REA/cFsPuyxrM=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/kafka/index.xml" title="TIL" />
@@ -393,6 +393,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/003_transactional_outbox_pattern/" class="">003 Transactional Outbox Pattern</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -837,6 +850,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/027_spin_lock/" class="">027 Spin Lock</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/028_synchronized_basic/" class="">028 Synchronized Basic</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1790,6 +1829,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-20/">2024-01-20</a>
+          <span>3</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-19/">2024-01-19</a>
           <span>1</span>
         </li>
@@ -1980,12 +2024,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>27</span>
+          <span>29</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/kafka/">kafka</a>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>26</span>
+          <span>28</span>
         </li>
       
         <li class="flex justify-between">
@@ -1995,11 +2044,6 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
           <span>2</span>
         </li>
       
@@ -2161,6 +2205,38 @@ https://github.com/alex-shpak/hugo-book
   
   <article class="markdown book-post">
     <h2>
+      <a href="/docs/kafka/003_transactional_outbox_pattern/">003 Transactional Outbox Pattern</a>
+    </h2>
+    
+  <h5>January 20, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-20/">2024-01-20</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kafka/">kafka</a>
+  </div>
+  
+
+
+
+
+    <p>기술 블로그 정리 # Transactional Outbox 패턴이 등장하게된 상황 # Event Driven Architecture &gt; 메시지 발행의 신뢰성 보장 패턴 Event driven ARchitecture : Message Broker를 이용해 다양한 메시지(이벤트)를 publish(발행) 하고, 그에 연관된 작업을 비동기적으로 처리하여 시스템을 통합 DB 트랜잭션을 실행한 뒤, 연관 메시지를 Message Broker에 publish 하게 되는데, 메시지 publish가 반드시 완료되어야하는 경우가 있다. 예시) 리디 주문 기능; 주문이 발생하면 사용한 캐시&amp;포인트 금액을 차감하고 상품을 지급하며 주문 완료로 상태를 바꾸는 DB 트랜잭션이 발생 -&gt; Message Broker에 주문 완료 메시지를 publish 이 경우, DB와 Message Broker의 트랜잭션 원자성 보장이 어렵다.
+        <a href="/docs/kafka/003_transactional_outbox_pattern/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
       <a href="/docs/kafka/002_kafka_intro/">002 Kafka Intro</a>
     </h2>
     
@@ -2268,6 +2344,11 @@ B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-01-20/">2024-01-20</a>
+          <span>3</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-19/">2024-01-19</a>
@@ -2460,12 +2541,17 @@ B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>27</span>
+          <span>29</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/kafka/">kafka</a>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>26</span>
+          <span>28</span>
         </li>
       
         <li class="flex justify-between">
@@ -2475,11 +2561,6 @@ B2B 알림 서비스 # B2B 알림 서비스 프로젝트가 무엇일까? 배민
       
         <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
           <span>2</span>
         </li>
       
