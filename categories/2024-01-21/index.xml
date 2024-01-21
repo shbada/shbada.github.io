@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2024-01-21 on TIL</title>
+    <link>https://example.com/categories/2024-01-21/</link>
+    <description>Recent content in 2024-01-21 on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 21 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/categories/2024-01-21/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/kafka/004_kafka_broker/</link>
+      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/004_kafka_broker/</guid>
+      <description>강의 메모 # 카프카 브로커, 클러스터, 주키퍼 # 주키퍼 # 카프카 클러스터를 운영하기 위해 반드시 필요한 애플리케이션 카프카 2.0 버전 까지는 반드시 필요했지만 카프카 3.0부터는 주키퍼가 없더라도 운영됨 아직까지는 주키퍼를 완벽하게 대체하지 못하므로 주키퍼가 있는 카프카 클러스터 운영 기업이 많음&#xA;1개의 브로커는 하나의 서버나 인스턴스에서 동작 브로커 3개가 있는 모습&#xA;브로커 # 데이터를 분산 저장하여 장애가 발생하더라도 안전하게 사용할 수 있도록 도와주는 애플리케이션 하나의 서버에는 하나의 카프카 브로커 프로세스가 실행됨 3대 이상의 브로커 서버를 1개의 클러스터로 묶어서 운영한다 카프카 클러스터로 묶인 브로커들은 프로듀서가 보낸 데이터를 안전하게 분산 저장하고 복제하는 역할을 수행한다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/kafka/005_broker_log_segment/</link>
+      <pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/005_broker_log_segment/</guid>
+      <description>강의 메모 # 로그와 세그먼트 # log.segment.bytes : 바이트 단위의 최대 세그먼트 크기 지정 (기본 값은 1GB)&#xA;log.roll.ms(hours) : 세그먼트가 신규 생성된 이후 다음 파일로 넘어가는 시간 주기 (기본값은 7일)&#xA;프로듀서가 데이터를 전송하면 active 되어있는 .log 파일에 offset 22번으로 들어간다. (FIFO)&#xA;가장 최초의 offset 번호가 파일 이름이 된다&#xA;가장 마지막 세그먼트 파일을 active segment라고 한다.&#xA;브로커의 삭제 대상에서 포함되지 않는다. retention 옵션에 ㄸ라 삭제 대상으로 지정된다. 세그먼트와 삭제 주기 (cleanup.</description>
+    </item>
+  </channel>
+</rss>
