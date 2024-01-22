@@ -6,8 +6,15 @@
     <description>Recent content in parallel on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 20 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jan 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/029_method_synchronized/</link>
+      <pubDate>Mon, 22 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/029_method_synchronized/</guid>
+      <description>강의 메모 - synchronized 메서드 동기화 # 인스턴스 메서드 동기화 (synchronized method) # 인스턴스 단위로 모니터가 동작하며 동일한 인스턴스 안에서 synchronized 가 적용된 곳은 하나의 락을 공유한다 인스턴스가 여러개일 경우 인스턴스별로 모니터 객체를 가지므로 스레드는 모니터 별로 락을 획득해서 동기화 영역에 진입하고 빠져 나올 때 락을 해제 할 수 있다 MyClass 내부적으로 가지고있는 객체 타입 : this (=모니터) 위 두 메서드의 모니터가 동일하다. 정적 메서드 동기화 (static synchronized method) # 클래스 단위로 모니터가 동작하며 synchronized 가 적용된 곳은 하나의 락을 공유한다 인스턴스와는 별개의 모니터를 가지고 임계 영역을 동기화 하기 때문에 인스턴스 단위로 메서드를 호출할지라도 락은 클래스 단위로 스레드간 공유된다 클래스는 메모리에 오직 하나만 존재하므로 하나의 모니터를 공유해서 동기화 하고자 할 때 사용 할 수 있다 정적메서드이기 때문에 클래스 타입으로 주어짐 -&amp;gt; MyCalss = monitor 인스턴스 메서드 동기화 (synchronized method) + 정적 메서드 동기화 (static synchronized method) # synchronized method 와 static synchronized method 가 혼용되었을 경우는 각 모니터별로 동기화를 진행한다 모니터가 섞여 있기 때문에 동기화가 의도한대로 정확하게 동작하는지 주의가 필요하다 위 1, 2 메서드의 모니터는 같다 위 3,4 메서드의 모니터는 같다 References 강의 : https://www.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/027_spin_lock/</link>
