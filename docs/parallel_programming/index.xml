@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/docs/parallel_programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/030_synchronized_etc/</link>
+      <pubDate>Thu, 25 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/030_synchronized_etc/</guid>
+      <description>강의 메모 - synchronized 특성 # 재진입성 # 모니터 내에서 이미 synchronized 영역에 들어간 스레드가 다시 같은 모니터 영역으로 들어갈 수 있는데, 이를 &amp;ldquo;모니터 재진입&amp;quot;이라고 한다 재진입 가능하다는 것은 락의 획득이 호출 단위가 아닌 스레드 단위로 일어난다는 것을 의미하며 이미 락을 획득한 스레드는 같은 락을 얻기 위해 대기할 필요 없이 synchronized 블록을 만났을 때 같은 락을 확보하고 진입한다 같은 모니터라면 대기/경쟁 없이 바로 진입 가능 (스레드 단위) 상속하게 되면 자식은 부모의 락과 동일한 락을 가지게 된다 자식 클래스에서 method() 실행됨 부모클래스의 method() 실행 서로 모니터가 동일하므로 재진입이 가능한것 동기화 된 메서드에서 다른 동기화 된 메서드를 호출하는 경우 이미 락(lock)을 가지고 있는 스레드가 같은 락을 확보하고 재진입 시 데드락이 발생하지 않고 정상적으로 진행할 수 있게 된다 가시성 # synchronized 는 가시성을 지원한다 가시성이란 한 스레드가 공유자원을 수정하거나 쓰기 작업을 했을 때 다른 스레드가 수정한 내용이 보이는 것을 말한다 CPU 특성상 cache memory를 가진다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/parallel_programming/029_method_synchronized/</link>
       <pubDate>Mon, 22 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/029_method_synchronized/</guid>

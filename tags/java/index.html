@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.3fb6041f4884a3509b17b63e9b9d5b816109847e4ba97595249aa163b6dff095.js" integrity="sha256-P7YEH0iEo1CbF7Y&#43;m51bgWEJhH5LqXWVJJqhY7bf8JU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.500b92eea0a1ff75293086e5a0b43b8bd2689ddf94fa1b408748ace3c6e787b8.js" integrity="sha256-UAuS7qCh/3UpMIbloLQ7i9Jond&#43;U&#43;htAh0is48bnh7g=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -876,6 +876,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/030_synchronized_etc/" class="">030 Synchronized Etc</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1868,6 +1881,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-25/">2024-01-25</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-22/">2024-01-22</a>
           <span>1</span>
         </li>
@@ -2073,12 +2091,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>30</span>
+          <span>31</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>29</span>
+          <span>30</span>
         </li>
       
         <li class="flex justify-between">
@@ -2251,6 +2269,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/030_synchronized_etc/">030 Synchronized Etc</a>
+    </h2>
+    
+  <h5>January 25, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-25/">2024-01-25</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - synchronized 특성 # 재진입성 # 모니터 내에서 이미 synchronized 영역에 들어간 스레드가 다시 같은 모니터 영역으로 들어갈 수 있는데, 이를 &ldquo;모니터 재진입&quot;이라고 한다 재진입 가능하다는 것은 락의 획득이 호출 단위가 아닌 스레드 단위로 일어난다는 것을 의미하며 이미 락을 획득한 스레드는 같은 락을 얻기 위해 대기할 필요 없이 synchronized 블록을 만났을 때 같은 락을 확보하고 진입한다 같은 모니터라면 대기/경쟁 없이 바로 진입 가능 (스레드 단위) 상속하게 되면 자식은 부모의 락과 동일한 락을 가지게 된다 자식 클래스에서 method() 실행됨 부모클래스의 method() 실행 서로 모니터가 동일하므로 재진입이 가능한것 동기화 된 메서드에서 다른 동기화 된 메서드를 호출하는 경우 이미 락(lock)을 가지고 있는 스레드가 같은 락을 확보하고 재진입 시 데드락이 발생하지 않고 정상적으로 진행할 수 있게 된다 가시성 # synchronized 는 가시성을 지원한다 가시성이란 한 스레드가 공유자원을 수정하거나 쓰기 작업을 했을 때 다른 스레드가 수정한 내용이 보이는 것을 말한다 CPU 특성상 cache memory를 가진다.
+        <a href="/docs/parallel_programming/030_synchronized_etc/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2551,39 +2602,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/023_thread_safe/">023 Thread Safe</a>
-    </h2>
-    
-  <h5>January 15, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-15/">2024-01-15</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - ThreadLocal - 1,2 # 개요 # 여러 스레드에서 클래스나 객체에 동시에 접근해서 계속 실행하더라도 지속적인 정확성이 보장되는 코드를 스레드 세이프(thread-safe) 즉 스레드에 안전하다고 한다. 동시에 실행해도 동일한 결과값 기본적으로 클래스 명세에 스레드 안정성을 헤치는 코드나 상태를 가지고 있지 않으면 스레드에 안전하다라고 정의할 수 있다 스레드에 안전한 코드에는 경쟁상태가 없으며 경쟁 상태는 다수의 스레드가 공유 자원에 쓰기 작업을 시도할 때 발생하기 때문에 스레드가 실행될 때 어떤 자원을 공유하게 되는지 아는 것이 중요하다 스레드에 안전한 구조 # 임계영역을 동기화 한다
-        <a href="/docs/parallel_programming/023_thread_safe/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2603,10 +2621,13 @@ https://github.com/alex-shpak/hugo-book
         <a href="/tags/java/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
       </li>
       <li class="page-item">
+        <a href="/tags/java/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
         <a href="/tags/java/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/tags/java/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/tags/java/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
  
@@ -2649,6 +2670,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-01-25/">2024-01-25</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-22/">2024-01-22</a>
@@ -2856,12 +2882,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>30</span>
+          <span>31</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>29</span>
+          <span>30</span>
         </li>
       
         <li class="flex justify-between">
