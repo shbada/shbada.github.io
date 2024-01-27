@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.98774a75a04e2c222e854cc097440bd6b84cbb5fb74ae669e240369bc0c872a1.js" integrity="sha256-mHdKdaBOLCIuhUzAl0QL1rhMu1&#43;3SuZp4kA2m8DIcqE=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.5b008aa8fcd9829332e174229099ff30d1d6d738ad54a38d74037f6c2195ad6a.js" integrity="sha256-WwCKqPzZgpMy4XQikJn/MNHW1zitVKONdAN/bCGVrWo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -915,6 +915,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/031_wait_notify/" class="">031 Wait Notify</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1926,7 +1939,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-27/">2024-01-27</a>
-          <span>2</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
@@ -2144,23 +2157,23 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
+          <a href="/tags/java/">java</a>
+          <span>32</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/kafka/">kafka</a>
           <span>7</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/rabbitmq/">rabbitmq</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/java/">java</a>
+          <a href="/tags/parallel/">parallel</a>
           <span>31</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/parallel/">parallel</a>
-          <span>30</span>
+          <a href="/tags/rabbitmq/">rabbitmq</a>
+          <span>1</span>
         </li>
       
         <li class="flex justify-between">
@@ -2323,6 +2336,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/031_wait_notify/">031 Wait Notify</a>
+    </h2>
+    
+  <h5>January 27, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-27/">2024-01-27</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 스레드 간 협력 - wait() &amp; notify() # 개요 # wait(), notify(), notifyAll() 은 모니터 객체의 조건변수와 함께 사용해서 동기화를 구현할 수 있는 동기화 메커니즘이라 할 수 있다. wait(), notify(), notifyAll() 은 뮤텍스(상호배제) 동기화 기법으로 충족되지 않는 동기화 문제를 해결할 수 있는 협력에 의한 동기화 장치이다 wait(), notify(), notifyAll() 은 반드시 synchronized 블록 안에서만 사용해야 하며 이는 스레드가 모니터 락을 확보한 상태에서 이 API 들이 작동한다는 것을 의미한다 모니터 락 안에서 사용해야한다.
+        <a href="/docs/parallel_programming/031_wait_notify/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2623,39 +2669,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/022_critical_section/">022 Critical Section</a>
-    </h2>
-    
-  <h5>January 15, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-15/">2024-01-15</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - ThreadLocal - 1,2 # Critical Section (임계영역, 공유변수영역) # Critical Section 이란 둘 이상의 스레드가 동시에 접근해서는 안되는 공유 자원(자료 구조 또는 장치) 에 접근하는 코드 영역를 말한다. 임계영역은 entry section, critical section, exit section, remainder section 으로 구성 된다 입장영역(entry section) : critical section 에 진입하기 위해 진입허가를 요청하는 영역입니다. 임계영역(critical section) : 하나의 스레드만 접근할 수 있는 영역이다 퇴장영역(exit section) : critical section 에서 빠져나올 때 신호를 알리는 영역이다 나머지영역(remainder section) : entry section, critical section, exit section 을 제외한 나머지 영역이다 lock을 획득해야만, 임계영역에 진입 가능하다.
-        <a href="/docs/parallel_programming/022_critical_section/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2675,10 +2688,13 @@ https://github.com/alex-shpak/hugo-book
         <a href="/tags/parallel/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
       </li>
       <li class="page-item">
+        <a href="/tags/parallel/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
         <a href="/tags/parallel/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/tags/parallel/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/tags/parallel/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
  
@@ -2729,7 +2745,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-27/">2024-01-27</a>
-          <span>2</span>
+          <span>3</span>
         </li>
       
         <li class="flex justify-between">
@@ -2947,23 +2963,23 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
+          <a href="/tags/java/">java</a>
+          <span>32</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/kafka/">kafka</a>
           <span>7</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/rabbitmq/">rabbitmq</a>
-          <span>1</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/java/">java</a>
+          <a href="/tags/parallel/">parallel</a>
           <span>31</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/parallel/">parallel</a>
-          <span>30</span>
+          <a href="/tags/rabbitmq/">rabbitmq</a>
+          <span>1</span>
         </li>
       
         <li class="flex justify-between">

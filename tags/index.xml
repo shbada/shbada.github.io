@@ -16,6 +16,13 @@
       <description></description>
     </item>
     <item>
+      <title>java</title>
+      <link>https://example.com/tags/java/</link>
+      <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/java/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>kafka</title>
       <link>https://example.com/tags/kafka/</link>
       <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
@@ -23,24 +30,17 @@
       <description></description>
     </item>
     <item>
+      <title>parallel</title>
+      <link>https://example.com/tags/parallel/</link>
+      <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/tags/parallel/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>rabbitmq</title>
       <link>https://example.com/tags/rabbitmq/</link>
       <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/tags/rabbitmq/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>java</title>
-      <link>https://example.com/tags/java/</link>
-      <pubDate>Thu, 25 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/java/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>parallel</title>
-      <link>https://example.com/tags/parallel/</link>
-      <pubDate>Thu, 25 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/tags/parallel/</guid>
       <description></description>
     </item>
     <item>

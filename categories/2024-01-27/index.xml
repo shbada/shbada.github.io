@@ -22,5 +22,12 @@
       <guid>https://example.com/docs/kafka/007_isr/</guid>
       <description>강의 메모 # ISR (In-Sync-Replicas) # ISR (In-Sync-Replicas) # 리더 파티션과 팔로워 파티션이 모두 싱크가 된 상태를 뜻한다. 리더 파티션의 오프셋이 0~3까지 있을때 팔로워 파티션도 0~3이 있다. (동기화 완료 - 리더 파티션의 모든 데이터가 팔로워 파티션에 복제가 완료되었다 라는 뜻)&#xA;unclean.leader.election.enable # 모두 복제되지 않은 상황이고, 이렇게 싱크가 되지 않은 팔로워 파티션이 리더 파티션으로 선출되면 데이터가 유실될 수 있다. 유실이 발생하더라도 서비스를 중단하지 않고 지속적으로 토픽을 사용하고 싶으면 ISR이 아닌 팔로워 파티션을 리더로 선출하도록 설정할 수 있다.</description>
     </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/031_wait_notify/</link>
+      <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/031_wait_notify/</guid>
+      <description>강의 메모 - 스레드 간 협력 - wait() &amp;amp; notify() # 개요 # wait(), notify(), notifyAll() 은 모니터 객체의 조건변수와 함께 사용해서 동기화를 구현할 수 있는 동기화 메커니즘이라 할 수 있다. wait(), notify(), notifyAll() 은 뮤텍스(상호배제) 동기화 기법으로 충족되지 않는 동기화 문제를 해결할 수 있는 협력에 의한 동기화 장치이다 wait(), notify(), notifyAll() 은 반드시 synchronized 블록 안에서만 사용해야 하며 이는 스레드가 모니터 락을 확보한 상태에서 이 API 들이 작동한다는 것을 의미한다 모니터 락 안에서 사용해야한다.</description>
+    </item>
   </channel>
 </rss>
