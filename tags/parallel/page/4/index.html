@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.12b55542f863f6ebc5462c8de4716c674ce21ad6540c9917c346d52cdc261585.js" integrity="sha256-ErVVQvhj9uvFRiyN5HFsZ0ziGtZUDJkXw0bVLNwmFYU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.8c9a5e8d2078cf4206ede4d6c52567b03847a50d8cf47c301806025d85ea4449.js" integrity="sha256-jJpejSB4z0IG7eTWxSVnsDhHpQ2M9HwwGAYCXYXqREk=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -915,6 +915,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/032_volatile/" class="">032 Volatile</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/033_deadlock/" class="">033 Deadlock</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1959,6 +1985,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-28/">2024-01-28</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-01-27/">2023-01-27</a>
           <span>3</span>
         </li>
@@ -2178,23 +2209,23 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/java/">java</a>
+          <span>34</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/parallel/">parallel</a>
+          <span>33</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
           <span>3</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/java/">java</a>
-          <span>32</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/kafka/">kafka</a>
           <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/parallel/">parallel</a>
-          <span>31</span>
         </li>
       
         <li class="flex justify-between">
@@ -2365,6 +2396,76 @@ https://github.com/alex-shpak/hugo-book
   
   <article class="markdown book-post">
     <h2>
+      <a href="/docs/parallel_programming/003_context_switching/">003 Context Switching</a>
+    </h2>
+    
+  <h5>January 1, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-01/">2024-01-01</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ContextSwitching # 개요 # 하나의 CPU는 동일한 시간에 1개의 task만 수행 가능, 여러 프로세스를 동시에 실행X 하나의 CPU에서 여러 프로세스를 동시성으로 처리하기 위해서는 한 프로세스에서 다른 프로세스로 전환해야하는데, 이것을 컨텍스트 스위칭이라고 한다.
+Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령을 수행했고, CPU Register에는 어떤 값이 저장되어있는지에 대한 정보가 필요하다. Context는 CPU가 해당 프로세스를 실행하기 위한 프로세스의 정보를 의미하며, 이 정보들은 운영체제가 관리하는 PCB라고 하는 자료구조의 공간에 저장된다.
+        <a href="/docs/parallel_programming/003_context_switching/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/001_process_thread/">001 Process Thread</a>
+    </h2>
+    
+  <h5>December 22, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-22/">2023-12-22</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Process &amp; Thread # Process # File down -&gt; .exe 파일 실행 -&gt; 설치된 상태 : 프로그램 (!= 프로세스) 프로세스는 프로그램의 실제 실행. =&gt; 프로그램 데이터들이 메모리에 올라와 CPU를 할당받고 명령을 수행하고있는 상태
+각각의 프로세스는 RAM(메모리)의 각각의 영역을 할당받음
+4GB 정도 할당 받는다고 해보자.
+1GB 정도는 운영체제를 위한 커널(Kernel) 서비스를 위해 차지한다. 나머지 3GB가 Stack, heap, data, code 등 영역을 차지한다. 프로세스는 자식 프로세스를 가질 수 있다.
+        <a href="/docs/parallel_programming/001_process_thread/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
       <a href="/docs/parallel_programming/002_parallel_concurrent/">002 Parallel Concurrent</a>
     </h2>
     
@@ -2465,6 +2566,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-01-28/">2024-01-28</a>
+          <span>2</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-27/">2023-01-27</a>
@@ -2686,23 +2792,23 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/tags/java/">java</a>
+          <span>34</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/parallel/">parallel</a>
+          <span>33</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
           <span>3</span>
         </li>
       
         <li class="flex justify-between">
-          <a href="/tags/java/">java</a>
-          <span>32</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/tags/kafka/">kafka</a>
           <span>7</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/parallel/">parallel</a>
-          <span>31</span>
         </li>
       
         <li class="flex justify-between">
