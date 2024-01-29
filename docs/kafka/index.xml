@@ -9,6 +9,27 @@
     <atom:link href="https://example.com/docs/kafka/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/kafka/008_topic_partition/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/008_topic_partition/</guid>
+      <description>강의 메모 # 토픽과 파티션 # 토픽과 파티션 # 토픽은 반드시 1개 이상의 파티션을 가져야한다. 파티션에는 프로듀서가 보낸 데이터들이 들어가 저장되는데, 이 데이터를 &amp;lsquo;레코드&amp;rsquo;라고 한다. 파티션에 있는 구조는 큐와 비슷 일반적인 큐는 데이터를 pop() 하면 삭제되는데, 카프카는 컨슈머가 데이터를 가져가더라도 데이터가 삭제되지않고 유지된다. 여러개의 컨슈머 그룹들이 토픽의 데이터를 여러번 가져갈 수 있다.&#xA;토픽 생성시 파티션이 배치되는 방법 # 파티션이 5개일 경우 그림과 같이 배치될 수 있다 0번 브로커부터 시작하여 round-robin 방식으로 리더 파티션들이 생성된다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/kafka/009_record/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/009_record/</guid>
+      <description>강의 메모 # 레코드 # 레코드 # 레코드는 타임스탬프, 헤더, 메시지 키, 메시지 값, 오프셋으로 구성되어있다. 프로듀서가 생성한 레코드가 브로커로 전송되면 오프셋이 지정되고, 옵션에 따라서 타임스탬프가 저장된다. 기본적으로 프로듀서는 오프셋을 가지고있지않고 레코드가 브로커에 저장될때만 오프셋이 있다. 브로커에 한번 적재된 레코드는 수정할 수 없다. 로그 리텐션 기간 또는 용량에 따라서만 삭제된다.&#xA;레코드 - 타임스탬프 # 스트림 프로세싱에서 활용하기 위한 시간을 저장하는 용도 기본값 : 프로듀서 레코드 생성 시간 (CreateTime) 또는 브로커 적재 시간(LogAppendTime)으로 설정할 수도 있다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/kafka/010_metadata/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kafka/010_metadata/</guid>
+      <description>강의 메모 # 클라이언트 메타데이터와 브로커 통신 # 클라이언트 메타데이터 # 카프카 클라이언트는 통신하고자 하는 리더 파티션의 위치를 알기 위해 데이터를 주고받기 전에 메타데이터를 브로커로부터 전달받는다. 다음과 같은 옵션으로 리프래쉬된다.&#xA;metadata.max.age.ms : 메타데이터를 강제로 리프래쉬하는 간격 (기본값: 5분) metadata.max.idle.ms : 프로듀서가 유휴상태일 경우 메타데이터를 캐시에 유지하는 기간 프로듀서가 특정 토픽으로 데이터를 보낸 이후 지정한 시간이 지나고나면 강제로 메타데이터를 리프래쉬 (기본값 5분) 리더 파티션이 어디에 위치하고있는지를 받게되는것! 클라이언트 메타데이터가 이슈가 발생한 경우 # 카프카 클라이언트는 반드시 리더 파티션과 통신해야한다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/kafka/006_replication/</link>
       <pubDate>Sat, 27 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/kafka/006_replication/</guid>

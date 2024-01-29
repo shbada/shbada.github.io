@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ce62453b36293052572d3202b62185587ae2d080bcfa3a7ab33d32c4f74bcd42.js" integrity="sha256-zmJFOzYpMFJXLTICtiGFWHri0IC8&#43;jp6sz0yxPdLzUI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a4df92c41ad5b3c40619d67c4b0780b081d0723df40532cde347c384fa67998e.js" integrity="sha256-pN&#43;SxBrVs8QGGdZ8SweAsIHQcj30BTLN40fDhPpnmY4=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/categories/2024-01-29/index.xml" title="TIL" />
@@ -406,6 +406,45 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/008_topic_partition/" class="">008 Topic Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/009_record/" class="">009 Record</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kafka/010_metadata/" class="">010 Metadata</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -1999,7 +2038,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-29/">2024-01-29</a>
-          <span>1</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -2232,6 +2271,11 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
         <li class="flex justify-between">
+          <a href="/tags/kafka/">kafka</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
           <span>34</span>
         </li>
@@ -2239,11 +2283,6 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
           <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
-          <span>7</span>
         </li>
       
         <li class="flex justify-between">
@@ -2414,6 +2453,105 @@ https://github.com/alex-shpak/hugo-book
   
   <article class="markdown book-post">
     <h2>
+      <a href="/docs/kafka/008_topic_partition/">008 Topic Partition</a>
+    </h2>
+    
+  <h5>January 29, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-29/">2024-01-29</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kafka/">kafka</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 # 토픽과 파티션 # 토픽과 파티션 # 토픽은 반드시 1개 이상의 파티션을 가져야한다. 파티션에는 프로듀서가 보낸 데이터들이 들어가 저장되는데, 이 데이터를 &lsquo;레코드&rsquo;라고 한다. 파티션에 있는 구조는 큐와 비슷 일반적인 큐는 데이터를 pop() 하면 삭제되는데, 카프카는 컨슈머가 데이터를 가져가더라도 데이터가 삭제되지않고 유지된다. 여러개의 컨슈머 그룹들이 토픽의 데이터를 여러번 가져갈 수 있다.
+토픽 생성시 파티션이 배치되는 방법 # 파티션이 5개일 경우 그림과 같이 배치될 수 있다 0번 브로커부터 시작하여 round-robin 방식으로 리더 파티션들이 생성된다.
+        <a href="/docs/kafka/008_topic_partition/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/kafka/009_record/">009 Record</a>
+    </h2>
+    
+  <h5>January 29, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-29/">2024-01-29</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kafka/">kafka</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 # 레코드 # 레코드 # 레코드는 타임스탬프, 헤더, 메시지 키, 메시지 값, 오프셋으로 구성되어있다. 프로듀서가 생성한 레코드가 브로커로 전송되면 오프셋이 지정되고, 옵션에 따라서 타임스탬프가 저장된다. 기본적으로 프로듀서는 오프셋을 가지고있지않고 레코드가 브로커에 저장될때만 오프셋이 있다. 브로커에 한번 적재된 레코드는 수정할 수 없다. 로그 리텐션 기간 또는 용량에 따라서만 삭제된다.
+레코드 - 타임스탬프 # 스트림 프로세싱에서 활용하기 위한 시간을 저장하는 용도 기본값 : 프로듀서 레코드 생성 시간 (CreateTime) 또는 브로커 적재 시간(LogAppendTime)으로 설정할 수도 있다.
+        <a href="/docs/kafka/009_record/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/kafka/010_metadata/">010 Metadata</a>
+    </h2>
+    
+  <h5>January 29, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-29/">2024-01-29</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kafka/">kafka</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 # 클라이언트 메타데이터와 브로커 통신 # 클라이언트 메타데이터 # 카프카 클라이언트는 통신하고자 하는 리더 파티션의 위치를 알기 위해 데이터를 주고받기 전에 메타데이터를 브로커로부터 전달받는다. 다음과 같은 옵션으로 리프래쉬된다.
+metadata.max.age.ms : 메타데이터를 강제로 리프래쉬하는 간격 (기본값: 5분) metadata.max.idle.ms : 프로듀서가 유휴상태일 경우 메타데이터를 캐시에 유지하는 기간 프로듀서가 특정 토픽으로 데이터를 보낸 이후 지정한 시간이 지나고나면 강제로 메타데이터를 리프래쉬 (기본값 5분) 리더 파티션이 어디에 위치하고있는지를 받게되는것! 클라이언트 메타데이터가 이슈가 발생한 경우 # 카프카 클라이언트는 반드시 리더 파티션과 통신해야한다.
+        <a href="/docs/kafka/010_metadata/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
       <a href="/docs/parallel_programming/034_lock_ReentrantLock/">034 Lock Reentrant Lock</a>
     </h2>
     
@@ -2492,7 +2630,7 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-29/">2024-01-29</a>
-          <span>1</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -2725,6 +2863,11 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
         </li>
       
         <li class="flex justify-between">
+          <a href="/tags/kafka/">kafka</a>
+          <span>10</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
           <span>34</span>
         </li>
@@ -2732,11 +2875,6 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
         <li class="flex justify-between">
           <a href="/tags/etc/">etc</a>
           <span>3</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/kafka/">kafka</a>
-          <span>7</span>
         </li>
       
         <li class="flex justify-between">
