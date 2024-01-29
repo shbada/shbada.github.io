@@ -9,6 +9,13 @@
     <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/034_lock_ReentrantLock/</link>
+      <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/034_lock_ReentrantLock/</guid>
+      <description>강의 메모 - Lock &amp;amp; ReentrantLock - 1,2 # 개요 # Lock 구현은 synchronized 구문과 마찬가지로 상호배제와 가시성 기능을 가진 동기화 기법이며 synchronized 보다 더 확장된 락 작업을 제공한다&#xA;Lock 구현은 락을 획득 시 블록되지 않는 비 차단 시도(tryLock()), 인터럽트가 가능한 방식으로 락을 획득하는 시도(lockInterruptibly) 및 시간 제한을 둔 방식으로 락을 획득하는 시도(tryLock(long, TimeUnit))와 같은 추가 기능을 제공한다&#xA;synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으로 발생하도록 강제한다</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/parallel_programming/032_volatile/</link>
       <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/032_volatile/</guid>
