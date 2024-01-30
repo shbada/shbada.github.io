@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.a4df92c41ad5b3c40619d67c4b0780b081d0723df40532cde347c384fa67998e.js" integrity="sha256-pN&#43;SxBrVs8QGGdZ8SweAsIHQcj30BTLN40fDhPpnmY4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.0d69043fea37e8594ca20530efb03fe99e95903e8ce9170e7dfceaf140069c42.js" integrity="sha256-DWkEP&#43;o36FlMogUw77A/6Z6VkD6M6RcOffzq8UAGnEI=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -954,6 +954,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/035_reentrantLock/" class="">035 Reentrant Lock</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2037,6 +2050,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-01-30/">2024-01-30</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-01-29/">2024-01-29</a>
           <span>4</span>
         </li>
@@ -2267,17 +2285,17 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
+          <span>36</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/parallel/">parallel</a>
           <span>35</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/kafka/">kafka</a>
           <span>10</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/parallel/">parallel</a>
-          <span>34</span>
         </li>
       
         <li class="flex justify-between">
@@ -2450,6 +2468,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/035_reentrantLock/">035 Reentrant Lock</a>
+    </h2>
+    
+  <h5>January 30, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-30/">2024-01-30</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ReentrantLock # 개요 # ReentrantLock 은 락 획득 과정에서 스레드가 대기하거나 차단하지 않는 API 를 지원하여 유연한 코드 구현이 가능하다 tryLock() 락을 획득한 경우와 획득하지 못한 경우를 별도로 처리해야하는 상황에서 사용 finally에서 lock 해제 필수 lockInterruptibly() 인터럽트의 명령을 받으면 catch 문 수행 ReentrantLock # ReentrantLock() // ReentrantLock(false)를 사용하는 것과 동일하며 내부적으로 NonfairSync 클래스 객체인 불공정성 락을 생성한다 ReentrantLock(boolean fair) //주어진 공정성 정책으로 인스턴스를 생성한다. 공정성 락을 사용해야 하는 경우 fair 는 true 이며 내부적으로 FairSync 클래스 객체를 생성한다 // 현재 스레드가 이 락을 보유한 횟수를 반환하며이 락을 보유하지 않은 경우에는 0 을 반환한다 int getHoldCount() // 현재 스레드가 이 락을 보유하고 있는지 확인한다.
+        <a href="/docs/parallel_programming/035_reentrantLock/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2750,39 +2801,6 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/024_mutual_exclusion/">024 Mutual Exclusion</a>
-    </h2>
-    
-  <h5>January 16, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-16/">2024-01-16</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - Mutual Exclusion - 상호 배제 # 개요 # 뮤텍스(Mutual Exclusion) 또는 상호 배제는 공유 자원에 대한 경쟁 상태를 방지하고 동시성 제어를 위한 락 메커니즘이다 스레드가 임계영역에서 Mutex 객체의 플래그를 소유하고 있으면(락 획득) 다른 스레드가 액세스할 수 없으며 해당 임계영역에 액세스하려고 시도하는 모든 스레드는 차단되고 Mutex 객체 플래그가 해제된 경우(락 해제)에만 액세스할 수 있다 이 메커니즘은 Mutex 락을 가진 오직 한개의 스레드만이 임계영역에 진입할 수 있으며 락을 획득한 스레드만이 락을 해제 할 수 있다 결론 : 뮤텍스는 락과 락해제를 통해 자원을 보호하는 락체계 동기화 도구이다 Mutex 문제점 # 데드락(Deadlock)
-        <a href="/docs/parallel_programming/024_mutual_exclusion/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2851,6 +2869,11 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-01-30/">2024-01-30</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-01-29/">2024-01-29</a>
@@ -3083,17 +3106,17 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
+          <span>36</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/parallel/">parallel</a>
           <span>35</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/kafka/">kafka</a>
           <span>10</span>
-        </li>
-      
-        <li class="flex justify-between">
-          <a href="/tags/parallel/">parallel</a>
-          <span>34</span>
         </li>
       
         <li class="flex justify-between">
