@@ -6,8 +6,22 @@
     <description>Recent content in springBatch on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 27 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 04 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/springBatch/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/springbatch/004_JobParameter/</link>
+      <pubDate>Sun, 04 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/springbatch/004_JobParameter/</guid>
+      <description>강의메모 # 스프링 배치 도메인 이해 - JobParameter # 기본 개념 # Job을 실행할 때 함께 포함되어 사용되는 파라미터를 가진 도메인 객체 하나의 Job에 존재할 수 있는 여러개의 JobInstance를 구분하기 위한 용도 JobParameters와 JobInstance는 1:1 관계 생성 및 바인딩 # 어플리케이션 실행 시 주입&#xA;Java -jar LogBatch.jar requestDate=20210101 코드로 생성&#xA;JobParameterBuilder @Component public class JobParameterTest implements ApplicationRunner { @Autowired JobLauncher jobLauncher; @Autowired Job job; @Override public void run(ApplicationArguments args) throws Exception { JobParameters jobParameters = new JobParametersBuilder().</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/springbatch/005_JobExecution/</link>
+      <pubDate>Sun, 04 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/springbatch/005_JobExecution/</guid>
+      <description>강의메모 # 스프링 배치 도메인 이해 - JobExecution # 기본 개념 # JobIstance 에 대한 한번의 시도를 의미하는 객체로서 Job 실행 중에 발생한 정보들을 저장하고 있는 객체 시작시간, 종료시간 ,상태(시작됨,완료,실패),종료상태의 속성을 가짐 JobIstance 과의 관계 JobExecution은 &amp;lsquo;FAILED&amp;rsquo; 또는 &amp;lsquo;COMPLETED‘ 등의 Job의 실행 결과 상태를 가지고 있음 JobExecution 의 실행 상태 결과가 &amp;lsquo;COMPLETED’일 경우 JobInstance 실행이 완료된 것으로 간주해서 재실행이 불가함 JobExecution 의 실행 상태 결과가 &amp;lsquo;FAILED’일 경우 JobInstance 실행이 완료되지 않은 것으로 간주해서 재실행이 가능함 JobParameter가 동일한 값으로 Job 을 실행할지라도 JobInstance를 계속 실행할 수 있음 JobExecution 의 실행 상태 결과가 &amp;lsquo;COMPLETED’ 될 때까지 하나의 JobInstance 내에서 여러 번의 시도가 생길 수 있음 JobInstance와 JobExcecution 관계 # https://devfunny.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/springbatch/002_Job/</link>
