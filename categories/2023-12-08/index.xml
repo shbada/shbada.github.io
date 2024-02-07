@@ -17,6 +17,13 @@
     </item>
     <item>
       <title></title>
+      <link>https://example.com/docs/kotlin/006_kotlin_nullsafe/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/kotlin/006_kotlin_nullsafe/</guid>
+      <description>tech blog 글 읽고 정리하기 # [kotlin] 널 세이프 프로그래밍 알아보기 # Null Safe 프로그래밍 # kotlin은 기본적으로 변수에 null을 할당할 수 없도록 제약하고 있다. kotlin에서 NullPointerException (NPE) 가 발생할 수 있는 원인은 다음과 같다. 명시적으로 throw NullPointerException() 을 수행한경우 &amp;lsquo;!!&amp;rsquo; 오퍼레이터를 사용한경우 다음과 같은 경우 초기화와 관련된 데이터 불일치가 발생한다. 생성자에서 사용할 수 있는 초기화 되지 않은 this가 전달되어 사용된경우 수퍼클래스 생성자가 오픈 멤버를 호출한경우, 이때 오픈멤버가 초기화 되지 않은 객체인경우 자바와 함께 사용하는 경우 참조하는 Java 대상 객체가 널인경우 자바 코드가 Generic 타입을 담는 객체에 널은 대입하고 이를 kotlin이 참조하는 경우 기본적으로 null을 변수에 담을 수 없다.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/r2dbc/003_r2dbcEntityTemplate/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/r2dbc/003_r2dbcEntityTemplate/</guid>

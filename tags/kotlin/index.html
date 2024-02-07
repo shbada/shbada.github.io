@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.09477b6f90d8f208c1d18bdeb8d7f2eb6aa41fc1324bdb3fe61154714fd059df.js" integrity="sha256-CUd7b5DY8gjB0YveuNfy62qkH8EyS9s/5hFUcU/QWd8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.c6f6f832ad8ecf0594b66992a33312b04a79a623882a62918ba169c16762e77f.js" integrity="sha256-xvb4Mq2OzwWUtmmSozMSsEp5piOIKmKRi6FpwWdi538=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/kotlin/index.xml" title="TIL" />
@@ -566,6 +566,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="/docs/kotlin/005_Kotlin_extractList_Method/" class="">005 Kotlin Extract List Method</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/kotlin/006_kotlin_nullsafe/" class="">006 Kotlin Nullsafe</a>
   
 
         </li>
@@ -2262,7 +2275,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-08/">2023-12-08</a>
-          <span>3</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -2456,7 +2469,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/kotlin/">kotlin</a>
-          <span>5</span>
+          <span>6</span>
         </li>
       
         <li class="flex justify-between">
@@ -2529,6 +2542,38 @@ https://github.com/alex-shpak/hugo-book
     <p>Kotlin에서 리스트 추출하기 : subList, slice, take, drop # 리스트의 부분 리스트 구하기 : subList(), slice(), take() # Kotlin에서는 리스트의 부분 리스트를 구하는 메서드로 여러 메서드를 제공한다. 부분 리스트를 추출하는 기능을 하는 메서드에 대해 알아보자. 원본 리스트를 변경하지 않고 추출한 새로운 리스트를 반환하는 특징이 있다. 이 메서드들은 immutable한 리스트와 mutable한 리스트 모두에서 사용할 수 있다.
 subList() # 리스트의 인덱스를 기반으로 리스트의 일부분을 추출하여, 새로운 리스트를 생성한다. Java의 subList와 유사하게 시작 인덱스부터 끝 인덱스까지 요소를 추출한다.
         <a href="/docs/kotlin/005_Kotlin_extractList_Method/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/kotlin/006_kotlin_nullsafe/">006 Kotlin Nullsafe</a>
+    </h2>
+    
+  <h5>December 8, 2023</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2023-12-08/">2023-12-08</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/kotlin/">kotlin</a>
+  </div>
+  
+
+
+
+
+    <p>tech blog 글 읽고 정리하기 # [kotlin] 널 세이프 프로그래밍 알아보기 # Null Safe 프로그래밍 # kotlin은 기본적으로 변수에 null을 할당할 수 없도록 제약하고 있다. kotlin에서 NullPointerException (NPE) 가 발생할 수 있는 원인은 다음과 같다. 명시적으로 throw NullPointerException() 을 수행한경우 &lsquo;!!&rsquo; 오퍼레이터를 사용한경우 다음과 같은 경우 초기화와 관련된 데이터 불일치가 발생한다. 생성자에서 사용할 수 있는 초기화 되지 않은 this가 전달되어 사용된경우 수퍼클래스 생성자가 오픈 멤버를 호출한경우, 이때 오픈멤버가 초기화 되지 않은 객체인경우 자바와 함께 사용하는 경우 참조하는 Java 대상 객체가 널인경우 자바 코드가 Generic 타입을 담는 객체에 널은 대입하고 이를 kotlin이 참조하는 경우 기본적으로 null을 변수에 담을 수 없다.
+        <a href="/docs/kotlin/006_kotlin_nullsafe/">...</a>
       
     </p>
   </article>
@@ -2898,7 +2943,7 @@ receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block
       
         <li class="flex justify-between">
           <a href="/categories/2023-12-08/">2023-12-08</a>
-          <span>3</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -3092,7 +3137,7 @@ receiver : 객체 T receiver를 사용하는 람다 : lambda with receiver block
       
         <li class="flex justify-between">
           <a href="/tags/kotlin/">kotlin</a>
-          <span>5</span>
+          <span>6</span>
         </li>
       
         <li class="flex justify-between">
