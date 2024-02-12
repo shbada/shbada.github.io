@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.29a2e29545f865413649f79fe781fc15a71f4767ee09e4af29522d234a39c66c.js" integrity="sha256-KaLilUX4ZUE2Sfef54H8FacfR2fuCeSvKVItI0o5xmw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.f52f771add14de077e629fe267f7e84a2a0a398caf93ff6e390fad0e7705f924.js" integrity="sha256-9S93Gt0U3gd&#43;Yp/iZ/foSioKOYyvk/9uOQ&#43;tDncF&#43;SQ=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -63,6 +63,53 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-245375c91ef06f0eae9785ffce9f4046" class="toggle"  />
+    <label for="section-245375c91ef06f0eae9785ffce9f4046" class="flex justify-between">
+      <a href="/docs/systems_design/" class="">Systems Design</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/001_system_expansion/" class="">001 System Expansion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
     
       
         <li>
@@ -967,6 +1014,58 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/038_cas_algorithm/" class="">038 Cas Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/039_atomic/" class="">039 Atomic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/040_countDownLatch/" class="">040 Count Down Latch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/041_cyclicBarrier/" class="">041 Cyclic Barrier</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2115,6 +2214,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-02-12/">2024-02-12</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-02-07/">2024-02-07</a>
           <span>2</span>
         </li>
@@ -2211,7 +2315,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-06/">2023-01-06</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -2360,12 +2464,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>38</span>
+          <span>42</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>37</span>
+          <span>41</span>
         </li>
       
         <li class="flex justify-between">
@@ -2391,6 +2495,16 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/code/">code</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design/">system design</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design-interview/">system design interview</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -2543,6 +2657,140 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/011_thread_join/">011 Thread Join</a>
+    </h2>
+    
+  <h5>January 8, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-08/">2024-01-08</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - join() # 개요 # join() 메서드는 한 스레드가 다른 스레드가 종료될 때까지 실행을 중지하고 대기상태에 들어갔다가 스레드가 종료되면 실행대기 상태로 전환된다 T1, T2가 있을때, T1이 T2의 모든 작업이 종료될때까지 대기했다가, T2의 작업이 다 끝나고나서 T1이 본인의 작업을 이어서 나가야할 경우 T1 기준으로 T2.join()을 수행 대기는 T1이 하는것 스레드의 순서를 제어하거나 다른 스레드의 작업을 기다려야 하거나 순차적인 흐름을 구성하고자 할 때 사용할 수 있다 Object 클래스의 wait() 네이티브 메서드로 연결되며 시스템 콜을 통해 커널모드로 수행한다.
+        <a href="/docs/parallel_programming/011_thread_join/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/010_thread_sleep/">010 Thread Sleep</a>
+    </h2>
+    
+  <h5>January 7, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-07/">2024-01-07</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - sleep() # 개요 # 지정된 시간 동안 현재 스레드의 실행을 일시 정지하고 대기상태로 빠졌다가 시간이 지나면 실행대기 상태로 전환된다 native 메서드로 연결되며 시스템 콜을 통해 커널모드에서 수행 후 유저모드로 전환한다 이 간단한 메서드 자체도 jvm 자체에서 실행되지 못하고 커널모드에서 수행된다. 컨텍스트 스위칭 발생 API 및 예외 # staic sleep(long millis) throws InterruptedException # 지정한 밀리초 시간 동안 스레드를 수면 상태로 만든다 밀리초에 대한 인수 값은 음수가 될 수 없으며 음수 일 경우 IllegalArgumentException 이 발생한다
+        <a href="/docs/parallel_programming/010_thread_sleep/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/009_thread_status/">009 Thread Status</a>
+    </h2>
+    
+  <h5>January 4, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-04/">2024-01-04</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 스레드 생명주기와 상태 # 개요 # 자바 스레드는 생성, 실행, 종료에 따른 상태를 가지고있다. OS 스레드 상태를 의미하지 않는다. 자바 스레드는 어떤 시점이던 6가지 상태 중 오직 1개의 상태를 가질 수 있다. 자바 스레드의 현재 상태를 가져오려면 Thread의 getState() 메서드를 사용하여 가져올 수 있다. Thread 클래스에는 스레드 상태에 대한 ENUM 상수를 정의하는 Thread.State 클래스를 제공한다. 스레드 상태 # NEW : 객체만 생성된 상태 RUNNABLE WAITING : 대기는 언제하는가?
+        <a href="/docs/parallel_programming/009_thread_status/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/008_thread_start/">008 Thread Start</a>
+    </h2>
+    
+  <h5>January 3, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-03/">2024-01-03</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 스레드 실행 및 종료 # 개요 # 자바 스레드는 OS 스케줄러에 의해 실행 순서가 결정되며, 스레드 실행 시점을 JVM에서 제어할 수 없다. kernel이 제어한다. 새로운 스레드는 현재 스레드와 독립적으로 실행되고, 최대 한번 시작할 수 있고, 스레드가 종료된 이후에는 다시 시작할 수 없다.
+스레드 실행 # start() : 스레드를 실행시키는 메서드로 시스템 콜을 통해서 커널에 커널 스레드 생성을 요청한다.
+start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt; Kernel Thread 순서
+        <a href="/docs/parallel_programming/008_thread_start/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2749,40 +2997,6 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/002_parallel_concurrent/">002 Parallel Concurrent</a>
-    </h2>
-    
-  <h5>December 22, 2023</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2023-12-22/">2023-12-22</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - Parallel &amp; Concurrent # 동시성 # 특정한 순서 없이 겹치는 기간에 시작, 실행 및 완료되는 여러 작업에 관한것 ex) 사람이 있다. 작업1, 작업2가 있다. 이 사람은 작업1, 작업2를 모두 해야한다. 작업1을 하고 작업2를 하는데, 시간적으로 동시에하는건 아니고 계속 번갈아가면서 한다. 이게 짧은 찰나로 번갈아가면서 하기 때문에 동시에 하는것처럼 보인다. (순차적이지 않다. 순서가 없다.) (시간적인 동시성이 아님)
-작업의 갯수 &gt; CPU 갯수 Thread1, Thread2가 번갈아가면서 Task를 수행 빠른게 목적이 아닌, CPU의 효율적인 사용이 목적이다.
-        <a href="/docs/parallel_programming/002_parallel_concurrent/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2804,11 +3018,14 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item">
+        <a href="/tags/parallel/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item">
+        <a href="/tags/parallel/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/parallel/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
  
@@ -2851,6 +3068,11 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-12/">2024-02-12</a>
+          <span>4</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-07/">2024-02-07</a>
@@ -2949,7 +3171,7 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-06/">2023-01-06</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -3098,12 +3320,12 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>38</span>
+          <span>42</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>37</span>
+          <span>41</span>
         </li>
       
         <li class="flex justify-between">
@@ -3129,6 +3351,16 @@ Context # 프로세스 간 전환을 위해서는 이전에 어디까지 명령�
         <li class="flex justify-between">
           <a href="/tags/code/">code</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design/">system design</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design-interview/">system design interview</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">

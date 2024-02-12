@@ -6,8 +6,36 @@
     <description>Recent content in java on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 07 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/038_cas_algorithm/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/038_cas_algorithm/</guid>
+      <description>강의 메모 - CAS (Compare and Swap) 이해와 활용 - 1,2 # 개요 # CAS(Compare and Swap, 비교 후 치환) 는 멀티 스레드 환경에서 스레드 간의 경쟁 조건을 방지하고 락을 사용하지 않고도 공유 변수의 값을 원자적으로 변경하는 방법을 제공한다 CAS 는 CPU 캐시와 메인메모리의 두 값을 비교하고 그 값이 동일할 경우 새로운 값으로 교체하는 동기화 연산으로 여러 스레드가 공유하는 메모리 영역을 보호하는 데 사용된다 CAS 는 락 기반의 동기화보다 경량화되어 있으며 락을 사용하지 않기 때문에 대기하지 않는 넌블록킹 실행이 가능하고 경쟁 조건과 데드락을 피할 수 있다 CAS는 조건에 따라 실패하고 다시 시도해야 할 수 있기 때문에 동시적으로 접근하는 요청의 수가 많은 경쟁 조건일 경우 효율성이 저하될 수 있다 CAS는 주로 하드웨어 수준(CPU) 에서 지원되는 연산이며 Java에서는 java.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/039_atomic/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/039_atomic/</guid>
+      <description>강의 메모 - Atomic Variables - 단일연산변수 - 1,2 # 개요 # 단일연산변수는 락을 사용하지 않고도 여러 스레드 간에 안전하게 값을 공유하고 동기화하는 데 사용되며 기본적으로 volatile 의 속성을 가지고 있다 단일연산변수는 원자적인(read-modify-write) 연산을 지원하여 내부적으로 Compare and Swap (CAS) 연산을 사용하여 데이터의 일관성과 안정성을 유지한다 단일연산변수는 간단한 연산의 경우 락을 사용하는 것보다 월등히 빠른 성능을 보여 주지만 연산이 복잡거나 시간이 오래 걸리는 작업은 락을 사용하는 것보다 오버헤드가 커질 수 있다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/040_countDownLatch/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/040_countDownLatch/</guid>
+      <description>강의 메모 - CountDownLatch # 개요 # 하나 이상의 스레드가 다른 스레드에서 수행되는 일련의 작업이 완료될 때까지 기다릴 수 있게 해주는 동기화 보조 도구이다 CountDownLatch는 주어진 카운트로 초기화되고 await 메서드는 현재 카운트가 countDown 메서드의 호출로 인해 0이 될 때까지 블록되며 그 이후에 모든 대기 중인 스레드가 해제되고 await() 이후 처리가 이루어진다 CountDownLatch 은 일회성으로 처리된다. 즉 카운트를 재 설정할 수 없다( 카운트를 재설정하는 버전이 필요한 경우 CyclicBarrier 를 사용한다) 한 스레드가 여러 번 countDown() 을 호출해도 된다 사용 용도 # 여러 개의 스레드가 병렬로 실행되는 경우 특정 작업이 시작되거나 완료될 때까지 다른 스레드들이 기다리도록 할 수 있다 여러 스레드가 초기화 작업을 마칠 때까지 기다렸다가 모든 스레드가 완료되면 마무리 작업을 수행할 수 있습니다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/041_cyclicBarrier/</link>
+      <pubDate>Mon, 12 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/041_cyclicBarrier/</guid>
+      <description>강의 메모 - CyclicBarrier # 개요 # CyclicBarrier 는 공통된 장벽 지점에 도달할 때까지 일련의 스레드가 서로 기다리도록 하는 동기화 보조 도구이다 각 스레드끼리 cycleBarrier을 공유하고 각각 쓰레드에서 await()을 호출해야한다. countDownLatch는 작업 기준이라면, CyclicBarrier는 쓰레드 기준 CyclicBarrier 는 대기 중인 스레드가 해제된 후에 재 사용할 수 있기 때문에 순환 장벽이라고 부른다 CyclicBarrier는 옵션으로 Runnable 명령을 지원하는데 이 명령은 마지막 스레드가 도착한 후에 각 장벽 지점마다 한 번씩 실행되는 장벽액션(barrierAction) 역할을 수행한다 이 Runnable 은 스레드가 장벽 이후 실행을 계속하기 전에 공유 상태를 업데이트하는 데 유용하다 각 하나의 쓰레드가 await()을 호출해야함 각 쓰레드가 await()을 호출하게 되면 -1씩 되어 0이 되는 시점이 있다.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/036_reentrantReadWriteLock/</link>

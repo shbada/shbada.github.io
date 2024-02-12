@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content=" 036 Reentrant Read Write Lock 037 Condition 035 Reentrant Lock 034 Lock Reentrant Lock 032 Volatile 033 Deadlock 031 Wait Notify 030 Synchronized Etc 029 Method Synchronized 027 Spin Lock 028 Synchronized Basic 026 Monitor 024 Mutual Exclusion 025 Semaphore 020 Single Multi Thread 021 Synchronized CPU 022 Critical Section 023 Thread Safe 017 Thread Type 018 Thread Group 019 Thread Local 012 Thread Interrupt 013 Thread Info 014 Thread Priority 015 Thread Uncaught Exception Handler 016 Thread Stop Flag 011 Thread Join 010 Thread Sleep 009 Thread Status 008 Thread Start 004 CPU Bound Io Bound 005 User Kernel Systemcall 006 User Mode Kernel Mode Thread 007 Java Thread 003 Context Switching 001 Process Thread 002 Parallel Concurrent ">
+<meta name="description" content=" 038 Cas Algorithm 039 Atomic 040 Count Down Latch 041 Cyclic Barrier 036 Reentrant Read Write Lock 037 Condition 035 Reentrant Lock 034 Lock Reentrant Lock 032 Volatile 033 Deadlock 031 Wait Notify 030 Synchronized Etc 029 Method Synchronized 027 Spin Lock 028 Synchronized Basic 026 Monitor 024 Mutual Exclusion 025 Semaphore 020 Single Multi Thread 021 Synchronized CPU 022 Critical Section 023 Thread Safe 017 Thread Type 018 Thread Group 019 Thread Local 012 Thread Interrupt 013 Thread Info 014 Thread Priority 015 Thread Uncaught Exception Handler 016 Thread Stop Flag 011 Thread Join 010 Thread Sleep 009 Thread Status 008 Thread Start 004 CPU Bound Io Bound 005 User Kernel Systemcall 006 User Mode Kernel Mode Thread 007 Java Thread 003 Context Switching 001 Process Thread 002 Parallel Concurrent ">
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
 <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#343a40">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.29a2e29545f865413649f79fe781fc15a71f4767ee09e4af29522d234a39c66c.js" integrity="sha256-KaLilUX4ZUE2Sfef54H8FacfR2fuCeSvKVItI0o5xmw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.f52f771add14de077e629fe267f7e84a2a0a398caf93ff6e390fad0e7705f924.js" integrity="sha256-9S93Gt0U3gd&#43;Yp/iZ/foSioKOYyvk/9uOQ&#43;tDncF&#43;SQ=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/docs/parallel_programming/index.xml" title="TIL" />
@@ -63,6 +63,53 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-245375c91ef06f0eae9785ffce9f4046" class="toggle"  />
+    <label for="section-245375c91ef06f0eae9785ffce9f4046" class="flex justify-between">
+      <a href="/docs/systems_design/" class="">Systems Design</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/001_system_expansion/" class="">001 System Expansion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
     
       
         <li>
@@ -967,6 +1014,58 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/038_cas_algorithm/" class="">038 Cas Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/039_atomic/" class="">039 Atomic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/040_countDownLatch/" class="">040 Count Down Latch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/041_cyclicBarrier/" class="">041 Cyclic Barrier</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2120,6 +2219,22 @@ https://github.com/alex-shpak/hugo-book
       
   <article class="markdown book-article"><dl>
 
+  <dt>
+    <a href="/docs/parallel_programming/038_cas_algorithm/">038 Cas Algorithm</a>
+  </dt>
+  
+  <dt>
+    <a href="/docs/parallel_programming/039_atomic/">039 Atomic</a>
+  </dt>
+  
+  <dt>
+    <a href="/docs/parallel_programming/040_countDownLatch/">040 Count Down Latch</a>
+  </dt>
+  
+  <dt>
+    <a href="/docs/parallel_programming/041_cyclicBarrier/">041 Cyclic Barrier</a>
+  </dt>
+  
   <dt>
     <a href="/docs/parallel_programming/036_reentrantReadWriteLock/">036 Reentrant Read Write Lock</a>
   </dt>

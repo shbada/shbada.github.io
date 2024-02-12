@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.29a2e29545f865413649f79fe781fc15a71f4767ee09e4af29522d234a39c66c.js" integrity="sha256-KaLilUX4ZUE2Sfef54H8FacfR2fuCeSvKVItI0o5xmw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.f52f771add14de077e629fe267f7e84a2a0a398caf93ff6e390fad0e7705f924.js" integrity="sha256-9S93Gt0U3gd&#43;Yp/iZ/foSioKOYyvk/9uOQ&#43;tDncF&#43;SQ=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -63,6 +63,53 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-245375c91ef06f0eae9785ffce9f4046" class="toggle"  />
+    <label for="section-245375c91ef06f0eae9785ffce9f4046" class="flex justify-between">
+      <a href="/docs/systems_design/" class="">Systems Design</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/001_system_expansion/" class="">001 System Expansion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
     
       
         <li>
@@ -967,6 +1014,58 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/038_cas_algorithm/" class="">038 Cas Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/039_atomic/" class="">039 Atomic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/040_countDownLatch/" class="">040 Count Down Latch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/041_cyclicBarrier/" class="">041 Cyclic Barrier</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2115,6 +2214,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-02-12/">2024-02-12</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-02-07/">2024-02-07</a>
           <span>2</span>
         </li>
@@ -2211,7 +2315,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-06/">2023-01-06</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -2360,12 +2464,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>38</span>
+          <span>42</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>37</span>
+          <span>41</span>
         </li>
       
         <li class="flex justify-between">
@@ -2391,6 +2495,16 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/code/">code</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design/">system design</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design-interview/">system design interview</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -2543,6 +2657,138 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/022_critical_section/">022 Critical Section</a>
+    </h2>
+    
+  <h5>January 15, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-15/">2024-01-15</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ThreadLocal - 1,2 # Critical Section (임계영역, 공유변수영역) # Critical Section 이란 둘 이상의 스레드가 동시에 접근해서는 안되는 공유 자원(자료 구조 또는 장치) 에 접근하는 코드 영역를 말한다. 임계영역은 entry section, critical section, exit section, remainder section 으로 구성 된다 입장영역(entry section) : critical section 에 진입하기 위해 진입허가를 요청하는 영역입니다. 임계영역(critical section) : 하나의 스레드만 접근할 수 있는 영역이다 퇴장영역(exit section) : critical section 에서 빠져나올 때 신호를 알리는 영역이다 나머지영역(remainder section) : entry section, critical section, exit section 을 제외한 나머지 영역이다 lock을 획득해야만, 임계영역에 진입 가능하다.
+        <a href="/docs/parallel_programming/022_critical_section/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/023_thread_safe/">023 Thread Safe</a>
+    </h2>
+    
+  <h5>January 15, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-15/">2024-01-15</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ThreadLocal - 1,2 # 개요 # 여러 스레드에서 클래스나 객체에 동시에 접근해서 계속 실행하더라도 지속적인 정확성이 보장되는 코드를 스레드 세이프(thread-safe) 즉 스레드에 안전하다고 한다. 동시에 실행해도 동일한 결과값 기본적으로 클래스 명세에 스레드 안정성을 헤치는 코드나 상태를 가지고 있지 않으면 스레드에 안전하다라고 정의할 수 있다 스레드에 안전한 코드에는 경쟁상태가 없으며 경쟁 상태는 다수의 스레드가 공유 자원에 쓰기 작업을 시도할 때 발생하기 때문에 스레드가 실행될 때 어떤 자원을 공유하게 되는지 아는 것이 중요하다 스레드에 안전한 구조 # 임계영역을 동기화 한다
+        <a href="/docs/parallel_programming/023_thread_safe/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/017_thread_type/">017 Thread Type</a>
+    </h2>
+    
+  <h5>January 14, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-14/">2024-01-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 사용자 스레드 vs 데몬 스레드 # 개요 # 자바에는 크게 두 가지 유형의 스레드로 구분할 수 있는데 바로 사용자 스레드(user thread)와 데몬 스레드(daemon thread)이다. 사용자 스레드는 사용자 스레드를 낳고 데몬 스레드는 데몬 스레드를 낳는다.즉 자식 스레드는 부모 스레드의 상태를 상속 받는다 자바 어플리케이션이 실행이 되면 JVM 은 사용자 스레드인 메인스레드와 나머지 데몬 스레드를 동시에 생성하고 시작한다 main thread # 메인 스레드는 어플리케이션에서 가장 중요한 부분으로서 어플리케이션을 실행할 때마다 메인 스레드가 생성되어 실행된다 메인 스레드는 어플리케이션을 실행하는 최초의 스레드이자 어플리케이션 실행을 완료하는 마지막 스레드의 역할을 한다 메인 스레드에서 여러 하위 스레드를 추가로 시작할 수 있고 하위 스레드는 또 여러 하위 스레드를 시작할 수 있다 메인 스레드가 사용자 스레드이기 때문에 하위 스레드는 모두 사용자 스레드가 된다 user thread (사용자 스레드) # 사용자 스레드는 메인 스레드에서 직접 생성한 스레드를 의미한다 사용자 스레드는 각각 독립적인 생명주기를 가지고 실행하게 되며 메인 스레드를 포함한 모든 사용자 스레드가 종료하게 되면 어플리케이션이 종료하게 된다 사용자 스레드는 foreground 에서 실행되는 높은 우선순위를 가지며 JVM은 사용자 스레드가 스스로 종료될 때까지 어플리케이션을 강제로 종료하지 않고 기다린다 자바가 제공하는 스레드 풀인 ThreadPoolExecutor 은 사용자 스레드를 생성한다 daemon thread (데몬 스레드) # 데몬 스레드는 JVM 에서 생성한 스레드이거나 직접 데몬 스레드로 생성한 경우를 말한다 모든 사용자 스레드가 작업을 완료하면 데몬 스레드의 실행 여부에 관계없이 JVM 이 데몬 스레드를 강제로 종료하고 어플리케이션이 종료한다 데몬 스레드의 생명주기는 사용자 스레드에 따라 다르며 낮은 우선순위를 가지고 background 에서 실행된다 데몬 스레드는 사용자 스레드를 보조 및 지원하는 성격을 가진 스레드로서 보통 사용자 작업을 방해하지 않으면서 백그라운드에서 자동으로 작동되는 기능을 가진 스레드이다 자바가 제공하는 스레드 풀인 ForkJoinPool 은 데몬 스레드를 생성한다 데몬 스레드 생성 # void setDaemon(boolean on) 스레드를 데몬 또는 비데몬 스레드로 표시하며 이 메소드는 반드시 스레드가 시작되기 전에 호출되어야 한다 스레드가 실행 중인 동안 setDaemon()을 호출하려고 하면 IllegalThreadStateException 이 발생한다 true 이면 데몬스레드가 되며 false 이면 사용자 스레드가 된다.
+        <a href="/docs/parallel_programming/017_thread_type/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/018_thread_group/">018 Thread Group</a>
+    </h2>
+    
+  <h5>January 14, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-14/">2024-01-14</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ThreadGroup # 개요 # 자바는 스레드 그룹(ThreadGroup)이라는 객체를 통해서 여러 스레드를 그룹화하는 편리한 방법을 제공한다 ThreadGroup은 스레드 집합을 나타내며 스레드 그룹에는 다른 스레드 그룹도 포함될 수 있고 그룹 내의 모든 스레드는 한 번에 종료하거나 중단할 수 있다 스레드는 반드시 하나의 스레드 그룹에 포함되어야 하며 명시적으로 스레드 그룹에 포함시키지 않으면 자신을 생성한 스레드가 속해 있는 스레드 그룹에 포함되어 진다 일반적으로 사용자가 main 스레드에서 생성하는 모든 스레드는 기본적으로 main 스레드 그룹에 속하게 된다 코드로 별도 스레드를 만들면 기본적으로 main 스레드 그룹에 속해진다.
+        <a href="/docs/parallel_programming/018_thread_group/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2746,140 +2992,6 @@ Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정�
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/011_thread_join/">011 Thread Join</a>
-    </h2>
-    
-  <h5>January 8, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-08/">2024-01-08</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - join() # 개요 # join() 메서드는 한 스레드가 다른 스레드가 종료될 때까지 실행을 중지하고 대기상태에 들어갔다가 스레드가 종료되면 실행대기 상태로 전환된다 T1, T2가 있을때, T1이 T2의 모든 작업이 종료될때까지 대기했다가, T2의 작업이 다 끝나고나서 T1이 본인의 작업을 이어서 나가야할 경우 T1 기준으로 T2.join()을 수행 대기는 T1이 하는것 스레드의 순서를 제어하거나 다른 스레드의 작업을 기다려야 하거나 순차적인 흐름을 구성하고자 할 때 사용할 수 있다 Object 클래스의 wait() 네이티브 메서드로 연결되며 시스템 콜을 통해 커널모드로 수행한다.
-        <a href="/docs/parallel_programming/011_thread_join/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/010_thread_sleep/">010 Thread Sleep</a>
-    </h2>
-    
-  <h5>January 7, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-07/">2024-01-07</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - sleep() # 개요 # 지정된 시간 동안 현재 스레드의 실행을 일시 정지하고 대기상태로 빠졌다가 시간이 지나면 실행대기 상태로 전환된다 native 메서드로 연결되며 시스템 콜을 통해 커널모드에서 수행 후 유저모드로 전환한다 이 간단한 메서드 자체도 jvm 자체에서 실행되지 못하고 커널모드에서 수행된다. 컨텍스트 스위칭 발생 API 및 예외 # staic sleep(long millis) throws InterruptedException # 지정한 밀리초 시간 동안 스레드를 수면 상태로 만든다 밀리초에 대한 인수 값은 음수가 될 수 없으며 음수 일 경우 IllegalArgumentException 이 발생한다
-        <a href="/docs/parallel_programming/010_thread_sleep/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/009_thread_status/">009 Thread Status</a>
-    </h2>
-    
-  <h5>January 4, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-04/">2024-01-04</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 스레드 생명주기와 상태 # 개요 # 자바 스레드는 생성, 실행, 종료에 따른 상태를 가지고있다. OS 스레드 상태를 의미하지 않는다. 자바 스레드는 어떤 시점이던 6가지 상태 중 오직 1개의 상태를 가질 수 있다. 자바 스레드의 현재 상태를 가져오려면 Thread의 getState() 메서드를 사용하여 가져올 수 있다. Thread 클래스에는 스레드 상태에 대한 ENUM 상수를 정의하는 Thread.State 클래스를 제공한다. 스레드 상태 # NEW : 객체만 생성된 상태 RUNNABLE WAITING : 대기는 언제하는가?
-        <a href="/docs/parallel_programming/009_thread_status/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/008_thread_start/">008 Thread Start</a>
-    </h2>
-    
-  <h5>January 3, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-03/">2024-01-03</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 스레드 실행 및 종료 # 개요 # 자바 스레드는 OS 스케줄러에 의해 실행 순서가 결정되며, 스레드 실행 시점을 JVM에서 제어할 수 없다. kernel이 제어한다. 새로운 스레드는 현재 스레드와 독립적으로 실행되고, 최대 한번 시작할 수 있고, 스레드가 종료된 이후에는 다시 시작할 수 없다.
-스레드 실행 # start() : 스레드를 실행시키는 메서드로 시스템 콜을 통해서 커널에 커널 스레드 생성을 요청한다.
-start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt; Kernel Thread 순서
-        <a href="/docs/parallel_programming/008_thread_start/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2902,10 +3014,13 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
         <a href="/tags/java/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
       <li class="page-item">
+        <a href="/tags/java/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
         <a href="/tags/java/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/tags/java/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/tags/java/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
  
@@ -2948,6 +3063,11 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-12/">2024-02-12</a>
+          <span>4</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-07/">2024-02-07</a>
@@ -3046,7 +3166,7 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-06/">2023-01-06</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -3195,12 +3315,12 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>38</span>
+          <span>42</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>37</span>
+          <span>41</span>
         </li>
       
         <li class="flex justify-between">
@@ -3226,6 +3346,16 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
         <li class="flex justify-between">
           <a href="/tags/code/">code</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design/">system design</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design-interview/">system design interview</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">

@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.29a2e29545f865413649f79fe781fc15a71f4767ee09e4af29522d234a39c66c.js" integrity="sha256-KaLilUX4ZUE2Sfef54H8FacfR2fuCeSvKVItI0o5xmw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.f52f771add14de077e629fe267f7e84a2a0a398caf93ff6e390fad0e7705f924.js" integrity="sha256-9S93Gt0U3gd&#43;Yp/iZ/foSioKOYyvk/9uOQ&#43;tDncF&#43;SQ=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -63,6 +63,53 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-245375c91ef06f0eae9785ffce9f4046" class="toggle"  />
+    <label for="section-245375c91ef06f0eae9785ffce9f4046" class="flex justify-between">
+      <a href="/docs/systems_design/" class="">Systems Design</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/001_system_expansion/" class="">001 System Expansion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/systems_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
     
       
         <li>
@@ -967,6 +1014,58 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/038_cas_algorithm/" class="">038 Cas Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/039_atomic/" class="">039 Atomic</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/040_countDownLatch/" class="">040 Count Down Latch</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/041_cyclicBarrier/" class="">041 Cyclic Barrier</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2115,6 +2214,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-02-12/">2024-02-12</a>
+          <span>4</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-02-07/">2024-02-07</a>
           <span>2</span>
         </li>
@@ -2211,7 +2315,7 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-06/">2023-01-06</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -2360,12 +2464,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>38</span>
+          <span>42</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>37</span>
+          <span>41</span>
         </li>
       
         <li class="flex justify-between">
@@ -2391,6 +2495,16 @@ https://github.com/alex-shpak/hugo-book
         <li class="flex justify-between">
           <a href="/tags/code/">code</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design/">system design</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design-interview/">system design interview</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
@@ -2543,6 +2657,138 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/038_cas_algorithm/">038 Cas Algorithm</a>
+    </h2>
+    
+  <h5>February 12, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-02-12/">2024-02-12</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - CAS (Compare and Swap) 이해와 활용 - 1,2 # 개요 # CAS(Compare and Swap, 비교 후 치환) 는 멀티 스레드 환경에서 스레드 간의 경쟁 조건을 방지하고 락을 사용하지 않고도 공유 변수의 값을 원자적으로 변경하는 방법을 제공한다 CAS 는 CPU 캐시와 메인메모리의 두 값을 비교하고 그 값이 동일할 경우 새로운 값으로 교체하는 동기화 연산으로 여러 스레드가 공유하는 메모리 영역을 보호하는 데 사용된다 CAS 는 락 기반의 동기화보다 경량화되어 있으며 락을 사용하지 않기 때문에 대기하지 않는 넌블록킹 실행이 가능하고 경쟁 조건과 데드락을 피할 수 있다 CAS는 조건에 따라 실패하고 다시 시도해야 할 수 있기 때문에 동시적으로 접근하는 요청의 수가 많은 경쟁 조건일 경우 효율성이 저하될 수 있다 CAS는 주로 하드웨어 수준(CPU) 에서 지원되는 연산이며 Java에서는 java.
+        <a href="/docs/parallel_programming/038_cas_algorithm/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/039_atomic/">039 Atomic</a>
+    </h2>
+    
+  <h5>February 12, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-02-12/">2024-02-12</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Atomic Variables - 단일연산변수 - 1,2 # 개요 # 단일연산변수는 락을 사용하지 않고도 여러 스레드 간에 안전하게 값을 공유하고 동기화하는 데 사용되며 기본적으로 volatile 의 속성을 가지고 있다 단일연산변수는 원자적인(read-modify-write) 연산을 지원하여 내부적으로 Compare and Swap (CAS) 연산을 사용하여 데이터의 일관성과 안정성을 유지한다 단일연산변수는 간단한 연산의 경우 락을 사용하는 것보다 월등히 빠른 성능을 보여 주지만 연산이 복잡거나 시간이 오래 걸리는 작업은 락을 사용하는 것보다 오버헤드가 커질 수 있다.
+        <a href="/docs/parallel_programming/039_atomic/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/040_countDownLatch/">040 Count Down Latch</a>
+    </h2>
+    
+  <h5>February 12, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-02-12/">2024-02-12</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - CountDownLatch # 개요 # 하나 이상의 스레드가 다른 스레드에서 수행되는 일련의 작업이 완료될 때까지 기다릴 수 있게 해주는 동기화 보조 도구이다 CountDownLatch는 주어진 카운트로 초기화되고 await 메서드는 현재 카운트가 countDown 메서드의 호출로 인해 0이 될 때까지 블록되며 그 이후에 모든 대기 중인 스레드가 해제되고 await() 이후 처리가 이루어진다 CountDownLatch 은 일회성으로 처리된다. 즉 카운트를 재 설정할 수 없다( 카운트를 재설정하는 버전이 필요한 경우 CyclicBarrier 를 사용한다) 한 스레드가 여러 번 countDown() 을 호출해도 된다 사용 용도 # 여러 개의 스레드가 병렬로 실행되는 경우 특정 작업이 시작되거나 완료될 때까지 다른 스레드들이 기다리도록 할 수 있다 여러 스레드가 초기화 작업을 마칠 때까지 기다렸다가 모든 스레드가 완료되면 마무리 작업을 수행할 수 있습니다.
+        <a href="/docs/parallel_programming/040_countDownLatch/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/041_cyclicBarrier/">041 Cyclic Barrier</a>
+    </h2>
+    
+  <h5>February 12, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-02-12/">2024-02-12</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - CyclicBarrier # 개요 # CyclicBarrier 는 공통된 장벽 지점에 도달할 때까지 일련의 스레드가 서로 기다리도록 하는 동기화 보조 도구이다 각 스레드끼리 cycleBarrier을 공유하고 각각 쓰레드에서 await()을 호출해야한다. countDownLatch는 작업 기준이라면, CyclicBarrier는 쓰레드 기준 CyclicBarrier 는 대기 중인 스레드가 해제된 후에 재 사용할 수 있기 때문에 순환 장벽이라고 부른다 CyclicBarrier는 옵션으로 Runnable 명령을 지원하는데 이 명령은 마지막 스레드가 도착한 후에 각 장벽 지점마다 한 번씩 실행되는 장벽액션(barrierAction) 역할을 수행한다 이 Runnable 은 스레드가 장벽 이후 실행을 계속하기 전에 공유 상태를 업데이트하는 데 유용하다 각 하나의 쓰레드가 await()을 호출해야함 각 쓰레드가 await()을 호출하게 되면 -1씩 되어 0이 되는 시점이 있다.
+        <a href="/docs/parallel_programming/041_cyclicBarrier/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2744,138 +2990,6 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/031_wait_notify/">031 Wait Notify</a>
-    </h2>
-    
-  <h5>January 27, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-27/">2024-01-27</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 스레드 간 협력 - wait() &amp; notify() # 개요 # wait(), notify(), notifyAll() 은 모니터 객체의 조건변수와 함께 사용해서 동기화를 구현할 수 있는 동기화 메커니즘이라 할 수 있다. wait(), notify(), notifyAll() 은 뮤텍스(상호배제) 동기화 기법으로 충족되지 않는 동기화 문제를 해결할 수 있는 협력에 의한 동기화 장치이다 wait(), notify(), notifyAll() 은 반드시 synchronized 블록 안에서만 사용해야 하며 이는 스레드가 모니터 락을 확보한 상태에서 이 API 들이 작동한다는 것을 의미한다 모니터 락 안에서 사용해야한다.
-        <a href="/docs/parallel_programming/031_wait_notify/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/030_synchronized_etc/">030 Synchronized Etc</a>
-    </h2>
-    
-  <h5>January 25, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-25/">2024-01-25</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - synchronized 특성 # 재진입성 # 모니터 내에서 이미 synchronized 영역에 들어간 스레드가 다시 같은 모니터 영역으로 들어갈 수 있는데, 이를 &ldquo;모니터 재진입&quot;이라고 한다 재진입 가능하다는 것은 락의 획득이 호출 단위가 아닌 스레드 단위로 일어난다는 것을 의미하며 이미 락을 획득한 스레드는 같은 락을 얻기 위해 대기할 필요 없이 synchronized 블록을 만났을 때 같은 락을 확보하고 진입한다 같은 모니터라면 대기/경쟁 없이 바로 진입 가능 (스레드 단위) 상속하게 되면 자식은 부모의 락과 동일한 락을 가지게 된다 자식 클래스에서 method() 실행됨 부모클래스의 method() 실행 서로 모니터가 동일하므로 재진입이 가능한것 동기화 된 메서드에서 다른 동기화 된 메서드를 호출하는 경우 이미 락(lock)을 가지고 있는 스레드가 같은 락을 확보하고 재진입 시 데드락이 발생하지 않고 정상적으로 진행할 수 있게 된다 가시성 # synchronized 는 가시성을 지원한다 가시성이란 한 스레드가 공유자원을 수정하거나 쓰기 작업을 했을 때 다른 스레드가 수정한 내용이 보이는 것을 말한다 CPU 특성상 cache memory를 가진다.
-        <a href="/docs/parallel_programming/030_synchronized_etc/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/029_method_synchronized/">029 Method Synchronized</a>
-    </h2>
-    
-  <h5>January 22, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-22/">2024-01-22</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - synchronized 메서드 동기화 # 인스턴스 메서드 동기화 (synchronized method) # 인스턴스 단위로 모니터가 동작하며 동일한 인스턴스 안에서 synchronized 가 적용된 곳은 하나의 락을 공유한다 인스턴스가 여러개일 경우 인스턴스별로 모니터 객체를 가지므로 스레드는 모니터 별로 락을 획득해서 동기화 영역에 진입하고 빠져 나올 때 락을 해제 할 수 있다 MyClass 내부적으로 가지고있는 객체 타입 : this (=모니터) 위 두 메서드의 모니터가 동일하다. 정적 메서드 동기화 (static synchronized method) # 클래스 단위로 모니터가 동작하며 synchronized 가 적용된 곳은 하나의 락을 공유한다 인스턴스와는 별개의 모니터를 가지고 임계 영역을 동기화 하기 때문에 인스턴스 단위로 메서드를 호출할지라도 락은 클래스 단위로 스레드간 공유된다 클래스는 메모리에 오직 하나만 존재하므로 하나의 모니터를 공유해서 동기화 하고자 할 때 사용 할 수 있다 정적메서드이기 때문에 클래스 타입으로 주어짐 -&gt; MyCalss = monitor 인스턴스 메서드 동기화 (synchronized method) + 정적 메서드 동기화 (static synchronized method) # synchronized method 와 static synchronized method 가 혼용되었을 경우는 각 모니터별로 동기화를 진행한다 모니터가 섞여 있기 때문에 동기화가 의도한대로 정확하게 동작하는지 주의가 필요하다 위 1, 2 메서드의 모니터는 같다 위 3,4 메서드의 모니터는 같다 References 강의 : https://www.
-        <a href="/docs/parallel_programming/029_method_synchronized/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/027_spin_lock/">027 Spin Lock</a>
-    </h2>
-    
-  <h5>January 20, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-20/">2024-01-20</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - SpinLock &amp; Busy Waiting # 개요 # 스핀락(SpinLock)은 뮤텍스나 세마포어와 같은 동기화 기법의 일종으로, 기다리지 않고 스레드가 임계영역을 사용할 수 있을 때까지 계속 반복하여 검사하는 동기화 메커니즘이다 작동방식 # 스레드가 공유 자원에 접근하려고 할 때, 먼저 스핀락을 시도한다 test_and_set() 함수가 이전 락 값인 0 을 반환하면 아직 락이 잠기지 않았다는 것을 의미하며 while 루프를 빠져 나온다 스레드는 스핀락을 얻고 해당 자원을 사용한다 그러나 이전 락 값이 1이면 이미 다른 스레드에 의해 잠긴 것을 의미하며 스핀락을 얻을 때까지 계속해서 반복적으로 검사를 수행한다 스레드가 자원 사용이 끝나면 lock 을 0 으로 변경해서 스핀락을 해제한다 Busy Waiting (바쁜 대기) # Busy waiting은 스레드가 어떤 조건이 만족될 때까지 계속해서 반복적으로 검사하는 것을 말한다 스레드가 특정 조건을 기다리는 동안 아무런 유용한 작업을 수행하지 않고, 무한 반복 루프를 돌며 CPU 자원을 계속 사용하는 것을 의미한다 스핀락은 이러한 busy waiting을 사용하는 동기화 기법 중 하나이다 스핀락 자바 구현 # 임계영역을 수행하고 unlock() 호출 스핀락의 장점, 단점 # 장점
-        <a href="/docs/parallel_programming/027_spin_lock/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -2898,10 +3012,13 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
         <a href="/tags/java/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
       <li class="page-item">
+        <a href="/tags/java/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
         <a href="/tags/java/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/tags/java/page/4/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/tags/java/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
  
@@ -2944,6 +3061,11 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-12/">2024-02-12</a>
+          <span>4</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-07/">2024-02-07</a>
@@ -3042,7 +3164,7 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
       
         <li class="flex justify-between">
           <a href="/categories/2023-01-06/">2023-01-06</a>
-          <span>2</span>
+          <span>4</span>
         </li>
       
         <li class="flex justify-between">
@@ -3191,12 +3313,12 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>38</span>
+          <span>42</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>37</span>
+          <span>41</span>
         </li>
       
         <li class="flex justify-between">
@@ -3222,6 +3344,16 @@ synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으
         <li class="flex justify-between">
           <a href="/tags/code/">code</a>
           <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design/">system design</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
+          <a href="/tags/system-design-interview/">system design interview</a>
+          <span>2</span>
         </li>
       
         <li class="flex justify-between">
