@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.c3895e64ba66754676aeed38d35e4b0926f92c229a92a1383456dc2736f21da5.js" integrity="sha256-w4leZLpmdUZ2ru04015LCSb5LCKakqE4NFbcJzbyHaU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.fde3b897ece5f48c5118158337158bbf9e10cd55146f36a16f8174f2e5dc781c.js" integrity="sha256-/eO4l&#43;zl9IxRGBWDNxWLv54QzVUUbzahb4F08uXceBw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -63,53 +63,6 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <input type="checkbox" id="section-0bd71e23782ecc3b5174eb29487ca4db" class="toggle"  />
-    <label for="section-0bd71e23782ecc3b5174eb29487ca4db" class="flex justify-between">
-      <a href="/docs/system_design/" class="">System Design</a>
-    </label>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/system_design/001_system_expansion/" class="">001 System Expansion</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/system_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
     
       
         <li>
@@ -1014,6 +967,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/042_threadpool/" class="">042 Threadpool</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/043_executor/" class="">043 Executor</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2118,6 +2097,53 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <input type="checkbox" id="section-0bd71e23782ecc3b5174eb29487ca4db" class="toggle"  />
+    <label for="section-0bd71e23782ecc3b5174eb29487ca4db" class="flex justify-between">
+      <a href="/docs/system_design/" class="">System Design</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/system_design/001_system_expansion/" class="">001 System Expansion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/system_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
     <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
       <a href="/docs/webflux/" class="">Webflux</a>
@@ -2212,6 +2238,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-13/">2024-02-13</a>
+          <span>2</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-12/">2024-02-12</a>
@@ -2464,12 +2495,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>42</span>
+          <span>44</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>41</span>
+          <span>43</span>
         </li>
       
         <li class="flex justify-between">
@@ -2657,6 +2688,74 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/020_single_multi_thread/">020 Single Multi Thread</a>
+    </h2>
+    
+  <h5>January 15, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-15/">2024-01-15</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 싱글스레드 &amp; 멀티스레드 # 개요 # 프로세스는 오직 한개의 스레드로만 구성하는 싱글 스레드 프로세스와 하나 이상의 스레드로 구성하는 멀티 스레드 프로세스로 구분할 수 있다 작업 처리에 있어서 단일스레드와 멀티 스레드의 선택 기준은 어떤 방식이 자원을 더 효율적으로 사용하고 성능처리에 유리한가 하는 점이다 현대 CPU 는 대부분 멀티코어를 지원하기 때문에 병렬적 성능 및 동시적 자원 사용 관점에서는 싱글 스레드보다 멀티스레드 기반 프로그래밍이 유리한 점이 많다 싱글 스레드 혹은 아주 적은 스레드를 활용한 비동기 논블럭킹 프로그래밍은 많은 수의 멀티 스레드 기반 프로그래밍 보다 더 좋은 성능과 응답성을 보여줄 수 있다 단일스레드 # 장점 # 문맥교환이 없다 동기화 이슈가 없다 자원 비용이 적다 프로그래밍 난이도가 낮다 단점 # CPU 멀티코어 활용 못함　순차적 실행으로 응답성 및 전체 처리량이 낮다 I/O 처리 시 CPU 가 낭비된다　스레드에 오류가 발생하면 프로그램이 종료된다 멀티스레드 # 장점 # 동시성으로 사용자의 응답성 향상 CPU 멀티코어의 병렬성으로 성능 향상 CPU 낭비 없는 자원의 효율적인 사용　한 스레드 오류는 다른 스레드에 영향이 없다　단점 # 빈번한 문맥교환으로 성능이 저하 된다　스레드 간 동기화 이슈가 발생한다 스레드 생성 비용이 작지 않다 프로그래밍 난이도가 높다　멀티스레딩과 동시성 # CPU 의 동시적 작업 처리는 CPU 코어 개수보다 스레드의 개수가 많을 때 즉 , 멀티스레딩 환경에서 자원을 효율적으로 배분하고 사용하기 위해 설계된 방식이다 같은 프로그램 안에서 실행되는 여러 스레드가 읽기 및 쓰기 작업을 같은 메모리 영역에서 동시에 실행할 경우 동시성 문제가 대두된다 동시성 문제라 함은 하나의 스레드가 어떤 메모리 영역의 데이터를 쓰고 있는데 또 다른 스레드가 같은 메모리 영역의 데이터를 읽거나 쓸 경우 발생할 수 있는 문제이다 동시성 문제는 싱글스레드에서는 절대 발생하지 않으며 멀티 스레드를 운용하는 어플리케이션에서 나타나는 현상이다 a는 여러 쓰레드가 접근 가능하다.
+        <a href="/docs/parallel_programming/020_single_multi_thread/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/021_synchronized_cpu/">021 Synchronized CPU</a>
+    </h2>
+    
+  <h5>January 15, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-15/">2024-01-15</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 동기화와 CPU 관계 # 동기화 (synchronization)란
+프로세스 혹은 스레드 간 공유 영역에 대한 동시접근으로 인해 발생하는 데이터 불일치(data inconsistency) 를 막고 데이터 일관성을 유지하기 위해 순차적으로 공유 영역을 수행하도록 보장하는 메카니즘이라 할 수 있다 CPU 연산 처리 이해
+모든 기계어 명령(machine instruction) 은 원자성(atimicity) 을 갖는데 이는 하나의 기계어 명령어가 실행을 시작할 경우 그 명령의 수행 종료 시 까지는 인터럽트(interrupt)를 받지 않는다. 분리 불가능(indivisible) 이라고도 한다 CPU 가 두 개 이상의 명령어를 처리할 경우에은 원자성이 보장되지 않는데 이는 각 명령을 수행하는 중에 OS 가 다른 스케줄링으로 CPU 에게 다른 명령을 수행하게 함으로써 현재 수행중인 명령을 인터럽트 즉 중단하게 된다는 의미이다 두 개 이상의 명령어를 원자성으로 묶기 위해서는 스레드 간 동기화 메카니즘이 필요하다.
+        <a href="/docs/parallel_programming/021_synchronized_cpu/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2926,72 +3025,6 @@ Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정�
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/015_thread_uncaughtExceptionHandler/">015 Thread Uncaught Exception Handler</a>
-    </h2>
-    
-  <h5>January 13, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-13/">2024-01-13</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 스레드 예외처리 - UncaughtExceptionHandler # 개요 # 기본적으로 스레드의 run() 은 예외를 던질 수 없기 때문에 예외가 발생할 경우 run() 안에서만 예외를 처리해야 한다 RuntimeException 타입의 예외가 발생할 지라도 스레드 밖에서 예외를 캐치할 수 없고 사라진다 스레드가 비정상적으로 종료되었거나 특정한 예외를 스레드 외부에서 캐치하기 위해서 자바에서는 UncaughtExceptionHandler 인터페이스를 제공한다 UncaughtExceptionHandler # 캐치 되지 않는 예외에 의해 Thread가 갑자기 종료했을 때에 호출되는 핸들러 인터페이스 어떤 원인으로 인해 스레드가 종료되었는지 대상 스레드와 예외를 파악할 수 있다 예외가 발생하면 uncaughtException 이 호출되고 대상 스레드 t 와 예외 e 가 인자로 전달된다 Thread API # static void setDefaultUncaughtExceptionHandler
-        <a href="/docs/parallel_programming/015_thread_uncaughtExceptionHandler/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/016_thread_stop_flag/">016 Thread Stop Flag</a>
-    </h2>
-    
-  <h5>January 13, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-13/">2024-01-13</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 스레드 중지 – flag variable vs interrupt() - 1,2 # 개요 # 자바에서는 무한 반복이나 지속적인 실행 중에 있는 스레드를 중지하거나 종료할 수 있는 API 를 더 이상 사용할 수 없다 (suspend(), stop()) 수행 중에 강제로 종료해버리면 이슈가 생길 수 있기 때문 스레드를 종료하는 방법은 플래그 변수를 사용하거나 interrupt() 를 활용해서 구현할 수 있다 Flag Variable # 플래그 변수의 값이 어떤 조건에 만족할 경우 스레드의 실행을 중지하는 방식 플래그 변수는 동시성 문제로 가능한 atomic 변수나 volatile 키워드를 사용하도록 한다 동시성 문제 때문 running 변수는 여러 쓰레드가 있다.
-        <a href="/docs/parallel_programming/016_thread_stop_flag/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -3063,6 +3096,11 @@ Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정�
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-13/">2024-02-13</a>
+          <span>2</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-12/">2024-02-12</a>
@@ -3315,12 +3353,12 @@ Java에서 스레드의 우선 순위는 1에서 10 사이의 정수이며 정�
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>42</span>
+          <span>44</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>41</span>
+          <span>43</span>
         </li>
       
         <li class="flex justify-between">

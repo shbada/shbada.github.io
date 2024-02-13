@@ -6,8 +6,22 @@
     <description>Recent content in parallel on TIL</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 12 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 13 Feb 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://example.com/tags/parallel/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/042_threadpool/</link>
+      <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/042_threadpool/</guid>
+      <description>강의 메모 - 스레드 풀 이해와 구현 # 개요 # 스레드 풀 (Thread Pool) 은 다수의 스레드를 미리 생성하고 관리하여 작업을 효율적으로 처리하는 디자인 패턴이다 자바에서는 스레드 풀을 사용할 수 있는 Executor 프레임워크를 제공하고 있다 스레드 풀은 왜 필요한가 # 스레드 풀을 구현할 때 필요한 핵심 요소는 무엇인가 # 스레드 풀 구조 # 작업을 스레드 풀에 등록하면 스레드 풀은 큐에 작업을 저장한다 미리 생성된 스레드는 큐로부터 작업을 하나씩 가져가고 작업을 진행한다 작업을 완료하면 다음 작업을 할당받기 위해 시도한다 스레드가 할당 받을 작업이 없으면 요청이 들어올 때 까지 계속 대기한다 (wait) 할당 받을 작업이 올때까지 스레드가 모두 작업 중이고 큐에 작업이 존재할 경우 스레드를 추가 생성한다 가용할 수 있는 최대 스레드 개수만큼 생성 가능하기 때문에 추가 생성할 수 있음 일반적으로 스레드 생성 개수는 기본 개수와 최대 개수로 제한을 둔다 만약 Queue에 계속해서 작업이 들어오는데 Thread가 모두 working 중이면 Queue에 작업이 계속 쌓이게되어 쓰레드 풀이 예외를 발생시킬 수 있다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/043_executor/</link>
+      <pubDate>Tue, 13 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/043_executor/</guid>
+      <description>강의 메모 - Executor # 개요 # 자바 Executor Framework 는 자바의 java.util.concurrent 패키지에 포함된 스레드 관리와 병렬 처리를 위한 고급 기능들을 제공하는 포괄적인 라이브러리이다 Executor Framework 는 복잡한 스레드 생성, 관리, 동기화 등의 작업을 단순화하고 성능을 향상시키기 위한 다양한 클래스와 인터페이스를 제공하고 있다 Executor Framework # Executor # Executor Framework 의 핵심 인터페이스로서 단일 메서드 execute(Runnable command)를 정의하고 있으며 작업을 제출하면 Executor 구현체가 적절한 스레드를 생성하고 작업을 실행한다 ExecutorService # Executor 의 확장 버전으로서 작업의 제출과 스레드 풀의 종료를 관리하기 위한 메서드들을 추가로 제공한다 ScheduledExecutorService # ExecutorService 의 확장으로 특정 시간 또는 주기적으로 작업을 실행할 수 있도록 스케줄링하는 메서드들을 제공한다 Executor 구현체 # Executor 의 구현체로는 ThreadPoolExecutor,ScheduledThreadPoolExecutor 등이 있다 이들은 스레드 풀의 생성, 관리, 작업 큐, 스레드 생성 및 삭제 정책 등을 다양한 설정으로 제어할 수 있는 강력한 도구이다 Executor # 제출(Submit)된 Runnable 작업을 실행(Execute) 하는 객체 Executor 인터페이스는 각 작업의 실행(실행방법, 스레드 사용, 스케줄링 등의 세부 사항) 과 작업의 제출을 분리하는 방법을 제공한다.</description>
+    </item>
     <item>
       <title></title>
       <link>https://example.com/docs/parallel_programming/038_cas_algorithm/</link>

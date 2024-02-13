@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.c3895e64ba66754676aeed38d35e4b0926f92c229a92a1383456dc2736f21da5.js" integrity="sha256-w4leZLpmdUZ2ru04015LCSb5LCKakqE4NFbcJzbyHaU=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.fde3b897ece5f48c5118158337158bbf9e10cd55146f36a16f8174f2e5dc781c.js" integrity="sha256-/eO4l&#43;zl9IxRGBWDNxWLv54QzVUUbzahb4F08uXceBw=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -63,53 +63,6 @@ https://github.com/alex-shpak/hugo-book
 
   
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <input type="checkbox" id="section-0bd71e23782ecc3b5174eb29487ca4db" class="toggle"  />
-    <label for="section-0bd71e23782ecc3b5174eb29487ca4db" class="flex justify-between">
-      <a href="/docs/system_design/" class="">System Design</a>
-    </label>
-  
-
-          
-  <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/system_design/001_system_expansion/" class="">001 System Expansion</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/system_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
-  
-
-        </li>
-      
-    
-  </ul>
-
-        </li>
-      
     
       
         <li>
@@ -1014,6 +967,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/042_threadpool/" class="">042 Threadpool</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/043_executor/" class="">043 Executor</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2118,6 +2097,53 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <input type="checkbox" id="section-0bd71e23782ecc3b5174eb29487ca4db" class="toggle"  />
+    <label for="section-0bd71e23782ecc3b5174eb29487ca4db" class="flex justify-between">
+      <a href="/docs/system_design/" class="">System Design</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/system_design/001_system_expansion/" class="">001 System Expansion</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/system_design/002_system_size_estimation/" class="">002 System Size Estimation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <input type="checkbox" id="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="toggle"  />
     <label for="section-5f1e4c3c9f29fee9a25ac2c5291c7472" class="flex justify-between">
       <a href="/docs/webflux/" class="">Webflux</a>
@@ -2212,6 +2238,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-13/">2024-02-13</a>
+          <span>2</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-12/">2024-02-12</a>
@@ -2464,12 +2495,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>42</span>
+          <span>44</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>41</span>
+          <span>43</span>
         </li>
       
         <li class="flex justify-between">
@@ -2657,6 +2688,72 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/032_volatile/">032 Volatile</a>
+    </h2>
+    
+  <h5>January 28, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-28/">2024-01-28</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - volatile # 개요 # volatile 은 변수의 가시성과 연산의 순서를 제어하기 위해 사용하는 키워드로서 스레드 간의 데이터 일관성과 가시성을 보장하는 역할을 한다 가시성 보장 : 모든 쓰레드가 동일한 값을 보는것 CPU 캐시 메모리와 메인 메모리 # 현대 컴퓨터는 거의 대부분 2개 이상의 CPU가 장착되어 있으며 각 코어에는 레지스터와 캐시메모리가 존재한다 CPU 캐시 메모리는 CPU 레지스터와 메인 메모리 사이에서 데이터 흐름을 최적화하고 성능을 향상시키기 위해 사용되는 고속 메모리이다 CPU 는 값을 읽어올 때 우선 캐시에 해당 값이 있는지 확인하고 없는 경우에만 메인 메모리에서 읽어오는 특성을 가진다 CPU 가 데이터 처리를 위해 메인 메모리로 접근 할 때 다음과 같은 순서로 진행한다
+        <a href="/docs/parallel_programming/032_volatile/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/033_deadlock/">033 Deadlock</a>
+    </h2>
+    
+  <h5>January 28, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-28/">2024-01-28</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Deadlock - 교착상태 - 1,2 # 개요 # DeadLock(교착상태) 이란 프로세스나 스레드들이 서로가 소유하고 있는 자원을 기다리며 무한히 대기하고 있는 상태를 말한다 교착상태에서는 아무런 진전도 이루어지지 않아 작업이 진행되지 않는 문제가 발생한다 DeadLock 은 동일한 환경과 코드에서 발생할 수도 있고 발생하지 않을 수도 있다 완전한 해결은 없고, &lsquo;예방&rsquo;과 &lsquo;최소화&rsquo;하는 느낌 - 예측이 어려운 상황 데드락 발생 조건 # 데드락은 다음의 네 가지 필요 조건을 동시에 만족할 때 발생한다.
+        <a href="/docs/parallel_programming/033_deadlock/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2922,74 +3019,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/020_single_multi_thread/">020 Single Multi Thread</a>
-    </h2>
-    
-  <h5>January 15, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-15/">2024-01-15</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 싱글스레드 &amp; 멀티스레드 # 개요 # 프로세스는 오직 한개의 스레드로만 구성하는 싱글 스레드 프로세스와 하나 이상의 스레드로 구성하는 멀티 스레드 프로세스로 구분할 수 있다 작업 처리에 있어서 단일스레드와 멀티 스레드의 선택 기준은 어떤 방식이 자원을 더 효율적으로 사용하고 성능처리에 유리한가 하는 점이다 현대 CPU 는 대부분 멀티코어를 지원하기 때문에 병렬적 성능 및 동시적 자원 사용 관점에서는 싱글 스레드보다 멀티스레드 기반 프로그래밍이 유리한 점이 많다 싱글 스레드 혹은 아주 적은 스레드를 활용한 비동기 논블럭킹 프로그래밍은 많은 수의 멀티 스레드 기반 프로그래밍 보다 더 좋은 성능과 응답성을 보여줄 수 있다 단일스레드 # 장점 # 문맥교환이 없다 동기화 이슈가 없다 자원 비용이 적다 프로그래밍 난이도가 낮다 단점 # CPU 멀티코어 활용 못함　순차적 실행으로 응답성 및 전체 처리량이 낮다 I/O 처리 시 CPU 가 낭비된다　스레드에 오류가 발생하면 프로그램이 종료된다 멀티스레드 # 장점 # 동시성으로 사용자의 응답성 향상 CPU 멀티코어의 병렬성으로 성능 향상 CPU 낭비 없는 자원의 효율적인 사용　한 스레드 오류는 다른 스레드에 영향이 없다　단점 # 빈번한 문맥교환으로 성능이 저하 된다　스레드 간 동기화 이슈가 발생한다 스레드 생성 비용이 작지 않다 프로그래밍 난이도가 높다　멀티스레딩과 동시성 # CPU 의 동시적 작업 처리는 CPU 코어 개수보다 스레드의 개수가 많을 때 즉 , 멀티스레딩 환경에서 자원을 효율적으로 배분하고 사용하기 위해 설계된 방식이다 같은 프로그램 안에서 실행되는 여러 스레드가 읽기 및 쓰기 작업을 같은 메모리 영역에서 동시에 실행할 경우 동시성 문제가 대두된다 동시성 문제라 함은 하나의 스레드가 어떤 메모리 영역의 데이터를 쓰고 있는데 또 다른 스레드가 같은 메모리 영역의 데이터를 읽거나 쓸 경우 발생할 수 있는 문제이다 동시성 문제는 싱글스레드에서는 절대 발생하지 않으며 멀티 스레드를 운용하는 어플리케이션에서 나타나는 현상이다 a는 여러 쓰레드가 접근 가능하다.
-        <a href="/docs/parallel_programming/020_single_multi_thread/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/021_synchronized_cpu/">021 Synchronized CPU</a>
-    </h2>
-    
-  <h5>January 15, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-15/">2024-01-15</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - 동기화와 CPU 관계 # 동기화 (synchronization)란
-프로세스 혹은 스레드 간 공유 영역에 대한 동시접근으로 인해 발생하는 데이터 불일치(data inconsistency) 를 막고 데이터 일관성을 유지하기 위해 순차적으로 공유 영역을 수행하도록 보장하는 메카니즘이라 할 수 있다 CPU 연산 처리 이해
-모든 기계어 명령(machine instruction) 은 원자성(atimicity) 을 갖는데 이는 하나의 기계어 명령어가 실행을 시작할 경우 그 명령의 수행 종료 시 까지는 인터럽트(interrupt)를 받지 않는다. 분리 불가능(indivisible) 이라고도 한다 CPU 가 두 개 이상의 명령어를 처리할 경우에은 원자성이 보장되지 않는데 이는 각 명령을 수행하는 중에 OS 가 다른 스케줄링으로 CPU 에게 다른 명령을 수행하게 함으로써 현재 수행중인 명령을 인터럽트 즉 중단하게 된다는 의미이다 두 개 이상의 명령어를 원자성으로 묶기 위해서는 스레드 간 동기화 메카니즘이 필요하다.
-        <a href="/docs/parallel_programming/021_synchronized_cpu/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -3061,6 +3090,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-13/">2024-02-13</a>
+          <span>2</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-12/">2024-02-12</a>
@@ -3313,12 +3347,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>42</span>
+          <span>44</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>41</span>
+          <span>43</span>
         </li>
       
         <li class="flex justify-between">
