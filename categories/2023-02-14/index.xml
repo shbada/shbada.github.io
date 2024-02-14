@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2023-02-14 on TIL</title>
+    <link>https://example.com/categories/2023-02-14/</link>
+    <description>Recent content in 2023-02-14 on TIL</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://example.com/categories/2023-02-14/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title></title>
+      <link>https://example.com/docs/system_design/003_system_design_interview/</link>
+      <pubDate>Wed, 14 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/system_design/003_system_design_interview/</guid>
+      <description>개발 책 읽기 : 가상 면접 사례로 배우는 대규모 시스템 설계 기초 1 # 3장. 시스템 설계 면접 공략법 # 시스템 설계 면접 # 두 명의 동료가 모호한 문제를 풀기 위해 협력하여 그 해결책을 찾아내는 과정에 대한 시뮬레이션 정해진 결말도 없고, 정답도 없다. 최종적으로 도출된 설계안은 설계 과정에 비하면 그다지 중요하지 않다.&#xA;면접관의 일차적 목표 : 능력 평가 # 면접관이 시스템 설계 면접에서 찾고자 하는 것은?&#xA;시스템 설계 면접이 잘 진행되면, 지원자가 협력에 적합한 사람인지?</description>
+    </item>
+  </channel>
+</rss>
