@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.fde3b897ece5f48c5118158337158bbf9e10cd55146f36a16f8174f2e5dc781c.js" integrity="sha256-/eO4l&#43;zl9IxRGBWDNxWLv54QzVUUbzahb4F08uXceBw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.28f30cdc6ed5301d426787a6bf344fd8838f857a8c693dba50f696bfa2870a37.js" integrity="sha256-KPMM3G7VMB1CZ4emvzRP2IOPhXqMaT26UPaWv6KHCjc=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -967,6 +967,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/044_runnable_callable/" class="">044 Runnable Callable</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2240,6 +2253,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-02-14/">2024-02-14</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-02-13/">2024-02-13</a>
           <span>2</span>
         </li>
@@ -2495,12 +2513,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>44</span>
+          <span>45</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>43</span>
+          <span>44</span>
         </li>
       
         <li class="flex justify-between">
@@ -2688,6 +2706,41 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/034_lock_ReentrantLock/">034 Lock Reentrant Lock</a>
+    </h2>
+    
+  <h5>January 29, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-29/">2024-01-29</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Lock &amp; ReentrantLock - 1,2 # 개요 # Lock 구현은 synchronized 구문과 마찬가지로 상호배제와 가시성 기능을 가진 동기화 기법이며 synchronized 보다 더 확장된 락 작업을 제공한다
+Lock 구현은 락을 획득 시 블록되지 않는 비 차단 시도(tryLock()), 인터럽트가 가능한 방식으로 락을 획득하는 시도(lockInterruptibly) 및 시간 제한을 둔 방식으로 락을 획득하는 시도(tryLock(long, TimeUnit))와 같은 추가 기능을 제공한다
+synchronized 사용은 락 획득과 락 해제가 블록 구조화된 방식으로 발생하도록 강제한다
+        <a href="/docs/parallel_programming/034_lock_ReentrantLock/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -2986,39 +3039,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/025_semaphore/">025 Semaphore</a>
-    </h2>
-    
-  <h5>January 16, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-16/">2024-01-16</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - Semaphore - 세마포어 - 1,2 # 개요 # 세마포어는 공유 자원에 대한 접근을 제어하기 위해 사용되는 신호전달 메커니즘 동기화 도구이다 Mutex는 락을 획득한 쓰레드가 락을 해제 할 수 있음 세마포어 : 신호전달로, 쓰레드가 임계영역에 들어갈 수 있도록 락을 풀어주거나 하나가 아닌 여러 쓰레드가 락을 동시에 가질 수 있다. 세마포어는 정수형 변수 S 와 P(Proberen: try), V(Verhogen: increment)의 두 가지 원자적 함수로 구성된 신호전달 메커니즘 동기화 도구이다 P : 임계 영역을 사용하려는 스레드의 진입 여부를 결정하는 연산, Wait 연산이라고도 함 락을 획득하는것 V : 대기 중인 프로세스를 깨우는 신호(Wake-up)로 Signal 연산 락을 획득하고 연산한 이후, 락을 해제하는것 스레드가 임계영역에 진입하지 못할 경우 자발적으로 &lsquo;대기(BLOCK)&lsquo;상태에 들어가고 임계영역을 빠져나오는 스레드가 대기상태의 스레드를 실행대기상태로 깨워준다 자바에서는 java.
-        <a href="/docs/parallel_programming/025_semaphore/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -3090,6 +3110,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-14/">2024-02-14</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-13/">2024-02-13</a>
@@ -3347,12 +3372,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>44</span>
+          <span>45</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>43</span>
+          <span>44</span>
         </li>
       
         <li class="flex justify-between">
