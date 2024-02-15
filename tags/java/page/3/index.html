@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.138f98ce846494f11a7b76788a6b83738cb89d73435a684e4439900dba0b6ff2.js" integrity="sha256-E4&#43;YzoRklPEae3Z4imuDc4y4nXNDWmhORDmQDboLb/I=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.cc904ec016a8543e03e2e7fe1a096564476ebafc9e698a9d68dd21df4535088a.js" integrity="sha256-zJBOwBaoVD4D4uf&#43;GgllZEduuvyeaYqdaN0h30U1CIo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/java/index.xml" title="TIL" />
@@ -967,6 +967,19 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/045_future/" class="">045 Future</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2266,6 +2279,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-02-15/">2024-02-15</a>
+          <span>1</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2023-02-14/">2023-02-14</a>
           <span>1</span>
         </li>
@@ -2536,12 +2554,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>45</span>
+          <span>46</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>44</span>
+          <span>45</span>
         </li>
       
         <li class="flex justify-between">
@@ -2729,6 +2747,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/024_mutual_exclusion/">024 Mutual Exclusion</a>
+    </h2>
+    
+  <h5>January 16, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-16/">2024-01-16</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - Mutual Exclusion - 상호 배제 # 개요 # 뮤텍스(Mutual Exclusion) 또는 상호 배제는 공유 자원에 대한 경쟁 상태를 방지하고 동시성 제어를 위한 락 메커니즘이다 스레드가 임계영역에서 Mutex 객체의 플래그를 소유하고 있으면(락 획득) 다른 스레드가 액세스할 수 없으며 해당 임계영역에 액세스하려고 시도하는 모든 스레드는 차단되고 Mutex 객체 플래그가 해제된 경우(락 해제)에만 액세스할 수 있다 이 메커니즘은 Mutex 락을 가진 오직 한개의 스레드만이 임계영역에 진입할 수 있으며 락을 획득한 스레드만이 락을 해제 할 수 있다 결론 : 뮤텍스는 락과 락해제를 통해 자원을 보호하는 락체계 동기화 도구이다 Mutex 문제점 # 데드락(Deadlock)
+        <a href="/docs/parallel_programming/024_mutual_exclusion/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -3029,39 +3080,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/013_thread_info/">013 Thread Info</a>
-    </h2>
-    
-  <h5>January 13, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-13/">2024-01-13</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - name() / currentThread() / isAlive() # Thread Name # 멀티 스레드 환경에서 어떤 스레드가 실행 중인지 알아야 할 경우 스레드에 사용자 이름을 지정하면 실행 중인 스레드를 쉽게 찾을 수 있다 디버깅할 때 어떤 스레드가 무슨 작업을 하고 있는지 정확하게 파악하기 위해서 스레드 이름을 정하는 것이 큰 도움이 된다 자바에서 스레드가 생성되면 스레드 이름이 자동으로 주어진다. 이건 사용자가 정하는 것이 아니다 가장 먼저 생성되는 메인 스레드의 이름은 main 이다.
-        <a href="/docs/parallel_programming/013_thread_info/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -3133,6 +3151,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-15/">2024-02-15</a>
+          <span>1</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2023-02-14/">2023-02-14</a>
@@ -3405,12 +3428,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>45</span>
+          <span>46</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>44</span>
+          <span>45</span>
         </li>
       
         <li class="flex justify-between">
