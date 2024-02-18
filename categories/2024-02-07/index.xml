@@ -10,16 +10,16 @@
     <atom:link href="https://example.com/categories/2024-02-07/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.com/docs/parallel_programming/036_reentrantReadWriteLock/</link>
+      <link>https://example.com/docs/parallel_programming/lecture01/036_reentrantReadWriteLock/</link>
       <pubDate>Wed, 07 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/parallel_programming/036_reentrantReadWriteLock/</guid>
+      <guid>https://example.com/docs/parallel_programming/lecture01/036_reentrantReadWriteLock/</guid>
       <description>강의 메모 - ReentrantLock # 개요 # ReadWriteLock 은 읽기 작업과 쓰기 작업을 위해 연관된 두 개의 락(읽기 락, 쓰기 락)을 유지하는 인터페이스이다 일반적으로 락은 데이터를 조작하는 하나의 스레드의 임계영역을 보호하는 장치이며 데이터를 읽는 작업만 실행되는 영역은 여러 스레드가 동시에 접근해도 동시성 문제가 발생하지 않는다 읽기 작업이 많고 쓰기 작업이 적은 영역을 효율적으로 처리하기 위해 다수의 읽기와 하나의 쓰기를 읽기락과 쓰기락으로 구분해서 락을 운용하는 것이 필요하다 특징 # 성능 개선</description>
     </item>
     <item>
       <title></title>
-      <link>https://example.com/docs/parallel_programming/037_condition/</link>
+      <link>https://example.com/docs/parallel_programming/lecture01/037_condition/</link>
       <pubDate>Wed, 07 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/parallel_programming/037_condition/</guid>
+      <guid>https://example.com/docs/parallel_programming/lecture01/037_condition/</guid>
       <description>강의 메모 - Condition # 개요 # Condition 은 조건 변수 또는 조건 큐로 알려진 객체로서 Lock 과 결합하여 객체 당 여러 개의 Wait Queue 을 가지는 효과를 제공한다 Lock 이 synchronized 메서드와 문장의 사용을 대체하는 것처럼 Condition은 Object 모니터 메서드 (wait, notify and notifyAll) 의 사용을 대체하며 Lock 에 바인딩된다 Condition 은 한 스레드가 다른 스레드로부터 어떤 상태 조건이 참이 될 수 있다는 통지를 받을 때까지 실행을 중단하도록 하는 수단을 제공한다.</description>
     </item>
   </channel>

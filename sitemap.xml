@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://example.com/docs/parallel_programming/lecture01/</loc>
+    <lastmod>2024-02-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://example.com/docs/algorithm/</loc>
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
@@ -95,10 +98,10 @@
     <loc>https://example.com/docs/webflux/</loc>
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/046_executorService_api/</loc>
+    <loc>https://example.com/docs/parallel_programming/lecture01/046_executorService_api/</loc>
     <lastmod>2024-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/047_executorService_invoke/</loc>
+    <loc>https://example.com/docs/parallel_programming/lecture01/047_executorService_invoke/</loc>
     <lastmod>2024-02-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-02-18/</loc>
@@ -119,14 +122,14 @@
     <loc>https://example.com/tags/</loc>
     <lastmod>2024-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/045_future/</loc>
-    <lastmod>2024-02-15T19:56:04+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/045_future/</loc>
+    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-02-15/</loc>
-    <lastmod>2024-02-15T19:56:04+09:00</lastmod>
+    <lastmod>2024-02-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/044_runnable_callable/</loc>
-    <lastmod>2024-02-14T17:56:00+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/044_runnable_callable/</loc>
+    <lastmod>2024-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/system_design/003_system_design_interview/</loc>
     <lastmod>2024-02-14T20:18:41+09:00</lastmod>
@@ -135,7 +138,7 @@
     <lastmod>2024-02-14T20:18:41+09:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-02-14/</loc>
-    <lastmod>2024-02-14T17:56:00+09:00</lastmod>
+    <lastmod>2024-02-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/system-design/</loc>
     <lastmod>2024-02-14T20:18:41+09:00</lastmod>
@@ -143,26 +146,26 @@
     <loc>https://example.com/tags/system-design-interview/</loc>
     <lastmod>2024-02-14T20:18:41+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/042_threadpool/</loc>
-    <lastmod>2024-02-13T22:07:05+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/042_threadpool/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/043_executor/</loc>
-    <lastmod>2024-02-13T22:07:05+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/043_executor/</loc>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-02-13/</loc>
-    <lastmod>2024-02-13T22:07:05+09:00</lastmod>
+    <lastmod>2024-02-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/038_cas_algorithm/</loc>
-    <lastmod>2024-02-12T21:45:05+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/038_cas_algorithm/</loc>
+    <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/039_atomic/</loc>
-    <lastmod>2024-02-12T21:45:05+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/039_atomic/</loc>
+    <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/040_countDownLatch/</loc>
-    <lastmod>2024-02-12T21:45:05+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/040_countDownLatch/</loc>
+    <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/041_cyclicBarrier/</loc>
-    <lastmod>2024-02-12T21:45:05+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/041_cyclicBarrier/</loc>
+    <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/system_design/001_system_expansion/</loc>
     <lastmod>2024-02-14T20:18:41+09:00</lastmod>
@@ -174,16 +177,16 @@
     <lastmod>2024-02-14T20:18:41+09:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-02-12/</loc>
-    <lastmod>2024-02-12T21:45:05+09:00</lastmod>
+    <lastmod>2024-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/036_reentrantReadWriteLock/</loc>
-    <lastmod>2024-02-07T22:21:47+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/036_reentrantReadWriteLock/</loc>
+    <lastmod>2024-02-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/037_condition/</loc>
-    <lastmod>2024-02-07T22:21:47+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/037_condition/</loc>
+    <lastmod>2024-02-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-02-07/</loc>
-    <lastmod>2024-02-07T22:21:47+09:00</lastmod>
+    <lastmod>2024-02-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/springbatch/004_JobParameter/</loc>
     <lastmod>2024-02-06T23:08:06+09:00</lastmod>
@@ -197,11 +200,11 @@
     <loc>https://example.com/tags/springBatch/</loc>
     <lastmod>2024-02-06T23:08:06+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/035_reentrantLock/</loc>
-    <lastmod>2024-01-30T18:39:25+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/035_reentrantLock/</loc>
+    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-30/</loc>
-    <lastmod>2024-01-30T18:39:25+09:00</lastmod>
+    <lastmod>2024-01-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/kafka/008_topic_partition/</loc>
     <lastmod>2024-01-30T18:40:21+09:00</lastmod>
@@ -212,8 +215,8 @@
     <loc>https://example.com/docs/kafka/010_metadata/</loc>
     <lastmod>2024-01-30T18:40:21+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/034_lock_ReentrantLock/</loc>
-    <lastmod>2024-01-29T19:48:26+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/034_lock_ReentrantLock/</loc>
+    <lastmod>2024-01-29T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-29/</loc>
     <lastmod>2024-01-30T18:40:21+09:00</lastmod>
@@ -221,14 +224,14 @@
     <loc>https://example.com/tags/kafka/</loc>
     <lastmod>2024-01-30T18:40:21+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/032_volatile/</loc>
-    <lastmod>2024-01-28T16:16:21+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/032_volatile/</loc>
+    <lastmod>2024-01-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/033_deadlock/</loc>
-    <lastmod>2024-01-28T16:16:21+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/033_deadlock/</loc>
+    <lastmod>2024-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-28/</loc>
-    <lastmod>2024-01-28T16:16:21+09:00</lastmod>
+    <lastmod>2024-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/etc/005_rabbit_mq/</loc>
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
@@ -239,8 +242,8 @@
     <loc>https://example.com/docs/kafka/007_isr/</loc>
     <lastmod>2024-01-27T15:28:36+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/031_wait_notify/</loc>
-    <lastmod>2024-01-27T15:42:23+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/031_wait_notify/</loc>
+    <lastmod>2024-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/springbatch/002_Job/</loc>
     <lastmod>2024-01-27T16:48:49+09:00</lastmod>
@@ -252,7 +255,7 @@
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-27/</loc>
-    <lastmod>2024-01-27T15:42:23+09:00</lastmod>
+    <lastmod>2024-01-27T15:28:36+09:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/etc/</loc>
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
@@ -260,17 +263,17 @@
     <loc>https://example.com/tags/rabbitmq/</loc>
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/030_synchronized_etc/</loc>
-    <lastmod>2024-01-25T20:23:26+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/030_synchronized_etc/</loc>
+    <lastmod>2024-01-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-25/</loc>
-    <lastmod>2024-01-25T20:23:26+09:00</lastmod>
+    <lastmod>2024-01-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/029_method_synchronized/</loc>
-    <lastmod>2024-01-22T20:27:40+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/029_method_synchronized/</loc>
+    <lastmod>2024-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-22/</loc>
-    <lastmod>2024-01-22T20:27:40+09:00</lastmod>
+    <lastmod>2024-01-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/kafka/004_kafka_broker/</loc>
     <lastmod>2024-01-21T16:41:44+09:00</lastmod>
@@ -284,20 +287,20 @@
     <loc>https://example.com/docs/kafka/003_transactional_outbox_pattern/</loc>
     <lastmod>2024-01-21T07:44:40+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/027_spin_lock/</loc>
-    <lastmod>2024-01-21T07:44:40+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/027_spin_lock/</loc>
+    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/028_synchronized_basic/</loc>
-    <lastmod>2024-01-22T20:27:40+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/028_synchronized_basic/</loc>
+    <lastmod>2024-01-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-20/</loc>
-    <lastmod>2024-01-22T20:27:40+09:00</lastmod>
+    <lastmod>2024-01-21T07:44:40+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/026_monitor/</loc>
-    <lastmod>2024-01-19T22:17:38+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/026_monitor/</loc>
+    <lastmod>2024-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-19/</loc>
-    <lastmod>2024-01-19T22:17:38+09:00</lastmod>
+    <lastmod>2024-01-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/etc/004_sonar_qube/</loc>
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
@@ -305,11 +308,11 @@
     <loc>https://example.com/docs/kafka/002_kafka_intro/</loc>
     <lastmod>2024-01-16T22:50:16+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/024_mutual_exclusion/</loc>
-    <lastmod>2024-01-16T20:09:25+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/024_mutual_exclusion/</loc>
+    <lastmod>2024-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/025_semaphore/</loc>
-    <lastmod>2024-01-16T20:09:25+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/025_semaphore/</loc>
+    <lastmod>2024-01-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2023-01-16/</loc>
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
@@ -320,62 +323,62 @@
     <loc>https://example.com/tags/code/</loc>
     <lastmod>2024-01-28T19:40:27+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/020_single_multi_thread/</loc>
-    <lastmod>2024-01-15T19:09:44+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/020_single_multi_thread/</loc>
+    <lastmod>2024-01-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/021_synchronized_cpu/</loc>
-    <lastmod>2024-01-15T19:09:44+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/021_synchronized_cpu/</loc>
+    <lastmod>2024-01-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/022_critical_section/</loc>
-    <lastmod>2024-01-15T19:09:44+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/022_critical_section/</loc>
+    <lastmod>2024-01-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/023_thread_safe/</loc>
-    <lastmod>2024-01-15T19:09:44+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/023_thread_safe/</loc>
+    <lastmod>2024-01-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-15/</loc>
-    <lastmod>2024-01-15T19:09:44+09:00</lastmod>
+    <lastmod>2024-01-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/017_thread_type/</loc>
-    <lastmod>2024-01-14T14:36:09+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/017_thread_type/</loc>
+    <lastmod>2024-01-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/018_thread_group/</loc>
-    <lastmod>2024-01-14T14:36:09+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/018_thread_group/</loc>
+    <lastmod>2024-01-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/019_threadLocal/</loc>
-    <lastmod>2024-01-14T14:36:09+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/019_threadLocal/</loc>
+    <lastmod>2024-01-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-14/</loc>
-    <lastmod>2024-01-14T14:36:09+09:00</lastmod>
+    <lastmod>2024-01-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/012_thread_interrupt/</loc>
-    <lastmod>2024-01-13T13:28:06+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/012_thread_interrupt/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/013_thread_info/</loc>
-    <lastmod>2024-01-13T13:28:06+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/013_thread_info/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/014_thread_priority/</loc>
-    <lastmod>2024-01-13T13:28:06+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/014_thread_priority/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/015_thread_uncaughtExceptionHandler/</loc>
-    <lastmod>2024-01-13T22:37:29+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/015_thread_uncaughtExceptionHandler/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/016_thread_stop_flag/</loc>
-    <lastmod>2024-01-13T22:37:29+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/016_thread_stop_flag/</loc>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-13/</loc>
-    <lastmod>2024-01-13T22:37:29+09:00</lastmod>
+    <lastmod>2024-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/011_thread_join/</loc>
-    <lastmod>2024-01-08T20:15:08+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/011_thread_join/</loc>
+    <lastmod>2024-01-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-08/</loc>
-    <lastmod>2024-01-08T20:15:08+09:00</lastmod>
+    <lastmod>2024-01-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/010_thread_sleep/</loc>
-    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/010_thread_sleep/</loc>
+    <lastmod>2024-01-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-07/</loc>
-    <lastmod>2024-01-07T10:01:49+09:00</lastmod>
+    <lastmod>2024-01-07T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/etc/003_huge_traffic_handling/</loc>
     <lastmod>2024-01-06T01:19:39+09:00</lastmod>
@@ -389,38 +392,38 @@
     <loc>https://example.com/tags/traffic/</loc>
     <lastmod>2024-01-06T01:19:39+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/009_thread_status/</loc>
-    <lastmod>2024-01-04T20:30:33+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/009_thread_status/</loc>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-04/</loc>
-    <lastmod>2024-01-04T20:30:33+09:00</lastmod>
+    <lastmod>2024-01-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/008_thread_start/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/008_thread_start/</loc>
+    <lastmod>2024-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-03/</loc>
-    <lastmod>2024-01-03T19:02:36+09:00</lastmod>
+    <lastmod>2024-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/004_cpu_bound_io_bound/</loc>
-    <lastmod>2024-01-02T19:20:53+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/004_cpu_bound_io_bound/</loc>
+    <lastmod>2024-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/005_user_kernel_systemcall/</loc>
-    <lastmod>2024-01-02T19:20:53+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/005_user_kernel_systemcall/</loc>
+    <lastmod>2024-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/006_user_mode_kernel_mode_thread/</loc>
-    <lastmod>2024-01-02T19:58:27+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/006_user_mode_kernel_mode_thread/</loc>
+    <lastmod>2024-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/007_java_thread/</loc>
-    <lastmod>2024-01-02T22:06:32+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/007_java_thread/</loc>
+    <lastmod>2024-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-02/</loc>
-    <lastmod>2024-01-02T22:06:32+09:00</lastmod>
+    <lastmod>2024-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/003_context_switching/</loc>
-    <lastmod>2024-01-01T17:12:25+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/003_context_switching/</loc>
+    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2024-01-01/</loc>
-    <lastmod>2024-01-01T17:12:25+09:00</lastmod>
+    <lastmod>2024-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/etc/002_tps/</loc>
     <lastmod>2023-12-28T22:53:04+09:00</lastmod>
@@ -443,14 +446,14 @@
     <loc>https://example.com/tags/spring-session/</loc>
     <lastmod>2023-12-27T20:53:20+09:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/001_process_thread/</loc>
-    <lastmod>2023-12-24T21:02:25+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/001_process_thread/</loc>
+    <lastmod>2023-12-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/docs/parallel_programming/002_parallel_concurrent/</loc>
-    <lastmod>2024-01-10T20:15:00+09:00</lastmod>
+    <loc>https://example.com/docs/parallel_programming/lecture01/002_parallel_concurrent/</loc>
+    <lastmod>2023-12-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/categories/2023-12-22/</loc>
-    <lastmod>2024-01-10T20:15:00+09:00</lastmod>
+    <lastmod>2023-12-22T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/docs/redis/007_redis_cluster_migration/</loc>
     <lastmod>2023-12-27T20:53:20+09:00</lastmod>
@@ -771,6 +774,6 @@
     <lastmod>2023-12-02T01:15:28+09:00</lastmod>
   </url><url>
     <loc>https://example.com/</loc>
-    <lastmod>2024-02-15T19:56:21+09:00</lastmod>
+    <lastmod>2024-02-18T11:45:38+09:00</lastmod>
   </url>
 </urlset>

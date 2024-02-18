@@ -10,9 +10,9 @@
     <atom:link href="https://example.com/categories/2024-01-30/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.com/docs/parallel_programming/035_reentrantLock/</link>
+      <link>https://example.com/docs/parallel_programming/lecture01/035_reentrantLock/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/parallel_programming/035_reentrantLock/</guid>
+      <guid>https://example.com/docs/parallel_programming/lecture01/035_reentrantLock/</guid>
       <description>강의 메모 - ReentrantLock # 개요 # ReentrantLock 은 락 획득 과정에서 스레드가 대기하거나 차단하지 않는 API 를 지원하여 유연한 코드 구현이 가능하다 tryLock() 락을 획득한 경우와 획득하지 못한 경우를 별도로 처리해야하는 상황에서 사용 finally에서 lock 해제 필수 lockInterruptibly() 인터럽트의 명령을 받으면 catch 문 수행 ReentrantLock # ReentrantLock() // ReentrantLock(false)를 사용하는 것과 동일하며 내부적으로 NonfairSync 클래스 객체인 불공정성 락을 생성한다 ReentrantLock(boolean fair) //주어진 공정성 정책으로 인스턴스를 생성한다. 공정성 락을 사용해야 하는 경우 fair 는 true 이며 내부적으로 FairSync 클래스 객체를 생성한다 // 현재 스레드가 이 락을 보유한 횟수를 반환하며이 락을 보유하지 않은 경우에는 0 을 반환한다 int getHoldCount() // 현재 스레드가 이 락을 보유하고 있는지 확인한다.</description>
     </item>
   </channel>

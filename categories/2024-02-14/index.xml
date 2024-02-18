@@ -10,9 +10,9 @@
     <atom:link href="https://example.com/categories/2024-02-14/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>https://example.com/docs/parallel_programming/044_runnable_callable/</link>
+      <link>https://example.com/docs/parallel_programming/lecture01/044_runnable_callable/</link>
       <pubDate>Wed, 14 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>https://example.com/docs/parallel_programming/044_runnable_callable/</guid>
+      <guid>https://example.com/docs/parallel_programming/lecture01/044_runnable_callable/</guid>
       <description>강의 메모 - Runnable and Callable # 개요 # Runnable 과 Callable 은 모두 별도의 스레드에서 실행할 수 있는 작업을 나타내는 데 사용되는 인터페이스이다 두 인터페이스 사이에는 몇 가지 중요한 차이점이 있다 # Runnable # class MyRunnable implements Runnable { public void run() { // 결과를 리턴 하거나 예외를 던질 수 없다 System.out.println(&amp;#34;Hello, world!&amp;#34;); } } Callable # class MyCallable implements Callable&amp;lt;Integer&amp;gt; { public Integer call() throws Exception { // 결과를 리턴 하거나 예외를 던질 수 있다 return 10; } } Callable &amp;amp; Future # Future을 우선 리턴하고 Callable의 call() 로직이 완료되면 결과가 들어온다.</description>
     </item>
   </channel>
