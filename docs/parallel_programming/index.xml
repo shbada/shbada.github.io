@@ -9,6 +9,20 @@
     <atom:link href="https://example.com/docs/parallel_programming/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
+      <link>https://example.com/docs/parallel_programming/046_executorService_api/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/046_executorService_api/</guid>
+      <description>강의 메모 - ExecutorService API - 스레드 풀 실행 및 관리 # 개요 # ExecutorService 는 비동기 작업을 실행하고 관리하기 위한 두 가지 메서드를 제공한다 void execute(Runnable r) – 작업을 제출하면 작업을 실행하고 종료한다 Future submit(Callable c) - 작업을 제출하면 작업을 실행함과 동시에 Future 를 반환한다. Future 에는 결과 값을 포함하고 있다 execute() vs submit() # 작업 중단 및 종료 # ExecutorService 는 스레드 풀을 종료하기 위한 두 가지 메서드를 제공한다 void shutdown() - 정상적인 스레드 풀 종료 이전에 제출된 작업은 실행하고 더 이상 새로운 작업은 수락하지 않습니다.</description>
+    </item>
+    <item>
+      <title></title>
+      <link>https://example.com/docs/parallel_programming/047_executorService_invoke/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://example.com/docs/parallel_programming/047_executorService_invoke/</guid>
+      <description>강의 메모 - ExecutorService API - 다중 작업 처리 # 개요 # ExecutorService 는 여러 작업을 실행하고 결과를 수집하는 데 사용되는 메서드를 제공한다 ionvokeAll # invokeAll() 은 작업들 중 가장 오래 걸리는 작업 만큼 시간이 소요된다 // 여러 개의 Callable 작업을 동시에 실행하고 모든 작업이 완료될 때까지 블록되며 각 작업의 결과를 나타내는 Future 객체의 리스트를 반환한다 // 작업이 완료되면 Future.isDone()이 true 가 되며 작업은 정상적으로 종료되거나 예외를 던져 종료될 수 있다 // 대기 중에 인터럽트가 발생한 경우 아직 완료되지 않은 작업들은 취소된다 List&amp;lt;Future&amp;gt; invokeAll(Collection tasks) throws InterruptedException // 기본 메서드와 기능은 동일하고 시간 경과와 관련된 부분만 차이가 난다 // 타임아웃이 발생하거나 모든 작업이 완료될 때 까지 블록되며 각 작업의 결과를 나타내는 Future 객체의 리스트를 반환한다 // 타임아웃이 발생한 경우 이 작업 중 일부는 완료되지 않을 수 있으며 완료되지 않은 작업은 취소된다 List&amp;lt;Future&amp;gt; invokeAll(Collection tasks, long timeout, TimeUnit unit) throws invokeAny # invokeAny() 는 작업들 중 가장 짧게 걸리는 작업 만큼 시간이 소요된다 // 여러 개의 Callable 작업을 동시에 실행하고 그 중 가장 빨리 성공적으로 완료된(예외를 던지지 않은) 작업의 결과를 반환한다 // 어떤 작업이라도 성공적으로 완료하면 블록을 해제하고 해당 작업의 결과를 반환한다 // 정상적인 반환 또는 예외 발생 시 완료되지 않은 작업들은 모두 취소된다 T invokeAny(Collection tasks) throws InterruptedException, ExecutionException // 기본 메서드와 기능은 동일하고 시간 경과와 관련된 부분만 차이가 난다 // 주어진 시간이 경과하기 전에 예외 없이 성공적으로 완료된 작업의 결과를 반환한다 T invokeAny(Collection tasks, long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException References 강의 : https://www.</description>
+    </item>
+    <item>
+      <title></title>
       <link>https://example.com/docs/parallel_programming/045_future/</link>
       <pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate>
       <guid>https://example.com/docs/parallel_programming/045_future/</guid>
