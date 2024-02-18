@@ -14,9 +14,10 @@
 <title>parallel | TIL</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" >
+<link rel="canonical" href="https://example.com/tags/parallel/">
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.cc904ec016a8543e03e2e7fe1a096564476ebafc9e698a9d68dd21df4535088a.js" integrity="sha256-zJBOwBaoVD4D4uf&#43;GgllZEduuvyeaYqdaN0h30U1CIo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.fcc1abb2b7776248dc31dd6032305401c8c341ba5f7c851baca195b0b9c8fc84.js" integrity="sha256-/MGrsrd3YkjcMd1gMjBUAcjDQbpffIUbrKGVsLnI/IQ=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -967,6 +968,32 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/046_executorService_api/" class="">046 Executor Service API</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/parallel_programming/047_executorService_invoke/" class="">047 Executor Service Invoke</a>
+  
+
+        </li>
+      
     
       
         <li>
@@ -2279,6 +2306,11 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
+          <a href="/categories/2024-02-18/">2024-02-18</a>
+          <span>2</span>
+        </li>
+      
+        <li class="flex justify-between">
           <a href="/categories/2024-02-15/">2024-02-15</a>
           <span>1</span>
         </li>
@@ -2554,12 +2586,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>46</span>
+          <span>48</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>45</span>
+          <span>47</span>
         </li>
       
         <li class="flex justify-between">
@@ -2747,6 +2779,72 @@ https://github.com/alex-shpak/hugo-book
 
       
       
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/046_executorService_api/">046 Executor Service API</a>
+    </h2>
+    
+  <h5>February 18, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-02-18/">2024-02-18</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ExecutorService API - 스레드 풀 실행 및 관리 # 개요 # ExecutorService 는 비동기 작업을 실행하고 관리하기 위한 두 가지 메서드를 제공한다 void execute(Runnable r) – 작업을 제출하면 작업을 실행하고 종료한다 Future submit(Callable c) - 작업을 제출하면 작업을 실행함과 동시에 Future 를 반환한다. Future 에는 결과 값을 포함하고 있다 execute() vs submit() # 작업 중단 및 종료 # ExecutorService 는 스레드 풀을 종료하기 위한 두 가지 메서드를 제공한다 void shutdown() - 정상적인 스레드 풀 종료 이전에 제출된 작업은 실행하고 더 이상 새로운 작업은 수락하지 않습니다.
+        <a href="/docs/parallel_programming/046_executorService_api/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/047_executorService_invoke/">047 Executor Service Invoke</a>
+    </h2>
+    
+  <h5>February 18, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-02-18/">2024-02-18</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - ExecutorService API - 다중 작업 처리 # 개요 # ExecutorService 는 여러 작업을 실행하고 결과를 수집하는 데 사용되는 메서드를 제공한다 ionvokeAll # invokeAll() 은 작업들 중 가장 오래 걸리는 작업 만큼 시간이 소요된다 // 여러 개의 Callable 작업을 동시에 실행하고 모든 작업이 완료될 때까지 블록되며 각 작업의 결과를 나타내는 Future 객체의 리스트를 반환한다 // 작업이 완료되면 Future.isDone()이 true 가 되며 작업은 정상적으로 종료되거나 예외를 던져 종료될 수 있다 // 대기 중에 인터럽트가 발생한 경우 아직 완료되지 않은 작업들은 취소된다 List&lt;Future&gt; invokeAll(Collection tasks) throws InterruptedException // 기본 메서드와 기능은 동일하고 시간 경과와 관련된 부분만 차이가 난다 // 타임아웃이 발생하거나 모든 작업이 완료될 때 까지 블록되며 각 작업의 결과를 나타내는 Future 객체의 리스트를 반환한다 // 타임아웃이 발생한 경우 이 작업 중 일부는 완료되지 않을 수 있으며 완료되지 않은 작업은 취소된다 List&lt;Future&gt; invokeAll(Collection tasks, long timeout, TimeUnit unit) throws invokeAny # invokeAny() 는 작업들 중 가장 짧게 걸리는 작업 만큼 시간이 소요된다 // 여러 개의 Callable 작업을 동시에 실행하고 그 중 가장 빨리 성공적으로 완료된(예외를 던지지 않은) 작업의 결과를 반환한다 // 어떤 작업이라도 성공적으로 완료하면 블록을 해제하고 해당 작업의 결과를 반환한다 // 정상적인 반환 또는 예외 발생 시 완료되지 않은 작업들은 모두 취소된다 T invokeAny(Collection tasks) throws InterruptedException, ExecutionException // 기본 메서드와 기능은 동일하고 시간 경과와 관련된 부분만 차이가 난다 // 주어진 시간이 경과하기 전에 예외 없이 성공적으로 완료된 작업의 결과를 반환한다 T invokeAny(Collection tasks, long timeout, TimeUnit unit) throws InterruptedException, ExecutionException, TimeoutException References 강의 : https://www.
+        <a href="/docs/parallel_programming/047_executorService_invoke/">...</a>
+      
+    </p>
+  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -3012,72 +3110,6 @@ https://github.com/alex-shpak/hugo-book
     </p>
   </article>
   
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/036_reentrantReadWriteLock/">036 Reentrant Read Write Lock</a>
-    </h2>
-    
-  <h5>February 7, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-02-07/">2024-02-07</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - ReentrantLock # 개요 # ReadWriteLock 은 읽기 작업과 쓰기 작업을 위해 연관된 두 개의 락(읽기 락, 쓰기 락)을 유지하는 인터페이스이다 일반적으로 락은 데이터를 조작하는 하나의 스레드의 임계영역을 보호하는 장치이며 데이터를 읽는 작업만 실행되는 영역은 여러 스레드가 동시에 접근해도 동시성 문제가 발생하지 않는다 읽기 작업이 많고 쓰기 작업이 적은 영역을 효율적으로 처리하기 위해 다수의 읽기와 하나의 쓰기를 읽기락과 쓰기락으로 구분해서 락을 운용하는 것이 필요하다 특징 # 성능 개선
-        <a href="/docs/parallel_programming/036_reentrantReadWriteLock/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/037_condition/">037 Condition</a>
-    </h2>
-    
-  <h5>February 7, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-02-07/">2024-02-07</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - Condition # 개요 # Condition 은 조건 변수 또는 조건 큐로 알려진 객체로서 Lock 과 결합하여 객체 당 여러 개의 Wait Queue 을 가지는 효과를 제공한다 Lock 이 synchronized 메서드와 문장의 사용을 대체하는 것처럼 Condition은 Object 모니터 메서드 (wait, notify and notifyAll) 의 사용을 대체하며 Lock 에 바인딩된다 Condition 은 한 스레드가 다른 스레드로부터 어떤 상태 조건이 참이 될 수 있다는 통지를 받을 때까지 실행을 중단하도록 하는 수단을 제공한다.
-        <a href="/docs/parallel_programming/037_condition/">...</a>
-      
-    </p>
-  </article>
-  
 
   
     <ul class="pagination pagination-default">
@@ -3149,6 +3181,11 @@ https://github.com/alex-shpak/hugo-book
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
+      
+        <li class="flex justify-between">
+          <a href="/categories/2024-02-18/">2024-02-18</a>
+          <span>2</span>
+        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-15/">2024-02-15</a>
@@ -3426,12 +3463,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>46</span>
+          <span>48</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>45</span>
+          <span>47</span>
         </li>
       
         <li class="flex justify-between">
