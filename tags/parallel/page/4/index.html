@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" >
 <link rel="stylesheet" href="/book.min.33a48f5432973b8ff9a82679d9e45d67f2c15d4399bd2829269455cfe390b5e8.css" integrity="sha256-M6SPVDKXO4/5qCZ52eRdZ/LBXUOZvSgpJpRVz&#43;OQteg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.fcc1abb2b7776248dc31dd6032305401c8c341ba5f7c851baca195b0b9c8fc84.js" integrity="sha256-/MGrsrd3YkjcMd1gMjBUAcjDQbpffIUbrKGVsLnI/IQ=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.cc904ec016a8543e03e2e7fe1a096564476ebafc9e698a9d68dd21df4535088a.js" integrity="sha256-zJBOwBaoVD4D4uf&#43;GgllZEduuvyeaYqdaN0h30U1CIo=" crossorigin="anonymous"></script>
 
   <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk=" crossorigin="anonymous"></script>
 <link rel="alternate" type="application/rss+xml" href="https://example.com/tags/parallel/index.xml" title="TIL" />
@@ -967,32 +967,6 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/parallel_programming/046_executorService_api/" class="">046 Executor Service API</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="/docs/parallel_programming/047_executorService_invoke/" class="">047 Executor Service Invoke</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -2305,11 +2279,6 @@ https://github.com/alex-shpak/hugo-book
       <ul>
       
         <li class="flex justify-between">
-          <a href="/categories/2024-02-18/">2024-02-18</a>
-          <span>2</span>
-        </li>
-      
-        <li class="flex justify-between">
           <a href="/categories/2024-02-15/">2024-02-15</a>
           <span>1</span>
         </li>
@@ -2585,12 +2554,12 @@ https://github.com/alex-shpak/hugo-book
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>48</span>
+          <span>46</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>47</span>
+          <span>45</span>
         </li>
       
         <li class="flex justify-between">
@@ -2778,72 +2747,6 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/019_threadLocal/">019 Thread Local</a>
-    </h2>
-    
-  <h5>January 14, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-14/">2024-01-14</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - ThreadLocal - 1,2 # 개요 # 자바에서 스레드는 오직 자신만이 접근해서 읽고 쓸수 있는 로컬 변수 저장소를 제공하는데 이를 ThreadLocal 이라고 한다 각 스레드는 고유한 ThreadLocal 객체를 속성으로 가지고 있으며 ThreadLocal 은 스레드 간 격리되어 있다 스레드는 ThreadLocal 에 저장된 값을 특정한 위치나 시점에 상관없이 어디에서나 전역변수처럼 접근해서 사용할 수 있다. 변수 값을 전달하지 않아도 된다 모든 스레드가 공통적으로 처리해야 하는 기능이나 객체를 제어해야 하는 상황에서 스레드마다 다른 값을 적용해야 하는 경우 사용한다 (인증 주체 보관, 트랜잭션 전파, 로그 추적기 등) Thread 마다 ThreadLocal을 가지고있다.
-        <a href="/docs/parallel_programming/019_threadLocal/">...</a>
-      
-    </p>
-  </article>
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/docs/parallel_programming/012_thread_interrupt/">012 Thread Interrupt</a>
-    </h2>
-    
-  <h5>January 13, 2024</h5>
-
-
-
-  
-  <div>
-    
-      <a href="/categories/2024-01-13/">2024-01-13</a>
-  </div>
-  
-
-  
-  <div>
-    
-      <a href="/tags/parallel/">parallel</a>, 
-      <a href="/tags/java/">java</a>
-  </div>
-  
-
-
-
-
-    <p>강의 메모 - interrupt() # 개요 # Interrupt 의 사전적 의미는 ‘방해하다’ 라는 뜻으로 어떤 주체의 행동이나 실행흐름을 방해한다는 의미로 해석 할 수 있다 자바 스레드에서 interrupt() 는 특정한 스레드에게 인터럽트 신호를 알려 줌으로써 스레드의 실행을 중단하거나, 작업 취소, 강제 종료 등으로 사용할 수 있다 interrupt() # interrupt() 는 스레드에게 인터럽트가 발생했다는 신호를 보내는 메카니즘이다 interrupt() 는 스레드가 현재 실행 흐름을 멈추고 인터럽트 이벤트를 먼저 처리하도록 시그널을 보내는 장치라 할 수 있다 interrupted 속성 스레드는 인터럽트 상태(Interrupt State )로 알려진 interrupted 를 가지고 있으며 인터럽트 발생 여부를 확인할 수 있는 상태 값이다.
-        <a href="/docs/parallel_programming/012_thread_interrupt/">...</a>
-      
-    </p>
-  </article>
   
   <article class="markdown book-post">
     <h2>
@@ -3115,6 +3018,74 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
     </p>
   </article>
   
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/004_cpu_bound_io_bound/">004 CPU Bound Io Bound</a>
+    </h2>
+    
+  <h5>January 2, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-02/">2024-01-02</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - CPU Bound &amp; I/O Bound # 개요 # 프로세스는 CPU 작업과 I/O 작업의 연속된 흐름으로 진행된다.
+CPU 작업 # I/O 작업 # 파일을 읽는 행위 등 CPU는 실제 데이터를 읽어들이는 일을 하진 않고, 이를 다른 디바이스에 맡긴다. CPU는 다시금 연산작업을 할 수 있는 쓰레드를 할당받고, CPU는 그 쓰레드에게 실제 연산작업을 시킨다. I/O 작업이 일어날 경우, CPU는 다른 쓰레드를 선택하는거고, 해당 I/O 작업을 하고있는 쓰레드는 I/O 작업이 끝날때까지 기다려야한다.
+        <a href="/docs/parallel_programming/004_cpu_bound_io_bound/">...</a>
+      
+    </p>
+  </article>
+  
+  <article class="markdown book-post">
+    <h2>
+      <a href="/docs/parallel_programming/005_user_kernel_systemcall/">005 User Kernel Systemcall</a>
+    </h2>
+    
+  <h5>January 2, 2024</h5>
+
+
+
+  
+  <div>
+    
+      <a href="/categories/2024-01-02/">2024-01-02</a>
+  </div>
+  
+
+  
+  <div>
+    
+      <a href="/tags/parallel/">parallel</a>, 
+      <a href="/tags/java/">java</a>
+  </div>
+  
+
+
+
+
+    <p>강의 메모 - 사용자 모드 &amp; 커널 모드 # 개요 # 운영체제 : 컴퓨터 시스템의 자원을 효율적으로 관리하는 소프트웨어 운영체제의 여러 기능 중 핵심 기능을 담당하는 부분을 커널(kernel) 이라고 한다.
+사용자가 운영체제 위에서 실행되는 프로그램을 편하고 효율적으로 사용할 수 있게 하드웨어와 소프트웨어 간 중개자 역할을 한다. CPU, I/O 장치, 메모리, 저장소와 같은 하드웨어 자원을 프로그램에 잘 할당하는 데 있다. 운영체제는 응용 프로그램이 하드웨어 자원에 직접 접근하는 것을 방지하여 자원을 보호한다.
+        <a href="/docs/parallel_programming/005_user_kernel_systemcall/">...</a>
+      
+    </p>
+  </article>
+  
 
   
     <ul class="pagination pagination-default">
@@ -3186,11 +3157,6 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
     <li class="book-section-flat">
       <strong>Categories</strong>
       <ul>
-      
-        <li class="flex justify-between">
-          <a href="/categories/2024-02-18/">2024-02-18</a>
-          <span>2</span>
-        </li>
       
         <li class="flex justify-between">
           <a href="/categories/2024-02-15/">2024-02-15</a>
@@ -3468,12 +3434,12 @@ start() 호출 후 System Call -&gt; (execute) -&gt; Kernel -&gt; (create) -&gt;
       
         <li class="flex justify-between">
           <a href="/tags/java/">java</a>
-          <span>48</span>
+          <span>46</span>
         </li>
       
         <li class="flex justify-between">
           <a href="/tags/parallel/">parallel</a>
-          <span>47</span>
+          <span>45</span>
         </li>
       
         <li class="flex justify-between">
